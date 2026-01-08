@@ -102,6 +102,14 @@ header nav a:hover{
  background:#12caca;
 }
 
+/* LOGO – ÚNICA ALTERAÇÃO */
+.logo-hero{
+ width:clamp(180px, 35vw, 360px);
+ max-width:100%;
+ height:auto;
+ margin-bottom:30px;
+}
+
 .hero img{
  width:100%;
  max-width:420px;
@@ -217,9 +225,6 @@ footer p{
   grid-template-columns:1fr;
   text-align:center;
  }
- .hero img{
-  margin:0 auto;
- }
 }
 </style>
 </head>
@@ -236,7 +241,12 @@ footer p{
 
 <section class="hero">
  <div>
+
+  <!-- LOGO EM CIMA DO TEXTO -->
+  <img class="logo-hero" src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg" alt="SEC Engenharia">
+
   <h2>Excelência em <span>Engenharia</span><br>e Segurança do Trabalho</h2>
+
   <p>
    Soluções técnicas completas para empresas que exigem
    conformidade legal, segurança e alto padrão profissional.
@@ -246,8 +256,6 @@ footer p{
    Solicitar Orçamento
   </a>
  </div>
-
- <img src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg" alt="SEC Engenharia">
 </section>
 
 <section class="services" id="servicos">
@@ -316,4 +324,3 @@ footer p{
 
 </body>
 </html>
-
