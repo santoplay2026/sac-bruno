@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEC Engenharia | Soluções Corporativas</title>
+<title>SEC Engenharia</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -22,150 +22,101 @@
 html,body{background:var(--bg);color:var(--texto);scroll-behavior:smooth}
 img{max-width:100%;display:block}
 
-/* HEADER */
-header{
+/* BOTÃO FIXO */
+.btn-fixo{
  position:fixed;
- top:0;
- width:100%;
- z-index:1000;
- background:rgba(2,6,23,.92);
- backdrop-filter:blur(10px);
- border-bottom:1px solid var(--linha);
-}
-.header-inner{
- max-width:1400px;
- margin:auto;
- padding:18px 6%;
- display:flex;
- justify-content:space-between;
- align-items:center;
-}
-header img{height:48px}
-nav a{
- margin-left:40px;
+ top:20px;
+ right:20px;
+ z-index:2000;
+ padding:14px 26px;
+ border-radius:40px;
+ background:var(--verde);
+ color:#022;
  font-size:12px;
  letter-spacing:2px;
  text-decoration:none;
- color:var(--cinza);
+ box-shadow:0 0 25px rgba(34,211,197,.4);
 }
-nav a:hover{color:var(--verde)}
 
 /* HERO */
 .hero{
  min-height:100vh;
  display:flex;
  align-items:center;
+ justify-content:center;
+ text-align:center;
  background:
  linear-gradient(rgba(2,6,23,.9),rgba(2,6,23,.9)),
  url("logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg") center/cover no-repeat;
- padding-top:120px;
+ padding:120px 6%;
 }
 .hero-inner{
- max-width:1400px;
- margin:auto;
- padding:0 6%;
+ max-width:900px;
  animation:fadeUp 1.2s ease;
 }
 .hero-logo{
- max-width:420px;
- margin-bottom:50px;
+ width:320px;
+ margin:0 auto 40px;
 }
 .hero h1{
- font-size:64px;
+ font-size:58px;
  line-height:1.1;
 }
 .hero h1 span{color:var(--verde)}
 .hero p{
+ margin:30px auto 0;
  max-width:700px;
- margin:35px 0 60px;
  font-size:18px;
  color:#c7d2fe;
 }
-.hero a{
- padding:24px 80px;
- border-radius:70px;
- border:1px solid var(--verde);
- color:var(--verde);
- text-decoration:none;
- letter-spacing:2px;
- transition:.4s;
-}
-.hero a:hover{
- background:var(--verde);
- color:#022;
- box-shadow:0 0 30px rgba(34,211,197,.35);
-}
 
-/* SECTIONS */
+/* SEÇÕES */
 section{padding:120px 6%}
-.wrap{max-width:1400px;margin:auto}
-h2{font-size:48px;margin-bottom:30px}
-h3{font-size:24px;margin-bottom:10px}
+.wrap{
+ max-width:1200px;
+ margin:auto;
+ text-align:center;
+}
+h2{font-size:44px;margin-bottom:40px}
 p{color:var(--cinza)}
 
 /* GRID */
 .grid{
  display:grid;
  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
- gap:50px;
+ gap:40px;
 }
 
 /* CARDS */
 .card{
  background:var(--card);
  border:1px solid var(--linha);
- border-radius:24px;
- padding:35px;
- transition:.4s;
+ border-radius:22px;
+ padding:30px;
+ transition:.3s;
 }
 .card:hover{
- transform:translateY(-10px);
+ transform:translateY(-8px);
  border-color:var(--verde);
 }
 .card img{
- height:200px;
+ height:180px;
  width:100%;
  object-fit:cover;
  border-radius:16px;
  margin-bottom:20px;
 }
 
-/* DIFERENCIAL */
-.diferencial{
- border-left:4px solid var(--verde);
- padding:25px;
- background:var(--card);
-}
-
-/* METRICS */
-.metrics{text-align:center}
-.metric h4{
- font-size:54px;
+/* MÉTRICAS */
+.metric h3{
+ font-size:52px;
  color:var(--verde);
 }
 .metric p{letter-spacing:2px}
 
-/* CTA */
-.cta{
- text-align:center;
- background:
- linear-gradient(rgba(2,6,23,.9),rgba(2,6,23,.9)),
- url("logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg") center/cover;
-}
-.cta a{
- display:inline-block;
- margin-top:40px;
- padding:26px 100px;
- background:var(--verde);
- color:#022;
- border-radius:80px;
- letter-spacing:3px;
- text-decoration:none;
-}
-
 /* FOOTER */
 footer{
- padding:70px 20px;
+ padding:60px 20px;
  text-align:center;
  font-size:13px;
  color:var(--cinza);
@@ -173,104 +124,76 @@ footer{
 }
 
 /* ANIMAÇÃO */
-.reveal{
- opacity:0;
- transform:translateY(40px);
- transition:.8s ease;
-}
-.reveal.show{
- opacity:1;
- transform:none;
-}
 @keyframes fadeUp{
  from{opacity:0;transform:translateY(40px)}
  to{opacity:1;transform:none}
 }
 
-/* RESPONSIVO */
-@media(max-width:900px){
- nav{display:none}
- .hero h1{font-size:40px}
- .hero-logo{max-width:260px}
- section{padding:90px 6%}
+/* MOBILE */
+@media(max-width:768px){
+ .hero h1{font-size:38px}
+ .hero-logo{width:220px}
 }
 </style>
 </head>
 
 <body>
 
-<header>
- <div class="header-inner">
-  <img src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg" alt="SEC Engenharia">
-  <nav>
-   <a href="#empresa">EMPRESA</a>
-   <a href="#servicos">SERVIÇOS</a>
-   <a href="#dados">DADOS</a>
-   <a href="#contato">CONTATO</a>
-  </nav>
- </div>
-</header>
+<!-- BOTÃO FIXO -->
+<a class="btn-fixo" href="https://wa.me/557391396879" target="_blank">
+ CONTATO
+</a>
 
+<!-- HERO -->
 <section class="hero">
  <div class="hero-inner">
   <img class="hero-logo" src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg">
   <h1>Engenharia <span>Avançada</span><br>para Operações Críticas</h1>
-  <p>Soluções técnicas, normativas e estratégicas para empresas que exigem segurança, desempenho e padrão corporativo elevado.</p>
-  <a href="https://wa.me/557391396879" target="_blank">CONTATO DIRETO</a>
+  <p>
+   Soluções técnicas e normativas para empresas que exigem segurança,
+   desempenho e padrão corporativo elevado.
+  </p>
  </div>
 </section>
 
-<section id="empresa">
- <div class="wrap reveal">
+<!-- EMPRESA -->
+<section>
+ <div class="wrap">
   <h2>Quem Somos</h2>
   <div class="grid">
-   <div class="diferencial">✔ Atuação em ambientes industriais e críticos</div>
-   <div class="diferencial">✔ Conformidade legal e normativa</div>
-   <div class="diferencial">✔ Documentação técnica auditável</div>
-   <div class="diferencial">✔ Engenharia aplicada ao negócio</div>
+   <div class="card">Atuação em ambientes industriais críticos</div>
+   <div class="card">Conformidade legal e normativa</div>
+   <div class="card">Documentação técnica auditável</div>
+   <div class="card">Engenharia aplicada ao negócio</div>
   </div>
  </div>
 </section>
 
-<section id="servicos">
- <div class="wrap reveal">
+<!-- SERVIÇOS -->
+<section style="background:#0f172a">
+ <div class="wrap">
   <h2>Especialidades Técnicas</h2>
   <div class="grid">
-   <div class="card"><img src="imagens/1.png"><h3>Engenharia Elétrica</h3><p>SPDA, aterramento e inspeções.</p></div>
-   <div class="card"><img src="imagens/2.png"><h3>Segurança do Trabalho</h3><p>PGR, PCMSO e gestão de riscos.</p></div>
-   <div class="card"><img src="imagens/3.png"><h3>Engenharia Clínica</h3><p>Gestão hospitalar.</p></div>
-   <div class="card"><img src="imagens/4.png"><h3>Engenharia Mecânica</h3><p>Laudos e adequações.</p></div>
+   <div class="card"><img src="imagens/1.png"><h3>Engenharia Elétrica</h3></div>
+   <div class="card"><img src="imagens/2.png"><h3>Segurança do Trabalho</h3></div>
+   <div class="card"><img src="imagens/3.png"><h3>Engenharia Clínica</h3></div>
+   <div class="card"><img src="imagens/4.png"><h3>Engenharia Mecânica</h3></div>
   </div>
  </div>
 </section>
 
-<section class="metrics" id="dados">
- <div class="wrap grid reveal">
-  <div class="metric"><h4>+500</h4><p>PROJETOS</p></div>
-  <div class="metric"><h4>100%</h4><p>CONFORMIDADE</p></div>
-  <div class="metric"><h4>24/7</h4><p>SUPORTE</p></div>
-  <div class="metric"><h4>0</h4><p>ERROS</p></div>
- </div>
-</section>
-
-<section class="cta" id="contato">
- <div class="wrap reveal">
-  <h2>Fale com um Especialista</h2>
-  <a href="https://wa.me/557391396879" target="_blank">INICIAR CONVERSA</a>
+<!-- MÉTRICAS -->
+<section>
+ <div class="wrap grid">
+  <div class="metric"><h3>+500</h3><p>PROJETOS</p></div>
+  <div class="metric"><h3>100%</h3><p>CONFORMIDADE</p></div>
+  <div class="metric"><h3>24/7</h3><p>SUPORTE</p></div>
  </div>
 </section>
 
 <footer>
  © 2026 SEC Engenharia • Soluções Técnicas Profissionais
 </footer>
-
-<script>
-const els=document.querySelectorAll(".reveal");
-const obs=new IntersectionObserver(e=>{
- e.forEach(i=>i.isIntersecting && i.target.classList.add("show"))
-},{threshold:.15});
-els.forEach(el=>obs.observe(el));
-</script>
 
 </body>
 </html>
