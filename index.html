@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEC Engenharia</title>
+<title>SEC Engenharia | Desenvolver para Evoluir</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -11,32 +11,43 @@
 :root{
  --bg:#020617;
  --bg2:#0f172a;
- --card:#020617;
  --verde:#22d3c5;
  --texto:#e5e7eb;
  --cinza:#9ca3af;
  --linha:rgba(255,255,255,.08);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-html,body{background:var(--bg);color:var(--texto);scroll-behavior:smooth}
-img{max-width:100%;display:block}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+html,body{background:var(--bg);color:var(--texto);line-height:1.8;overflow-x:hidden}
 
-/* BOTÃO FIXO */
-.btn-fixo{
+/* HEADER */
+header{
  position:fixed;
- top:20px;
- right:20px;
- z-index:2000;
- padding:14px 26px;
- border-radius:40px;
- background:var(--verde);
- color:#022;
- font-size:12px;
+ top:0;
+ left:0;
+ width:100%;
+ z-index:1000;
+ background:rgba(2,6,23,.92);
+ backdrop-filter:blur(8px);
+ border-bottom:1px solid var(--linha);
+}
+.header-inner{
+ max-width:1600px;
+ margin:auto;
+ padding:20px 8%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+header img{height:60px}
+header nav a{
+ margin-left:30px;
+ font-size:14px;
  letter-spacing:2px;
  text-decoration:none;
- box-shadow:0 0 25px rgba(34,211,197,.4);
+ color:var(--cinza);
 }
+header nav a:hover{color:var(--verde)}
 
 /* HERO */
 .hero{
@@ -45,155 +56,234 @@ img{max-width:100%;display:block}
  align-items:center;
  justify-content:center;
  text-align:center;
- background:
- linear-gradient(rgba(2,6,23,.9),rgba(2,6,23,.9)),
+ background:linear-gradient(rgba(2,6,23,.9),rgba(2,6,23,.9)),
  url("logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg") center/cover no-repeat;
- padding:120px 6%;
-}
-.hero-inner{
- max-width:900px;
- animation:fadeUp 1.2s ease;
-}
-.hero-logo{
- width:320px;
- margin:0 auto 40px;
+ padding-top:150px;
 }
 .hero h1{
- font-size:58px;
+ font-size:clamp(48px,8vw,70px);
  line-height:1.1;
 }
 .hero h1 span{color:var(--verde)}
 .hero p{
- margin:30px auto 0;
- max-width:700px;
+ margin:30px auto 40px;
+ max-width:750px;
  font-size:18px;
  color:#c7d2fe;
 }
 
-/* SEÇÕES */
-section{padding:120px 6%}
-.wrap{
- max-width:1200px;
- margin:auto;
- text-align:center;
+.hero a{
+ padding:22px 80px;
+ border-radius:60px;
+ border:1px solid var(--verde);
+ color:var(--verde);
+ text-decoration:none;
+ letter-spacing:2px;
+ transition:.4s;
 }
-h2{font-size:44px;margin-bottom:40px}
-p{color:var(--cinza)}
+.hero a:hover{
+ background:var(--verde);
+ color:#022;
+}
+
+/* SECTIONS */
+section{padding:120px 6%}
+.wrap{max-width:1400px;margin:auto;text-align:center}
+h2{font-size:42px;margin-bottom:30px}
+h3{font-size:24px;margin-bottom:15px}
+p{color:var(--cinza);margin-bottom:20px}
 
 /* GRID */
 .grid{
  display:grid;
  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
- gap:40px;
+ gap:50px;
 }
 
 /* CARDS */
 .card{
- background:var(--card);
+ background:var(--bg2);
  border:1px solid var(--linha);
  border-radius:22px;
- padding:30px;
- transition:.3s;
+ padding:35px;
+ transition:.4s;
 }
 .card:hover{
- transform:translateY(-8px);
+ transform:translateY(-10px);
  border-color:var(--verde);
 }
 .card img{
- height:180px;
  width:100%;
+ height:220px;
  object-fit:cover;
  border-radius:16px;
  margin-bottom:20px;
 }
 
-/* MÉTRICAS */
-.metric h3{
- font-size:52px;
- color:var(--verde);
+/* PROFISSIONAIS */
+.profissionais{
+ background:#020617;
+ border-left:4px solid var(--verde);
+ padding:40px;
+ margin-top:40px;
 }
-.metric p{letter-spacing:2px}
+
+.profissionais p{
+ font-size:16px;
+ line-height:1.6;
+ color:var(--texto);
+}
+
+.profissionais h3{
+ margin-bottom:20px;
+}
+
+/* REDES SOCIAIS */
+.redes{
+ display:flex;
+ justify-content:center;
+ gap:25px;
+ margin-top:40px;
+}
+
+.redes a{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ width:50px;
+ height:50px;
+ background:var(--verde);
+ border-radius:50%;
+ color:#022;
+ font-size:18px;
+ text-decoration:none;
+ transition:.3s;
+}
+
+.redes a:hover{
+ background:#0fbfbf;
+}
 
 /* FOOTER */
 footer{
- padding:60px 20px;
+ background:#020617;
+ padding:50px 20px;
  text-align:center;
- font-size:13px;
+ font-size:14px;
  color:var(--cinza);
  border-top:1px solid var(--linha);
 }
 
 /* ANIMAÇÃO */
+.reveal{
+ opacity:0;
+ transform:translateY(40px);
+ transition:.8s ease;
+}
+.reveal.show{
+ opacity:1;
+ transform:none;
+}
 @keyframes fadeUp{
  from{opacity:0;transform:translateY(40px)}
  to{opacity:1;transform:none}
 }
 
-/* MOBILE */
-@media(max-width:768px){
- .hero h1{font-size:38px}
- .hero-logo{width:220px}
+@media(max-width:900px){
+ .hero h1{font-size:42px}
+ .hero p{font-size:16px}
+ section{padding:80px 6%}
 }
 </style>
 </head>
 
 <body>
 
-<!-- BOTÃO FIXO -->
-<a class="btn-fixo" href="https://wa.me/557391396879" target="_blank">
- CONTATO
-</a>
+<!-- HEADER -->
+<header>
+ <div class="header-inner">
+  <img src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg" alt="SEC Engenharia">
+  <nav>
+   <a href="#empresa">EMPRESA</a>
+   <a href="#servicos">SERVIÇOS</a>
+   <a href="#profissionais">PROFISSIONAIS</a>
+   <a href="#contato">CONTATO</a>
+  </nav>
+ </div>
+</header>
 
 <!-- HERO -->
 <section class="hero">
  <div class="hero-inner">
-  <img class="hero-logo" src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg">
-  <h1>Engenharia <span>Avançada</span><br>para Operações Críticas</h1>
-  <p>
-   Soluções técnicas e normativas para empresas que exigem segurança,
-   desempenho e padrão corporativo elevado.
-  </p>
+  <h1>SEC Engenharia <br> <span>Desenvolver para Evoluir</span></h1>
+  <p>Trabalhamos com soluções inovadoras e estratégicas, focadas em resultados e no alto padrão técnico e ético da engenharia.</p>
+  <a href="https://wa.me/557391396879" target="_blank">CONTATO DIRETO</a>
  </div>
 </section>
 
-<!-- EMPRESA -->
-<section>
- <div class="wrap">
+<!-- QUEM SOMOS -->
+<section id="empresa">
+ <div class="wrap reveal">
   <h2>Quem Somos</h2>
-  <div class="grid">
-   <div class="card">Atuação em ambientes industriais críticos</div>
-   <div class="card">Conformidade legal e normativa</div>
-   <div class="card">Documentação técnica auditável</div>
-   <div class="card">Engenharia aplicada ao negócio</div>
-  </div>
+  <p>Somos uma empresa com mais de 10 anos de experiência em engenharia, oferecendo soluções completas e personalizadas para diversos setores da indústria.</p>
  </div>
 </section>
 
 <!-- SERVIÇOS -->
-<section style="background:#0f172a">
- <div class="wrap">
+<section id="servicos">
+ <div class="wrap reveal">
   <h2>Especialidades Técnicas</h2>
   <div class="grid">
-   <div class="card"><img src="imagens/1.png"><h3>Engenharia Elétrica</h3></div>
-   <div class="card"><img src="imagens/2.png"><h3>Segurança do Trabalho</h3></div>
-   <div class="card"><img src="imagens/3.png"><h3>Engenharia Clínica</h3></div>
-   <div class="card"><img src="imagens/4.png"><h3>Engenharia Mecânica</h3></div>
+   <div class="card"><img src="imagens/1.png"><h3>Engenharia Elétrica</h3><p>SPDA, aterramento e inspeções.</p></div>
+   <div class="card"><img src="imagens/2.png"><h3>Segurança do Trabalho</h3><p>PGR, PCMSO, LTCAT e gestão de riscos.</p></div>
+   <div class="card"><img src="imagens/3.png"><h3>Engenharia Clínica</h3><p>Gestão e manutenção hospitalar.</p></div>
+   <div class="card"><img src="imagens/4.png"><h3>Engenharia Mecânica</h3><p>Laudos, inspeções e adequações.</p></div>
   </div>
  </div>
 </section>
 
-<!-- MÉTRICAS -->
+<!-- PROFISSIONAIS -->
+<section id="profissionais" class="profissionais">
+ <h3>Nossos Profissionais</h3>
+ <p><strong>BRUNO SOUZA MOTA</strong> - Eng. Eletricista | Eng. Mecânico | Eng. Segurança do Trabalho | Especialista em Eng. Clínica | CREA 3000078851</p>
+ <p><strong>EDSON LUIS NASCIMENTO VIEIRA</strong> - Tecnólogo em Telecomunicações | Tecnólogo em Eletrônica | CREA 79591D</p>
+ <p><strong>LOHANNA KEROLIN</strong> - Tecnóloga em Segurança do Trabalho | CREA Recursos Humanos</p>
+</section>
+
+<!-- REDES SOCIAIS -->
 <section>
- <div class="wrap grid">
-  <div class="metric"><h3>+500</h3><p>PROJETOS</p></div>
-  <div class="metric"><h3>100%</h3><p>CONFORMIDADE</p></div>
-  <div class="metric"><h3>24/7</h3><p>SUPORTE</p></div>
+ <div class="redes">
+  <a href="https://www.facebook.com" target="_blank">FB</a>
+  <a href="https://www.linkedin.com" target="_blank">IN</a>
+  <a href="https://twitter.com" target="_blank">TW</a>
+  <a href="https://www.instagram.com" target="_blank">IG</a>
  </div>
 </section>
 
+<!-- CTA -->
+<section id="contato" class="cta">
+ <div class="wrap">
+  <h2>Fale com um Especialista</h2>
+  <a href="https://wa.me/557391396879" target="_blank">INICIAR CONVERSA</a>
+ </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
- © 2026 SEC Engenharia • Soluções Técnicas Profissionais
+ <p>© 2026 SEC Engenharia • Soluções Técnicas Profissionais</p>
 </footer>
+
+<script>
+// Animations
+const els = document.querySelectorAll(".reveal");
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add("show");
+  });
+}, { threshold: 0.15 });
+
+els.forEach(el => obs.observe(el));
+</script>
 
 </body>
 </html>
