@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEC Engenharia | Engenharia Corporativa</title>
+<title>SEC Engenharia | Engenharia de Alto Padrão</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
- --bg:#070b17;
- --bg2:#0b1224;
+ --bg:#05080f;
+ --bg2:#0b1220;
  --bg3:#020617;
- --verde:#22d3c5;
+ --verde:#1ec9b8;
  --texto:#e5e7eb;
  --cinza:#9ca3af;
- --linha:rgba(255,255,255,.08);
+ --overlay:rgba(2,6,23,.75);
 }
 
 *{
@@ -39,21 +39,21 @@ header{
  z-index:999;
  background:rgba(2,6,23,.85);
  backdrop-filter:blur(12px);
- border-bottom:1px solid var(--linha);
+ border-bottom:1px solid rgba(255,255,255,.05);
 }
 
 .header-inner{
  max-width:1500px;
  margin:auto;
- padding:28px 8%;
+ padding:26px 8%;
  display:flex;
  justify-content:space-between;
  align-items:center;
 }
 
 header h1{
- font-size:18px;
  letter-spacing:3px;
+ font-size:18px;
  font-weight:600;
 }
 
@@ -69,20 +69,30 @@ header nav a:hover{
  color:var(--verde);
 }
 
-/* HERO */
+/* HERO COM IMAGEM */
 .hero{
- padding:220px 8% 180px;
+ min-height:100vh;
+ background:
+ linear-gradient(var(--overlay),var(--overlay)),
+ url("https://images.unsplash.com/photo-1581092918367-59c93b3c2c44?auto=format&fit=crop&w=1600&q=80");
+ background-size:cover;
+ background-position:center;
+ display:flex;
+ align-items:center;
+}
+
+.hero-content{
  max-width:1500px;
- margin:auto;
+ padding:0 8%;
 }
 
 .hero img{
  width:260px;
- margin-bottom:50px;
+ margin-bottom:45px;
 }
 
 .hero h2{
- font-size:62px;
+ font-size:64px;
  font-weight:600;
  line-height:1.15;
 }
@@ -92,21 +102,20 @@ header nav a:hover{
 }
 
 .hero p{
- max-width:680px;
- margin:45px 0 65px;
+ max-width:700px;
+ margin:40px 0 65px;
  font-size:18px;
  color:#c7d2fe;
 }
 
 .hero a{
- display:inline-block;
- padding:22px 75px;
+ padding:22px 80px;
  border:1px solid var(--verde);
  border-radius:60px;
  color:var(--verde);
+ text-decoration:none;
  letter-spacing:2px;
  font-size:14px;
- text-decoration:none;
  transition:.4s;
 }
 
@@ -115,54 +124,31 @@ header nav a:hover{
  color:#022;
 }
 
-/* SEPARADOR */
-.sep{
- height:1px;
- background:linear-gradient(to right,transparent,var(--verde),transparent);
- opacity:.35;
+/* SEÇÃO IMAGEM + TEXTO */
+.section-img{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ min-height:600px;
 }
 
-/* SOBRE */
-.about{
- padding:160px 8%;
+.section-img .img{
+ background-size:cover;
+ background-position:center;
+}
+
+.section-img .text{
+ padding:140px 10%;
  background:var(--bg2);
 }
 
-.about-grid{
- max-width:1500px;
- margin:auto;
- display:grid;
- grid-template-columns:1.2fr .8fr;
- gap:120px;
-}
-
-.about h3{
+.section-img h3{
  font-size:42px;
- font-weight:600;
- margin-bottom:35px;
+ margin-bottom:30px;
 }
 
-.about p{
+.section-img p{
  color:var(--cinza);
- margin-bottom:25px;
-}
-
-.about ul{
- margin-top:40px;
-}
-
-.about li{
- list-style:none;
- margin-bottom:18px;
- padding-left:30px;
- position:relative;
-}
-
-.about li::before{
- content:"▸";
- position:absolute;
- left:0;
- color:var(--verde);
+ margin-bottom:20px;
 }
 
 /* MÉTRICAS */
@@ -181,9 +167,8 @@ header nav a:hover{
 }
 
 .metric h4{
- font-size:52px;
+ font-size:54px;
  color:var(--verde);
- font-weight:600;
 }
 
 .metric p{
@@ -191,7 +176,7 @@ header nav a:hover{
  letter-spacing:1px;
 }
 
-/* SERVIÇOS */
+/* SERVIÇOS COM IMAGEM */
 .services{
  padding:160px 8%;
  background:var(--bg2);
@@ -199,13 +184,7 @@ header nav a:hover{
 
 .services h3{
  font-size:44px;
- margin-bottom:30px;
-}
-
-.services p.sub{
- color:var(--cinza);
- max-width:520px;
- margin-bottom:90px;
+ margin-bottom:80px;
 }
 
 .service-grid{
@@ -217,66 +196,51 @@ header nav a:hover{
 }
 
 .service{
- border:1px solid var(--linha);
- padding:55px;
+ position:relative;
+ height:420px;
  border-radius:30px;
- background:var(--bg3);
- transition:.4s;
+ overflow:hidden;
 }
 
-.service:hover{
- transform:translateY(-12px);
- border-color:rgba(34,211,197,.4);
+.service::after{
+ content:"";
+ position:absolute;
+ inset:0;
+ background:linear-gradient(to top,rgba(2,6,23,.9),rgba(2,6,23,.2));
+}
+
+.service img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+}
+
+.service-content{
+ position:absolute;
+ bottom:0;
+ padding:45px;
+ z-index:2;
 }
 
 .service h4{
  font-size:22px;
- margin-bottom:20px;
+ margin-bottom:15px;
 }
 
 .service p{
- color:var(--cinza);
-}
-
-/* PROCESSO */
-.process{
- padding:160px 8%;
- background:var(--bg3);
-}
-
-.process h3{
- font-size:42px;
- margin-bottom:80px;
-}
-
-.steps{
- max-width:1500px;
- margin:auto;
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
- gap:80px;
-}
-
-.step span{
- font-size:14px;
- color:var(--verde);
- letter-spacing:2px;
-}
-
-.step h4{
- margin:18px 0;
- font-size:22px;
-}
-
-.step p{
- color:var(--cinza);
+ color:#d1d5db;
+ font-size:15px;
 }
 
 /* CTA */
 .cta{
  padding:180px 8%;
  text-align:center;
- background:radial-gradient(circle at top,#0f766e,#020617 65%);
+ background:
+ linear-gradient(rgba(2,6,23,.85),rgba(2,6,23,.85)),
+ url("https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80");
+ background-size:cover;
+ background-position:center;
 }
 
 .cta h3{
@@ -296,21 +260,17 @@ header nav a:hover{
 
 /* FOOTER */
 footer{
- padding:80px 8%;
- background:#020617;
+ padding:80px;
  text-align:center;
-}
-
-footer p{
+ background:#020617;
  color:var(--cinza);
  font-size:13px;
- letter-spacing:1px;
 }
 
 /* RESPONSIVO */
 @media(max-width:900px){
  .hero h2{font-size:42px;}
- .about-grid{grid-template-columns:1fr;}
+ .section-img{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -323,143 +283,90 @@ footer p{
   <nav>
    <a href="#">EMPRESA</a>
    <a href="#">SERVIÇOS</a>
-   <a href="#">PROCESSOS</a>
    <a href="#">CONTATO</a>
   </nav>
  </div>
 </header>
 
 <section class="hero">
- <img src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg">
- <h2>
-  Engenharia de<br>
-  <span>Alta Complexidade</span><br>
-  e Responsabilidade Técnica
- </h2>
- <p>
-  Atuamos em operações críticas onde falhas não são aceitáveis.
-  Engenharia corporativa, normativa e estratégica para empresas
-  que exigem precisão, rastreabilidade e conformidade total.
- </p>
- <a href="https://wa.me/557391396879" target="_blank">
-  CONTATO EXECUTIVO
- </a>
+ <div class="hero-content">
+  <img src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg">
+  <h2>
+   Engenharia de<br>
+   <span>Alta Complexidade</span>
+  </h2>
+  <p>
+   Soluções técnicas para empresas que operam
+   em ambientes críticos e exigem excelência.
+  </p>
+  <a href="https://wa.me/557391396879" target="_blank">
+   CONTATO EXECUTIVO
+  </a>
+ </div>
 </section>
 
-<div class="sep"></div>
-
-<section class="about">
- <div class="about-grid">
-  <div>
-   <h3>Quem Somos</h3>
-   <p>
-    A SEC Engenharia é uma empresa técnica especializada em soluções
-    de engenharia aplicada, segurança do trabalho e conformidade normativa.
-   </p>
-   <p>
-    Atendemos empresas de médio e grande porte, indústrias, hospitais,
-    construtoras e operações que demandam alto nível técnico.
-   </p>
-
-   <ul>
-    <li>Engenharia com responsabilidade legal</li>
-    <li>Atuação normativa e documental</li>
-    <li>Processos auditáveis</li>
-    <li>Engenheiros legalmente habilitados</li>
-   </ul>
-  </div>
+<section class="section-img">
+ <div class="img" style="background-image:url('https://images.unsplash.com/photo-1581091012184-7c54a5b31f07?auto=format&fit=crop&w=1400&q=80')"></div>
+ <div class="text">
+  <h3>Engenharia Responsável</h3>
+  <p>
+   Atuamos com foco em conformidade normativa,
+   rastreabilidade técnica e responsabilidade legal.
+  </p>
+  <p>
+   Cada projeto é tratado como crítico.
+  </p>
  </div>
 </section>
 
 <section class="metrics">
  <div class="metrics-grid">
-  <div class="metric">
-   <h4>+10</h4>
-   <p>Anos de Atuação</p>
-  </div>
-  <div class="metric">
-   <h4>+500</h4>
-   <p>Laudos Técnicos</p>
-  </div>
-  <div class="metric">
-   <h4>100%</h4>
-   <p>Conformidade Legal</p>
-  </div>
-  <div class="metric">
-   <h4>0</h4>
-   <p>Tolerância a Erros</p>
-  </div>
+  <div class="metric"><h4>+10</h4><p>Anos</p></div>
+  <div class="metric"><h4>+500</h4><p>Laudos</p></div>
+  <div class="metric"><h4>100%</h4><p>Conformidade</p></div>
+  <div class="metric"><h4>0</h4><p>Erro</p></div>
  </div>
 </section>
 
 <section class="services">
  <h3>Especialidades Técnicas</h3>
- <p class="sub">
-  Atuação restrita a projetos que exigem engenharia responsável.
- </p>
 
  <div class="service-grid">
   <div class="service">
-   <h4>Engenharia Elétrica</h4>
-   <p>Projetos, SPDA, aterramento, laudos e análises técnicas.</p>
+   <img src="https://images.unsplash.com/photo-1581091870627-3c8c1f2f5bba?auto=format&fit=crop&w=1200&q=80">
+   <div class="service-content">
+    <h4>Engenharia Elétrica</h4>
+    <p>Projetos, SPDA, aterramento e laudos técnicos.</p>
+   </div>
   </div>
 
   <div class="service">
-   <h4>Segurança do Trabalho</h4>
-   <p>PGR, PCMSO, LTCAT e gestão de riscos ocupacionais.</p>
+   <img src="https://images.unsplash.com/photo-1580281658629-6831a5b5a1f3?auto=format&fit=crop&w=1200&q=80">
+   <div class="service-content">
+    <h4>Segurança do Trabalho</h4>
+    <p>PGR, PCMSO, LTCAT e gestão de riscos.</p>
+   </div>
   </div>
 
   <div class="service">
-   <h4>Engenharia Clínica</h4>
-   <p>Gestão técnica e conformidade de equipamentos hospitalares.</p>
-  </div>
-
-  <div class="service">
-   <h4>Engenharia Mecânica</h4>
-   <p>Laudos, inspeções e projetos mecânicos industriais.</p>
-  </div>
- </div>
-</section>
-
-<section class="process">
- <h3>Nosso Processo</h3>
-
- <div class="steps">
-  <div class="step">
-   <span>ETAPA 01</span>
-   <h4>Análise Técnica</h4>
-   <p>Diagnóstico completo da operação e requisitos legais.</p>
-  </div>
-
-  <div class="step">
-   <span>ETAPA 02</span>
-   <h4>Planejamento</h4>
-   <p>Definição de soluções técnicas e cronograma.</p>
-  </div>
-
-  <div class="step">
-   <span>ETAPA 03</span>
-   <h4>Execução</h4>
-   <p>Implementação com engenharia responsável.</p>
-  </div>
-
-  <div class="step">
-   <span>ETAPA 04</span>
-   <h4>Entrega Técnica</h4>
-   <p>Documentação, laudos e rastreabilidade.</p>
+   <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80">
+   <div class="service-content">
+    <h4>Engenharia Clínica</h4>
+    <p>Equipamentos hospitalares e conformidade.</p>
+   </div>
   </div>
  </div>
 </section>
 
 <section class="cta">
- <h3>Converse com um engenheiro responsável</h3>
+ <h3>Fale com um engenheiro responsável</h3>
  <a href="https://wa.me/557391396879" target="_blank">
   INICIAR CONTATO
  </a>
 </section>
 
 <footer>
- <p>© 2026 SEC Engenharia • Engenharia para operações críticas</p>
+ <p>© 2026 SEC Engenharia • Engenharia de alto padrão</p>
 </footer>
 
 </body>
