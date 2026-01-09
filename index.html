@@ -3,16 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEC Engenharia | Engenharia de Alto Nível</title>
+<title>SEC Engenharia | Excelência Técnica</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
- --azul:#050e24;
- --verde:#0fb9b1;
- --cinza:#f4f6fa;
- --texto:#1f2937;
+ --bg:#0b1220;
+ --bg-light:#111827;
+ --azul:#020617;
+ --verde:#1ec9b8;
+ --texto:#e5e7eb;
+ --cinza:#9ca3af;
 }
 
 *{
@@ -23,9 +25,9 @@
 }
 
 body{
- background:#ffffff;
+ background:var(--bg);
  color:var(--texto);
- line-height:1.6;
+ line-height:1.7;
 }
 
 /* HEADER */
@@ -33,26 +35,27 @@ header{
  display:flex;
  justify-content:space-between;
  align-items:center;
- padding:22px 10%;
- background:#ffffff;
- border-bottom:1px solid #e5e7eb;
+ padding:26px 10%;
+ background:rgba(2,6,23,.85);
+ backdrop-filter:blur(10px);
  position:sticky;
  top:0;
  z-index:100;
 }
 
 header h1{
- font-size:22px;
- font-weight:700;
- color:var(--azul);
- letter-spacing:1px;
+ font-size:20px;
+ letter-spacing:2px;
+ font-weight:600;
+ color:#ffffff;
 }
 
 header nav a{
- margin-left:40px;
+ margin-left:45px;
  text-decoration:none;
- color:#374151;
- font-weight:500;
+ color:var(--cinza);
+ font-size:14px;
+ letter-spacing:1px;
 }
 
 header nav a:hover{
@@ -61,24 +64,21 @@ header nav a:hover{
 
 /* HERO */
 .hero{
- background:linear-gradient(135deg,#f8fafc,#eef2f7);
- padding:120px 10%;
- display:grid;
- grid-template-columns:1.2fr .8fr;
- gap:80px;
- align-items:center;
+ padding:140px 10% 160px;
+ max-width:1400px;
+ margin:auto;
 }
 
 .logo-hero{
- width:260px;
- margin-bottom:30px;
+ width:240px;
+ margin-bottom:45px;
 }
 
 .hero h2{
- font-size:48px;
- font-weight:700;
- color:var(--azul);
- line-height:1.2;
+ font-size:56px;
+ font-weight:600;
+ line-height:1.15;
+ letter-spacing:-1px;
 }
 
 .hero h2 span{
@@ -86,139 +86,128 @@ header nav a:hover{
 }
 
 .hero p{
- margin:30px 0;
+ margin:35px 0 55px;
  font-size:18px;
- color:#374151;
- max-width:520px;
+ color:#cbd5f5;
+ max-width:620px;
 }
 
 .hero a{
- display:inline-block;
- padding:16px 50px;
- background:transparent;
- border:2px solid var(--verde);
+ padding:18px 60px;
+ border:1px solid var(--verde);
  color:var(--verde);
- border-radius:40px;
- font-weight:600;
+ border-radius:50px;
+ font-size:14px;
+ letter-spacing:2px;
  text-decoration:none;
- transition:.3s;
+ transition:.4s;
 }
 
 .hero a:hover{
  background:var(--verde);
- color:#022;
+ color:#021b1a;
+}
+
+/* DIVISOR */
+.divider{
+ height:1px;
+ background:linear-gradient(to right, transparent, var(--verde), transparent);
+ opacity:.4;
 }
 
 /* SERVIÇOS */
 .services{
- padding:120px 10%;
- background:#ffffff;
+ padding:140px 10%;
+ background:var(--bg-light);
 }
 
 .services h2{
- text-align:center;
- font-size:40px;
- font-weight:700;
- color:var(--azul);
- margin-bottom:15px;
+ font-size:42px;
+ font-weight:600;
+ margin-bottom:20px;
 }
 
 .services p.subtitle{
- text-align:center;
- color:#6b7280;
- margin-bottom:80px;
- font-size:16px;
+ color:var(--cinza);
+ margin-bottom:90px;
+ max-width:520px;
 }
 
 .cards{
  display:grid;
- grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
- gap:50px;
+ grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+ gap:60px;
 }
 
 .card{
- background:#ffffff;
- border-radius:22px;
- overflow:hidden;
- box-shadow:0 25px 50px rgba(0,0,0,.12);
+ background:#020617;
+ padding:45px;
+ border-radius:26px;
+ border:1px solid rgba(255,255,255,.04);
  transition:.4s;
 }
 
 .card:hover{
- transform:translateY(-12px);
- box-shadow:0 35px 70px rgba(0,0,0,.18);
-}
-
-.card img{
- width:100%;
- height:220px;
- object-fit:cover;
-}
-
-.card div{
- padding:30px;
+ transform:translateY(-10px);
+ border-color:rgba(30,201,184,.4);
 }
 
 .card h3{
  font-size:20px;
- color:var(--azul);
- margin-bottom:12px;
+ margin-bottom:18px;
+ font-weight:500;
 }
 
 .card p{
- color:#4b5563;
  font-size:15px;
+ color:#9ca3af;
 }
 
 .card a{
  display:inline-block;
- margin-top:20px;
- font-weight:600;
+ margin-top:28px;
+ font-size:13px;
+ letter-spacing:1.5px;
  color:var(--verde);
  text-decoration:none;
 }
 
 /* CTA */
 .cta{
- background:linear-gradient(90deg,#0fb9b1,#0fdcdc);
- padding:100px 10%;
+ padding:160px 10%;
  text-align:center;
+ background:radial-gradient(circle at top, #0f766e, #020617 60%);
 }
 
 .cta h2{
- font-size:38px;
- color:#022;
- margin-bottom:25px;
+ font-size:44px;
+ font-weight:600;
+ margin-bottom:35px;
 }
 
 .cta a{
- background:#022;
- color:#ffffff;
- padding:16px 55px;
- border-radius:40px;
- font-weight:600;
+ background:var(--verde);
+ color:#021b1a;
+ padding:20px 70px;
+ border-radius:60px;
+ font-size:14px;
+ letter-spacing:2px;
  text-decoration:none;
 }
 
 /* FOOTER */
 footer{
- background:#050e24;
- color:#ffffff;
- padding:50px;
+ padding:60px;
  text-align:center;
-}
-
-footer p{
- opacity:.8;
- font-size:14px;
+ color:#9ca3af;
+ font-size:13px;
+ background:#020617;
 }
 
 /* RESPONSIVO */
 @media(max-width:900px){
- .hero{
-  grid-template-columns:1fr;
-  text-align:center;
- }
+ .hero h2{font-size:40px;}
+ .services h2{font-size:34px;}
 }
 </style>
 </head>
@@ -228,86 +217,75 @@ footer p{
 <header>
  <h1>SEC ENGENHARIA</h1>
  <nav>
-  <a href="#servicos">Serviços</a>
-  <a href="#contato">Contato</a>
+  <a href="#servicos">SERVIÇOS</a>
+  <a href="#contato">CONTATO</a>
  </nav>
 </header>
 
 <section class="hero">
- <div>
-  <img class="logo-hero" src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg" alt="SEC Engenharia">
+ <img class="logo-hero" src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg">
 
-  <h2>
-   Engenharia <span>Estratégica</span><br>
-   para Operações de Alto Nível
-  </h2>
+ <h2>
+  Engenharia de <span>Alta Responsabilidade</span><br>
+  para Operações Críticas
+ </h2>
 
-  <p>
-   Atendemos empresas que não podem errar.
-   Engenharia, segurança e conformidade para
-   operações que exigem excelência técnica.
-  </p>
+ <p>
+  Atuamos onde o erro não é uma opção.  
+  Engenharia técnica, normativa e estratégica
+  para empresas que operam em alto nível.
+ </p>
 
-  <a href="https://wa.me/557391396879?text=solicito%20orçamento" target="_blank">
-   Falar com um Especialista
-  </a>
- </div>
+ <a href="https://wa.me/557391396879" target="_blank">
+  FALAR COM ENGENHEIRO RESPONSÁVEL
+ </a>
 </section>
 
+<div class="divider"></div>
+
 <section class="services" id="servicos">
- <h2>Áreas de Atuação</h2>
- <p class="subtitle">Soluções técnicas para empresas de médio e grande porte</p>
+ <h2>Especialidades Técnicas</h2>
+ <p class="subtitle">
+  Atuação restrita a empresas que exigem
+  conformidade, rastreabilidade e excelência.
+ </p>
 
  <div class="cards">
-
   <div class="card">
-   <img src="imagens/3.png">
-   <div>
-    <h3>Engenharia Elétrica</h3>
-    <p>Projetos, laudos, SPDA, aterramento e conformidade normativa.</p>
-    <a href="#">Saiba mais →</a>
-   </div>
+   <h3>Engenharia Elétrica</h3>
+   <p>Projetos, laudos técnicos, SPDA, aterramento e análise normativa.</p>
+   <a href="#">DETALHES →</a>
   </div>
 
   <div class="card">
-   <img src="imagens/2.png">
-   <div>
-    <h3>Segurança do Trabalho</h3>
-    <p>PGR, PCMSO, LTCAT e gestão de riscos ocupacionais.</p>
-    <a href="#">Saiba mais →</a>
-   </div>
+   <h3>Segurança do Trabalho</h3>
+   <p>PGR, PCMSO, LTCAT e gestão avançada de riscos ocupacionais.</p>
+   <a href="#">DETALHES →</a>
   </div>
 
   <div class="card">
-   <img src="imagens/1.png">
-   <div>
-    <h3>Engenharia Clínica</h3>
-    <p>Gestão e conformidade de equipamentos médico-hospitalares.</p>
-    <a href="#">Saiba mais →</a>
-   </div>
+   <h3>Engenharia Clínica</h3>
+   <p>Gestão e conformidade de equipamentos médico-hospitalares.</p>
+   <a href="#">DETALHES →</a>
   </div>
 
   <div class="card">
-   <img src="imagens/OIP.jpg">
-   <div>
-    <h3>Engenharia Mecânica</h3>
-    <p>Inspeções, laudos técnicos e projetos mecânicos.</p>
-    <a href="#">Saiba mais →</a>
-   </div>
+   <h3>Engenharia Mecânica</h3>
+   <p>Inspeções, laudos técnicos e projetos mecânicos industriais.</p>
+   <a href="#">DETALHES →</a>
   </div>
-
  </div>
 </section>
 
 <section class="cta" id="contato">
- <h2>Converse com um engenheiro responsável</h2>
- <a href="https://wa.me/557391396879?text=solicito%20orçamento" target="_blank">
-  WhatsApp (73) 9139-6879
+ <h2>Converse diretamente com um engenheiro</h2>
+ <a href="https://wa.me/557391396879" target="_blank">
+  INICIAR CONTATO
  </a>
 </section>
 
 <footer>
- <p>© 2026 SEC Engenharia • Engenharia para quem exige o melhor</p>
+ <p>© 2026 SEC Engenharia • Engenharia para decisões de alto impacto</p>
 </footer>
 
 </body>
