@@ -11,7 +11,7 @@
 :root{
  --bg:#020617;
  --bg2:#0f172a;
- --bg3:#020617;
+ --card:#020617;
  --verde:#22d3c5;
  --texto:#e5e7eb;
  --cinza:#9ca3af;
@@ -19,63 +19,71 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-body{background:var(--bg);color:var(--texto);line-height:1.8;overflow-x:hidden}
+html,body{background:var(--bg);color:var(--texto);scroll-behavior:smooth}
+img{max-width:100%;display:block}
 
 /* HEADER */
 header{
- position:fixed;top:0;width:100%;z-index:1000;
- background:rgba(2,6,23,.9);
+ position:fixed;
+ top:0;
+ width:100%;
+ z-index:1000;
+ background:rgba(2,6,23,.92);
  backdrop-filter:blur(10px);
  border-bottom:1px solid var(--linha);
 }
 .header-inner{
- max-width:1600px;margin:auto;
- padding:20px 8%;
- display:flex;justify-content:space-between;align-items:center;
+ max-width:1400px;
+ margin:auto;
+ padding:18px 6%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
 }
-header img{height:44px}
-header nav a{
- margin-left:45px;
+header img{height:48px}
+nav a{
+ margin-left:40px;
  font-size:12px;
  letter-spacing:2px;
  text-decoration:none;
  color:var(--cinza);
 }
-header nav a:hover{color:var(--verde)}
+nav a:hover{color:var(--verde)}
 
 /* HERO */
 .hero{
  min-height:100vh;
- background:
- linear-gradient(rgba(2,6,23,.88),rgba(2,6,23,.88)),
- url("logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg") center/cover no-repeat;
  display:flex;
  align-items:center;
+ background:
+ linear-gradient(rgba(2,6,23,.9),rgba(2,6,23,.9)),
+ url("logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg") center/cover no-repeat;
+ padding-top:120px;
 }
 .hero-inner{
- max-width:1600px;
- padding:0 8%;
+ max-width:1400px;
+ margin:auto;
+ padding:0 6%;
  animation:fadeUp 1.2s ease;
 }
-.hero img{
- width:420px;
- max-width:90%;
+.hero-logo{
+ max-width:420px;
  margin-bottom:50px;
 }
-.hero h2{
- font-size:70px;
+.hero h1{
+ font-size:64px;
  line-height:1.1;
 }
-.hero h2 span{color:var(--verde)}
+.hero h1 span{color:var(--verde)}
 .hero p{
- max-width:760px;
- margin:40px 0 70px;
+ max-width:700px;
+ margin:35px 0 60px;
  font-size:18px;
  color:#c7d2fe;
 }
 .hero a{
- padding:26px 90px;
- border-radius:80px;
+ padding:24px 80px;
+ border-radius:70px;
  border:1px solid var(--verde);
  color:var(--verde);
  text-decoration:none;
@@ -85,90 +93,90 @@ header nav a:hover{color:var(--verde)}
 .hero a:hover{
  background:var(--verde);
  color:#022;
- box-shadow:0 0 40px rgba(34,211,197,.4);
+ box-shadow:0 0 30px rgba(34,211,197,.35);
 }
 
 /* SECTIONS */
-section{padding:160px 8%}
-.wrap{max-width:1600px;margin:auto}
-h2{font-size:52px;margin-bottom:30px}
-h3{font-size:26px;margin-bottom:15px}
-p{color:var(--cinza);margin-bottom:20px}
+section{padding:120px 6%}
+.wrap{max-width:1400px;margin:auto}
+h2{font-size:48px;margin-bottom:30px}
+h3{font-size:24px;margin-bottom:10px}
+p{color:var(--cinza)}
 
 /* GRID */
 .grid{
  display:grid;
  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
- gap:70px;
+ gap:50px;
 }
 
 /* CARDS */
 .card{
- background:var(--bg3);
+ background:var(--card);
  border:1px solid var(--linha);
- border-radius:26px;
- padding:40px;
+ border-radius:24px;
+ padding:35px;
  transition:.4s;
 }
 .card:hover{
- transform:translateY(-12px);
+ transform:translateY(-10px);
  border-color:var(--verde);
 }
 .card img{
+ height:200px;
  width:100%;
- height:240px;
  object-fit:cover;
- border-radius:18px;
- margin-bottom:25px;
+ border-radius:16px;
+ margin-bottom:20px;
 }
 
-/* SERVICES */
-.services{background:var(--bg2)}
-
-/* DIFFERENTIALS */
+/* DIFERENCIAL */
 .diferencial{
- background:#020617;
  border-left:4px solid var(--verde);
- padding:30px;
+ padding:25px;
+ background:var(--card);
 }
 
 /* METRICS */
-.metrics{text-align:center;background:var(--bg3)}
-.metric h4{font-size:56px;color:var(--verde)}
+.metrics{text-align:center}
+.metric h4{
+ font-size:54px;
+ color:var(--verde);
+}
 .metric p{letter-spacing:2px}
 
 /* CTA */
 .cta{
+ text-align:center;
  background:
  linear-gradient(rgba(2,6,23,.9),rgba(2,6,23,.9)),
  url("logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg") center/cover;
- text-align:center;
 }
 .cta a{
  display:inline-block;
  margin-top:40px;
- padding:28px 110px;
+ padding:26px 100px;
  background:var(--verde);
  color:#022;
- border-radius:90px;
+ border-radius:80px;
  letter-spacing:3px;
  text-decoration:none;
 }
 
 /* FOOTER */
 footer{
- background:#020617;
- padding:80px;
+ padding:70px 20px;
  text-align:center;
  font-size:13px;
  color:var(--cinza);
+ border-top:1px solid var(--linha);
 }
 
 /* ANIMAÇÃO */
 .reveal{
  opacity:0;
  transform:translateY(40px);
- transition:.9s ease;
+ transition:.8s ease;
 }
 .reveal.show{
  opacity:1;
@@ -179,9 +187,12 @@ footer{
  to{opacity:1;transform:none}
 }
 
+/* RESPONSIVO */
 @media(max-width:900px){
- .hero h2{font-size:42px}
- header nav{display:none}
+ nav{display:none}
+ .hero h1{font-size:40px}
+ .hero-logo{max-width:260px}
+ section{padding:90px 6%}
 }
 </style>
 </head>
@@ -194,7 +205,7 @@ footer{
   <nav>
    <a href="#empresa">EMPRESA</a>
    <a href="#servicos">SERVIÇOS</a>
-   <a href="#processo">PROCESSO</a>
+   <a href="#dados">DADOS</a>
    <a href="#contato">CONTATO</a>
   </nav>
  </div>
@@ -202,8 +213,8 @@ footer{
 
 <section class="hero">
  <div class="hero-inner">
-  <img src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg">
-  <h2>Engenharia <span>Avançada</span><br>para Operações Críticas</h2>
+  <img class="hero-logo" src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg">
+  <h1>Engenharia <span>Avançada</span><br>para Operações Críticas</h1>
   <p>Soluções técnicas, normativas e estratégicas para empresas que exigem segurança, desempenho e padrão corporativo elevado.</p>
   <a href="https://wa.me/557391396879" target="_blank">CONTATO DIRETO</a>
  </div>
@@ -214,26 +225,26 @@ footer{
   <h2>Quem Somos</h2>
   <div class="grid">
    <div class="diferencial">✔ Atuação em ambientes industriais e críticos</div>
-   <div class="diferencial">✔ Conformidade legal e normativa garantida</div>
+   <div class="diferencial">✔ Conformidade legal e normativa</div>
    <div class="diferencial">✔ Documentação técnica auditável</div>
    <div class="diferencial">✔ Engenharia aplicada ao negócio</div>
   </div>
  </div>
 </section>
 
-<section class="services" id="servicos">
+<section id="servicos">
  <div class="wrap reveal">
   <h2>Especialidades Técnicas</h2>
   <div class="grid">
-   <div class="card"><img src="imagens/1.png"><h3>Engenharia Elétrica</h3><p>SPDA, aterramento, inspeções e projetos.</p></div>
-   <div class="card"><img src="imagens/2.png"><h3>Segurança do Trabalho</h3><p>PGR, PCMSO, LTCAT e gestão de riscos.</p></div>
-   <div class="card"><img src="imagens/3.png"><h3>Engenharia Clínica</h3><p>Gestão e manutenção hospitalar.</p></div>
-   <div class="card"><img src="OIP.png"><h3>Engenharia Mecânica</h3><p>Laudos, inspeções e adequações.</p></div>
+   <div class="card"><img src="imagens/1.png"><h3>Engenharia Elétrica</h3><p>SPDA, aterramento e inspeções.</p></div>
+   <div class="card"><img src="imagens/2.png"><h3>Segurança do Trabalho</h3><p>PGR, PCMSO e gestão de riscos.</p></div>
+   <div class="card"><img src="imagens/3.png"><h3>Engenharia Clínica</h3><p>Gestão hospitalar.</p></div>
+   <div class="card"><img src="imagens/4.png"><h3>Engenharia Mecânica</h3><p>Laudos e adequações.</p></div>
   </div>
  </div>
 </section>
 
-<section class="metrics" id="processo">
+<section class="metrics" id="dados">
  <div class="wrap grid reveal">
   <div class="metric"><h4>+500</h4><p>PROJETOS</p></div>
   <div class="metric"><h4>100%</h4><p>CONFORMIDADE</p></div>
@@ -250,18 +261,16 @@ footer{
 </section>
 
 <footer>
- <p>© 2026 SEC Engenharia • Soluções Técnicas Profissionais</p>
+ © 2026 SEC Engenharia • Soluções Técnicas Profissionais
 </footer>
 
 <script>
 const els=document.querySelectorAll(".reveal");
-const obs=new IntersectionObserver(entries=>{
- entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")})
+const obs=new IntersectionObserver(e=>{
+ e.forEach(i=>i.isIntersecting && i.target.classList.add("show"))
 },{threshold:.15});
 els.forEach(el=>obs.observe(el));
 </script>
 
 </body>
 </html>
-
-
