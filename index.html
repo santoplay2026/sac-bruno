@@ -5,194 +5,1198 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SEC Engenharia | Desenvolver para Evoluir</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-:root{
- --bg:#020617;
- --bg2:#0f172a;
- --verde:#22d3c5;
- --texto:#e5e7eb;
- --cinza:#9ca3af;
- --linha:rgba(255,255,255,.08);
+:root {
+  --bg: #020617;
+  --bg2: #0f172a;
+  --verde: #22d3c5;
+  --verde-claro: #5eead4;
+  --texto: #e5e7eb;
+  --cinza: #9ca3af;
+  --linha: rgba(255,255,255,.08);
+  --gradiente: linear-gradient(135deg, #22d3c5 0%, #0ea5e9 100%);
+  --sombra: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-html,body{background:var(--bg);color:var(--texto);line-height:1.8;overflow-x:hidden}
-
-/* HEADER */
-header{
- position:fixed;
- top:0;
- left:0;
- width:100%;
- z-index:1000;
- background:rgba(2,6,23,.92);
- backdrop-filter:blur(8px);
- border-bottom:1px solid var(--linha);
-}
-.header-inner{
- max-width:1600px;
- margin:auto;
- padding:20px 8%;
- display:flex;
- justify-content:space-between;
- align-items:center;
-}
-header img{height:60px}
-header nav a{
- margin-left:30px;
- font-size:14px;
- letter-spacing:2px;
- text-decoration:none;
- color:var(--cinza);
-}
-header nav a:hover{color:var(--verde)}
-
-/* HERO */
-.hero{
- min-height:100vh;
- display:flex;
- align-items:center;
- justify-content:center;
- text-align:center;
- background:linear-gradient(rgba(2,6,23,.9),rgba(2,6,23,.9)),
- url("logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg") center/cover no-repeat;
- padding-top:150px;
-}
-.hero h1{
- font-size:clamp(48px,8vw,70px);
- line-height:1.1;
-}
-.hero h1 span{color:var(--verde)}
-.hero p{
- margin:30px auto 40px;
- max-width:750px;
- font-size:18px;
- color:#c7d2fe;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-.hero a{
- padding:22px 80px;
- border-radius:60px;
- border:1px solid var(--verde);
- color:var(--verde);
- text-decoration:none;
- letter-spacing:2px;
- transition:.4s;
+html {
+  scroll-behavior: smooth;
 }
-.hero a:hover{
- background:var(--verde);
- color:#022;
+
+body {
+  background: var(--bg);
+  color: var(--texto);
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* HEADER MODERNO */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(2, 6, 23, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--linha);
+  padding: 15px 0;
+  transition: all 0.3s ease;
+  animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+  border-radius: 10px;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+
+.logo:hover img {
+  transform: rotateY(180deg) scale(1.1);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  perspective: 500px;
+}
+
+.logo-text span:first-child {
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+  transform: translateZ(20px);
+  display: inline-block;
+}
+
+.logo-text span:last-child {
+  font-size: 12px;
+  color: var(--verde);
+  letter-spacing: 2px;
+  margin-top: 3px;
+  transform: translateZ(15px);
+  display: inline-block;
+}
+
+nav {
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--cinza);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  padding: 8px 0;
+  position: relative;
+  transition: all 0.4s;
+  transform-style: preserve-3d;
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradiente);
+  border-radius: 4px;
+  transform: translateZ(-5px) scale(0.95);
+  opacity: 0;
+  transition: all 0.4s;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--verde);
+  transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateZ(5px);
+}
+
+nav a:hover {
+  color: var(--verde);
+  transform: translateY(-3px) translateZ(10px);
+}
+
+nav a:hover::before {
+  opacity: 0.1;
+  transform: translateZ(-5px) scale(1.05);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--verde);
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.menu-toggle:hover {
+  transform: rotate(90deg);
+}
+
+/* HERO SECTION COM ANIMAÇÃO 3D */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 150px 5% 100px;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.92)),
+    url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+  z-index: -2;
+  transform: translateZ(-100px) scale(1.2);
+}
+
+.hero-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 8vw, 70px);
+  line-height: 1.1;
+  margin-bottom: 25px;
+  font-weight: 800;
+  transform: translateZ(50px);
+  opacity: 0;
+  animation: fadeUp 1s 0.5s forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+.hero h1 span {
+  background: var(--gradiente);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: block;
+  margin-top: 10px;
+  animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(34, 211, 197, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(34, 211, 197, 0.6), 0 0 30px rgba(34, 211, 197, 0.4);
+  }
+}
+
+.hero p {
+  font-size: clamp(16px, 2vw, 18px);
+  color: #c7d2fe;
+  margin: 30px auto 40px;
+  max-width: 750px;
+  line-height: 1.8;
+  transform: translateZ(30px);
+  opacity: 0;
+  animation: fadeUp 1s 1s forwards;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 20px 60px;
+  background: transparent;
+  border: 2px solid var(--verde);
+  border-radius: 50px;
+  color: var(--verde);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 16px;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transform: translateZ(40px);
+  opacity: 0;
+  animation: fadeUp 1s 1.5s forwards;
+  transform-style: preserve-3d;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--gradiente);
+  transition: width 0.4s;
+  z-index: -1;
+  border-radius: 50px;
+}
+
+.cta-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(34, 211, 197, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.6s;
+  z-index: -1;
+}
+
+.cta-button:hover::before {
+  width: 100%;
+}
+
+.cta-button:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cta-button:hover {
+  color: #022;
+  transform: translateY(-5px) translateZ(50px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(34, 211, 197, 0.4);
+}
+
+/* ESTATÍSTICAS */
+.stats {
+  background: var(--bg2);
+  padding: 80px 5%;
+  position: relative;
+  overflow: hidden;
+}
+
+.stats::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 30%, rgba(34, 211, 197, 0.05) 0%, transparent 50%);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  border: 1px solid var(--linha);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.stat-card:hover::before {
+  left: 100%;
+}
+
+.stat-card:hover {
+  transform: translateY(-15px) rotateX(5deg);
+  border-color: var(--verde);
+  box-shadow: var(--sombra);
+}
+
+.stat-number {
+  font-size: 48px;
+  font-weight: 800;
+  background: var(--gradiente);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 15px;
+  line-height: 1;
+}
+
+.stat-text {
+  font-size: 16px;
+  color: var(--cinza);
+  font-weight: 500;
 }
 
 /* SECTIONS */
-section{padding:120px 6%}
-.wrap{max-width:1400px;margin:auto;text-align:center}
-h2{font-size:42px;margin-bottom:30px}
-h3{font-size:24px;margin-bottom:15px}
-p{color:var(--cinza);margin-bottom:20px}
-
-/* GRID */
-.grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
- gap:50px;
+section {
+  padding: 100px 5%;
+  position: relative;
+  overflow: hidden;
 }
 
-/* CARDS */
-.card{
- background:var(--bg2);
- border:1px solid var(--linha);
- border-radius:22px;
- padding:35px;
- transition:.4s;
+.wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  transform-style: preserve-3d;
 }
-.card:hover{
- transform:translateY(-10px);
- border-color:var(--verde);
+
+.section-title {
+  text-align: center;
+  margin-bottom: 70px;
+  transform-style: preserve-3d;
 }
-.card img{
- width:100%;
- height:220px;
- object-fit:cover;
- border-radius:16px;
- margin-bottom:20px;
+
+.section-title h2 {
+  font-size: clamp(32px, 5vw, 42px);
+  font-weight: 700;
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+  transform: translateZ(30px);
+}
+
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%) translateZ(20px);
+  width: 80px;
+  height: 4px;
+  background: var(--gradiente);
+  border-radius: 2px;
+}
+
+.section-title p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--cinza);
+  transform: translateZ(20px);
+}
+
+/* QUEM SOMOS */
+#empresa {
+  background: var(--bg2);
+  position: relative;
+}
+
+#empresa::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: var(--bg2);
+  clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%);
+  transform: translateZ(-50px);
+}
+
+.empresa-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.empresa-text {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid var(--linha);
+  backdrop-filter: blur(10px);
+  transform-style: preserve-3d;
+  transition: all 0.5s;
+}
+
+.empresa-text:hover {
+  transform: translateZ(20px);
+  border-color: var(--verde);
+}
+
+.empresa-text p {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 25px;
+  transform: translateZ(10px);
+}
+
+.motto {
+  text-align: center;
+  margin-top: 40px;
+  padding: 30px;
+  background: rgba(34, 211, 197, 0.05);
+  border-radius: 15px;
+  border-left: 4px solid var(--verde);
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+}
+
+.motto::before {
+  content: '⚡';
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 40px;
+  opacity: 0.1;
+  animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateZ(10px);
+  }
+  50% {
+    transform: translateY(-10px) translateZ(10px);
+  }
+}
+
+.motto h3 {
+  font-size: 24px;
+  color: var(--verde);
+  margin-bottom: 10px;
+  transform: translateZ(15px);
+}
+
+.motto p {
+  font-size: 18px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--cinza);
+  transform: translateZ(10px);
+}
+
+/* SERVIÇOS - CARDS 3D */
+#servicos {
+  position: relative;
+  perspective: 1000px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.service-card {
+  background: var(--bg2);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid var(--linha);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: translateY(50px) rotateX(10deg);
+  opacity: 0;
+}
+
+.service-card.animated {
+  animation: cardAppear 0.8s forwards;
+}
+
+@keyframes cardAppear {
+  to {
+    transform: translateY(0) rotateX(0);
+    opacity: 1;
+  }
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--gradiente);
+  transform: translateZ(10px);
+}
+
+.service-card:hover {
+  transform: translateY(-20px) translateZ(30px) rotateX(5deg);
+  border-color: var(--verde);
+  box-shadow: 
+    var(--sombra),
+    0 0 30px rgba(34, 211, 197, 0.2);
+}
+
+.card-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(34, 211, 197, 0.1);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  font-size: 35px;
+  color: var(--verde);
+  transform: translateZ(20px);
+  transition: all 0.3s;
+}
+
+.service-card:hover .card-icon {
+  transform: translateZ(30px) scale(1.1);
+  background: var(--gradiente);
+  color: #022;
+}
+
+.service-card h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: white;
+  transform: translateZ(15px);
+}
+
+.service-card p {
+  font-size: 15px;
+  color: var(--cinza);
+  line-height: 1.7;
+  transform: translateZ(10px);
+}
+
+/* PROJETOS */
+#projetos {
+  background: var(--bg2);
+}
+
+.projetos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.projeto-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--linha);
+  transition: all 0.5s;
+  transform-style: preserve-3d;
+  transform: translateY(40px) rotateY(10deg);
+  opacity: 0;
+}
+
+.projeto-card.animated {
+  animation: projectAppear 0.8s forwards;
+}
+
+@keyframes projectAppear {
+  to {
+    transform: translateY(0) rotateY(0);
+    opacity: 1;
+  }
+}
+
+.projeto-card:hover {
+  transform: translateY(-15px) translateZ(20px);
+  border-color: var(--verde);
+  box-shadow: var(--sombra);
+}
+
+.projeto-img {
+  height: 220px;
+  width: 100%;
+  background: linear-gradient(135deg, #22d3c5 0%, #0ea5e9 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.projeto-img::before {
+  content: 'PROJETO COMPLETO';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+}
+
+.projeto-content {
+  padding: 25px;
+}
+
+.projeto-content h4 {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.projeto-content p {
+  font-size: 14px;
+  color: var(--cinza);
+  margin-bottom: 15px;
+}
+
+.projeto-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.projeto-tags span {
+  background: rgba(34, 211, 197, 0.1);
+  color: var(--verde);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 /* PROFISSIONAIS */
-.profissionais{
- background:#020617;
- border-left:4px solid var(--verde);
- padding:40px;
- margin-top:40px;
+#profissionais {
+  background: var(--bg2);
+  position: relative;
 }
 
-.profissionais p{
- font-size:16px;
- line-height:1.6;
- color:var(--texto);
+#profissionais::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: var(--bg2);
+  clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%);
+  transform: translateZ(-50px);
 }
 
-.profissionais h3{
- margin-bottom:20px;
+.profissionais-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  perspective: 1000px;
 }
 
-/* REDES SOCIAIS */
-.redes{
- display:flex;
- justify-content:center;
- gap:25px;
- margin-top:40px;
+.profissional-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  padding: 35px;
+  border: 1px solid var(--linha);
+  transition: all 0.5s;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: translateY(40px) rotateX(-10deg);
+  opacity: 0;
 }
 
-.redes a{
- display:flex;
- align-items:center;
- justify-content:center;
- width:50px;
- height:50px;
- background:var(--verde);
- border-radius:50%;
- color:#022;
- font-size:18px;
- text-decoration:none;
- transition:.3s;
+.profissional-card.animated {
+  animation: professionalAppear 0.8s forwards;
 }
 
-.redes a:hover{
- background:#0fbfbf;
+@keyframes professionalAppear {
+  to {
+    transform: translateY(0) rotateX(0);
+    opacity: 1;
+  }
+}
+
+.profissional-card:hover {
+  border-color: var(--verde);
+  transform: translateY(-10px) translateZ(20px);
+  box-shadow: var(--sombra);
+}
+
+.profissional-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background: var(--gradiente);
+  border-radius: 0 20px 0 60px;
+  opacity: 0.1;
+}
+
+.profissional-card h3 {
+  font-size: 22px;
+  color: var(--verde);
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--linha);
+  transform: translateZ(15px);
+}
+
+.profissional-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profissional-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  transform: translateZ(10px);
+}
+
+.profissional-item i {
+  color: var(--verde);
+  margin-top: 3px;
+  font-size: 14px;
+  transform: translateZ(5px);
+}
+
+.profissional-item span {
+  font-size: 15px;
+  color: var(--cinza);
+  line-height: 1.6;
+}
+
+.crea-badge {
+  display: inline-block;
+  background: rgba(34, 211, 197, 0.1);
+  color: var(--verde);
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 20px;
+  transform: translateZ(15px);
+  transition: all 0.3s;
+}
+
+.profissional-card:hover .crea-badge {
+  background: var(--gradiente);
+  color: #022;
+  transform: translateZ(25px) scale(1.05);
+}
+
+/* BENEFÍCIOS */
+#beneficios {
+  background: var(--bg);
+}
+
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.beneficio-card {
+  text-align: center;
+  padding: 40px 25px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  border: 1px solid var(--linha);
+  transition: all 0.5s;
+  transform-style: preserve-3d;
+  transform: rotateY(15deg);
+  opacity: 0;
+}
+
+.beneficio-card.animated {
+  animation: benefitAppear 0.8s forwards;
+}
+
+@keyframes benefitAppear {
+  to {
+    transform: rotateY(0);
+    opacity: 1;
+  }
+}
+
+.beneficio-card:hover {
+  transform: translateZ(30px) rotateY(5deg);
+  border-color: var(--verde);
+  box-shadow: var(--sombra);
+}
+
+.beneficio-icon {
+  width: 70px;
+  height: 70px;
+  background: rgba(34, 211, 197, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+  font-size: 28px;
+  color: var(--verde);
+  transition: all 0.3s;
+  transform: translateZ(20px);
+}
+
+.beneficio-card:hover .beneficio-icon {
+  background: var(--gradiente);
+  color: #022;
+  transform: translateZ(30px) rotate(360deg);
+}
+
+.beneficio-card h4 {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 15px;
+  transform: translateZ(15px);
+}
+
+.beneficio-card p {
+  font-size: 14px;
+  color: var(--cinza);
+  transform: translateZ(10px);
+}
+
+/* CTA FINAL */
+.cta-final {
+  background: var(--bg2);
+  text-align: center;
+  padding: 100px 5%;
+  border-radius: 30px;
+  margin: 50px auto;
+  max-width: 1200px;
+  border: 1px solid var(--linha);
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.cta-final::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(34, 211, 197, 0.1) 0%, transparent 50%);
+  transform: translateZ(-50px);
+}
+
+.cta-final::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(34, 211, 197, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cta-final h2 {
+  font-size: clamp(32px, 5vw, 42px);
+  margin-bottom: 30px;
+  transform: translateZ(40px);
+}
+
+.cta-final p {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  font-size: 18px;
+  transform: translateZ(30px);
 }
 
 /* FOOTER */
-footer{
- background:#020617;
- padding:50px 20px;
- text-align:center;
- font-size:14px;
- color:var(--cinza);
- border-top:1px solid var(--linha);
+footer {
+  background: #010a1a;
+  padding: 60px 5% 30px;
+  text-align: center;
+  border-top: 1px solid var(--linha);
+  position: relative;
+  overflow: hidden;
 }
 
-/* ANIMAÇÃO */
-.reveal{
- opacity:0;
- transform:translateY(40px);
- transition:.8s ease;
-}
-.reveal.show{
- opacity:1;
- transform:none;
-}
-@keyframes fadeUp{
- from{opacity:0;transform:translateY(40px)}
- to{opacity:1;transform:none}
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  transform-style: preserve-3d;
 }
 
-@media(max-width:900px){
- .hero h1{font-size:42px}
- .hero p{font-size:16px}
- section{padding:80px 6%}
+.footer-logo {
+  margin-bottom: 30px;
+  transform: translateZ(20px);
+}
+
+.footer-logo img {
+  height: 50px;
+  margin-bottom: 15px;
+  transition: transform 0.5s;
+}
+
+.footer-logo img:hover {
+  transform: rotateY(180deg);
+}
+
+.footer-logo h3 {
+  font-size: 24px;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.footer-logo p {
+  color: var(--verde);
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.footer-contact {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--cinza);
+  transform: translateZ(15px);
+  transition: all 0.3s;
+}
+
+.contact-item:hover {
+  color: var(--verde);
+  transform: translateZ(25px) scale(1.05);
+}
+
+.contact-item i {
+  color: var(--verde);
+  font-size: 18px;
+}
+
+.copyright {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid var(--linha);
+  color: var(--cinza);
+  font-size: 14px;
+  transform: translateZ(10px);
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .profissionais-container {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .header-inner {
+    padding: 0 4%;
+  }
+  
+  .logo img {
+    height: 40px;
+  }
+  
+  .logo-text span:first-child {
+    font-size: 18px;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  nav {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: rgba(2, 6, 23, 0.98);
+    backdrop-filter: blur(15px);
+    flex-direction: column;
+    padding: 20px 5%;
+    gap: 0;
+    transform: translateY(-100%) rotateX(90deg);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 999;
+    border-bottom: 1px solid var(--linha);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  nav.active {
+    transform: translateY(0) rotateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  nav a {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--linha);
+    margin: 0;
+    transform-origin: top;
+  }
+  
+  nav a:last-child {
+    border-bottom: none;
+  }
+  
+  nav a:hover {
+    transform: translateX(10px) translateZ(15px);
+  }
+  
+  .hero {
+    padding: 120px 4% 80px;
+  }
+  
+  .cta-button {
+    padding: 18px 40px;
+    font-size: 15px;
+  }
+  
+  section {
+    padding: 80px 4%;
+  }
+  
+  .empresa-text {
+    padding: 30px;
+  }
+  
+  .service-card {
+    padding: 25px;
+  }
+  
+  .profissional-card {
+    padding: 25px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .projetos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 36px;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .profissionais-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .beneficios-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-contact {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .stat-number {
+    font-size: 36px;
+  }
 }
 </style>
 </head>
@@ -201,88 +1205,516 @@ footer{
 
 <!-- HEADER -->
 <header>
- <div class="header-inner">
-  <img src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg" alt="SEC Engenharia">
-  <nav>
-   <a href="#empresa">EMPRESA</a>
-   <a href="#servicos">SERVIÇOS</a>
-   <a href="#profissionais">PROFISSIONAIS</a>
-   <a href="#contato">CONTATO</a>
-  </nav>
- </div>
+  <div class="header-inner">
+    <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+      <img src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg" alt="SEC Engenharia">
+      <div class="logo-text">
+        <span>SEC ENGENHARIA</span>
+        <span>DESENVOLVER PARA EVOLUIR</span>
+      </div>
+    </div>
+    
+    <button class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <nav id="mainNav">
+      <a href="#empresa">EMPRESA</a>
+      <a href="#servicos">SERVIÇOS</a>
+      <a href="#projetos">PROJETOS</a>
+      <a href="#profissionais">PROFISSIONAIS</a>
+      <a href="#beneficios">BENEFÍCIOS</a>
+      <a href="#contato">CONTATO</a>
+    </nav>
+  </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
- <div class="hero-inner">
-  <h1>SEC Engenharia <br> <span>Desenvolver para Evoluir</span></h1>
-  <p>Trabalhamos com soluções inovadoras e estratégicas, focadas em resultados e no alto padrão técnico e ético da engenharia.</p>
-  <a href="https://wa.me/557391396879" target="_blank">CONTATO DIRETO</a>
- </div>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>SEC Engenharia</h1>
+    <h1><span>Desenvolver para Evoluir</span></h1>
+    <p>Trabalhamos com soluções inovadoras e estratégicas, focadas em resultados e no alto padrão técnico e ético da engenharia. Transformamos desafios em oportunidades através da expertise e comprometimento.</p>
+    <a href="https://wa.me/557391396879" target="_blank" class="cta-button">CONTATO DIRETO <i class="fab fa-whatsapp"></i></a>
+  </div>
+</section>
+
+<!-- ESTATÍSTICAS -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-number" data-count="10">0+</div>
+        <div class="stat-text">Anos de Experiência</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-number" data-count="150">0+</div>
+        <div class="stat-text">Projetos Concluídos</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-number" data-count="50">0+</div>
+        <div class="stat-text">Clientes Satisfeitos</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-number" data-count="100">100%</div>
+        <div class="stat-text">Comprometimento</div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- QUEM SOMOS -->
 <section id="empresa">
- <div class="wrap reveal">
-  <h2>Quem Somos</h2>
-  <p>Somos uma empresa com mais de 10 anos de experiência em engenharia, oferecendo soluções completas e personalizadas para diversos setores da indústria.</p>
- </div>
+  <div class="wrap">
+    <div class="section-title reveal">
+      <h2>Quem Somos</h2>
+      <p>Uma empresa com mais de 10 anos de experiência em engenharia, oferecendo soluções completas e personalizadas para diversos setores da indústria.</p>
+    </div>
+    
+    <div class="empresa-content">
+      <div class="empresa-text reveal">
+        <p>A SEC Engenharia nasceu da união de profissionais experientes e altamente qualificados, com o objetivo de oferecer serviços de engenharia com excelência técnica, ética e comprometimento com resultados.</p>
+        <p>Atuamos em diversos segmentos, sempre buscando inovação e eficiência nas soluções propostas, garantindo a satisfação dos nossos clientes e o cumprimento das normativas técnicas vigentes.</p>
+        <p>Nosso compromisso vai além da execução de projetos - construímos parcerias duradouras baseadas na confiança, transparência e resultados mensuráveis.</p>
+        
+        <div class="motto reveal">
+          <h3>NOSSO MOTTO</h3>
+          <p>"Desenvolver para Evoluir - Inovação técnica que transforma realidades"</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- SERVIÇOS -->
 <section id="servicos">
- <div class="wrap reveal">
-  <h2>Especialidades Técnicas</h2>
-  <div class="grid">
-   <div class="card"><img src="imagens/1.png"><h3>Engenharia Elétrica</h3><p>SPDA, aterramento e inspeções.</p></div>
-   <div class="card"><img src="imagens/2.png"><h3>Segurança do Trabalho</h3><p>PGR, PCMSO, LTCAT e gestão de riscos.</p></div>
-   <div class="card"><img src="imagens/3.png"><h3>Engenharia Clínica</h3><p>Gestão e manutenção hospitalar.</p></div>
-   <div class="card"><img src="imagens/4.png"><h3>Engenharia Mecânica</h3><p>Laudos, inspeções e adequações.</p></div>
+  <div class="wrap">
+    <div class="section-title reveal">
+      <h2>Especialidades Técnicas</h2>
+      <p>Soluções completas em engenharia com expertise multidisciplinar</p>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="card-icon">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <h3>Engenharia Elétrica</h3>
+        <p>Projetos e execução de SPDA, aterramento, inspeções e laudos técnicos, dimensionamento de sistemas elétricos.</p>
+      </div>
+      
+      <div class="service-card">
+        <div class="card-icon">
+          <i class="fas fa-hard-hat"></i>
+        </div>
+        <h3>Segurança do Trabalho</h3>
+        <p>Elaboração de PGR, PCMSO, LTCAT, gestão de riscos ocupacionais, treinamentos e consultoria em segurança.</p>
+      </div>
+      
+      <div class="service-card">
+        <div class="card-icon">
+          <i class="fas fa-hospital"></i>
+        </div>
+        <h3>Engenharia Clínica</h3>
+        <p>Gestão e manutenção hospitalar, calibração de equipamentos médicos, adequação às normas da ANVISA.</p>
+      </div>
+      
+      <div class="service-card">
+        <div class="card-icon">
+          <i class="fas fa-cogs"></i>
+        </div>
+        <h3>Engenharia Mecânica</h3>
+        <p>Laudos técnicos, inspeções de equipamentos, projetos mecânicos, adequações às normas NRs.</p>
+      </div>
+      
+      <div class="service-card">
+        <div class="card-icon">
+          <i class="fas fa-industry"></i>
+        </div>
+        <h3>Consultoria Industrial</h3>
+        <p>Otimização de processos, gestão de projetos, implementação de melhorias e redução de custos.</p>
+      </div>
+      
+      <div class="service-card">
+        <div class="card-icon">
+          <i class="fas fa-file-contract"></i>
+        </div>
+        <h3>Laudos e Perícias</h3>
+        <p>Elaboração de laudos técnicos, perícias judiciais, avaliações e pareceres especializados.</p>
+      </div>
+    </div>
   </div>
- </div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="wrap">
+    <div class="section-title reveal">
+      <h2>Projetos Realizados</h2>
+      <p>Conheça alguns dos nossos principais trabalhos e cases de sucesso</p>
+    </div>
+    
+    <div class="projetos-grid">
+      <div class="projeto-card">
+        <div class="projeto-img"></div>
+        <div class="projeto-content">
+          <h4>Sistema SPDA Hospitalar</h4>
+          <p>Instalação completa de sistema de proteção contra descargas atmosféricas em hospital de grande porte.</p>
+          <div class="projeto-tags">
+            <span>Engenharia Elétrica</span>
+            <span>Hospitalar</span>
+            <span>SPDA</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="projeto-card">
+        <div class="projeto-img"></div>
+        <div class="projeto-content">
+          <h4>Gestão de Segurança Industrial</h4>
+          <p>Implementação completa de PGR e PCMSO para indústria metalúrgica com 500+ colaboradores.</p>
+          <div class="projeto-tags">
+            <span>Segurança</span>
+            <span>Industrial</span>
+            <span>PGR</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="projeto-card">
+        <div class="projeto-img"></div>
+        <div class="projeto-content">
+          <h4>Manutenção Preventiva Hospitalar</h4>
+          <p>Programa de manutenção preventiva para equipamentos médicos em rede de hospitais.</p>
+          <div class="projeto-tags">
+            <span>Clínica</span>
+            <span>Manutenção</span>
+            <span>Hospitalar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- PROFISSIONAIS -->
-<section id="profissionais" class="profissionais">
- <h3>Nossos Profissionais</h3>
- <p><strong>BRUNO SOUZA MOTA</strong> - Eng. Eletricista | Eng. Mecânico | Eng. Segurança do Trabalho | Especialista em Eng. Clínica | CREA 3000078851</p>
- <p><strong>EDSON LUIS NASCIMENTO VIEIRA</strong> - Tecnólogo em Telecomunicações | Tecnólogo em Eletrônica | CREA 79591D</p>
- <p><strong>LOHANNA KEROLIN</strong> - Tecnóloga em Segurança do Trabalho | CREA Recursos Humanos</p>
+<section id="profissionais">
+  <div class="wrap">
+    <div class="section-title reveal">
+      <h2>Nossos Profissionais</h2>
+      <p>Equipe multidisciplinar com expertise técnica comprovada e certificações</p>
+    </div>
+    
+    <div class="profissionais-container">
+      <div class="profissional-card">
+        <h3>BRUNO SOUZA MOTA</h3>
+        <div class="profissional-info">
+          <div class="profissional-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Engenheiro Eletricista</span>
+          </div>
+          <div class="profissional-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Engenheiro Mecânico</span>
+          </div>
+          <div class="profissional-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Engenheiro de Segurança do Trabalho</span>
+          </div>
+          <div class="profissional-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Especialista em Engenharia Clínica</span>
+          </div>
+        </div>
+        <div class="crea-badge">CREA 3000078851</div>
+      </div>
+      
+      <div class="profissional-card">
+        <h3>EDSON LUIS NASCIMENTO VIEIRA</h3>
+        <div class="profissional-info">
+          <div class="profissional-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Tecnólogo em Telecomunicações</span>
+          </div>
+          <div class="profissional-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Tecnólogo em Eletrônica</span>
+          </div>
+          <div class="profissional-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Especialista em Sistemas Elétricos</span>
+          </div>
+        </div>
+        <div class="crea-badge">CREA 79591D</div>
+      </div>
+      
+      <div class="profissional-card">
+        <h3>LOHANNA KEROLIN</h3>
+        <div class="profissional-info">
+          <div class="profissional-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Tecnóloga em Segurança do Trabalho</span>
+          </div>
+          <div class="profissional-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Especialista em Recursos Humanos</span>
+          </div>
+          <div class="profissional-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Gestão de Equipes e Treinamentos</span>
+          </div>
+        </div>
+        <div class="crea-badge">CREA Recursos Humanos</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- REDES SOCIAIS -->
-<section>
- <div class="redes">
-  <a href="https://www.facebook.com" target="_blank">FB</a>
-  <a href="https://www.linkedin.com" target="_blank">IN</a>
-  <a href="https://twitter.com" target="_blank">TW</a>
-  <a href="https://www.instagram.com" target="_blank">IG</a>
- </div>
+<!-- BENEFÍCIOS -->
+<section id="beneficios">
+  <div class="wrap">
+    <div class="section-title reveal">
+      <h2>Por que Escolher a SEC?</h2>
+      <p>Conheça os diferenciais que nos tornam a melhor escolha em soluções de engenharia</p>
+    </div>
+    
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <div class="beneficio-icon">
+          <i class="fas fa-award"></i>
+        </div>
+        <h4>Qualidade Garantida</h4>
+        <p>Padrão de excelência em todos os projetos, com rigor técnico e atenção aos detalhes.</p>
+      </div>
+      
+      <div class="beneficio-card">
+        <div class="beneficio-icon">
+          <i class="fas fa-clock"></i>
+        </div>
+        <h4>Entrega no Prazo</h4>
+        <p>Compromisso com prazos estabelecidos e eficiência na execução dos serviços.</p>
+      </div>
+      
+      <div class="beneficio-card">
+        <div class="beneficio-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h4>Conformidade Total</h4>
+        <p>Todas as soluções em conformidade com normas técnicas e legislação vigente.</p>
+      </div>
+      
+      <div class="beneficio-card">
+        <div class="beneficio-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h4>Atendimento Personalizado</h4>
+        <p>Soluções customizadas para atender às necessidades específicas de cada cliente.</p>
+      </div>
+      
+      <div class="beneficio-card">
+        <div class="beneficio-icon">
+          <i class="fas fa-lightbulb"></i>
+        </div>
+        <h4>Inovação Constante</h4>
+        <p>Uso de tecnologias modernas e metodologias atualizadas em todos os projetos.</p>
+      </div>
+      
+      <div class="beneficio-card">
+        <div class="beneficio-icon">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <h4>Parceria Duradoura</h4>
+        <p>Construímos relações de confiança que vão além de simples prestação de serviços.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- CTA -->
-<section id="contato" class="cta">
- <div class="wrap">
-  <h2>Fale com um Especialista</h2>
-  <a href="https://wa.me/557391396879" target="_blank">INICIAR CONVERSA</a>
- </div>
+<!-- CTA FINAL -->
+<section class="cta-final" id="contato">
+  <div class="wrap">
+    <h2>Transforme Seu Projeto em Realidade</h2>
+    <p>Entre em contato agora mesmo e descubra como podemos ajudar sua empresa a alcançar novos patamares de excelência e segurança através de soluções em engenharia de alto nível.</p>
+    <a href="https://wa.me/557391396879" target="_blank" class="cta-button">SOLICITAR ORÇAMENTO <i class="fab fa-whatsapp"></i></a>
+  </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
- <p>© 2026 SEC Engenharia • Soluções Técnicas Profissionais</p>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg" alt="SEC Engenharia">
+      <h3>SEC Engenharia</h3>
+      <p>DESENVOLVER PARA EVOLUIR</p>
+    </div>
+    
+    <div class="footer-contact">
+      <div class="contact-item">
+        <i class="fab fa-whatsapp"></i>
+        <span>(73) 91396-879</span>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <span>contato@secengenharia.com</span>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Bahia, Brasil</span>
+      </div>
+    </div>
+    
+    <p class="copyright">© 2026 SEC Engenharia • Soluções Técnicas Profissionais • Todos os direitos reservados</p>
+  </div>
 </footer>
 
 <script>
-// Animations
-const els = document.querySelectorAll(".reveal");
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add("show");
-  });
-}, { threshold: 0.15 });
+// Menu mobile
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
 
-els.forEach(el => obs.observe(el));
+menuToggle.addEventListener('click', () => {
+  mainNav.classList.toggle('active');
+  menuToggle.innerHTML = mainNav.classList.contains('active') 
+    ? '<i class="fas fa-times"></i>' 
+    : '<i class="fas fa-bars"></i>';
+});
+
+// Fechar menu ao clicar em um link
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    mainNav.classList.remove('active');
+    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+  });
+});
+
+// Sistema de animações automáticas com scroll
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      if (entry.target.classList.contains('reveal')) {
+        entry.target.classList.add('show');
+      }
+      
+      // Animações específicas para cards
+      if (entry.target.classList.contains('service-card')) {
+        entry.target.classList.add('animated');
+      }
+      
+      if (entry.target.classList.contains('projeto-card')) {
+        entry.target.classList.add('animated');
+      }
+      
+      if (entry.target.classList.contains('profissional-card')) {
+        entry.target.classList.add('animated');
+      }
+      
+      if (entry.target.classList.contains('beneficio-card')) {
+        entry.target.classList.add('animated');
+      }
+      
+      // Contador de estatísticas
+      if (entry.target.classList.contains('stat-number')) {
+        const finalValue = parseInt(entry.target.getAttribute('data-count'));
+        const duration = 2000;
+        const step = finalValue / (duration / 16);
+        let current = 0;
+        
+        const counter = setInterval(() => {
+          current += step;
+          if (current >= finalValue) {
+            entry.target.textContent = finalValue + (entry.target.textContent.includes('+') ? '+' : '');
+            clearInterval(counter);
+          } else {
+            entry.target.textContent = Math.floor(current) + (entry.target.textContent.includes('+') ? '+' : '');
+          }
+        }, 16);
+      }
+    }
+  });
+}, observerOptions);
+
+// Observar todos os elementos animáveis
+document.querySelectorAll('.reveal, .service-card, .projeto-card, .profissional-card, .beneficio-card, .stat-number').forEach(el => {
+  observer.observe(el);
+});
+
+// Header scroll effect
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('header');
+  if (window.scrollY > 100) {
+    header.style.padding = '10px 0';
+    header.style.backdropFilter = 'blur(15px)';
+  } else {
+    header.style.padding = '15px 0';
+    header.style.backdropFilter = 'blur(12px)';
+  }
+});
+
+// Efeito de digitação no hero
+const heroTitle = document.querySelector('.hero h1 span');
+if (heroTitle) {
+  const text = heroTitle.textContent;
+  heroTitle.textContent = '';
+  let i = 0;
+  
+  function typeWriter() {
+    if (i < text.length) {
+      heroTitle.textContent += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, 50);
+    }
+  }
+  
+  setTimeout(typeWriter, 1000);
+}
+
+// Efeito parallax no hero
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) {
+    heroBg.style.transform = `translateZ(-100px) scale(1.2) translateY(${scrolled * 0.5}px)`;
+  }
+});
+
+// Animações 3D ao passar o mouse
+document.querySelectorAll('.service-card, .projeto-card, .profissional-card, .beneficio-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateY = ((x - centerX) / centerX) * 5;
+    const rotateX = ((centerY - y) / centerY) * 5;
+    
+    card.style.transform = `translateZ(30px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = card.classList.contains('animated') 
+      ? 'translateY(0) rotateX(0) rotateY(0)' 
+      : 'translateY(50px) rotateX(10deg)';
+  });
+});
+
+// Animar ao carregar a página
+window.addEventListener('load', () => {
+  document.body.style.opacity = '0';
+  document.body.style.transition = 'opacity 0.5s';
+  
+  setTimeout(() => {
+    document.body.style.opacity = '1';
+  }, 100);
+});
 </script>
 
 </body>
