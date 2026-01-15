@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>SEC Engenharia | Soluções Técnicas Profissionais</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
 
 <style>
 /* ===== VARIÁVEIS GLOBAIS ===== */
@@ -22,80 +21,35 @@
   --branco: #ffffff;
   --linha: rgba(255,255,255,.08);
   --gradiente: linear-gradient(135deg, #22d3c5 0%, #0ea5e9 100%);
-  --gradiente-verde: linear-gradient(135deg, #22d3c5 0%, #10b981 100%);
   --sombra: 0 20px 40px rgba(0, 0, 0, 0.3);
   --sombra-verde: 0 10px 30px rgba(34, 211, 197, 0.25);
   --sombra-forte: 0 25px 50px rgba(0, 0, 0, 0.4);
   --sombra-3d: 0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
-/* ===== RESET E ANIMAÇÕES ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
+/* ===== RESET ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-}
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
 body {
   background: var(--bg);
   color: var(--texto);
   line-height: 1.8;
   overflow-x: hidden;
-  perspective: 1000px;
 }
 
-/* ANIMAÇÕES 3D */
-@keyframes float3d {
-  0%, 100% { transform: translateY(0) rotateY(0); }
-  33% { transform: translateY(-20px) rotateY(5deg); }
-  66% { transform: translateY(10px) rotateY(-5deg); }
-}
-
-@keyframes pulse3d {
-  0%, 100% { transform: scale(1) rotateY(0); }
-  50% { transform: scale(1.05) rotateY(180deg); }
-}
-
-@keyframes rotate3d {
-  from { transform: rotateY(0); }
-  to { transform: rotateY(360deg); }
-}
-
-@keyframes slideIn3d {
-  from { transform: translateX(-100px) rotateY(90deg); opacity: 0; }
-  to { transform: translateX(0) rotateY(0); opacity: 1; }
-}
-
-@keyframes fadeUp3d {
-  from { transform: translateY(50px) rotateX(20deg); opacity: 0; }
-  to { transform: translateY(0) rotateX(0); opacity: 1; }
-}
-
-@keyframes glow3d {
-  0%, 100% { text-shadow: 0 0 10px rgba(34, 211, 197, 0.3), 0 0 20px rgba(34, 211, 197, 0.2); }
-  50% { text-shadow: 0 0 20px rgba(34, 211, 197, 0.6), 0 0 30px rgba(34, 211, 197, 0.4); }
-}
-
-/* ===== HEADER 3D ===== */
+/* ===== HEADER ===== */
 header {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   z-index: 1000;
   background: rgba(2, 6, 23, 0.97);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--linha);
   padding: 15px 0;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform-style: preserve-3d;
-  animation: slideIn3d 0.8s ease-out;
+  transition: all 0.25s ease;
 }
 
 .header-container {
@@ -105,23 +59,15 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transform-style: preserve-3d;
 }
 
-/* LOGO 3D ANIMADA */
+/* LOGO */
 .logo-3d {
   display: flex;
   align-items: center;
   gap: 15px;
   text-decoration: none;
-  transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
-.logo-3d:hover {
-  transform: translateZ(20px) rotateY(10deg);
-}
-
 .logo-img-3d {
   height: 60px;
   width: 60px;
@@ -129,29 +75,18 @@ header {
   object-fit: cover;
   border: 3px solid var(--verde);
   padding: 2px;
-  transform-style: preserve-3d;
-  animation: pulse3d 8s infinite;
   box-shadow: var(--sombra-3d);
 }
-
-.logo-text-3d {
-  display: flex;
-  flex-direction: column;
-  transform-style: preserve-3d;
-}
-
+.logo-text-3d { display: flex; flex-direction: column; }
 .logo-title-3d {
   font-size: 28px;
   font-weight: 900;
-  color: white;
   line-height: 1;
   background: linear-gradient(to right, var(--branco), var(--verde-claro));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: 1px;
-  transform: translateZ(15px);
 }
-
 .logo-subtitle-3d {
   font-size: 11px;
   color: var(--verde);
@@ -159,77 +94,39 @@ header {
   text-transform: uppercase;
   margin-top: 5px;
   font-weight: 700;
-  transform: translateZ(10px);
 }
 
-/* NAVEGAÇÃO 3D */
+/* NAV */
 .nav-3d {
   display: flex;
-  gap: 30px;
+  gap: 26px;
   align-items: center;
-  transform-style: preserve-3d;
 }
-
 .nav-link-3d {
   color: var(--cinza);
   text-decoration: none;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 1px;
   padding: 8px 0;
   position: relative;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.25s ease;
   display: flex;
   align-items: center;
   gap: 8px;
-  transform-style: preserve-3d;
-  transform: translateZ(0);
 }
-
-.nav-link-3d::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--gradiente);
-  border-radius: 4px;
-  transform: translateZ(-5px) scale(0.95);
-  opacity: 0;
-  transition: all 0.4s;
-}
-
 .nav-link-3d::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 0; left: 0;
   width: 0;
   height: 2px;
   background: var(--gradiente);
-  transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform: translateZ(5px);
+  transition: width 0.25s ease;
 }
-
-.nav-link-3d:hover {
-  color: var(--verde);
-  transform: translateY(-3px) translateZ(10px);
-}
-
-.nav-link-3d:hover::before {
-  opacity: 0.1;
-  transform: translateZ(-5px) scale(1.05);
-}
-
-.nav-link-3d:hover::after {
-  width: 100%;
-}
-
-.nav-link-3d i {
-  font-size: 14px;
-  transform: translateZ(5px);
-}
+.nav-link-3d:hover { color: var(--verde); }
+.nav-link-3d:hover::after { width: 100%; }
+.nav-link-3d i { font-size: 14px; }
 
 .menu-toggle-3d {
   display: none;
@@ -238,48 +135,31 @@ header {
   color: var(--verde);
   font-size: 28px;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  transition: all 0.3s;
-  transform-style: preserve-3d;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  transition: background 0.2s ease;
 }
+.menu-toggle-3d:hover { background: rgba(34, 211, 197, 0.12); }
 
-.menu-toggle-3d:hover {
-  background: rgba(34, 211, 197, 0.1);
-  transform: rotateY(180deg);
-}
-
-/* ===== HERO SECTION 3D ===== */
+/* ===== HERO ===== */
 .hero-3d {
   min-height: 100vh;
   display: flex;
   align-items: center;
   padding: 160px 5% 100px;
-  background: linear-gradient(135deg, rgba(2,6,23,0.95) 0%, rgba(15,23,42,0.9) 100%);
+  background: linear-gradient(135deg, rgba(2,6,23,0.98) 0%, rgba(15,23,42,0.92) 100%);
   position: relative;
   overflow: hidden;
-  transform-style: preserve-3d;
-}
-
-.hero-bg-3d {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  transform: translateZ(-100px) scale(1.2);
 }
 
 .hero-overlay-3d {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 30% 30%, rgba(34, 211, 197, 0.1) 0%, transparent 50%);
-  z-index: -1;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(34, 211, 197, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.10) 0%, transparent 40%);
+  pointer-events: none;
 }
 
 .hero-content-3d {
@@ -287,930 +167,499 @@ header {
   margin: 0 auto;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 70px;
   align-items: center;
-  transform-style: preserve-3d;
-}
-
-/* TEXTO HERO 3D */
-.hero-text-3d {
-  transform-style: preserve-3d;
-  animation: fadeUp3d 1s ease-out;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-badge-3d {
   display: inline-block;
-  background: var(--gradiente);
-  color: var(--bg);
-  padding: 12px 30px;
-  border-radius: 30px;
-  font-size: 14px;
+  background: rgba(34, 211, 197, 0.14);
+  border: 1px solid rgba(94, 234, 212, 0.35);
+  color: var(--verde-claro);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 13px;
   font-weight: 800;
-  letter-spacing: 3px;
-  margin-bottom: 40px;
-  transform-style: preserve-3d;
-  animation: float3d 4s ease-in-out infinite;
-  box-shadow: var(--sombra-3d);
-  transform: translateZ(20px);
+  letter-spacing: 2px;
+  margin-bottom: 26px;
 }
 
 .hero-title-3d {
-  font-size: clamp(48px, 6vw, 80px);
+  font-size: clamp(44px, 5.5vw, 74px);
   font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 30px;
-  background: linear-gradient(to right, var(--verde), var(--verde-claro));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  line-height: 1.08;
+  margin-bottom: 18px;
   letter-spacing: -1px;
-  transform-style: preserve-3d;
-  transform: translateZ(30px);
 }
-
 .hero-title-3d span {
   display: block;
-  font-size: clamp(36px, 5vw, 60px);
-  color: var(--branco);
-  -webkit-text-fill-color: var(--branco);
-  animation: glow3d 3s infinite alternate;
+  font-size: clamp(22px, 2.6vw, 34px);
+  font-weight: 700;
+  color: var(--cinza);
+  margin-top: 10px;
 }
 
 .hero-description-3d {
   font-size: 18px;
   color: var(--cinza);
-  margin-bottom: 50px;
-  line-height: 1.8;
-  max-width: 600px;
-  transform: translateZ(15px);
+  margin-bottom: 34px;
+  line-height: 1.85;
+  max-width: 640px;
 }
 
 .hero-actions-3d {
   display: flex;
-  gap: 20px;
+  gap: 14px;
   flex-wrap: wrap;
-  transform-style: preserve-3d;
 }
 
-/* BOTÕES 3D */
 .btn-3d {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 20px 50px;
-  font-weight: 700;
-  font-size: 16px;
+  padding: 18px 34px;
+  font-weight: 800;
+  font-size: 15px;
   text-decoration: none;
-  border-radius: 50px;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 999px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   cursor: pointer;
   border: none;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  transform-style: preserve-3d;
-  transform: translateZ(0);
 }
-
 .btn-3d-primary {
   background: var(--gradiente);
   color: var(--bg) !important;
-  box-shadow: var(--sombra-3d);
+  box-shadow: 0 16px 36px rgba(34, 211, 197, 0.22);
 }
-
 .btn-3d-primary:hover {
-  transform: translateY(-5px) translateZ(20px) scale(1.05);
-  box-shadow: 0 20px 40px rgba(34, 211, 197, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 22px 46px rgba(34, 211, 197, 0.26);
 }
-
 .btn-3d-secondary {
   background: transparent;
   color: var(--verde) !important;
-  border: 2px solid var(--verde);
+  border: 2px solid rgba(34, 211, 197, 0.65);
 }
-
 .btn-3d-secondary:hover {
-  background: var(--gradiente);
-  color: var(--bg) !important;
-  transform: translateY(-5px) translateZ(20px);
-  box-shadow: var(--sombra-verde);
+  background: rgba(34, 211, 197, 0.12);
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 197, 1);
 }
 
-/* IMAGEM HERO 3D */
+/* HERO “IMAGEM” (ilustração corporativa em SVG) */
 .hero-image-3d {
-  position: relative;
-  border-radius: 25px;
-  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--linha);
+  border-radius: 24px;
   box-shadow: var(--sombra-forte);
-  transform-style: preserve-3d;
-  animation: float3d 6s ease-in-out infinite;
-  perspective: 1000px;
+  overflow: hidden;
+  position: relative;
 }
-
-.hero-image-3d img {
+.hero-figure {
   width: 100%;
   height: auto;
   display: block;
-  transform: translateZ(20px);
-  transition: transform 0.5s;
 }
-
-.hero-image-3d:hover img {
-  transform: translateZ(30px) scale(1.1);
+.hero-figure-wrap {
+  padding: 18px;
 }
-
-.image-frame-3d {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  border: 2px solid rgba(34, 211, 197, 0.3);
-  border-radius: 15px;
-  pointer-events: none;
-  transform: translateZ(40px);
+.hero-figure-caption {
+  padding: 14px 18px 18px;
+  border-top: 1px solid var(--linha);
+  color: var(--cinza);
+  font-size: 14px;
 }
+.hero-figure-caption strong { color: var(--texto); }
 
-/* ===== SERVIÇOS 3D ===== */
-#servicos-3d {
-  padding: 150px 5%;
-  background: var(--bg2);
+/* ===== SEÇÕES ===== */
+section { scroll-margin-top: 90px; }
+
+#servicos-3d,
+#profissionais-3d,
+#contato-3d { background: var(--bg2); }
+
+#especialidades-3d,
+#cidades-3d,
+#redes-3d { background: var(--bg); }
+
+#servicos-3d, #especialidades-3d, #profissionais-3d, #cidades-3d, #contato-3d, #redes-3d {
+  padding: 130px 5%;
   position: relative;
-  overflow: hidden;
-  transform-style: preserve-3d;
 }
 
 .section-header-3d {
   text-align: center;
   max-width: 1000px;
-  margin: 0 auto 80px;
-  transform-style: preserve-3d;
+  margin: 0 auto 70px;
 }
-
 .section-title-3d {
-  font-size: clamp(48px, 6vw, 64px);
+  font-size: clamp(38px, 4.5vw, 58px);
   font-weight: 900;
-  margin-bottom: 30px;
+  margin-bottom: 18px;
   background: linear-gradient(to right, var(--verde), var(--verde-claro));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  transform: translateZ(25px);
 }
-
 .section-subtitle-3d {
-  font-size: 20px;
+  font-size: 18px;
   color: var(--cinza);
-  line-height: 1.8;
-  transform: translateZ(15px);
+  line-height: 1.85;
 }
 
+/* ===== CARDS ===== */
 .services-grid-3d {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 40px;
-  perspective: 1000px;
-  transform-style: preserve-3d;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 28px;
 }
 
 .service-card-3d {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  border-radius: 25px;
-  padding: 50px 40px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 22px;
+  padding: 38px 34px;
   border: 1px solid var(--linha);
-  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
   position: relative;
   overflow: hidden;
-  transform-style: preserve-3d;
-  transform: translateY(50px) rotateX(15deg);
-  opacity: 0;
-  animation: fadeUp3d 0.8s forwards;
-  animation-delay: calc(var(--i) * 0.1s);
 }
-
 .service-card-3d:hover {
-  transform: translateY(-20px) translateZ(30px) rotateX(5deg);
-  border-color: var(--verde);
-  box-shadow: 
-    var(--sombra-forte),
-    0 0 40px rgba(34, 211, 197, 0.2);
+  transform: translateY(-6px);
+  border-color: rgba(34, 211, 197, 0.7);
+  box-shadow: 0 20px 46px rgba(0,0,0,0.35);
+  background: rgba(255,255,255,0.05);
 }
-
 .service-card-3d::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
-  height: 5px;
+  height: 4px;
   background: var(--gradiente);
-  transform: translateZ(10px);
+  opacity: 0.9;
 }
-
 .service-icon-3d {
-  width: 90px;
-  height: 90px;
-  background: rgba(34, 211, 197, 0.1);
-  border-radius: 20px;
+  width: 78px;
+  height: 78px;
+  background: rgba(34, 211, 197, 0.12);
+  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
-  font-size: 40px;
+  margin-bottom: 22px;
+  font-size: 34px;
   color: var(--verde);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform-style: preserve-3d;
-  transform: translateZ(20px);
 }
-
-.service-card-3d:hover .service-icon-3d {
-  transform: translateZ(30px) rotateY(360deg) scale(1.1);
-  background: var(--gradiente);
-  color: var(--bg);
-}
-
 .service-title-3d {
-  font-size: 26px;
-  color: white;
-  margin-bottom: 20px;
-  font-weight: 700;
-  transform: translateZ(15px);
-}
-
-.service-description-3d {
-  color: var(--cinza);
-  font-size: 16px;
-  line-height: 1.7;
-  margin-bottom: 25px;
-  transform: translateZ(10px);
-}
-
-.service-features-3d {
-  list-style: none;
-  transform: translateZ(5px);
-}
-
-.service-features-3d li {
-  color: var(--cinza);
-  margin-bottom: 12px;
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.service-features-3d li::before {
-  content: '▶';
-  color: var(--verde);
-  font-size: 10px;
-}
-
-/* ===== ESPECIALIDADES 3D ===== */
-#especialidades-3d {
-  padding: 150px 5%;
-  background: var(--bg);
-  position: relative;
-  transform-style: preserve-3d;
-}
-
-.skills-grid-3d {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
-
-.skill-card-3d {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 20px;
-  padding: 40px 35px;
-  border: 1px solid var(--linha);
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-  overflow: hidden;
-  transform-style: preserve-3d;
-  transform: rotateY(20deg);
-  opacity: 0;
-  animation: fadeUp3d 0.8s forwards;
-  animation-delay: calc(var(--i) * 0.1s);
-}
-
-.skill-card-3d:hover {
-  transform: rotateY(0) translateZ(25px) scale(1.05);
-  border-color: var(--verde);
-  box-shadow: var(--sombra-verde);
-}
-
-.skill-icon-3d {
-  width: 70px;
-  height: 70px;
-  background: rgba(34, 211, 197, 0.1);
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 25px;
-  font-size: 32px;
-  color: var(--verde);
-  transition: all 0.3s;
-  transform: translateZ(15px);
-}
-
-.skill-card-3d:hover .skill-icon-3d {
-  transform: translateZ(25px) rotate(360deg);
-  background: var(--gradiente);
-  color: var(--bg);
-}
-
-.skill-title-3d {
-  font-size: 20px;
-  color: white;
-  margin-bottom: 15px;
-  font-weight: 600;
-  transform: translateZ(10px);
-}
-
-.skill-desc-3d {
-  color: var(--cinza);
-  font-size: 15px;
-  line-height: 1.7;
-  transform: translateZ(5px);
-}
-
-/* ===== PROFISSIONAIS 3D ===== */
-#profissionais-3d {
-  padding: 150px 5%;
-  background: var(--bg2);
-  position: relative;
-  overflow: hidden;
-  transform-style: preserve-3d;
-}
-
-.team-grid-3d {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  gap: 40px;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
-
-.team-card-3d {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  border-radius: 25px;
-  padding: 50px 40px;
-  border: 1px solid var(--linha);
-  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-  overflow: hidden;
-  transform-style: preserve-3d;
-  transform: translateY(60px) rotateX(-10deg);
-  opacity: 0;
-  animation: fadeUp3d 0.8s forwards;
-  animation-delay: calc(var(--i) * 0.1s);
-}
-
-.team-card-3d:hover {
-  transform: translateY(-15px) translateZ(25px) rotateX(0);
-  border-color: var(--verde);
-  box-shadow: var(--sombra-forte);
-}
-
-.team-card-3d::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 80px;
-  height: 80px;
-  background: var(--gradiente);
-  border-radius: 0 25px 0 80px;
-  opacity: 0.1;
-}
-
-.team-name-3d {
-  font-size: 28px;
-  color: var(--verde);
-  margin-bottom: 25px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid var(--linha);
-  font-weight: 700;
-  transform: translateZ(15px);
-}
-
-.team-info-3d {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  transform: translateZ(10px);
-}
-
-.team-item-3d {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  transform: translateZ(5px);
-}
-
-.team-item-3d i {
-  color: var(--verde);
-  margin-top: 3px;
-  font-size: 16px;
-  transform: translateZ(2px);
-}
-
-.team-item-3d span {
-  font-size: 16px;
-  color: var(--cinza);
-  line-height: 1.6;
-}
-
-.crea-badge-3d {
-  display: inline-block;
-  background: rgba(34, 211, 197, 0.1);
-  color: var(--verde);
-  padding: 10px 25px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 700;
-  margin-top: 25px;
-  transition: all 0.3s;
-  transform: translateZ(15px);
-}
-
-.team-card-3d:hover .crea-badge-3d {
-  background: var(--gradiente);
-  color: var(--bg);
-  transform: translateZ(25px) scale(1.05);
-}
-
-/* ===== CIDADES 3D ===== */
-#cidades-3d {
-  padding: 120px 5%;
-  background: var(--bg);
-  position: relative;
-  transform-style: preserve-3d;
-}
-
-.cities-grid-3d {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 25px;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
-
-.city-card-3d {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 15px;
-  padding: 30px 25px;
-  border: 1px solid var(--linha);
-  text-align: center;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform-style: preserve-3d;
-  transform: rotateX(15deg);
-  opacity: 0;
-  animation: fadeUp3d 0.8s forwards;
-  animation-delay: calc(var(--i) * 0.05s);
-}
-
-.city-card-3d:hover {
-  transform: rotateX(0) translateZ(20px) scale(1.1);
-  border-color: var(--verde);
-  background: rgba(34, 211, 197, 0.05);
-  box-shadow: var(--sombra-verde);
-}
-
-.city-icon-3d {
-  font-size: 32px;
-  color: var(--verde);
-  margin-bottom: 15px;
-  transition: all 0.3s;
-  transform: translateZ(10px);
-}
-
-.city-card-3d:hover .city-icon-3d {
-  transform: translateZ(20px) scale(1.2);
-}
-
-.city-name-3d {
-  font-size: 18px;
-  color: var(--branco);
-  font-weight: 600;
-  transform: translateZ(5px);
-}
-
-/* ===== CONTATO 3D ===== */
-#contato-3d {
-  padding: 150px 5%;
-  background: var(--bg2);
-  position: relative;
-  transform-style: preserve-3d;
-}
-
-.contact-grid-3d {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
-
-.contact-card-3d {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  border-radius: 20px;
-  padding: 50px 40px;
-  border: 1px solid var(--linha);
-  text-align: center;
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-  overflow: hidden;
-  transform-style: preserve-3d;
-  transform: scale(0.9) rotateY(15deg);
-  opacity: 0;
-  animation: fadeUp3d 0.8s forwards;
-  animation-delay: calc(var(--i) * 0.1s);
-}
-
-.contact-card-3d:hover {
-  transform: scale(1) rotateY(0) translateZ(25px);
-  border-color: var(--verde);
-  box-shadow: var(--sombra-forte);
-}
-
-.contact-icon-3d {
-  font-size: 48px;
-  color: var(--verde);
-  margin-bottom: 25px;
-  transition: all 0.3s;
-  transform: translateZ(20px);
-}
-
-.contact-card-3d:hover .contact-icon-3d {
-  transform: translateZ(30px) rotateY(360deg);
-}
-
-.contact-title-3d {
   font-size: 22px;
   color: white;
-  margin-bottom: 15px;
-  font-weight: 600;
-  transform: translateZ(15px);
+  margin-bottom: 12px;
+  font-weight: 800;
 }
-
-/* LINKS CLICÁVEIS */
-.contact-link-3d {
-  color: var(--verde) !important;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 500;
-  transition: all 0.3s;
-  display: block;
-  margin-top: 10px;
-  transform: translateZ(10px);
-}
-
-.contact-link-3d:hover {
-  color: var(--verde-claro) !important;
-  transform: translateZ(20px) scale(1.05);
-  text-decoration: underline;
-}
-
-.email-link-3d {
-  color: var(--verde) !important;
-  text-decoration: none;
-  word-break: break-all;
-}
-
-.email-link-3d:hover {
-  color: var(--verde-claro) !important;
-  text-decoration: underline;
-}
-
-/* ===== REDES SOCIAIS 3D ===== */
-#redes-3d {
-  padding: 120px 5%;
-  background: var(--bg);
-  position: relative;
-  transform-style: preserve-3d;
-}
-
-.social-grid-3d {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
-
-.social-card-3d {
-  width: 120px;
-  height: 120px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--verde);
-  text-decoration: none;
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border: 1px solid var(--linha);
-  transform-style: preserve-3d;
-  transform: rotateY(20deg) scale(0.9);
-  opacity: 0;
-  animation: fadeUp3d 0.8s forwards;
-  animation-delay: calc(var(--i) * 0.1s);
-}
-
-.social-card-3d:hover {
-  transform: rotateY(0) translateZ(30px) scale(1.1);
-  border-color: var(--verde);
-  background: var(--gradiente);
-  color: var(--bg) !important;
-  box-shadow: var(--sombra-forte);
-}
-
-.social-icon-3d {
-  font-size: 36px;
-  margin-bottom: 10px;
-  transition: all 0.3s;
-  transform: translateZ(15px);
-}
-
-.social-card-3d:hover .social-icon-3d {
-  transform: translateZ(25px) rotateY(360deg);
-}
-
-.social-name-3d {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  transform: translateZ(10px);
-}
-
-/* ===== FOOTER 3D ===== */
-.footer-3d {
-  background: #010a1a;
-  padding: 80px 5% 40px;
-  border-top: 1px solid var(--linha);
-  position: relative;
-  transform-style: preserve-3d;
-}
-
-.footer-container-3d {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 50px;
-  transform-style: preserve-3d;
-}
-
-.footer-col-3d h4 {
-  font-size: 20px;
-  color: var(--verde);
-  margin-bottom: 25px;
-  font-weight: 700;
-  position: relative;
-  padding-bottom: 10px;
-  transform: translateZ(15px);
-}
-
-.footer-col-3d h4::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 50px;
-  height: 3px;
-  background: var(--gradiente);
-  transform: translateZ(5px);
-}
-
-.footer-links-3d {
-  list-style: none;
-  transform: translateZ(10px);
-}
-
-.footer-links-3d li {
-  margin-bottom: 15px;
-}
-
-.footer-links-3d a {
+.service-description-3d {
   color: var(--cinza);
-  text-decoration: none;
-  transition: all 0.3s;
+  font-size: 15px;
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+.service-features-3d {
+  list-style: none;
+}
+.service-features-3d li {
+  color: var(--cinza);
+  margin-bottom: 10px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
-.footer-links-3d a:hover {
-  color: var(--verde);
-  transform: translateX(10px) translateZ(5px);
-}
-
-.footer-contact-3d {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  transform: translateZ(10px);
-}
-
-.contact-info-3d {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--cinza);
-  transition: all 0.3s;
-}
-
-.contact-info-3d:hover {
-  color: var(--verde);
-  transform: translateX(5px) translateZ(5px);
-}
-
-.contact-info-3d i {
+.service-features-3d li::before {
+  content: '•';
   color: var(--verde);
   font-size: 18px;
+  line-height: 1;
 }
+
+/* ESPECIALIDADES */
+.skills-grid-3d {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+}
+.skill-card-3d {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 18px;
+  padding: 32px 28px;
+  border: 1px solid var(--linha);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.skill-card-3d:hover {
+  transform: translateY(-5px);
+  border-color: rgba(34, 211, 197, 0.7);
+  box-shadow: var(--sombra-verde);
+}
+.skill-icon-3d {
+  width: 62px;
+  height: 62px;
+  background: rgba(34, 211, 197, 0.12);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  font-size: 28px;
+  color: var(--verde);
+}
+.skill-title-3d {
+  font-size: 18px;
+  color: white;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+.skill-desc-3d {
+  color: var(--cinza);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+/* PROFISSIONAIS */
+.team-grid-3d {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 26px;
+}
+.team-card-3d {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 22px;
+  padding: 36px 32px;
+  border: 1px solid var(--linha);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.team-card-3d:hover {
+  transform: translateY(-6px);
+  border-color: rgba(34, 211, 197, 0.7);
+  box-shadow: var(--sombra);
+}
+.team-name-3d {
+  font-size: 22px;
+  color: var(--verde-claro);
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--linha);
+  font-weight: 900;
+}
+.team-info-3d { display: flex; flex-direction: column; gap: 12px; }
+.team-item-3d { display: flex; align-items: flex-start; gap: 10px; }
+.team-item-3d i { color: var(--verde); margin-top: 4px; font-size: 15px; }
+.team-item-3d span { font-size: 15px; color: var(--cinza); line-height: 1.6; }
+.crea-badge-3d {
+  display: inline-block;
+  background: rgba(34, 211, 197, 0.12);
+  color: var(--verde-claro);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  margin-top: 18px;
+}
+
+/* CIDADES */
+.cities-grid-3d {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 16px;
+}
+.city-card-3d {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 14px;
+  padding: 22px 18px;
+  border: 1px solid var(--linha);
+  text-align: center;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.city-card-3d:hover {
+  transform: translateY(-4px);
+  border-color: rgba(34, 211, 197, 0.7);
+  box-shadow: var(--sombra-verde);
+}
+.city-icon-3d { font-size: 26px; color: var(--verde); margin-bottom: 10px; }
+.city-name-3d { font-size: 16px; color: var(--branco); font-weight: 800; }
+
+/* CONTATO */
+.contact-grid-3d {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+.contact-card-3d {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+  padding: 34px 28px;
+  border: 1px solid var(--linha);
+  text-align: center;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.contact-card-3d:hover {
+  transform: translateY(-6px);
+  border-color: rgba(34, 211, 197, 0.7);
+  box-shadow: var(--sombra);
+}
+.contact-icon-3d { font-size: 42px; color: var(--verde); margin-bottom: 16px; }
+.contact-title-3d { font-size: 18px; color: white; margin-bottom: 10px; font-weight: 900; }
+.contact-link-3d {
+  color: var(--verde-claro) !important;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+}
+.contact-link-3d:hover { text-decoration: underline; }
+
+/* REDES */
+.social-grid-3d {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.social-card-3d {
+  width: 122px;
+  height: 118px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--verde-claro);
+  text-decoration: none;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  border: 1px solid var(--linha);
+}
+.social-card-3d:hover {
+  transform: translateY(-6px);
+  border-color: rgba(34, 211, 197, 0.7);
+  box-shadow: var(--sombra-verde);
+  background: rgba(34, 211, 197, 0.08);
+}
+.social-icon-3d { font-size: 30px; margin-bottom: 8px; color: var(--verde); }
+.social-name-3d { font-size: 13px; font-weight: 800; letter-spacing: 0.5px; }
+
+/* FOOTER */
+.footer-3d {
+  background: #010a1a;
+  padding: 70px 5% 40px;
+  border-top: 1px solid var(--linha);
+}
+.footer-container-3d {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 40px;
+}
+.footer-col-3d h4 {
+  font-size: 18px;
+  color: var(--verde-claro);
+  margin-bottom: 18px;
+  font-weight: 900;
+  position: relative;
+  padding-bottom: 10px;
+}
+.footer-col-3d h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 48px;
+  height: 3px;
+  background: var(--gradiente);
+}
+.footer-links-3d { list-style: none; }
+.footer-links-3d li { margin-bottom: 12px; }
+.footer-links-3d a {
+  color: var(--cinza);
+  text-decoration: none;
+  transition: transform 0.18s ease, color 0.18s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-links-3d a:hover { color: var(--verde); transform: translateX(6px); }
+.footer-contact-3d { display: flex; flex-direction: column; gap: 12px; }
+.contact-info-3d { display: flex; align-items: center; gap: 10px; color: var(--cinza); }
+.contact-info-3d i { color: var(--verde); font-size: 16px; }
 
 .copyright-3d {
   max-width: 1400px;
-  margin: 50px auto 0;
-  padding-top: 30px;
+  margin: 45px auto 0;
+  padding-top: 22px;
   border-top: 1px solid var(--linha);
   text-align: center;
   color: var(--cinza);
-  font-size: 14px;
-  transform: translateZ(5px);
+  font-size: 13px;
 }
 
-/* ===== RESPONSIVIDADE ===== */
+/* ===== RESPONSIVO ===== */
 @media (max-width: 1024px) {
-  .hero-content-3d {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 60px;
-  }
-  
-  .hero-image-3d {
-    order: -1;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .services-grid-3d {
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  }
-  
-  .team-grid-3d {
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  }
+  .hero-content-3d { grid-template-columns: 1fr; text-align: center; gap: 34px; }
+  .hero-description-3d { margin-left: auto; margin-right: auto; }
+  .hero-actions-3d { justify-content: center; }
+  .hero-image-3d { max-width: 680px; margin: 0 auto; }
+  .team-grid-3d { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
 }
-
 @media (max-width: 768px) {
-  .header-container {
-    padding: 0 4%;
-  }
-  
   .nav-3d {
     position: fixed;
     top: 90px;
     left: 0;
     width: 100%;
     background: rgba(2, 6, 23, 0.98);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(18px);
     flex-direction: column;
-    padding: 30px 5%;
+    padding: 20px 5%;
     gap: 0;
-    transform: translateY(-100%) rotateX(90deg);
+    transform: translateY(-110%);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.25s ease;
     z-index: 999;
     border-bottom: 1px solid var(--linha);
-    transform-style: preserve-3d;
-    perspective: 1000px;
   }
-  
-  .nav-3d.active {
-    transform: translateY(0) rotateX(0);
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .nav-link-3d {
-    padding: 20px 0;
-    border-bottom: 1px solid var(--linha);
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .nav-link-3d:last-child {
-    border-bottom: none;
-  }
-  
-  .nav-link-3d:hover {
-    transform: translateX(10px) translateZ(15px);
-  }
-  
-  .menu-toggle-3d {
-    display: block;
-  }
-  
-  .hero-3d {
-    padding: 140px 4% 80px;
-  }
-  
-  .btn-3d {
-    padding: 18px 40px;
-    width: 100%;
-    max-width: 300px;
-  }
-  
-  .services-grid-3d {
-    grid-template-columns: 1fr;
-  }
-  
-  .skills-grid-3d {
-    grid-template-columns: 1fr;
-  }
-  
-  .team-grid-3d {
-    grid-template-columns: 1fr;
-  }
-  
-  .cities-grid-3d {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .contact-grid-3d {
-    grid-template-columns: 1fr;
-  }
-  
-  .social-grid-3d {
-    gap: 20px;
-  }
-  
-  .social-card-3d {
-    width: 100px;
-    height: 100px;
-  }
+  .nav-3d.active { transform: translateY(0); opacity: 1; visibility: visible; }
+  .nav-link-3d { padding: 16px 0; border-bottom: 1px solid var(--linha); width: 100%; justify-content: center; }
+  .nav-link-3d:last-child { border-bottom: none; }
+  .menu-toggle-3d { display: block; }
+  .hero-3d { padding: 135px 4% 80px; }
+  .btn-3d { width: 100%; max-width: 320px; }
+  .services-grid-3d, .skills-grid-3d, .team-grid-3d { grid-template-columns: 1fr; }
+  .cities-grid-3d { grid-template-columns: repeat(2, 1fr); }
 }
-
 @media (max-width: 480px) {
-  .hero-title-3d {
-    font-size: 36px;
-  }
-  
-  .hero-title-3d span {
-    font-size: 28px;
-  }
-  
-  .section-title-3d {
-    font-size: 32px;
-  }
-  
-  .cities-grid-3d {
-    grid-template-columns: 1fr;
-  }
-  
-  .social-card-3d {
-    width: 80px;
-    height: 80px;
-  }
-  
-  .social-icon-3d {
-    font-size: 28px;
-  }
-  
-  .footer-container-3d {
-    grid-template-columns: 1fr;
-  }
+  .cities-grid-3d { grid-template-columns: 1fr; }
+  .social-card-3d { width: 105px; height: 105px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER 3D -->
+<!-- HEADER -->
 <header>
   <div class="header-container">
-    <a href="#" class="logo-3d">
+    <a href="#inicio" class="logo-3d">
       <img src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg" alt="SEC Engenharia" class="logo-img-3d">
       <div class="logo-text-3d">
         <div class="logo-title-3d">SEC ENGENHARIA</div>
         <div class="logo-subtitle-3d">DESENVOLVER PARA EVOLUIR</div>
       </div>
     </a>
-    
-    <button class="menu-toggle-3d" id="menuToggle">
+
+    <button class="menu-toggle-3d" id="menuToggle" aria-label="Abrir menu">
       <i class="fas fa-bars"></i>
     </button>
-    
+
     <nav class="nav-3d" id="mainNav">
       <a href="#inicio" class="nav-link-3d"><i class="fas fa-home"></i> INÍCIO</a>
       <a href="#servicos-3d" class="nav-link-3d"><i class="fas fa-cogs"></i> SERVIÇOS</a>
@@ -1223,48 +672,119 @@ header {
   </div>
 </header>
 
-<!-- HERO 3D -->
+<!-- HERO -->
 <section class="hero-3d" id="inicio">
-  <div class="hero-bg-3d"></div>
   <div class="hero-overlay-3d"></div>
-  
+
   <div class="hero-content-3d">
     <div class="hero-text-3d">
-      <span class="hero-badge-3d">★ ESPECIALISTAS EM ENGENHARIA ★</span>
-      <h1 class="hero-title-3d">SEC Engenharia<br><span>Desenvolver para Evoluir</span></h1>
-      <p class="hero-description-3d">Soluções técnicas completas em engenharia elétrica, segurança do trabalho, manutenção hospitalar e muito mais. Atendemos toda a região sul da Bahia com excelência técnica e comprometimento.</p>
-      
+      <span class="hero-badge-3d">SOLUÇÕES TÉCNICAS PROFISSIONAIS</span>
+      <h1 class="hero-title-3d">
+        SEC Engenharia
+        <span>Engenharia Elétrica • Segurança do Trabalho • Engenharia Clínica</span>
+      </h1>
+      <p class="hero-description-3d">
+        Projetos, laudos e consultoria com foco em conformidade, segurança e excelência técnica.
+        Atendemos toda a região sul da Bahia com seriedade e compromisso.
+      </p>
+
       <div class="hero-actions-3d">
-        <a href="https://wa.me/5573991396879" target="_blank" class="btn-3d btn-3d-primary">
-          <i class="fab fa-whatsapp"></i> FALE AGORA NO WHATSAPP
+        <a href="https://wa.me/5573991396879" target="_blank" class="btn-3d btn-3d-primary" rel="noopener">
+          <i class="fab fa-whatsapp"></i> FALAR NO WHATSAPP
         </a>
         <a href="#servicos-3d" class="btn-3d btn-3d-secondary">
-          <i class="fas fa-cogs"></i> CONHEÇA NOSSOS SERVIÇOS
+          <i class="fas fa-cogs"></i> VER SERVIÇOS
         </a>
       </div>
     </div>
-    
+
+    <!-- IMAGEM (ilustração corporativa em SVG, sem cara de “programador”) -->
     <div class="hero-image-3d">
-      <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Engenharia Elétrica">
-      <div class="image-frame-3d"></div>
+      <div class="hero-figure-wrap">
+        <svg class="hero-figure" viewBox="0 0 1200 860" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração técnica SEC Engenharia">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#22d3c5" stop-opacity="0.95"/>
+              <stop offset="1" stop-color="#0ea5e9" stop-opacity="0.90"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#5eead4" stop-opacity="0.22"/>
+              <stop offset="1" stop-color="#ffffff" stop-opacity="0.04"/>
+            </linearGradient>
+            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity="0.35"/>
+            </filter>
+          </defs>
+
+          <!-- fundo -->
+          <rect x="0" y="0" width="1200" height="860" rx="34" fill="rgba(255,255,255,0.02)"/>
+          <path d="M0 220 C 260 80, 430 90, 650 220 C 870 350, 980 340, 1200 220 L1200 0 L0 0 Z" fill="url(#g2)"/>
+          <circle cx="980" cy="160" r="110" fill="rgba(34,211,197,0.12)"/>
+          <circle cx="260" cy="650" r="160" fill="rgba(14,165,233,0.10)"/>
+
+          <!-- painel principal -->
+          <g filter="url(#shadow)">
+            <rect x="120" y="180" width="960" height="520" rx="26" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.10)" stroke-width="2"/>
+            <rect x="150" y="215" width="310" height="28" rx="14" fill="rgba(34,211,197,0.20)"/>
+            <rect x="150" y="265" width="420" height="18" rx="9" fill="rgba(255,255,255,0.08)"/>
+            <rect x="150" y="295" width="360" height="18" rx="9" fill="rgba(255,255,255,0.06)"/>
+            <rect x="150" y="325" width="390" height="18" rx="9" fill="rgba(255,255,255,0.06)"/>
+
+            <!-- cards -->
+            <rect x="150" y="380" width="300" height="250" rx="20" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)"/>
+            <rect x="480" y="380" width="300" height="250" rx="20" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)"/>
+            <rect x="810" y="380" width="240" height="250" rx="20" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)"/>
+
+            <!-- ícones -->
+            <circle cx="210" cy="450" r="34" fill="url(#g1)"/>
+            <circle cx="540" cy="450" r="34" fill="url(#g1)"/>
+            <circle cx="870" cy="450" r="34" fill="url(#g1)"/>
+
+            <!-- textos -->
+            <rect x="260" y="430" width="150" height="14" rx="7" fill="rgba(255,255,255,0.10)"/>
+            <rect x="260" y="455" width="210" height="12" rx="6" fill="rgba(255,255,255,0.07)"/>
+            <rect x="260" y="476" width="190" height="12" rx="6" fill="rgba(255,255,255,0.06)"/>
+
+            <rect x="590" y="430" width="150" height="14" rx="7" fill="rgba(255,255,255,0.10)"/>
+            <rect x="590" y="455" width="210" height="12" rx="6" fill="rgba(255,255,255,0.07)"/>
+            <rect x="590" y="476" width="190" height="12" rx="6" fill="rgba(255,255,255,0.06)"/>
+
+            <rect x="920" y="430" width="110" height="14" rx="7" fill="rgba(255,255,255,0.10)"/>
+            <rect x="920" y="455" width="160" height="12" rx="6" fill="rgba(255,255,255,0.07)"/>
+            <rect x="920" y="476" width="140" height="12" rx="6" fill="rgba(255,255,255,0.06)"/>
+
+            <!-- barra inferior -->
+            <rect x="150" y="655" width="370" height="18" rx="9" fill="rgba(34,211,197,0.18)"/>
+            <rect x="540" y="655" width="260" height="18" rx="9" fill="rgba(255,255,255,0.07)"/>
+            <rect x="820" y="655" width="230" height="18" rx="9" fill="rgba(255,255,255,0.06)"/>
+          </g>
+
+          <!-- selo -->
+          <g>
+            <path d="M1010 735c0 55-45 100-100 100s-100-45-100-100 45-100 100-100 100 45 100 100Z" fill="rgba(34,211,197,0.12)" stroke="rgba(34,211,197,0.35)" stroke-width="2"/>
+            <path d="M880 735l35 35 75-90" fill="none" stroke="url(#g1)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>
+      </div>
+      <div class="hero-figure-caption">
+        <strong>Conformidade e segurança</strong> em projetos, laudos e consultorias — atendimento na região sul da Bahia.
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SERVIÇOS 3D -->
+<!-- SERVIÇOS -->
 <section id="servicos-3d">
   <div class="section-header-3d">
     <h2 class="section-title-3d">SERVIÇOS PRINCIPAIS</h2>
-    <p class="section-subtitle-3d">Soluções completas em engenharia com expertise multidisciplinar e tecnologia de ponta</p>
+    <p class="section-subtitle-3d">Soluções completas em engenharia com foco em qualidade, normas e resultado.</p>
   </div>
-  
+
   <div class="services-grid-3d">
-    <div class="service-card-3d" style="--i: 0">
-      <div class="service-icon-3d">
-        <i class="fas fa-bolt"></i>
-      </div>
+    <div class="service-card-3d">
+      <div class="service-icon-3d"><i class="fas fa-bolt"></i></div>
       <h3 class="service-title-3d">Engenharia Elétrica</h3>
-      <p class="service-description-3d">Projetos e execução de SPDA, aterramento, inspeções e laudos técnicos, dimensionamento de sistemas elétricos.</p>
+      <p class="service-description-3d">Projetos e execução de SPDA, aterramento, inspeções e laudos técnicos.</p>
       <ul class="service-features-3d">
         <li>SPDA (Para-raios)</li>
         <li>Sistemas de Aterramento</li>
@@ -1273,43 +793,37 @@ header {
         <li>Laudos Técnicos</li>
       </ul>
     </div>
-    
-    <div class="service-card-3d" style="--i: 1">
-      <div class="service-icon-3d">
-        <i class="fas fa-hard-hat"></i>
-      </div>
+
+    <div class="service-card-3d">
+      <div class="service-icon-3d"><i class="fas fa-hard-hat"></i></div>
       <h3 class="service-title-3d">Segurança do Trabalho</h3>
-      <p class="service-description-3d">Consultoria completa em segurança ocupacional e gestão de riscos com profissionais certificados.</p>
+      <p class="service-description-3d">Consultoria completa em segurança ocupacional e gestão de riscos.</p>
       <ul class="service-features-3d">
-        <li>PGR - PCMSO</li>
+        <li>PGR / PCMSO</li>
         <li>LTCAT</li>
-        <li>PPRA - PCMAT</li>
+        <li>PPRA / PCMAT</li>
         <li>Treinamentos NR</li>
         <li>Gestão de EPIs</li>
       </ul>
     </div>
-    
-    <div class="service-card-3d" style="--i: 2">
-      <div class="service-icon-3d">
-        <i class="fas fa-hospital"></i>
-      </div>
+
+    <div class="service-card-3d">
+      <div class="service-icon-3d"><i class="fas fa-hospital"></i></div>
       <h3 class="service-title-3d">Engenharia Clínica</h3>
-      <p class="service-description-3d">Gestão e manutenção de equipamentos hospitalares e sistemas médicos com certificação ANVISA.</p>
+      <p class="service-description-3d">Gestão e manutenção de equipamentos hospitalares e sistemas médicos.</p>
       <ul class="service-features-3d">
         <li>Manutenção Hospitalar</li>
         <li>Calibração de Equipamentos</li>
-        <li>Gestão ANVISA</li>
+        <li>Gestão / Boas Práticas</li>
         <li>Controle de Qualidade</li>
         <li>Laudos Técnicos</li>
       </ul>
     </div>
-    
-    <div class="service-card-3d" style="--i: 3">
-      <div class="service-icon-3d">
-        <i class="fas fa-cogs"></i>
-      </div>
+
+    <div class="service-card-3d">
+      <div class="service-icon-3d"><i class="fas fa-cogs"></i></div>
       <h3 class="service-title-3d">Engenharia Mecânica</h3>
-      <p class="service-description-3d">Projetos, manutenção e inspeção de equipamentos mecânicos e sistemas industriais.</p>
+      <p class="service-description-3d">Projetos, manutenção e inspeção de equipamentos e sistemas industriais.</p>
       <ul class="service-features-3d">
         <li>Projetos Mecânicos</li>
         <li>Manutenção Industrial</li>
@@ -1318,286 +832,208 @@ header {
         <li>Adequações NR</li>
       </ul>
     </div>
-    
-    <div class="service-card-3d" style="--i: 4">
-      <div class="service-icon-3d">
-        <i class="fas fa-fire-extinguisher"></i>
-      </div>
+
+    <div class="service-card-3d">
+      <div class="service-icon-3d"><i class="fas fa-fire-extinguisher"></i></div>
       <h3 class="service-title-3d">Combate a Incêndio</h3>
-      <p class="service-description-3d">Sistemas completos de prevenção e combate a incêndios com projetos AVCB.</p>
+      <p class="service-description-3d">Sistemas de prevenção e combate a incêndio, projetos e adequações.</p>
       <ul class="service-features-3d">
-        <li>Projetos AVCB</li>
-        <li>Instalação de Hidrantes</li>
-        <li>Sistema de Sprinklers</li>
+        <li>Projetos e Adequações</li>
+        <li>Hidrantes / Sprinklers</li>
         <li>Extintores</li>
+        <li>Sinalização / Rotas</li>
         <li>Treinamentos</li>
       </ul>
     </div>
-    
-    <div class="service-card-3d" style="--i: 5">
-      <div class="service-icon-3d">
-        <i class="fas fa-file-contract"></i>
-      </div>
+
+    <div class="service-card-3d">
+      <div class="service-icon-3d"><i class="fas fa-file-contract"></i></div>
       <h3 class="service-title-3d">Laudos e Perícias</h3>
-      <p class="service-description-3d">Elaboração de laudos técnicos, perícias judiciais, avaliações e pareceres especializados.</p>
+      <p class="service-description-3d">Laudos técnicos, avaliações, pareceres e apoio especializado.</p>
       <ul class="service-features-3d">
         <li>Laudos Técnicos</li>
-        <li>Perícias Judiciais</li>
+        <li>Perícias</li>
         <li>Avaliações Técnicas</li>
-        <li>Pareceres Especializados</li>
-        <li>Consultoria Técnica</li>
+        <li>Pareceres</li>
+        <li>Consultoria</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ESPECIALIDADES 3D -->
+<!-- ESPECIALIDADES -->
 <section id="especialidades-3d">
   <div class="section-header-3d">
     <h2 class="section-title-3d">ESPECIALIDADES TÉCNICAS</h2>
-    <p class="section-subtitle-3d">Áreas de expertise e competências técnicas da nossa equipe</p>
+    <p class="section-subtitle-3d">Competências e áreas de atuação com entrega prática e documentação completa.</p>
   </div>
-  
+
   <div class="skills-grid-3d">
-    <div class="skill-card-3d" style="--i: 0">
-      <div class="skill-icon-3d">
-        <i class="fas fa-bolt"></i>
-      </div>
+    <div class="skill-card-3d">
+      <div class="skill-icon-3d"><i class="fas fa-bolt"></i></div>
       <h3 class="skill-title-3d">SPDA e Aterramento</h3>
-      <p class="skill-desc-3d">Projetos e instalação de sistemas de proteção contra descargas atmosféricas.</p>
+      <p class="skill-desc-3d">Projetos e instalação conforme normas e boas práticas.</p>
     </div>
-    
-    <div class="skill-card-3d" style="--i: 1">
-      <div class="skill-icon-3d">
-        <i class="fas fa-clipboard-check"></i>
-      </div>
+    <div class="skill-card-3d">
+      <div class="skill-icon-3d"><i class="fas fa-clipboard-check"></i></div>
       <h3 class="skill-title-3d">PGR e PCMSO</h3>
-      <p class="skill-desc-3d">Elaboração completa de programas de gestão de segurança e saúde ocupacional.</p>
+      <p class="skill-desc-3d">Programas de gestão com foco em conformidade e prevenção.</p>
     </div>
-    
-    <div class="skill-card-3d" style="--i: 2">
-      <div class="skill-icon-3d">
-        <i class="fas fa-stethoscope"></i>
-      </div>
+    <div class="skill-card-3d">
+      <div class="skill-icon-3d"><i class="fas fa-stethoscope"></i></div>
       <h3 class="skill-title-3d">Manutenção Hospitalar</h3>
-      <p class="skill-desc-3d">Gestão e manutenção de equipamentos médicos hospitalares.</p>
+      <p class="skill-desc-3d">Gestão e manutenção de equipamentos e rotinas técnicas.</p>
     </div>
-    
-    <div class="skill-card-3d" style="--i: 3">
-      <div class="skill-icon-3d">
-        <i class="fas fa-file-alt"></i>
-      </div>
+    <div class="skill-card-3d">
+      <div class="skill-icon-3d"><i class="fas fa-file-alt"></i></div>
       <h3 class="skill-title-3d">Laudos Técnicos</h3>
-      <p class="skill-desc-3d">Elaboração de laudos técnicos para diversos segmentos industriais.</p>
+      <p class="skill-desc-3d">Documentação clara, objetiva e pronta para auditorias.</p>
     </div>
-    
-    <div class="skill-card-3d" style="--i: 4">
-      <div class="skill-icon-3d">
-        <i class="fas fa-balance-scale"></i>
-      </div>
-      <h3 class="skill-title-3d">Perícias Judiciais</h3>
-      <p class="skill-desc-3d">Atuação como perito técnico em processos judiciais.</p>
+    <div class="skill-card-3d">
+      <div class="skill-icon-3d"><i class="fas fa-balance-scale"></i></div>
+      <h3 class="skill-title-3d">Perícias</h3>
+      <p class="skill-desc-3d">Análises técnicas e pareceres com rigor profissional.</p>
     </div>
-    
-    <div class="skill-card-3d" style="--i: 5">
-      <div class="skill-icon-3d">
-        <i class="fas fa-graduation-cap"></i>
-      </div>
+    <div class="skill-card-3d">
+      <div class="skill-icon-3d"><i class="fas fa-graduation-cap"></i></div>
       <h3 class="skill-title-3d">Treinamentos NR</h3>
-      <p class="skill-desc-3d">Treinamentos especializados em normas regulamentadoras.</p>
+      <p class="skill-desc-3d">Treinamentos práticos e alinhados às necessidades da empresa.</p>
     </div>
   </div>
 </section>
 
-<!-- PROFISSIONAIS 3D -->
+<!-- PROFISSIONAIS -->
 <section id="profissionais-3d">
   <div class="section-header-3d">
     <h2 class="section-title-3d">NOSSOS PROFISSIONAIS</h2>
-    <p class="section-subtitle-3d">Equipe multidisciplinar com expertise técnica comprovada e certificações</p>
+    <p class="section-subtitle-3d">Equipe multidisciplinar com experiência e certificações.</p>
   </div>
-  
+
   <div class="team-grid-3d">
-    <div class="team-card-3d" style="--i: 0">
+    <div class="team-card-3d">
       <h3 class="team-name-3d">BRUNO SOUZA MOTA</h3>
       <div class="team-info-3d">
-        <div class="team-item-3d">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Engenheiro Eletricista</span>
-        </div>
-        <div class="team-item-3d">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Engenheiro Mecânico</span>
-        </div>
-        <div class="team-item-3d">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Engenheiro de Segurança do Trabalho</span>
-        </div>
-        <div class="team-item-3d">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Especialista em Engenharia Clínica</span>
-        </div>
+        <div class="team-item-3d"><i class="fas fa-graduation-cap"></i><span>Engenheiro Eletricista</span></div>
+        <div class="team-item-3d"><i class="fas fa-graduation-cap"></i><span>Engenheiro Mecânico</span></div>
+        <div class="team-item-3d"><i class="fas fa-graduation-cap"></i><span>Engenheiro de Segurança do Trabalho</span></div>
+        <div class="team-item-3d"><i class="fas fa-graduation-cap"></i><span>Especialista em Engenharia Clínica</span></div>
       </div>
       <div class="crea-badge-3d">CREA 3000078851</div>
     </div>
-    
-    <div class="team-card-3d" style="--i: 1">
+
+    <div class="team-card-3d">
       <h3 class="team-name-3d">EDSON LUIS NASCIMENTO VIEIRA</h3>
       <div class="team-info-3d">
-        <div class="team-item-3d">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Tecnólogo em Telecomunicações</span>
-        </div>
-        <div class="team-item-3d">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Tecnólogo em Eletrônica</span>
-        </div>
-        <div class="team-item-3d">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Especialista em Sistemas Elétricos</span>
-        </div>
+        <div class="team-item-3d"><i class="fas fa-graduation-cap"></i><span>Tecnólogo em Telecomunicações</span></div>
+        <div class="team-item-3d"><i class="fas fa-graduation-cap"></i><span>Tecnólogo em Eletrônica</span></div>
+        <div class="team-item-3d"><i class="fas fa-graduation-cap"></i><span>Especialista em Sistemas Elétricos</span></div>
       </div>
       <div class="crea-badge-3d">CREA 79591D</div>
     </div>
-    
-    <div class="team-card-3d" style="--i: 2">
+
+    <div class="team-card-3d">
       <h3 class="team-name-3d">LOHANNA KEROLIN</h3>
       <div class="team-info-3d">
-        <div class="team-item-3d">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Tecnóloga em Segurança do Trabalho</span>
-        </div>
-        <div class="team-item-3d">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Especialista em Recursos Humanos</span>
-        </div>
-        <div class="team-item-3d">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Gestão de Equipes e Treinamentos</span>
-        </div>
+        <div class="team-item-3d"><i class="fas fa-graduation-cap"></i><span>Tecnóloga em Segurança do Trabalho</span></div>
+        <div class="team-item-3d"><i class="fas fa-graduation-cap"></i><span>Especialista em Recursos Humanos</span></div>
+        <div class="team-item-3d"><i class="fas fa-graduation-cap"></i><span>Gestão de Equipes e Treinamentos</span></div>
       </div>
-      <div class="crea-badge-3d">CREA Recursos Humanos</div>
+      <div class="crea-badge-3d">CREA / Registros</div>
     </div>
   </div>
 </section>
 
-<!-- CIDADES 3D -->
+<!-- CIDADES -->
 <section id="cidades-3d">
   <div class="section-header-3d">
     <h2 class="section-title-3d">CIDADES DE ATUAÇÃO</h2>
-    <p class="section-subtitle-3d">Atendemos em toda a região sul da Bahia</p>
+    <p class="section-subtitle-3d">Atendemos em toda a região sul da Bahia.</p>
   </div>
-  
+
   <div class="cities-grid-3d">
-    <div class="city-card-3d" style="--i: 0">
-      <i class="fas fa-map-marker-alt city-icon-3d"></i>
-      <div class="city-name-3d">Eunápolis</div>
-    </div>
-    <div class="city-card-3d" style="--i: 1">
-      <i class="fas fa-map-marker-alt city-icon-3d"></i>
-      <div class="city-name-3d">Porto Seguro</div>
-    </div>
-    <div class="city-card-3d" style="--i: 2">
-      <i class="fas fa-map-marker-alt city-icon-3d"></i>
-      <div class="city-name-3d">Trancoso</div>
-    </div>
-    <div class="city-card-3d" style="--i: 3">
-      <i class="fas fa-map-marker-alt city-icon-3d"></i>
-      <div class="city-name-3d">Itabela</div>
-    </div>
-    <div class="city-card-3d" style="--i: 4">
-      <i class="fas fa-map-marker-alt city-icon-3d"></i>
-      <div class="city-name-3d">Teixeira de Freitas</div>
-    </div>
-    <div class="city-card-3d" style="--i: 5">
-      <i class="fas fa-map-marker-alt city-icon-3d"></i>
-      <div class="city-name-3d">Arraial d'Ajuda</div>
-    </div>
-    <div class="city-card-3d" style="--i: 6">
-      <i class="fas fa-map-marker-alt city-icon-3d"></i>
-      <div class="city-name-3d">Itamaraju</div>
-    </div>
-    <div class="city-card-3d" style="--i: 7">
-      <i class="fas fa-map-marker-alt city-icon-3d"></i>
-      <div class="city-name-3d">Itapebi</div>
-    </div>
-    <div class="city-card-3d" style="--i: 8">
-      <i class="fas fa-map-marker-alt city-icon-3d"></i>
-      <div class="city-name-3d">Itagimirim</div>
-    </div>
+    <div class="city-card-3d"><i class="fas fa-map-marker-alt city-icon-3d"></i><div class="city-name-3d">Eunápolis</div></div>
+    <div class="city-card-3d"><i class="fas fa-map-marker-alt city-icon-3d"></i><div class="city-name-3d">Porto Seguro</div></div>
+    <div class="city-card-3d"><i class="fas fa-map-marker-alt city-icon-3d"></i><div class="city-name-3d">Trancoso</div></div>
+    <div class="city-card-3d"><i class="fas fa-map-marker-alt city-icon-3d"></i><div class="city-name-3d">Itabela</div></div>
+    <div class="city-card-3d"><i class="fas fa-map-marker-alt city-icon-3d"></i><div class="city-name-3d">Teixeira de Freitas</div></div>
+    <div class="city-card-3d"><i class="fas fa-map-marker-alt city-icon-3d"></i><div class="city-name-3d">Arraial d'Ajuda</div></div>
+    <div class="city-card-3d"><i class="fas fa-map-marker-alt city-icon-3d"></i><div class="city-name-3d">Itamaraju</div></div>
+    <div class="city-card-3d"><i class="fas fa-map-marker-alt city-icon-3d"></i><div class="city-name-3d">Itapebi</div></div>
+    <div class="city-card-3d"><i class="fas fa-map-marker-alt city-icon-3d"></i><div class="city-name-3d">Itagimirim</div></div>
   </div>
 </section>
 
-<!-- CONTATO 3D -->
+<!-- CONTATO -->
 <section id="contato-3d">
   <div class="section-header-3d">
     <h2 class="section-title-3d">ENTRE EM CONTATO</h2>
-    <p class="section-subtitle-3d">Estamos prontos para atender suas necessidades em engenharia</p>
+    <p class="section-subtitle-3d">Vamos conversar sobre sua necessidade e entregar a melhor solução.</p>
   </div>
-  
+
   <div class="contact-grid-3d">
-    <div class="contact-card-3d" style="--i: 0">
+    <div class="contact-card-3d">
       <i class="fas fa-phone-alt contact-icon-3d"></i>
       <h3 class="contact-title-3d">TELEFONE</h3>
       <a href="tel:+5573991396879" class="contact-link-3d">(73) 99139-6879</a>
     </div>
-    
-    <div class="contact-card-3d" style="--i: 1">
+
+    <div class="contact-card-3d">
       <i class="fab fa-whatsapp contact-icon-3d"></i>
       <h3 class="contact-title-3d">WHATSAPP</h3>
-      <a href="https://wa.me/5573991396879" target="_blank" class="contact-link-3d">(73) 99139-6879</a>
-      <p style="color: var(--cinza); margin-top: 10px; font-size: 14px;">Clique para conversar</p>
+      <a href="https://wa.me/5573991396879" target="_blank" class="contact-link-3d" rel="noopener">(73) 99139-6879</a>
+      <p style="color: var(--cinza); margin-top: 10px; font-size: 13px;">Clique para conversar</p>
     </div>
-    
-    <div class="contact-card-3d" style="--i: 2">
+
+    <div class="contact-card-3d">
       <i class="fas fa-envelope contact-icon-3d"></i>
       <h3 class="contact-title-3d">E-MAIL</h3>
-      <a href="mailto:sec_eng@hotmail.com" class="contact-link-3d email-link-3d">sec_eng@hotmail.com</a>
-      <p style="color: var(--cinza); margin-top: 10px; font-size: 14px;">Clique para enviar e-mail</p>
+      <a href="mailto:sec_eng@hotmail.com" class="contact-link-3d">sec_eng@hotmail.com</a>
+      <p style="color: var(--cinza); margin-top: 10px; font-size: 13px;">Clique para enviar e-mail</p>
     </div>
   </div>
 </section>
 
-<!-- REDES SOCIAIS 3D -->
+<!-- REDES -->
 <section id="redes-3d">
   <div class="section-header-3d">
     <h2 class="section-title-3d">REDES SOCIAIS</h2>
-    <p class="section-subtitle-3d">Siga-nos e fique por dentro das nossas novidades</p>
+    <p class="section-subtitle-3d">Siga-nos e acompanhe as novidades.</p>
   </div>
-  
+
   <div class="social-grid-3d">
-    <a href="https://www.facebook.com/sec.eng" target="_blank" class="social-card-3d" style="--i: 0">
+    <a href="https://www.facebook.com/sec.eng" target="_blank" class="social-card-3d" rel="noopener">
       <i class="fab fa-facebook-f social-icon-3d"></i>
       <div class="social-name-3d">Facebook</div>
     </a>
-    
-    <a href="https://www.instagram.com/sec.eng" target="_blank" class="social-card-3d" style="--i: 1">
+
+    <a href="https://www.instagram.com/sec.eng" target="_blank" class="social-card-3d" rel="noopener">
       <i class="fab fa-instagram social-icon-3d"></i>
       <div class="social-name-3d">Instagram</div>
     </a>
-    
-    <a href="https://wa.me/5573991396879" target="_blank" class="social-card-3d" style="--i: 2">
+
+    <a href="https://wa.me/5573991396879" target="_blank" class="social-card-3d" rel="noopener">
       <i class="fab fa-whatsapp social-icon-3d"></i>
       <div class="social-name-3d">WhatsApp</div>
     </a>
-    
-    <a href="mailto:sec_eng@hotmail.com" class="social-card-3d" style="--i: 3">
+
+    <a href="mailto:sec_eng@hotmail.com" class="social-card-3d">
       <i class="fas fa-envelope social-icon-3d"></i>
       <div class="social-name-3d">E-mail</div>
     </a>
   </div>
 </section>
 
-<!-- FOOTER 3D -->
+<!-- FOOTER -->
 <footer class="footer-3d">
   <div class="footer-container-3d">
     <div class="footer-col-3d">
       <h4>SEC ENGENHARIA</h4>
-      <p style="color: var(--cinza); line-height: 1.6; margin-bottom: 20px;">
-        Empresa especializada em soluções técnicas de engenharia com mais de 10 anos de experiência no mercado.
+      <p style="color: var(--cinza); line-height: 1.7; margin-bottom: 16px;">
+        Soluções técnicas de engenharia com foco em qualidade, segurança e conformidade.
       </p>
-      <p style="color: var(--verde); font-weight: 600; font-size: 18px;">Desenvolver para Evoluir</p>
+      <p style="color: var(--verde-claro); font-weight: 900; font-size: 16px;">Desenvolver para Evoluir</p>
     </div>
-    
+
     <div class="footer-col-3d">
       <h4>SERVIÇOS</h4>
       <ul class="footer-links-3d">
@@ -1609,7 +1045,7 @@ header {
         <li><a href="#servicos-3d"><i class="fas fa-chevron-right"></i> Laudos e Perícias</a></li>
       </ul>
     </div>
-    
+
     <div class="footer-col-3d">
       <h4>CONTATO</h4>
       <div class="footer-contact-3d">
@@ -1619,7 +1055,7 @@ header {
         </div>
         <div class="contact-info-3d">
           <i class="fab fa-whatsapp"></i>
-          <a href="https://wa.me/5573991396879" target="_blank" style="color: var(--cinza); text-decoration: none;">(73) 99139-6879</a>
+          <a href="https://wa.me/5573991396879" target="_blank" rel="noopener" style="color: var(--cinza); text-decoration: none;">(73) 99139-6879</a>
         </div>
         <div class="contact-info-3d">
           <i class="fas fa-envelope"></i>
@@ -1632,24 +1068,24 @@ header {
       </div>
     </div>
   </div>
-  
+
   <div class="copyright-3d">
     <p>© 2026 SEC Engenharia • Soluções Técnicas Profissionais • Todos os direitos reservados</p>
-    <p style="margin-top: 10px; font-size: 13px; color: var(--cinza);">
+    <p style="margin-top: 8px; font-size: 12px; color: var(--cinza);">
       CREA 3000078851 | CREA 79591D | Registros profissionais em dia
     </p>
   </div>
 </footer>
 
 <script>
-// MENU MOBILE 3D
+// MENU MOBILE
 const menuToggle = document.getElementById('menuToggle');
 const mainNav = document.getElementById('mainNav');
 
 menuToggle.addEventListener('click', () => {
   mainNav.classList.toggle('active');
-  menuToggle.innerHTML = mainNav.classList.contains('active') 
-    ? '<i class="fas fa-times"></i>' 
+  menuToggle.innerHTML = mainNav.classList.contains('active')
+    ? '<i class="fas fa-times"></i>'
     : '<i class="fas fa-bars"></i>';
 });
 
@@ -1661,130 +1097,21 @@ document.querySelectorAll('.nav-link-3d').forEach(link => {
   });
 });
 
-// HEADER SCROLL EFFECT
+// HEADER SCROLL EFFECT (bem discreto)
 window.addEventListener('scroll', () => {
   const header = document.querySelector('header');
   if (window.scrollY > 50) {
     header.style.padding = '10px 0';
-    header.style.backdropFilter = 'blur(25px)';
+    header.style.backdropFilter = 'blur(24px)';
   } else {
     header.style.padding = '15px 0';
     header.style.backdropFilter = 'blur(20px)';
   }
 });
 
-// ANIMAÇÕES 3D AO SCROLL
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.animationPlayState = 'running';
-    }
-  });
-}, observerOptions);
-
-// Observar todos os elementos com animação 3D
-document.querySelectorAll('.service-card-3d, .skill-card-3d, .team-card-3d, .city-card-3d, .contact-card-3d, .social-card-3d').forEach(el => {
-  observer.observe(el);
-});
-
-// EFEITO 3D AO PASSAR MOUSE
-document.querySelectorAll('.service-card-3d, .team-card-3d, .contact-card-3d, .social-card-3d').forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    const rotateY = ((x - centerX) / centerX) * 10;
-    const rotateX = ((centerY - y) / centerY) * 10;
-    
-    card.style.transform = `translateY(-20px) translateZ(30px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  });
-  
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'translateY(0) translateZ(0) rotateX(0) rotateY(0)';
-  });
-});
-
-// SMOOTH SCROLL
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    if (targetId === '#') return;
-    
-    const targetElement = document.querySelector(targetId);
-    if (targetElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop - 80,
-        behavior: 'smooth'
-      });
-    }
-  });
-});
-
-// EFEITO DE CARREGAMENTO
-window.addEventListener('load', () => {
-  document.body.style.opacity = '0';
-  document.body.style.transition = 'opacity 0.5s';
-  
-  setTimeout(() => {
-    document.body.style.opacity = '1';
-  }, 100);
-});
-
-// BOTÃO WHATSAPP FLUTUANTE
-const whatsappBtn = document.createElement('a');
-whatsappBtn.href = 'https://wa.me/5573991396879';
-whatsappBtn.target = '_blank';
-whatsappBtn.className = 'btn-3d btn-3d-primary';
-whatsappBtn.style.cssText = `
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  z-index: 999;
-  padding: 15px 25px;
-  box-shadow: var(--sombra-forte);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transform-style: preserve-3d;
-  animation: float3d 4s ease-in-out infinite;
-`;
-whatsappBtn.innerHTML = '<i class="fab fa-whatsapp"></i> WhatsApp';
-document.body.appendChild(whatsappBtn);
-
-// CONTADOR DE ESTATÍSTICAS
-const stats = [
-  { element: '.stat-1', value: 10, suffix: '+' },
-  { element: '.stat-2', value: 150, suffix: '+' },
-  { element: '.stat-3', value: 50, suffix: '+' }
-];
-
-stats.forEach(stat => {
-  const element = document.querySelector(stat.element);
-  if (element) {
-    let current = 0;
-    const increment = stat.value / 100;
-    
-    const counter = setInterval(() => {
-      current += increment;
-      if (current >= stat.value) {
-        element.textContent = stat.value + stat.suffix;
-        clearInterval(counter);
-      } else {
-        element.textContent = Math.floor(current) + stat.suffix;
-      }
-    }, 20);
-  }
-});
+// ✅ IMPORTANTE: removido o "efeito de carregamento" (introdução)
+// ✅ IMPORTANTE: removido o botão flutuante do WhatsApp (vibrando)
+// (O WhatsApp continua no botão principal e na área de contato.)
 </script>
 
 </body>
