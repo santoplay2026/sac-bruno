@@ -15,124 +15,147 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-/* ========= BASE ========= */
-:root {
-  --bg:#020617;
-  --bg2:#0f172a;
-  --card:rgba(255,255,255,0.04);
-  --linha:rgba(255,255,255,.10);
-  --verde:#22d3c5;
-  --verde-claro:#5eead4;
-  --texto:#e5e7eb;
-  --cinza:#9ca3af;
-  --branco:#fff;
-  --gradiente: linear-gradient(135deg, #22d3c5 0%, #0ea5e9 100%);
-  --sombra: 0 20px 40px rgba(0,0,0,0.35);
-  --radius: 20px;
+/* ===================== NOVO DESIGN (premium / diferente) ===================== */
+:root{
+  --bg:#040814;
+  --bg2:#061024;
+  --bg3:#081a33;
+
+  --card:rgba(255,255,255,.04);
+  --card2:rgba(255,255,255,.06);
+  --linha:rgba(255,255,255,.12);
+
+  --c1:#22d3c5;
+  --c2:#0ea5e9;
+  --c3:#a78bfa;
+
+  --texto:#e7eef7;
+  --cinza:#9aa7b7;
+
+  --grad: linear-gradient(135deg, var(--c1) 0%, var(--c2) 55%, var(--c3) 110%);
+  --shadow: 0 22px 60px rgba(0,0,0,.45);
+  --radius: 22px;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{background:var(--bg);color:var(--texto);line-height:1.9;overflow-x:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{
+  background:
+    radial-gradient(1200px 700px at 12% 10%, rgba(34,211,197,.12), transparent 60%),
+    radial-gradient(900px 600px at 85% 20%, rgba(14,165,233,.12), transparent 60%),
+    radial-gradient(900px 600px at 70% 95%, rgba(167,139,250,.10), transparent 60%),
+    var(--bg);
+  color:var(--texto);
+  line-height:1.85;
+  overflow-x:hidden;
+}
 a{color:inherit}
-strong{color:var(--texto)}
-
 .container{max-width:1400px;margin:0 auto;padding:0 5%}
-section{padding:120px 0}
-.section-header{text-align:center;margin-bottom:70px}
+section{padding:110px 0}
+
+.section-header{text-align:center;margin-bottom:64px}
 .section-title{
-  font-size:clamp(32px,4vw,56px);
+  font-size:clamp(32px,4vw,58px);
   font-weight:900;
-  background: linear-gradient(to right, var(--verde), var(--verde-claro));
+  background:var(--grad);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  margin-bottom:14px;
+  margin-bottom:10px;
+  letter-spacing:.5px;
 }
 .section-subtitle{color:var(--cinza);font-size:18px;max-width:980px;margin:0 auto}
 
-/* ========= HEADER ========= */
+/* ===================== HEADER ===================== */
 header{
   position:fixed;top:0;left:0;width:100%;z-index:999;
-  background:rgba(2,6,23,.97);
+  background:rgba(4,8,20,.78);
   border-bottom:1px solid var(--linha);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
   padding:14px 0;
   transition:.2s;
 }
 .header-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{display:flex;align-items:center;gap:14px;text-decoration:none}
 .brand img{
-  width:58px;height:58px;border-radius:14px;object-fit:cover;
-  border:3px solid var(--verde);padding:2px;box-shadow:var(--sombra);
+  width:56px;height:56px;border-radius:16px;object-fit:cover;
+  border:2px solid rgba(255,255,255,.14);
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
 }
-.brand .t1{font-size:26px;font-weight:900;letter-spacing:.5px}
-.brand .t2{font-size:11px;color:var(--verde);letter-spacing:3px;font-weight:800}
+.brand .t1{font-size:24px;font-weight:900;letter-spacing:.6px}
+.brand .t2{font-size:11px;color:rgba(231,238,247,.75);letter-spacing:3px;font-weight:800}
 
 nav{display:flex;gap:22px;align-items:center}
 nav a{
-  text-decoration:none;color:var(--cinza);font-weight:800;font-size:13px;letter-spacing:1px;
+  text-decoration:none;color:rgba(231,238,247,.70);
+  font-weight:900;font-size:12px;letter-spacing:1.5px;
   padding:8px 0;position:relative;display:flex;align-items:center;gap:8px;
 }
-nav a:hover{color:var(--verde)}
+nav a:hover{color:var(--c1)}
 nav a::after{
-  content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--gradiente);transition:.2s;
+  content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
+  background:var(--grad);transition:.2s;
 }
 nav a:hover::after{width:100%}
 
 .menuBtn{
-  display:none;border:none;background:transparent;color:var(--verde);
-  font-size:28px;width:44px;height:44px;border-radius:12px;cursor:pointer;
+  display:none;border:none;background:transparent;color:var(--c1);
+  font-size:28px;width:44px;height:44px;border-radius:14px;cursor:pointer;
 }
-.menuBtn:hover{background:rgba(34,211,197,.12)}
+.menuBtn:hover{background:rgba(34,211,197,.10)}
 
-/* ========= HERO ========= */
+/* ===================== HERO ===================== */
 .hero{
   min-height:100vh;display:flex;align-items:center;
   padding-top:140px;padding-bottom:60px;
-  background: linear-gradient(135deg, rgba(2,6,23,0.98) 0%, rgba(15,23,42,0.92) 100%);
   position:relative;
 }
 .hero::before{
   content:"";position:absolute;inset:0;
   background:
-    radial-gradient(circle at 30% 30%, rgba(34, 211, 197, 0.14) 0%, transparent 45%),
-    radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.10) 0%, transparent 40%);
+    radial-gradient(circle at 20% 25%, rgba(34,211,197,.18) 0%, transparent 45%),
+    radial-gradient(circle at 85% 18%, rgba(14,165,233,.14) 0%, transparent 42%),
+    radial-gradient(circle at 70% 90%, rgba(167,139,250,.12) 0%, transparent 45%);
   pointer-events:none;
 }
 .hero-grid{
   position:relative;
   display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center
 }
+
 .badge{
   display:inline-flex;align-items:center;gap:10px;
   padding:10px 16px;border-radius:999px;
-  background:rgba(34,211,197,.14);
-  border:1px solid rgba(94,234,212,.35);
-  color:var(--verde-claro);
-  font-size:13px;font-weight:900;letter-spacing:2px;
-  margin-bottom:22px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10);
+  color:rgba(231,238,247,.88);
+  font-size:12px;font-weight:900;letter-spacing:2px;
+  margin-bottom:20px;
 }
-.badge i{color:var(--verde)}
+.badge i{color:var(--c1)}
+
 .hero h1{
-  font-size:clamp(42px,5.4vw,74px);
-  font-weight:900;line-height:1.08;margin-bottom:16px;
+  font-size:clamp(42px,5.2vw,78px);
+  font-weight:900;line-height:1.06;margin-bottom:14px;
 }
 .hero h1 span{
   display:block;margin-top:12px;
-  font-size:clamp(18px,2.2vw,28px);
-  font-weight:700;color:var(--cinza);line-height:1.5;
+  font-size:clamp(18px,2.1vw,28px);
+  font-weight:700;color:rgba(231,238,247,.72);line-height:1.5;
 }
-.hero p{color:var(--cinza);font-size:17px;max-width:680px;margin-bottom:22px}
+.hero p{color:rgba(231,238,247,.70);font-size:17px;max-width:720px;margin-bottom:22px}
 
-.pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
 .pill{
   display:inline-flex;align-items:center;gap:10px;
   padding:10px 14px;border-radius:999px;
   border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.03);
-  color:var(--cinza);font-weight:900;font-size:13px;
+  background:rgba(255,255,255,.04);
+  color:rgba(231,238,247,.72);
+  font-weight:900;font-size:13px;
 }
-.pill i{color:var(--verde)}
+.pill i{color:var(--c1)}
+.pill.fire{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.10)}
+.pill.fire i{color:#fb7185}
 
 .actions{display:flex;gap:14px;flex-wrap:wrap}
 .btn{
@@ -141,148 +164,164 @@ nav a:hover::after{width:100%}
   font-weight:900;font-size:14px;letter-spacing:.5px;
   transition:.15s;cursor:pointer;border:none;
 }
-.btn.primary{background:var(--gradiente);color:var(--bg);box-shadow:0 16px 36px rgba(34,211,197,.22)}
+.btn.primary{background:var(--grad);color:#061024;box-shadow:0 18px 46px rgba(34,211,197,.18)}
 .btn.primary:hover{transform:translateY(-2px)}
-.btn.outline{background:transparent;color:var(--verde);border:2px solid rgba(34,211,197,.65)}
-.btn.outline:hover{background:rgba(34,211,197,.12);transform:translateY(-2px);border-color:rgba(34,211,197,1)}
+.btn.outline{background:transparent;color:var(--c1);border:2px solid rgba(34,211,197,.55)}
+.btn.outline:hover{background:rgba(34,211,197,.10);transform:translateY(-2px);border-color:rgba(34,211,197,1)}
 
+/* CARD VISUAL LATERAL */
 .heroCard{
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
-  border-radius:24px;
-  box-shadow:var(--sombra);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:26px;
+  box-shadow:var(--shadow);
   overflow:hidden;
+  position:relative;
 }
+.heroCard::before{
+  content:"";position:absolute;inset:-2px;
+  background:var(--grad);
+  opacity:.18;filter:blur(18px);
+}
+.heroCardInner{position:relative}
 .heroCard .cap{
-  padding:14px 18px;border-top:1px solid var(--linha);color:var(--cinza);font-size:14px
+  padding:14px 18px;border-top:1px solid rgba(255,255,255,.10);
+  color:rgba(231,238,247,.70);font-size:14px
 }
-.heroCard strong{color:var(--texto)}
-.heroVisual{
-  padding:18px;
-  display:grid;gap:12px
-}
+.heroVisual{padding:18px;display:grid;gap:12px}
 .visualBox{
   border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.03);
+  background:rgba(255,255,255,.04);
   border-radius:18px;
   padding:16px;
+  transition:.18s;
 }
-.visualBox .t{font-weight:900;color:var(--verde-claro);margin-bottom:6px}
-.visualBox .d{color:var(--cinza);font-size:14px;line-height:1.7}
+.visualBox:hover{transform:translateY(-3px);border-color:rgba(34,211,197,.45)}
+.visualBox .t{font-weight:900;color:rgba(231,238,247,.92);margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.visualBox .t i{color:var(--c1)}
+.visualBox.fire .t i{color:#fb7185}
+.visualBox .d{color:rgba(231,238,247,.70);font-size:14px;line-height:1.7}
 
-/* ========= VOZ (OUVIR) ========= */
+/* ===================== SELO BOMBEIROS (LINDO) ===================== */
+.sealFire{
+  margin-top:14px;
+  display:flex;gap:12px;align-items:flex-start;
+  padding:14px 14px;border-radius:18px;
+  background:rgba(239,68,68,.10);
+  border:1px solid rgba(239,68,68,.28);
+}
+.sealFire .ico{
+  width:44px;height:44px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(239,68,68,.15);
+  border:1px solid rgba(239,68,68,.25);
+  color:#fb7185;
+  flex:0 0 auto;
+}
+.sealFire strong{display:block;font-weight:900}
+.sealFire small{display:block;color:rgba(231,238,247,.72);line-height:1.55}
+
+/* ===================== VOZ (OUVIR) ===================== */
 .voiceWrap{
-  margin-top:18px;
-  background:rgba(34,211,197,.10);
-  border:1px solid rgba(94,234,212,.30);
+  margin-top:16px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
   border-radius:18px;
   padding:16px;
 }
-.voiceRow{
-  display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between
-}
+.voiceRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
 .voiceTitle{display:flex;align-items:flex-start;gap:12px}
-.voiceTitle i{font-size:20px;color:var(--verde);margin-top:4px}
+.voiceTitle i{font-size:20px;color:var(--c1);margin-top:4px}
 .voiceTitle strong{font-weight:900}
-.voiceTitle small{display:block;color:var(--cinza);font-size:13px;margin-top:2px;line-height:1.5}
+.voiceTitle small{display:block;color:rgba(231,238,247,.70);font-size:13px;margin-top:2px;line-height:1.5}
 
 .voiceBtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .vbtn{
   border:none;border-radius:999px;padding:10px 14px;
   font-weight:900;cursor:pointer;
-  background:rgba(255,255,255,.06);
+  background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.10);
   color:var(--texto);
   transition:.15s;
 }
-.vbtn:hover{transform:translateY(-1px);border-color:rgba(34,211,197,.5)}
-.vbtn.play{background:var(--gradiente);color:var(--bg);border:none}
-.vbtn.stop{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.35)}
-.vbtn.stop:hover{border-color:rgba(239,68,68,.6)}
+.vbtn:hover{transform:translateY(-1px);border-color:rgba(34,211,197,.45)}
+.vbtn.play{background:var(--grad);color:#061024;border:none}
+.vbtn.stop{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.30)}
+.vbtn.stop:hover{border-color:rgba(239,68,68,.55)}
+.voiceSpeed{display:flex;align-items:center;gap:10px;color:rgba(231,238,247,.70);font-weight:800;font-size:13px}
+.voiceSpeed input{accent-color: var(--c1);}
 
-.voiceSpeed{
-  display:flex;align-items:center;gap:10px;color:var(--cinza);font-weight:800;font-size:13px
-}
-.voiceSpeed input{accent-color: var(--verde);}
-
-/* ========= SEÇÕES (CARDS / GRIDS) ========= */
-.bg2{background:var(--bg2)}
+/* ===================== SEÇÕES / CARDS ===================== */
+.bg2{background:rgba(6,16,36,.35)}
 .grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+
 .card{
-  background:var(--card);
-  border:1px solid var(--linha);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
   border-radius:var(--radius);
   padding:32px 28px;
   transition:.18s;
   position:relative;
   overflow:hidden;
 }
-.card:hover{transform:translateY(-6px);border-color:rgba(34,211,197,.55);box-shadow:var(--sombra)}
-.card::before{
-  content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--gradiente);opacity:.9
-}
+.card::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--grad);opacity:.85}
+.card:hover{transform:translateY(-6px);border-color:rgba(34,211,197,.45);box-shadow:var(--shadow)}
+
 .iconBox{
-  width:70px;height:70px;border-radius:18px;
+  width:70px;height:70px;border-radius:20px;
   display:flex;align-items:center;justify-content:center;
   background:rgba(34,211,197,.12);
-  color:var(--verde);font-size:30px;margin-bottom:18px
+  border:1px solid rgba(34,211,197,.18);
+  color:var(--c1);font-size:30px;margin-bottom:18px
 }
-.card h3{font-size:20px;font-weight:900;margin-bottom:10px;color:#fff}
-.card p{color:var(--cinza);font-size:14.5px;line-height:1.85;margin-bottom:14px}
-.list{list-style:none}
-.list li{
-  display:flex;gap:10px;align-items:flex-start;
-  color:var(--cinza);font-size:14px;margin-bottom:10px;line-height:1.55
-}
-.list i{color:var(--verde);margin-top:3px;width:18px;text-align:center}
+.iconBox.fire{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.22);color:#fb7185}
 
-/* Autoridade / Processo / Depoimentos / FAQ */
-.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card h3{font-size:20px;font-weight:900;margin-bottom:10px;color:#fff}
+.card p{color:rgba(231,238,247,.70);font-size:14.5px;line-height:1.85;margin-bottom:14px}
+
+.list{list-style:none}
+.list li{display:flex;gap:10px;align-items:flex-start;color:rgba(231,238,247,.68);font-size:14px;margin-bottom:10px;line-height:1.55}
+.list i{color:var(--c1);margin-top:3px;width:18px;text-align:center}
+.list .fireI{color:#fb7185}
 
 .mini{
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
   border-radius:18px;
   padding:22px;
   transition:.18s;
 }
-.mini:hover{transform:translateY(-5px);border-color:rgba(34,211,197,.55);box-shadow:var(--sombra)}
-.mini i{font-size:28px;color:var(--verde);margin-bottom:10px}
+.mini:hover{transform:translateY(-5px);border-color:rgba(34,211,197,.45);box-shadow:var(--shadow)}
+.mini i{font-size:28px;color:var(--c1);margin-bottom:10px}
+.mini.fire i{color:#fb7185}
 .mini h4{font-size:16px;font-weight:900;color:#fff;margin-bottom:8px}
-.mini p{color:var(--cinza);font-size:14px;line-height:1.8;margin:0}
+.mini p{color:rgba(231,238,247,.70);font-size:14px;line-height:1.8;margin:0}
 
 .steps .num{
-  width:44px;height:44px;border-radius:14px;
+  width:44px;height:44px;border-radius:16px;
   background:rgba(34,211,197,.12);
-  border:1px solid rgba(94,234,212,.28);
+  border:1px solid rgba(34,211,197,.22);
   display:flex;align-items:center;justify-content:center;
-  color:var(--verde-claro);font-weight:900;margin-bottom:12px
+  color:rgba(231,238,247,.92);font-weight:900;margin-bottom:12px
 }
-
-.quote{
-  font-size:14px;color:var(--cinza);line-height:1.85;margin-top:10px
-}
+.quote{font-size:14px;color:rgba(231,238,247,.70);line-height:1.85;margin-top:10px}
 .stars{color:#fbbf24;font-size:14px;letter-spacing:2px}
 
+/* ===================== FAQ ===================== */
 .faq{max-width:1000px;margin:0 auto;display:grid;gap:12px}
 .faqItem{
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
   border-radius:18px;
   padding:18px 18px;
 }
-.faqQ{
-  display:flex;justify-content:space-between;align-items:center;
-  cursor:pointer;font-weight:900;color:#fff
-}
-.faqA{
-  margin-top:10px;color:var(--cinza);font-size:14px;line-height:1.85;
-  display:none;
-}
+.faqQ{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:900;color:#fff}
+.faqA{margin-top:10px;color:rgba(231,238,247,.70);font-size:14px;line-height:1.85;display:none}
 .faqItem.open .faqA{display:block}
-.faqQ i{color:var(--verde)}
+.faqQ i{color:var(--c1)}
 
-/* Formulário orçamento */
+/* ===================== FORM ===================== */
 .formGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .input{
   width:100%;padding:14px 14px;border-radius:14px;
@@ -293,78 +332,99 @@ nav a:hover::after{width:100%}
 }
 textarea.input{min-height:120px;resize:vertical}
 .formActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.smallNote{color:var(--cinza);font-size:12px;margin-top:8px;line-height:1.6}
+.smallNote{color:rgba(231,238,247,.60);font-size:12px;margin-top:8px;line-height:1.6}
 
-/* Cidades / Redes */
+/* ===================== CIDADES ===================== */
 .cityGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
 .city{
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
   border-radius:16px;
   padding:18px;text-align:center;
   transition:.18s;
 }
-.city:hover{transform:translateY(-4px);border-color:rgba(34,211,197,.55);box-shadow:var(--sombra)}
-.city i{color:var(--verde);font-size:24px;margin-bottom:8px}
+.city:hover{transform:translateY(-4px);border-color:rgba(34,211,197,.45);box-shadow:var(--shadow)}
+.city i{color:var(--c1);font-size:24px;margin-bottom:8px}
 .city b{color:#fff}
 
+/* ===================== MAPA (INTERATIVO/bonito) ===================== */
+.mapCard{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:26px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.mapTop{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:18px 18px;border-bottom:1px solid rgba(255,255,255,.10);
+}
+.mapTopLeft{display:flex;gap:12px;align-items:flex-start}
+.mapTopLeft i{color:var(--c1);font-size:20px;margin-top:3px}
+.mapTop strong{font-weight:900}
+.mapTop small{color:rgba(231,238,247,.70);display:block;line-height:1.5}
+
+.mapFrame{width:100%;height:440px;border:0;filter:saturate(1.15) contrast(1.05)}
+@media (max-width:768px){.mapFrame{height:360px}}
+
+/* ===================== REDES ===================== */
 .social{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
 .social a{
   width:122px;height:118px;border-radius:18px;
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-decoration:none;transition:.18s;color:var(--verde-claro);
+  text-decoration:none;transition:.18s;color:rgba(231,238,247,.85);
 }
-.social a:hover{transform:translateY(-6px);border-color:rgba(34,211,197,.55);box-shadow:var(--sombra);background:rgba(34,211,197,.08)}
-.social i{font-size:30px;color:var(--verde);margin-bottom:8px}
+.social a:hover{transform:translateY(-6px);border-color:rgba(34,211,197,.45);box-shadow:var(--shadow);background:rgba(34,211,197,.08)}
+.social i{font-size:30px;color:var(--c1);margin-bottom:8px}
 .social span{font-weight:900;font-size:13px}
 
-/* Footer */
-footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
+/* ===================== FOOTER ===================== */
+footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);padding:60px 0 40px}
 .footerGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px}
-.footerGrid h4{color:var(--verde-claro);font-weight:900;margin-bottom:12px}
-.footerGrid p, .footerGrid a{color:var(--cinza);font-size:14px;line-height:1.75;text-decoration:none}
-.footerGrid a:hover{color:var(--verde)}
-.copy{border-top:1px solid var(--linha);margin-top:30px;padding-top:18px;color:var(--cinza);text-align:center;font-size:13px}
+.footerGrid h4{color:rgba(231,238,247,.95);font-weight:900;margin-bottom:12px}
+.footerGrid p, .footerGrid a{color:rgba(231,238,247,.68);font-size:14px;line-height:1.75;text-decoration:none}
+.footerGrid a:hover{color:var(--c1)}
+.copy{border-top:1px solid rgba(255,255,255,.10);margin-top:30px;padding-top:18px;color:rgba(231,238,247,.60);text-align:center;font-size:13px}
 
-/* WhatsApp flutuante + topo */
+/* WhatsApp + topo */
 .whats{
   position:fixed;right:18px;bottom:18px;z-index:2000;
-  background:rgba(34,211,197,.14);
-  border:1px solid rgba(94,234,212,.35);
-  color:var(--verde-claro);
+  background:rgba(34,211,197,.12);
+  border:1px solid rgba(34,211,197,.30);
+  color:rgba(231,238,247,.92);
   padding:12px 14px;border-radius:999px;text-decoration:none;font-weight:900;
-  display:flex;align-items:center;gap:10px;box-shadow:var(--sombra);
+  display:flex;align-items:center;gap:10px;box-shadow:var(--shadow);
 }
-.whats i{color:var(--verde)}
+.whats i{color:var(--c1)}
 .whats:hover{transform:translateY(-2px);transition:.15s}
 
 .toTop{
   position:fixed;left:18px;bottom:18px;z-index:2000;
-  width:44px;height:44px;border-radius:14px;
+  width:44px;height:44px;border-radius:16px;
   border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.03);
-  color:var(--verde-claro);
+  background:rgba(255,255,255,.04);
+  color:rgba(231,238,247,.92);
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;opacity:0;pointer-events:none;transition:.2s;
 }
-.toTop.show{opacity:1;pointer-events:auto;transform:translateY(-2px);border-color:rgba(34,211,197,.55)}
-.toTop i{color:var(--verde)}
+.toTop.show{opacity:1;pointer-events:auto;transform:translateY(-2px);border-color:rgba(34,211,197,.45)}
+.toTop i{color:var(--c1)}
 
 /* Barra fixa mobile */
 .mobileBar{
   display:none;
   position:fixed;left:0;right:0;bottom:0;z-index:1999;
-  background:rgba(2,6,23,.98);
-  border-top:1px solid var(--linha);
+  background:rgba(4,8,20,.92);
+  border-top:1px solid rgba(255,255,255,.10);
   padding:10px 12px;
 }
 .mobileBar a{
   display:flex;align-items:center;justify-content:center;gap:10px;
-  width:100%;padding:14px 16px;border-radius:16px;
+  width:100%;padding:14px 16px;border-radius:18px;
   text-decoration:none;font-weight:900;
-  background:var(--gradiente);color:var(--bg);
+  background:var(--grad);color:#061024;
 }
 
 /* Responsivo */
@@ -377,8 +437,8 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
 @media (max-width:768px){
   nav{
     position:fixed;top:88px;left:0;right:0;
-    background:rgba(2,6,23,.98);
-    border-bottom:1px solid var(--linha);
+    background:rgba(4,8,20,.96);
+    border-bottom:1px solid rgba(255,255,255,.10);
     flex-direction:column;gap:0;
     transform:translateY(-120%);
     opacity:0;visibility:hidden;
@@ -386,13 +446,13 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
     padding:14px 5%;
   }
   nav.active{transform:translateY(0);opacity:1;visibility:visible}
-  nav a{padding:14px 0;border-bottom:1px solid var(--linha);width:100%;justify-content:center}
+  nav a{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.10);width:100%;justify-content:center}
   nav a:last-child{border-bottom:none}
   .menuBtn{display:block}
   .formGrid{grid-template-columns:1fr}
   .whats span{display:none}
   .mobileBar{display:block}
-  section{padding:95px 0}
+  section{padding:90px 0}
 }
 </style>
 </head>
@@ -402,7 +462,6 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
 <header>
   <div class="container header-row">
     <a href="#inicio" class="brand">
-      <!-- ✅ EDITAR: coloque seu logo -->
       <img src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg" alt="SEC Engenharia">
       <div>
         <div class="t1">SEC ENGENHARIA</div>
@@ -421,6 +480,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
       <a href="#faq"><i class="fas fa-circle-question"></i> DÚVIDAS</a>
       <a href="#orcamento"><i class="fas fa-file-signature"></i> ORÇAMENTO</a>
       <a href="#cidades"><i class="fas fa-map-marker-alt"></i> CIDADES</a>
+      <a href="#mapa"><i class="fas fa-map-location-dot"></i> MAPA</a>
       <a href="#contato"><i class="fas fa-phone"></i> CONTATO</a>
       <a href="#redes"><i class="fas fa-share-alt"></i> REDES</a>
     </nav>
@@ -448,17 +508,25 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
       <div class="pills">
         <div class="pill"><i class="fas fa-id-card"></i> CREA / Registros</div>
         <div class="pill"><i class="fas fa-file-signature"></i> ART</div>
-        <div class="pill"><i class="fas fa-fire-extinguisher"></i> Bombeiros</div>
+        <div class="pill fire"><i class="fas fa-fire-extinguisher"></i> Corpo de Bombeiros</div>
         <div class="pill"><i class="fas fa-helmet-safety"></i> Normas NR</div>
       </div>
 
       <div class="actions">
-        <!-- ✅ EDITAR: whatsapp -->
         <a class="btn primary" target="_blank" rel="noopener"
            href="https://wa.me/5573991396879?text=Olá!%20Quero%20um%20orçamento%20para%20serviço%20de%20engenharia.">
           <i class="fab fa-whatsapp"></i> SOLICITAR ORÇAMENTO
         </a>
         <a class="btn outline" href="#servicos"><i class="fas fa-cogs"></i> VER SERVIÇOS</a>
+      </div>
+
+      <!-- SELO BOMBEIROS (bem chamativo) -->
+      <div class="sealFire">
+        <div class="ico"><i class="fas fa-fire-flame-curved"></i></div>
+        <div>
+          <strong>Regularização Bombeiros</strong>
+          <small>Projeto técnico, rotas de fuga, sinalização e adequações conforme exigências — com documentação organizada e suporte.</small>
+        </div>
       </div>
 
       <!-- 🔊 MODO OUVIR -->
@@ -486,7 +554,6 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
           </div>
         </div>
 
-        <!-- Texto que o site vai ler -->
         <div id="ttsText" style="display:none">
           Bem-vindo à SEC Engenharia.
           Nós realizamos projetos, laudos e adequações exigidas por lei para empresas, indústrias, comércios, clínicas e hospitais.
@@ -503,21 +570,23 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
     </div>
 
     <div class="heroCard">
-      <div class="heroVisual">
-        <div class="visualBox">
-          <div class="t"><i class="fas fa-clipboard-check"></i> Resultado</div>
-          <div class="d">Sua empresa regularizada, com documentação técnica e segurança jurídica.</div>
+      <div class="heroCardInner">
+        <div class="heroVisual">
+          <div class="visualBox">
+            <div class="t"><i class="fas fa-clipboard-check"></i> Resultado</div>
+            <div class="d">Sua empresa regularizada, com documentação técnica e segurança jurídica.</div>
+          </div>
+          <div class="visualBox fire">
+            <div class="t"><i class="fas fa-fire-extinguisher"></i> Bombeiros</div>
+            <div class="d">Projetos e adequações para prevenção e combate a incêndio conforme exigências.</div>
+          </div>
+          <div class="visualBox">
+            <div class="t"><i class="fas fa-helmet-safety"></i> NR</div>
+            <div class="d">Documentação e adequações para reduzir riscos e evitar multas.</div>
+          </div>
         </div>
-        <div class="visualBox">
-          <div class="t"><i class="fas fa-fire-extinguisher"></i> Bombeiros</div>
-          <div class="d">Projetos e adequações para prevenção e combate a incêndio conforme exigências.</div>
-        </div>
-        <div class="visualBox">
-          <div class="t"><i class="fas fa-helmet-safety"></i> NR</div>
-          <div class="d">Documentação e adequações para reduzir riscos e evitar multas.</div>
-        </div>
+        <div class="cap"><strong>Atendimento na região sul da Bahia</strong> com foco em normas, segurança e responsabilidade.</div>
       </div>
-      <div class="cap"><strong>Atendimento na região sul da Bahia</strong> com foco em normas, segurança e responsabilidade.</div>
     </div>
 
   </div>
@@ -529,8 +598,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
     <div class="section-header">
       <h2 class="section-title">SERVIÇOS</h2>
       <p class="section-subtitle">
-        Aqui você encontra serviços completos com <strong>explicação clara</strong>, foco em <strong>normas</strong> e <strong>documentação</strong>.
-        Ideal para empresas que precisam operar regularizadas.
+        Serviços completos com <strong>explicação clara</strong>, foco em <strong>normas</strong> e <strong>documentação</strong>.
       </p>
     </div>
 
@@ -560,11 +628,11 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
       </div>
 
       <div class="card">
-        <div class="iconBox"><i class="fas fa-fire-extinguisher"></i></div>
+        <div class="iconBox fire"><i class="fas fa-fire-extinguisher"></i></div>
         <h3>Combate a Incêndio (Bombeiros)</h3>
         <p>Projetos e regularização com foco em exigências do Corpo de Bombeiros e prevenção.</p>
         <ul class="list">
-          <li><i class="fas fa-fire-flame-curved"></i> Projeto técnico de prevenção</li>
+          <li><i class="fas fa-fire-flame-curved fireI"></i> Projeto técnico de prevenção</li>
           <li><i class="fas fa-route"></i> Rotas de fuga e sinalização</li>
           <li><i class="fas fa-water"></i> Hidrantes / sprinklers (quando aplicável)</li>
           <li><i class="fas fa-file-signature"></i> Responsabilidade técnica / ART</li>
@@ -631,7 +699,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
         <h4>ART</h4>
         <p>Emissão quando aplicável, comprovando responsabilidade técnica.</p>
       </div>
-      <div class="mini">
+      <div class="mini fire">
         <i class="fas fa-fire-extinguisher"></i>
         <h4>Corpo de Bombeiros</h4>
         <p>Projetos e adequações para prevenção e combate a incêndio.</p>
@@ -691,25 +759,25 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
         <div class="stars">★★★★★</div>
         <h4>Empresa Regularizada</h4>
         <p class="quote">“Organização, documentação e orientação muito claras. Serviço de alto nível.”</p>
-        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Comercial</p>
+        <p style="margin-top:10px;color:rgba(231,238,247,.65);font-weight:800">— Cliente Comercial</p>
       </div>
       <div class="mini">
         <div class="stars">★★★★★</div>
         <h4>Suporte em Fiscalização</h4>
         <p class="quote">“Ajudou na fiscalização e deixou tudo em conformidade. Recomendo.”</p>
-        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Industrial</p>
+        <p style="margin-top:10px;color:rgba(231,238,247,.65);font-weight:800">— Cliente Industrial</p>
       </div>
-      <div class="mini">
+      <div class="mini fire">
         <div class="stars">★★★★★</div>
         <h4>Bombeiros</h4>
         <p class="quote">“Projeto e adequações muito bem feitos, com suporte no processo.”</p>
-        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Empresa</p>
+        <p style="margin-top:10px;color:rgba(231,238,247,.65);font-weight:800">— Cliente Empresa</p>
       </div>
       <div class="mini">
         <div class="stars">★★★★★</div>
         <h4>Profissionalismo</h4>
         <p class="quote">“Atendimento sério e técnico. Entregou tudo organizado e rápido.”</p>
-        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Clínica</p>
+        <p style="margin-top:10px;color:rgba(231,238,247,.65);font-weight:800">— Cliente Clínica</p>
       </div>
     </div>
   </div>
@@ -729,9 +797,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
           <span>Vocês emitem ART?</span>
           <i class="fas fa-plus"></i>
         </div>
-        <div class="faqA">
-          Sim. Quando o serviço exigir, emitimos ART conforme responsabilidade técnica aplicável.
-        </div>
+        <div class="faqA">Sim. Quando o serviço exigir, emitimos ART conforme responsabilidade técnica aplicável.</div>
       </div>
 
       <div class="faqItem">
@@ -739,9 +805,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
           <span>Atendem Corpo de Bombeiros?</span>
           <i class="fas fa-plus"></i>
         </div>
-        <div class="faqA">
-          Sim. Elaboramos projetos e orientamos adequações de prevenção e combate a incêndio conforme exigências.
-        </div>
+        <div class="faqA">Sim. Elaboramos projetos e orientamos adequações de prevenção e combate a incêndio conforme exigências.</div>
       </div>
 
       <div class="faqItem">
@@ -749,9 +813,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
           <span>Quanto tempo demora?</span>
           <i class="fas fa-plus"></i>
         </div>
-        <div class="faqA">
-          Depende do serviço e do tamanho do local. No orçamento, informamos prazo estimado e etapas.
-        </div>
+        <div class="faqA">Depende do serviço e do tamanho do local. No orçamento, informamos prazo estimado e etapas.</div>
       </div>
 
       <div class="faqItem">
@@ -759,9 +821,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
           <span>Atendem quais cidades?</span>
           <i class="fas fa-plus"></i>
         </div>
-        <div class="faqA">
-          Atendemos a região sul da Bahia. Veja a lista de cidades abaixo e chame no WhatsApp.
-        </div>
+        <div class="faqA">Atendemos a região sul da Bahia. Veja a lista de cidades abaixo e chame no WhatsApp.</div>
       </div>
     </div>
   </div>
@@ -789,9 +849,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
         <a class="btn outline" href="#servicos"><i class="fas fa-cogs"></i> Ver serviços</a>
       </div>
 
-      <div class="smallNote">
-        Ao clicar em “Enviar no WhatsApp”, será aberta uma mensagem pronta. Você pode revisar e enviar.
-      </div>
+      <div class="smallNote">Ao clicar em “Enviar no WhatsApp”, será aberta uma mensagem pronta. Você pode revisar e enviar.</div>
     </div>
   </div>
 </section>
@@ -818,8 +876,44 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
   </div>
 </section>
 
+<!-- MAPA (interativo) -->
+<section id="mapa">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">MAPA DE ATENDIMENTO</h2>
+      <p class="section-subtitle">Mapa interativo para o cliente ver a região e abrir rotas no Google Maps.</p>
+    </div>
+
+    <div class="mapCard">
+      <div class="mapTop">
+        <div class="mapTopLeft">
+          <i class="fas fa-map-location-dot"></i>
+          <div>
+            <strong>Região Sul da Bahia</strong>
+            <small>Eunápolis • Porto Seguro • Trancoso • Teixeira de Freitas e arredores</small>
+          </div>
+        </div>
+
+        <a class="btn outline" style="padding:12px 16px;border-radius:16px"
+           target="_blank" rel="noopener"
+           href="https://www.google.com/maps/search/?api=1&query=Eun%C3%A1polis%2C%20Bahia">
+          <i class="fas fa-location-arrow"></i> Abrir no Maps
+        </a>
+      </div>
+
+      <!-- ✅ Troque o src pelo endereço real depois (embed do Google Maps) -->
+      <iframe class="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Eun%C3%A1polis%2C%20Bahia&z=11&output=embed"></iframe>
+    </div>
+
+    <div class="smallNote" style="text-align:center;margin-top:10px">
+      Dica: quando você tiver o endereço exato, eu coloco o mapa apontando no local certinho + botão “Traçar rota”.
+    </div>
+  </div>
+</section>
+
 <!-- CONTATO -->
-<section id="contato">
+<section id="contato" class="bg2">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">CONTATO</h2>
@@ -852,7 +946,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
 </section>
 
 <!-- REDES -->
-<section id="redes" class="bg2">
+<section id="redes">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">REDES SOCIAIS</h2>
@@ -882,7 +976,9 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
       <div>
         <h4>SEC ENGENHARIA</h4>
         <p>Soluções técnicas com foco em qualidade, conformidade e documentação profissional.</p>
-        <p style="margin-top:10px;color:var(--verde-claro);font-weight:900">Desenvolver para Evoluir</p>
+        <p style="margin-top:10px;color:rgba(231,238,247,.90);font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">
+          Desenvolver para Evoluir
+        </p>
       </div>
       <div>
         <h4>Serviços</h4>
@@ -1005,15 +1101,12 @@ document.getElementById('btnPlay').addEventListener('click', ()=>{
   utter = makeUtter();
   speechSynthesis.speak(utter);
 });
-
 document.getElementById('btnPause').addEventListener('click', ()=>{
   if(speechSynthesis.speaking) speechSynthesis.pause();
 });
-
 document.getElementById('btnResume').addEventListener('click', ()=>{
   if(speechSynthesis.paused) speechSynthesis.resume();
 });
-
 document.getElementById('btnStop').addEventListener('click', ()=>{
   speechSynthesis.cancel();
 });
