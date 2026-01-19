@@ -14,61 +14,58 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+<!-- MAPA (Leaflet + OpenStreetMap) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <style>
-/* ===================== NOVO DESIGN (premium / diferente) ===================== */
+/* ========= BASE ========= */
 :root{
-  --bg:#040814;
-  --bg2:#061024;
-  --bg3:#081a33;
-
-  --card:rgba(255,255,255,.04);
-  --card2:rgba(255,255,255,.06);
-  --linha:rgba(255,255,255,.12);
-
-  --c1:#22d3c5;
-  --c2:#0ea5e9;
-  --c3:#a78bfa;
-
-  --texto:#e7eef7;
-  --cinza:#9aa7b7;
-
-  --grad: linear-gradient(135deg, var(--c1) 0%, var(--c2) 55%, var(--c3) 110%);
-  --shadow: 0 22px 60px rgba(0,0,0,.45);
-  --radius: 22px;
+  --bg:#020617;
+  --bg2:#0b1224;
+  --card:rgba(255,255,255,0.045);
+  --linha:rgba(255,255,255,.10);
+  --verde:#22d3c5;
+  --verde-claro:#5eead4;
+  --azul:#0ea5e9;
+  --texto:#e5e7eb;
+  --cinza:#9ca3af;
+  --branco:#fff;
+  --gradiente: linear-gradient(135deg, #22d3c5 0%, #0ea5e9 100%);
+  --sombra: 0 22px 55px rgba(0,0,0,0.45);
+  --radius: 20px;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-html{scroll-behavior:smooth;scroll-padding-top:92px}
+html{scroll-behavior:smooth;scroll-padding-top:95px}
 body{
-  background:
-    radial-gradient(1200px 700px at 12% 10%, rgba(34,211,197,.12), transparent 60%),
-    radial-gradient(900px 600px at 85% 20%, rgba(14,165,233,.12), transparent 60%),
-    radial-gradient(900px 600px at 70% 95%, rgba(167,139,250,.10), transparent 60%),
-    var(--bg);
+  background: radial-gradient(1200px 600px at 15% 10%, rgba(34,211,197,.16), transparent 55%),
+              radial-gradient(900px 500px at 85% 15%, rgba(14,165,233,.14), transparent 50%),
+              radial-gradient(800px 500px at 50% 90%, rgba(34,211,197,.08), transparent 55%),
+              var(--bg);
   color:var(--texto);
-  line-height:1.85;
+  line-height:1.9;
   overflow-x:hidden;
 }
 a{color:inherit}
+strong{color:var(--texto)}
 .container{max-width:1400px;margin:0 auto;padding:0 5%}
-section{padding:110px 0}
-
-.section-header{text-align:center;margin-bottom:64px}
+section{padding:120px 0}
+.section-header{text-align:center;margin-bottom:70px}
 .section-title{
-  font-size:clamp(32px,4vw,58px);
+  font-size:clamp(32px,4vw,56px);
   font-weight:900;
-  background:var(--grad);
+  background: linear-gradient(to right, var(--verde), var(--verde-claro));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  margin-bottom:10px;
-  letter-spacing:.5px;
+  margin-bottom:14px;
 }
 .section-subtitle{color:var(--cinza);font-size:18px;max-width:980px;margin:0 auto}
 
-/* ===================== HEADER ===================== */
+/* ========= HEADER ========= */
 header{
   position:fixed;top:0;left:0;width:100%;z-index:999;
-  background:rgba(4,8,20,.78);
+  background:rgba(2,6,23,.88);
   border-bottom:1px solid var(--linha);
   backdrop-filter: blur(18px);
   padding:14px 0;
@@ -77,85 +74,76 @@ header{
 .header-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{display:flex;align-items:center;gap:14px;text-decoration:none}
 .brand img{
-  width:56px;height:56px;border-radius:16px;object-fit:cover;
-  border:2px solid rgba(255,255,255,.14);
-  box-shadow:0 18px 40px rgba(0,0,0,.45);
+  width:58px;height:58px;border-radius:14px;object-fit:cover;
+  border:3px solid var(--verde);padding:2px;box-shadow:var(--sombra);
 }
-.brand .t1{font-size:24px;font-weight:900;letter-spacing:.6px}
-.brand .t2{font-size:11px;color:rgba(231,238,247,.75);letter-spacing:3px;font-weight:800}
+.brand .t1{font-size:26px;font-weight:900;letter-spacing:.5px}
+.brand .t2{font-size:11px;color:var(--verde);letter-spacing:3px;font-weight:800}
 
-nav{display:flex;gap:22px;align-items:center}
+nav{display:flex;gap:18px;align-items:center}
 nav a{
-  text-decoration:none;color:rgba(231,238,247,.70);
-  font-weight:900;font-size:12px;letter-spacing:1.5px;
-  padding:8px 0;position:relative;display:flex;align-items:center;gap:8px;
+  text-decoration:none;color:var(--cinza);font-weight:900;font-size:12px;letter-spacing:1px;
+  padding:9px 0;position:relative;display:flex;align-items:center;gap:8px;
 }
-nav a:hover{color:var(--c1)}
+nav a:hover{color:var(--verde)}
 nav a::after{
-  content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
-  background:var(--grad);transition:.2s;
+  content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--gradiente);transition:.2s;
 }
 nav a:hover::after{width:100%}
 
 .menuBtn{
-  display:none;border:none;background:transparent;color:var(--c1);
-  font-size:28px;width:44px;height:44px;border-radius:14px;cursor:pointer;
+  display:none;border:none;background:transparent;color:var(--verde);
+  font-size:28px;width:44px;height:44px;border-radius:12px;cursor:pointer;
 }
-.menuBtn:hover{background:rgba(34,211,197,.10)}
+.menuBtn:hover{background:rgba(34,211,197,.12)}
 
-/* ===================== HERO ===================== */
+/* ========= HERO ========= */
 .hero{
   min-height:100vh;display:flex;align-items:center;
-  padding-top:140px;padding-bottom:60px;
+  padding-top:150px;padding-bottom:60px;
   position:relative;
 }
 .hero::before{
   content:"";position:absolute;inset:0;
   background:
-    radial-gradient(circle at 20% 25%, rgba(34,211,197,.18) 0%, transparent 45%),
-    radial-gradient(circle at 85% 18%, rgba(14,165,233,.14) 0%, transparent 42%),
-    radial-gradient(circle at 70% 90%, rgba(167,139,250,.12) 0%, transparent 45%);
+    radial-gradient(circle at 30% 30%, rgba(34,211,197,0.16) 0%, transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(14,165,233,0.12) 0%, transparent 45%);
   pointer-events:none;
 }
 .hero-grid{
   position:relative;
   display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center
 }
-
 .badge{
   display:inline-flex;align-items:center;gap:10px;
   padding:10px 16px;border-radius:999px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.10);
-  color:rgba(231,238,247,.88);
-  font-size:12px;font-weight:900;letter-spacing:2px;
-  margin-bottom:20px;
+  background:rgba(34,211,197,.14);
+  border:1px solid rgba(94,234,212,.35);
+  color:var(--verde-claro);
+  font-size:13px;font-weight:900;letter-spacing:2px;
+  margin-bottom:22px;
 }
-.badge i{color:var(--c1)}
-
+.badge i{color:var(--verde)}
 .hero h1{
-  font-size:clamp(42px,5.2vw,78px);
-  font-weight:900;line-height:1.06;margin-bottom:14px;
+  font-size:clamp(42px,5.4vw,74px);
+  font-weight:900;line-height:1.08;margin-bottom:16px;
 }
 .hero h1 span{
   display:block;margin-top:12px;
-  font-size:clamp(18px,2.1vw,28px);
-  font-weight:700;color:rgba(231,238,247,.72);line-height:1.5;
+  font-size:clamp(18px,2.2vw,28px);
+  font-weight:700;color:var(--cinza);line-height:1.5;
 }
-.hero p{color:rgba(231,238,247,.70);font-size:17px;max-width:720px;margin-bottom:22px}
+.hero p{color:var(--cinza);font-size:17px;max-width:680px;margin-bottom:22px}
 
-.pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
 .pill{
   display:inline-flex;align-items:center;gap:10px;
   padding:10px 14px;border-radius:999px;
   border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.04);
-  color:rgba(231,238,247,.72);
-  font-weight:900;font-size:13px;
+  background:rgba(255,255,255,.03);
+  color:var(--cinza);font-weight:900;font-size:13px;
 }
-.pill i{color:var(--c1)}
-.pill.fire{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.10)}
-.pill.fire i{color:#fb7185}
+.pill i{color:var(--verde)}
 
 .actions{display:flex;gap:14px;flex-wrap:wrap}
 .btn{
@@ -164,267 +152,300 @@ nav a:hover::after{width:100%}
   font-weight:900;font-size:14px;letter-spacing:.5px;
   transition:.15s;cursor:pointer;border:none;
 }
-.btn.primary{background:var(--grad);color:#061024;box-shadow:0 18px 46px rgba(34,211,197,.18)}
+.btn.primary{background:var(--gradiente);color:var(--bg);box-shadow:0 16px 40px rgba(34,211,197,.22)}
 .btn.primary:hover{transform:translateY(-2px)}
-.btn.outline{background:transparent;color:var(--c1);border:2px solid rgba(34,211,197,.55)}
-.btn.outline:hover{background:rgba(34,211,197,.10);transform:translateY(-2px);border-color:rgba(34,211,197,1)}
+.btn.outline{background:transparent;color:var(--verde);border:2px solid rgba(34,211,197,.65)}
+.btn.outline:hover{background:rgba(34,211,197,.12);transform:translateY(-2px);border-color:rgba(34,211,197,1)}
 
-/* CARD VISUAL LATERAL */
 .heroCard{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.11);
   border-radius:26px;
-  box-shadow:var(--shadow);
+  box-shadow:var(--sombra);
   overflow:hidden;
   position:relative;
 }
 .heroCard::before{
   content:"";position:absolute;inset:-2px;
-  background:var(--grad);
-  opacity:.18;filter:blur(18px);
+  background: radial-gradient(500px 220px at 20% 15%, rgba(34,211,197,.18), transparent 60%),
+              radial-gradient(420px 220px at 80% 20%, rgba(14,165,233,.16), transparent 55%);
+  pointer-events:none;
 }
-.heroCardInner{position:relative}
 .heroCard .cap{
-  padding:14px 18px;border-top:1px solid rgba(255,255,255,.10);
-  color:rgba(231,238,247,.70);font-size:14px
+  position:relative;
+  padding:14px 18px;border-top:1px solid var(--linha);color:var(--cinza);font-size:14px
 }
-.heroVisual{padding:18px;display:grid;gap:12px}
+.heroCard strong{color:var(--texto)}
+.heroVisual{position:relative;padding:18px;display:grid;gap:12px}
 .visualBox{
   border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.04);
+  background:rgba(255,255,255,.03);
   border-radius:18px;
   padding:16px;
-  transition:.18s;
 }
-.visualBox:hover{transform:translateY(-3px);border-color:rgba(34,211,197,.45)}
-.visualBox .t{font-weight:900;color:rgba(231,238,247,.92);margin-bottom:6px;display:flex;align-items:center;gap:10px}
-.visualBox .t i{color:var(--c1)}
-.visualBox.fire .t i{color:#fb7185}
-.visualBox .d{color:rgba(231,238,247,.70);font-size:14px;line-height:1.7}
+.visualBox .t{font-weight:900;color:var(--verde-claro);margin-bottom:6px}
+.visualBox .t i{color:var(--verde);margin-right:8px}
+.visualBox .d{color:var(--cinza);font-size:14px;line-height:1.7}
 
-/* ===================== SELO BOMBEIROS (LINDO) ===================== */
-.sealFire{
-  margin-top:14px;
-  display:flex;gap:12px;align-items:flex-start;
-  padding:14px 14px;border-radius:18px;
-  background:rgba(239,68,68,.10);
-  border:1px solid rgba(239,68,68,.28);
-}
-.sealFire .ico{
-  width:44px;height:44px;border-radius:16px;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(239,68,68,.15);
-  border:1px solid rgba(239,68,68,.25);
-  color:#fb7185;
-  flex:0 0 auto;
-}
-.sealFire strong{display:block;font-weight:900}
-.sealFire small{display:block;color:rgba(231,238,247,.72);line-height:1.55}
-
-/* ===================== VOZ (OUVIR) ===================== */
+/* ========= VOZ (OUVIR) ========= */
 .voiceWrap{
-  margin-top:16px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.10);
+  margin-top:18px;
+  background:rgba(34,211,197,.10);
+  border:1px solid rgba(94,234,212,.30);
   border-radius:18px;
   padding:16px;
 }
 .voiceRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
 .voiceTitle{display:flex;align-items:flex-start;gap:12px}
-.voiceTitle i{font-size:20px;color:var(--c1);margin-top:4px}
+.voiceTitle i{font-size:20px;color:var(--verde);margin-top:4px}
 .voiceTitle strong{font-weight:900}
-.voiceTitle small{display:block;color:rgba(231,238,247,.70);font-size:13px;margin-top:2px;line-height:1.5}
+.voiceTitle small{display:block;color:var(--cinza);font-size:13px;margin-top:2px;line-height:1.5}
 
 .voiceBtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .vbtn{
   border:none;border-radius:999px;padding:10px 14px;
   font-weight:900;cursor:pointer;
-  background:rgba(255,255,255,.05);
+  background:rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.10);
   color:var(--texto);
   transition:.15s;
 }
-.vbtn:hover{transform:translateY(-1px);border-color:rgba(34,211,197,.45)}
-.vbtn.play{background:var(--grad);color:#061024;border:none}
-.vbtn.stop{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.30)}
-.vbtn.stop:hover{border-color:rgba(239,68,68,.55)}
-.voiceSpeed{display:flex;align-items:center;gap:10px;color:rgba(231,238,247,.70);font-weight:800;font-size:13px}
-.voiceSpeed input{accent-color: var(--c1);}
+.vbtn:hover{transform:translateY(-1px);border-color:rgba(34,211,197,.5)}
+.vbtn.play{background:var(--gradiente);color:var(--bg);border:none}
+.vbtn.stop{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.35)}
+.vbtn.stop:hover{border-color:rgba(239,68,68,.6)}
+.voiceSpeed{display:flex;align-items:center;gap:10px;color:var(--cinza);font-weight:800;font-size:13px}
+.voiceSpeed input{accent-color: var(--verde);}
 
-/* ===================== SEÇÕES / CARDS ===================== */
-.bg2{background:rgba(6,16,36,.35)}
+/* ========= SEÇÕES (CARDS / GRIDS) ========= */
+.bg2{background:linear-gradient(180deg, rgba(15,23,42,.65), rgba(2,6,23,0));}
 .grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
-.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-
 .card{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.10);
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.11);
   border-radius:var(--radius);
   padding:32px 28px;
   transition:.18s;
   position:relative;
   overflow:hidden;
 }
-.card::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--grad);opacity:.85}
-.card:hover{transform:translateY(-6px);border-color:rgba(34,211,197,.45);box-shadow:var(--shadow)}
-
+.card:hover{transform:translateY(-6px);border-color:rgba(34,211,197,.55);box-shadow:var(--sombra)}
+.card::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--gradiente);opacity:.9}
 .iconBox{
-  width:70px;height:70px;border-radius:20px;
+  width:70px;height:70px;border-radius:18px;
   display:flex;align-items:center;justify-content:center;
   background:rgba(34,211,197,.12);
-  border:1px solid rgba(34,211,197,.18);
-  color:var(--c1);font-size:30px;margin-bottom:18px
+  color:var(--verde);font-size:30px;margin-bottom:18px
 }
-.iconBox.fire{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.22);color:#fb7185}
-
 .card h3{font-size:20px;font-weight:900;margin-bottom:10px;color:#fff}
-.card p{color:rgba(231,238,247,.70);font-size:14.5px;line-height:1.85;margin-bottom:14px}
-
+.card p{color:var(--cinza);font-size:14.5px;line-height:1.85;margin-bottom:14px}
 .list{list-style:none}
-.list li{display:flex;gap:10px;align-items:flex-start;color:rgba(231,238,247,.68);font-size:14px;margin-bottom:10px;line-height:1.55}
-.list i{color:var(--c1);margin-top:3px;width:18px;text-align:center}
-.list .fireI{color:#fb7185}
+.list li{display:flex;gap:10px;align-items:flex-start;color:var(--cinza);font-size:14px;margin-bottom:10px;line-height:1.55}
+.list i{color:var(--verde);margin-top:3px;width:18px;text-align:center}
 
+/* Autoridade / Processo / Depoimentos / FAQ */
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
 .mini{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.11);
   border-radius:18px;
   padding:22px;
   transition:.18s;
 }
-.mini:hover{transform:translateY(-5px);border-color:rgba(34,211,197,.45);box-shadow:var(--shadow)}
-.mini i{font-size:28px;color:var(--c1);margin-bottom:10px}
-.mini.fire i{color:#fb7185}
+.mini:hover{transform:translateY(-5px);border-color:rgba(34,211,197,.55);box-shadow:var(--sombra)}
+.mini i{font-size:28px;color:var(--verde);margin-bottom:10px}
 .mini h4{font-size:16px;font-weight:900;color:#fff;margin-bottom:8px}
-.mini p{color:rgba(231,238,247,.70);font-size:14px;line-height:1.8;margin:0}
-
+.mini p{color:var(--cinza);font-size:14px;line-height:1.8;margin:0}
 .steps .num{
-  width:44px;height:44px;border-radius:16px;
+  width:44px;height:44px;border-radius:14px;
   background:rgba(34,211,197,.12);
-  border:1px solid rgba(34,211,197,.22);
+  border:1px solid rgba(94,234,212,.28);
   display:flex;align-items:center;justify-content:center;
-  color:rgba(231,238,247,.92);font-weight:900;margin-bottom:12px
+  color:var(--verde-claro);font-weight:900;margin-bottom:12px
 }
-.quote{font-size:14px;color:rgba(231,238,247,.70);line-height:1.85;margin-top:10px}
+.quote{font-size:14px;color:var(--cinza);line-height:1.85;margin-top:10px}
 .stars{color:#fbbf24;font-size:14px;letter-spacing:2px}
 
-/* ===================== FAQ ===================== */
 .faq{max-width:1000px;margin:0 auto;display:grid;gap:12px}
-.faqItem{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:18px;
-  padding:18px 18px;
-}
+.faqItem{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.11);border-radius:18px;padding:18px}
 .faqQ{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:900;color:#fff}
-.faqA{margin-top:10px;color:rgba(231,238,247,.70);font-size:14px;line-height:1.85;display:none}
+.faqA{margin-top:10px;color:var(--cinza);font-size:14px;line-height:1.85;display:none}
 .faqItem.open .faqA{display:block}
-.faqQ i{color:var(--c1)}
+.faqQ i{color:var(--verde)}
 
-/* ===================== FORM ===================== */
+/* Formulário orçamento */
 .formGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .input{
   width:100%;padding:14px 14px;border-radius:14px;
   background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.10);
-  color:var(--texto);
-  outline:none;
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--texto);outline:none;
 }
 textarea.input{min-height:120px;resize:vertical}
 .formActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.smallNote{color:rgba(231,238,247,.60);font-size:12px;margin-top:8px;line-height:1.6}
+.smallNote{color:var(--cinza);font-size:12px;margin-top:8px;line-height:1.6}
 
-/* ===================== CIDADES ===================== */
-.cityGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
-.city{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:16px;
-  padding:18px;text-align:center;
-  transition:.18s;
-}
-.city:hover{transform:translateY(-4px);border-color:rgba(34,211,197,.45);box-shadow:var(--shadow)}
-.city i{color:var(--c1);font-size:24px;margin-bottom:8px}
-.city b{color:#fff}
-
-/* ===================== MAPA (INTERATIVO/bonito) ===================== */
-.mapCard{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:26px;
+/* ========= MAPA ========= */
+.mapShell{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px;
+  box-shadow:var(--sombra);
   overflow:hidden;
-  box-shadow:var(--shadow);
 }
-.mapTop{
+.mapTopBar{
   display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:18px 18px;border-bottom:1px solid rgba(255,255,255,.10);
+  padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.10);
+  background:linear-gradient(135deg, rgba(34,211,197,.10), rgba(14,165,233,.08));
 }
-.mapTopLeft{display:flex;gap:12px;align-items:flex-start}
-.mapTopLeft i{color:var(--c1);font-size:20px;margin-top:3px}
-.mapTop strong{font-weight:900}
-.mapTop small{color:rgba(231,238,247,.70);display:block;line-height:1.5}
-
-.mapFrame{width:100%;height:440px;border:0;filter:saturate(1.15) contrast(1.05)}
-@media (max-width:768px){.mapFrame{height:360px}}
-
-/* ===================== REDES ===================== */
-.social{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
-.social a{
-  width:122px;height:118px;border-radius:18px;
+.mapTopBar strong{font-weight:900}
+.mapTopBar .tag{
+  display:inline-flex;gap:10px;align-items:center;
+  padding:8px 12px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
   background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.10);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-decoration:none;transition:.18s;color:rgba(231,238,247,.85);
+  color:var(--cinza);font-weight:900;font-size:12px;
 }
-.social a:hover{transform:translateY(-6px);border-color:rgba(34,211,197,.45);box-shadow:var(--shadow);background:rgba(34,211,197,.08)}
-.social i{font-size:30px;color:var(--c1);margin-bottom:8px}
-.social span{font-weight:900;font-size:13px}
+.mapGrid{display:grid;grid-template-columns:360px 1fr;min-height:520px}
+.mapLeft{padding:16px;border-right:1px solid rgba(255,255,255,.10)}
+.mapSearch{
+  display:flex;gap:10px;align-items:center;margin-bottom:12px;
+}
+.mapSearch .input{padding:12px 12px;border-radius:14px}
+.mapBtns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.mbtn{
+  border:none;border-radius:14px;padding:10px 12px;
+  font-weight:900;cursor:pointer;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--texto);
+  transition:.15s;
+}
+.mbtn:hover{transform:translateY(-1px);border-color:rgba(34,211,197,.45)}
+.mbtn.primary{background:var(--gradiente);color:var(--bg);border:none}
+.cityList{display:grid;gap:10px;max-height:410px;overflow:auto;padding-right:6px}
+.cityBtn{
+  width:100%;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:12px 12px;border-radius:16px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.10);
+  color:var(--texto);
+  cursor:pointer;
+  transition:.15s;
+}
+.cityBtn:hover{transform:translateY(-2px);border-color:rgba(34,211,197,.45)}
+.cityBtn.active{border-color:rgba(34,211,197,.75);box-shadow:0 16px 30px rgba(34,211,197,.10)}
+.cityBtn .l{
+  display:flex;align-items:center;gap:10px;
+}
+.pinPill{
+  width:34px;height:34px;border-radius:12px;
+  background:rgba(34,211,197,.12);
+  border:1px solid rgba(94,234,212,.30);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--verde);
+}
+.cityBtn small{color:var(--cinza);font-weight:800}
+.cityBtn i{color:var(--verde)}
 
-/* ===================== FOOTER ===================== */
-footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);padding:60px 0 40px}
+.mapRight{position:relative}
+#map{width:100%;height:100%}
+.mapHint{
+  position:absolute;left:14px;top:14px;z-index:500;
+  background:rgba(2,6,23,.78);
+  border:1px solid rgba(255,255,255,.12);
+  padding:10px 12px;border-radius:14px;
+  color:var(--cinza);font-size:12px;font-weight:800;
+  backdrop-filter: blur(12px);
+}
+.mapHint i{color:var(--verde);margin-right:8px}
+
+/* Leaflet popup look */
+.leaflet-popup-content-wrapper{
+  background:rgba(2,6,23,.96);
+  color:var(--texto);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:16px;
+  box-shadow:var(--sombra);
+}
+.leaflet-popup-tip{background:rgba(2,6,23,.96)}
+.popTitle{font-weight:900;margin-bottom:6px}
+.popBtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.popBtn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 12px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  color:var(--texto);text-decoration:none;font-weight:900;font-size:12px;
+}
+.popBtn:hover{border-color:rgba(34,211,197,.5)}
+.popBtn.wpp{background:var(--gradiente);color:var(--bg);border:none}
+
+/* Custom pin icon */
+.pinIcon{
+  width:36px;height:36px;border-radius:14px;
+  background:linear-gradient(135deg, rgba(34,211,197,.95), rgba(14,165,233,.95));
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 18px 35px rgba(0,0,0,.45);
+  border:1px solid rgba(255,255,255,.25);
+}
+.pinIcon i{color:rgba(2,6,23,.95);font-size:16px}
+.pinAnchor{
+  width:0;height:0;
+  border-left:8px solid transparent;
+  border-right:8px solid transparent;
+  border-top:12px solid rgba(14,165,233,.95);
+  margin: -2px auto 0;
+  filter: drop-shadow(0 10px 12px rgba(0,0,0,.35));
+}
+.pinWrap{transform:translate(-18px,-36px)} /* center */
+
+/* Footer */
+footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
 .footerGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px}
-.footerGrid h4{color:rgba(231,238,247,.95);font-weight:900;margin-bottom:12px}
-.footerGrid p, .footerGrid a{color:rgba(231,238,247,.68);font-size:14px;line-height:1.75;text-decoration:none}
-.footerGrid a:hover{color:var(--c1)}
-.copy{border-top:1px solid rgba(255,255,255,.10);margin-top:30px;padding-top:18px;color:rgba(231,238,247,.60);text-align:center;font-size:13px}
+.footerGrid h4{color:var(--verde-claro);font-weight:900;margin-bottom:12px}
+.footerGrid p, .footerGrid a{color:var(--cinza);font-size:14px;line-height:1.75;text-decoration:none}
+.footerGrid a:hover{color:var(--verde)}
+.copy{border-top:1px solid var(--linha);margin-top:30px;padding-top:18px;color:var(--cinza);text-align:center;font-size:13px}
 
-/* WhatsApp + topo */
+/* WhatsApp flutuante + topo */
 .whats{
   position:fixed;right:18px;bottom:18px;z-index:2000;
-  background:rgba(34,211,197,.12);
-  border:1px solid rgba(34,211,197,.30);
-  color:rgba(231,238,247,.92);
+  background:rgba(34,211,197,.14);
+  border:1px solid rgba(94,234,212,.35);
+  color:var(--verde-claro);
   padding:12px 14px;border-radius:999px;text-decoration:none;font-weight:900;
-  display:flex;align-items:center;gap:10px;box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:10px;box-shadow:var(--sombra);
 }
-.whats i{color:var(--c1)}
+.whats i{color:var(--verde)}
 .whats:hover{transform:translateY(-2px);transition:.15s}
 
 .toTop{
   position:fixed;left:18px;bottom:18px;z-index:2000;
-  width:44px;height:44px;border-radius:16px;
+  width:44px;height:44px;border-radius:14px;
   border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.04);
-  color:rgba(231,238,247,.92);
+  background:rgba(255,255,255,.03);
+  color:var(--verde-claro);
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;opacity:0;pointer-events:none;transition:.2s;
 }
-.toTop.show{opacity:1;pointer-events:auto;transform:translateY(-2px);border-color:rgba(34,211,197,.45)}
-.toTop i{color:var(--c1)}
+.toTop.show{opacity:1;pointer-events:auto;transform:translateY(-2px);border-color:rgba(34,211,197,.55)}
+.toTop i{color:var(--verde)}
 
 /* Barra fixa mobile */
 .mobileBar{
   display:none;
   position:fixed;left:0;right:0;bottom:0;z-index:1999;
-  background:rgba(4,8,20,.92);
-  border-top:1px solid rgba(255,255,255,.10);
+  background:rgba(2,6,23,.98);
+  border-top:1px solid var(--linha);
   padding:10px 12px;
 }
 .mobileBar a{
   display:flex;align-items:center;justify-content:center;gap:10px;
-  width:100%;padding:14px 16px;border-radius:18px;
+  width:100%;padding:14px 16px;border-radius:16px;
   text-decoration:none;font-weight:900;
-  background:var(--grad);color:#061024;
+  background:var(--gradiente);color:var(--bg);
 }
 
 /* Responsivo */
@@ -433,12 +454,16 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
   .hero p{margin-left:auto;margin-right:auto}
   .pills{justify-content:center}
   .actions{justify-content:center}
+  .mapGrid{grid-template-columns:1fr}
+  .mapLeft{border-right:none;border-bottom:1px solid rgba(255,255,255,.10)}
+  .cityList{max-height:260px}
+  .mapShell{border-radius:22px}
 }
 @media (max-width:768px){
   nav{
     position:fixed;top:88px;left:0;right:0;
-    background:rgba(4,8,20,.96);
-    border-bottom:1px solid rgba(255,255,255,.10);
+    background:rgba(2,6,23,.98);
+    border-bottom:1px solid var(--linha);
     flex-direction:column;gap:0;
     transform:translateY(-120%);
     opacity:0;visibility:hidden;
@@ -446,13 +471,14 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
     padding:14px 5%;
   }
   nav.active{transform:translateY(0);opacity:1;visibility:visible}
-  nav a{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.10);width:100%;justify-content:center}
+  nav a{padding:14px 0;border-bottom:1px solid var(--linha);width:100%;justify-content:center}
   nav a:last-child{border-bottom:none}
   .menuBtn{display:block}
   .formGrid{grid-template-columns:1fr}
   .whats span{display:none}
   .mobileBar{display:block}
-  section{padding:90px 0}
+  section{padding:95px 0}
+  .mapTopBar{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
@@ -462,6 +488,7 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
 <header>
   <div class="container header-row">
     <a href="#inicio" class="brand">
+      <!-- ✅ EDITAR: coloque seu logo -->
       <img src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg" alt="SEC Engenharia">
       <div>
         <div class="t1">SEC ENGENHARIA</div>
@@ -479,7 +506,6 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
       <a href="#depoimentos"><i class="fas fa-star"></i> AVALIAÇÕES</a>
       <a href="#faq"><i class="fas fa-circle-question"></i> DÚVIDAS</a>
       <a href="#orcamento"><i class="fas fa-file-signature"></i> ORÇAMENTO</a>
-      <a href="#cidades"><i class="fas fa-map-marker-alt"></i> CIDADES</a>
       <a href="#mapa"><i class="fas fa-map-location-dot"></i> MAPA</a>
       <a href="#contato"><i class="fas fa-phone"></i> CONTATO</a>
       <a href="#redes"><i class="fas fa-share-alt"></i> REDES</a>
@@ -490,7 +516,6 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
 <!-- HERO -->
 <section class="hero" id="inicio">
   <div class="container hero-grid">
-
     <div>
       <div class="badge"><i class="fas fa-shield-halved"></i> EMPRESA REGISTRADA • RESPONSABILIDADE TÉCNICA</div>
 
@@ -508,25 +533,17 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
       <div class="pills">
         <div class="pill"><i class="fas fa-id-card"></i> CREA / Registros</div>
         <div class="pill"><i class="fas fa-file-signature"></i> ART</div>
-        <div class="pill fire"><i class="fas fa-fire-extinguisher"></i> Corpo de Bombeiros</div>
+        <div class="pill"><i class="fas fa-fire-flame-curved"></i> Bombeiros</div>
         <div class="pill"><i class="fas fa-helmet-safety"></i> Normas NR</div>
       </div>
 
       <div class="actions">
+        <!-- ✅ EDITAR: whatsapp -->
         <a class="btn primary" target="_blank" rel="noopener"
-           href="https://wa.me/5573991396879?text=Olá!%20Quero%20um%20orçamento%20para%20serviço%20de%20engenharia.">
+          href="https://wa.me/5573991396879?text=Olá!%20Quero%20um%20orçamento%20para%20serviço%20de%20engenharia.">
           <i class="fab fa-whatsapp"></i> SOLICITAR ORÇAMENTO
         </a>
-        <a class="btn outline" href="#servicos"><i class="fas fa-cogs"></i> VER SERVIÇOS</a>
-      </div>
-
-      <!-- SELO BOMBEIROS (bem chamativo) -->
-      <div class="sealFire">
-        <div class="ico"><i class="fas fa-fire-flame-curved"></i></div>
-        <div>
-          <strong>Regularização Bombeiros</strong>
-          <small>Projeto técnico, rotas de fuga, sinalização e adequações conforme exigências — com documentação organizada e suporte.</small>
-        </div>
+        <a class="btn outline" href="#mapa"><i class="fas fa-map-location-dot"></i> VER MAPA DE ATUAÇÃO</a>
       </div>
 
       <!-- 🔊 MODO OUVIR -->
@@ -570,23 +587,21 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
     </div>
 
     <div class="heroCard">
-      <div class="heroCardInner">
-        <div class="heroVisual">
-          <div class="visualBox">
-            <div class="t"><i class="fas fa-clipboard-check"></i> Resultado</div>
-            <div class="d">Sua empresa regularizada, com documentação técnica e segurança jurídica.</div>
-          </div>
-          <div class="visualBox fire">
-            <div class="t"><i class="fas fa-fire-extinguisher"></i> Bombeiros</div>
-            <div class="d">Projetos e adequações para prevenção e combate a incêndio conforme exigências.</div>
-          </div>
-          <div class="visualBox">
-            <div class="t"><i class="fas fa-helmet-safety"></i> NR</div>
-            <div class="d">Documentação e adequações para reduzir riscos e evitar multas.</div>
-          </div>
+      <div class="heroVisual">
+        <div class="visualBox">
+          <div class="t"><i class="fas fa-clipboard-check"></i> Resultado</div>
+          <div class="d">Sua empresa regularizada, com documentação técnica e segurança jurídica.</div>
         </div>
-        <div class="cap"><strong>Atendimento na região sul da Bahia</strong> com foco em normas, segurança e responsabilidade.</div>
+        <div class="visualBox">
+          <div class="t"><i class="fas fa-fire-flame-curved"></i> Bombeiros</div>
+          <div class="d">Projetos e adequações para prevenção e combate a incêndio conforme exigências.</div>
+        </div>
+        <div class="visualBox">
+          <div class="t"><i class="fas fa-helmet-safety"></i> NR</div>
+          <div class="d">Documentação e adequações para reduzir riscos e evitar multas.</div>
+        </div>
       </div>
+      <div class="cap"><strong>Atendimento na região sul da Bahia</strong> com foco em normas, segurança e responsabilidade.</div>
     </div>
 
   </div>
@@ -598,7 +613,8 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
     <div class="section-header">
       <h2 class="section-title">SERVIÇOS</h2>
       <p class="section-subtitle">
-        Serviços completos com <strong>explicação clara</strong>, foco em <strong>normas</strong> e <strong>documentação</strong>.
+        Aqui você encontra serviços completos com <strong>explicação clara</strong>, foco em <strong>normas</strong> e <strong>documentação</strong>.
+        Ideal para empresas que precisam operar regularizadas.
       </p>
     </div>
 
@@ -628,11 +644,11 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
       </div>
 
       <div class="card">
-        <div class="iconBox fire"><i class="fas fa-fire-extinguisher"></i></div>
+        <div class="iconBox"><i class="fas fa-fire-flame-curved"></i></div>
         <h3>Combate a Incêndio (Bombeiros)</h3>
         <p>Projetos e regularização com foco em exigências do Corpo de Bombeiros e prevenção.</p>
         <ul class="list">
-          <li><i class="fas fa-fire-flame-curved fireI"></i> Projeto técnico de prevenção</li>
+          <li><i class="fas fa-fire-flame-curved"></i> Projeto técnico de prevenção</li>
           <li><i class="fas fa-route"></i> Rotas de fuga e sinalização</li>
           <li><i class="fas fa-water"></i> Hidrantes / sprinklers (quando aplicável)</li>
           <li><i class="fas fa-file-signature"></i> Responsabilidade técnica / ART</li>
@@ -699,8 +715,8 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
         <h4>ART</h4>
         <p>Emissão quando aplicável, comprovando responsabilidade técnica.</p>
       </div>
-      <div class="mini fire">
-        <i class="fas fa-fire-extinguisher"></i>
+      <div class="mini">
+        <i class="fas fa-fire-flame-curved"></i>
         <h4>Corpo de Bombeiros</h4>
         <p>Projetos e adequações para prevenção e combate a incêndio.</p>
       </div>
@@ -759,25 +775,25 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
         <div class="stars">★★★★★</div>
         <h4>Empresa Regularizada</h4>
         <p class="quote">“Organização, documentação e orientação muito claras. Serviço de alto nível.”</p>
-        <p style="margin-top:10px;color:rgba(231,238,247,.65);font-weight:800">— Cliente Comercial</p>
+        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Comercial</p>
       </div>
       <div class="mini">
         <div class="stars">★★★★★</div>
         <h4>Suporte em Fiscalização</h4>
         <p class="quote">“Ajudou na fiscalização e deixou tudo em conformidade. Recomendo.”</p>
-        <p style="margin-top:10px;color:rgba(231,238,247,.65);font-weight:800">— Cliente Industrial</p>
+        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Industrial</p>
       </div>
-      <div class="mini fire">
+      <div class="mini">
         <div class="stars">★★★★★</div>
         <h4>Bombeiros</h4>
         <p class="quote">“Projeto e adequações muito bem feitos, com suporte no processo.”</p>
-        <p style="margin-top:10px;color:rgba(231,238,247,.65);font-weight:800">— Cliente Empresa</p>
+        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Empresa</p>
       </div>
       <div class="mini">
         <div class="stars">★★★★★</div>
         <h4>Profissionalismo</h4>
         <p class="quote">“Atendimento sério e técnico. Entregou tudo organizado e rápido.”</p>
-        <p style="margin-top:10px;color:rgba(231,238,247,.65);font-weight:800">— Cliente Clínica</p>
+        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Clínica</p>
       </div>
     </div>
   </div>
@@ -821,7 +837,7 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
           <span>Atendem quais cidades?</span>
           <i class="fas fa-plus"></i>
         </div>
-        <div class="faqA">Atendemos a região sul da Bahia. Veja a lista de cidades abaixo e chame no WhatsApp.</div>
+        <div class="faqA">Atendemos a região sul da Bahia. Veja o mapa abaixo e clique nas cidades para ver os pontos.</div>
       </div>
     </div>
   </div>
@@ -846,7 +862,7 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
 
       <div class="formActions">
         <button class="btn primary" id="enviarWpp"><i class="fab fa-whatsapp"></i> Enviar no WhatsApp</button>
-        <a class="btn outline" href="#servicos"><i class="fas fa-cogs"></i> Ver serviços</a>
+        <a class="btn outline" href="#mapa"><i class="fas fa-map-location-dot"></i> Ver mapa</a>
       </div>
 
       <div class="smallNote">Ao clicar em “Enviar no WhatsApp”, será aberta uma mensagem pronta. Você pode revisar e enviar.</div>
@@ -854,66 +870,57 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
   </div>
 </section>
 
-<!-- CIDADES -->
-<section id="cidades" class="bg2">
+<!-- MAPA (INTERATIVO COM ALFINETES) -->
+<section id="mapa" class="bg2">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">CIDADES DE ATUAÇÃO</h2>
-      <p class="section-subtitle">Atendimento em toda a região sul da Bahia.</p>
+      <h2 class="section-title">MAPA DE ATUAÇÃO</h2>
+      <p class="section-subtitle">
+        Clique nos <strong>alfinetes</strong> ou nas cidades para ver detalhes, abrir rota e chamar no WhatsApp.
+        <br><span style="color:var(--cinza)">Região Sul da Bahia • <i class="fas fa-fire-flame-curved" style="color:var(--verde)"></i> Serviços com foco em normas e Bombeiros</span>
+      </p>
     </div>
 
-    <div class="cityGrid">
-      <div class="city"><i class="fas fa-map-marker-alt"></i><b>Eunápolis</b></div>
-      <div class="city"><i class="fas fa-map-marker-alt"></i><b>Porto Seguro</b></div>
-      <div class="city"><i class="fas fa-map-marker-alt"></i><b>Trancoso</b></div>
-      <div class="city"><i class="fas fa-map-marker-alt"></i><b>Itabela</b></div>
-      <div class="city"><i class="fas fa-map-marker-alt"></i><b>Teixeira de Freitas</b></div>
-      <div class="city"><i class="fas fa-map-marker-alt"></i><b>Arraial d'Ajuda</b></div>
-      <div class="city"><i class="fas fa-map-marker-alt"></i><b>Itamaraju</b></div>
-      <div class="city"><i class="fas fa-map-marker-alt"></i><b>Itapebi</b></div>
-      <div class="city"><i class="fas fa-map-marker-alt"></i><b>Itagimirim</b></div>
-    </div>
-  </div>
-</section>
+    <div class="mapShell">
+      <div class="mapTopBar">
+        <div>
+          <strong><i class="fas fa-map-location-dot" style="color:var(--verde)"></i> Cidades atendidas</strong>
+          <div style="color:var(--cinza);font-size:13px;font-weight:800;margin-top:4px">
+            Interativo • Zoom • Pop-up com rota e WhatsApp
+          </div>
+        </div>
+        <div class="tag"><i class="fas fa-fire-flame-curved"></i> Bombeiros / NR / Laudos</div>
+      </div>
 
-<!-- MAPA (interativo) -->
-<section id="mapa">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">MAPA DE ATENDIMENTO</h2>
-      <p class="section-subtitle">Mapa interativo para o cliente ver a região e abrir rotas no Google Maps.</p>
-    </div>
+      <div class="mapGrid">
+        <div class="mapLeft">
+          <div class="mapSearch">
+            <input class="input" id="cityFilter" placeholder="Buscar cidade... (ex: Porto Seguro)" />
+          </div>
 
-    <div class="mapCard">
-      <div class="mapTop">
-        <div class="mapTopLeft">
-          <i class="fas fa-map-location-dot"></i>
-          <div>
-            <strong>Região Sul da Bahia</strong>
-            <small>Eunápolis • Porto Seguro • Trancoso • Teixeira de Freitas e arredores</small>
+          <div class="mapBtns">
+            <button class="mbtn primary" id="btnAll"><i class="fas fa-layer-group"></i> Ver todas</button>
+            <button class="mbtn" id="btnMy"><i class="fas fa-location-crosshairs"></i> Minha posição</button>
+          </div>
+
+          <div class="cityList" id="cityList"></div>
+
+          <div class="smallNote">
+            Dica: no celular, use dois dedos para mexer no mapa. Clique no botão <strong>Ver todas</strong> para ajustar a visão.
           </div>
         </div>
 
-        <a class="btn outline" style="padding:12px 16px;border-radius:16px"
-           target="_blank" rel="noopener"
-           href="https://www.google.com/maps/search/?api=1&query=Eun%C3%A1polis%2C%20Bahia">
-          <i class="fas fa-location-arrow"></i> Abrir no Maps
-        </a>
+        <div class="mapRight">
+          <div class="mapHint"><i class="fas fa-thumbtack"></i> Toque nos alfinetes para abrir detalhes</div>
+          <div id="map"></div>
+        </div>
       </div>
-
-      <!-- ✅ Troque o src pelo endereço real depois (embed do Google Maps) -->
-      <iframe class="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps?q=Eun%C3%A1polis%2C%20Bahia&z=11&output=embed"></iframe>
-    </div>
-
-    <div class="smallNote" style="text-align:center;margin-top:10px">
-      Dica: quando você tiver o endereço exato, eu coloco o mapa apontando no local certinho + botão “Traçar rota”.
     </div>
   </div>
 </section>
 
 <!-- CONTATO -->
-<section id="contato" class="bg2">
+<section id="contato">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">CONTATO</h2>
@@ -946,25 +953,36 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
 </section>
 
 <!-- REDES -->
-<section id="redes">
+<section id="redes" class="bg2">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">REDES SOCIAIS</h2>
       <p class="section-subtitle">Acompanhe novidades e trabalhos.</p>
     </div>
 
-    <div class="social">
-      <a target="_blank" rel="noopener" href="https://www.facebook.com/share/19Wskn7vRH/">
-        <i class="fab fa-facebook-f"></i><span>Facebook</span>
+    <div class="social" style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap">
+      <a target="_blank" rel="noopener" href="https://www.facebook.com/share/19Wskn7vRH/"
+         style="width:122px;height:118px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.11);
+                display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;transition:.18s;color:var(--verde-claro);">
+        <i class="fab fa-facebook-f" style="font-size:30px;color:var(--verde);margin-bottom:8px"></i><span style="font-weight:900;font-size:13px">Facebook</span>
       </a>
-      <a target="_blank" rel="noopener" href="https://www.instagram.com/eng.brunaomota">
-        <i class="fab fa-instagram"></i><span>Instagram</span>
+
+      <a target="_blank" rel="noopener" href="https://www.instagram.com/eng.brunaomota"
+         style="width:122px;height:118px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.11);
+                display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;transition:.18s;color:var(--verde-claro);">
+        <i class="fab fa-instagram" style="font-size:30px;color:var(--verde);margin-bottom:8px"></i><span style="font-weight:900;font-size:13px">Instagram</span>
       </a>
-      <a target="_blank" rel="noopener" href="https://wa.me/5573991396879">
-        <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
+
+      <a target="_blank" rel="noopener" href="https://wa.me/5573991396879"
+         style="width:122px;height:118px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.11);
+                display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;transition:.18s;color:var(--verde-claro);">
+        <i class="fab fa-whatsapp" style="font-size:30px;color:var(--verde);margin-bottom:8px"></i><span style="font-weight:900;font-size:13px">WhatsApp</span>
       </a>
-      <a href="mailto:sec_eng@hotmail.com">
-        <i class="fas fa-envelope"></i><span>E-mail</span>
+
+      <a href="mailto:sec_eng@hotmail.com"
+         style="width:122px;height:118px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.11);
+                display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;transition:.18s;color:var(--verde-claro);">
+        <i class="fas fa-envelope" style="font-size:30px;color:var(--verde);margin-bottom:8px"></i><span style="font-weight:900;font-size:13px">E-mail</span>
       </a>
     </div>
   </div>
@@ -976,9 +994,7 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
       <div>
         <h4>SEC ENGENHARIA</h4>
         <p>Soluções técnicas com foco em qualidade, conformidade e documentação profissional.</p>
-        <p style="margin-top:10px;color:rgba(231,238,247,.90);font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">
-          Desenvolver para Evoluir
-        </p>
+        <p style="margin-top:10px;color:var(--verde-claro);font-weight:900">Desenvolver para Evoluir</p>
       </div>
       <div>
         <h4>Serviços</h4>
@@ -992,9 +1008,7 @@ footer{background:rgba(1,6,18,.75);border-top:1px solid rgba(255,255,255,.10);pa
       </div>
     </div>
 
-    <div class="copy">
-      © 2026 SEC Engenharia • Todos os direitos reservados • CREA 3000078851 | CREA 79591D
-    </div>
+    <div class="copy">© 2026 SEC Engenharia • Todos os direitos reservados • CREA 3000078851 | CREA 79591D</div>
   </div>
 </footer>
 
@@ -1095,7 +1109,6 @@ function makeUtter(){
   u.pitch = 1;
   return u;
 }
-
 document.getElementById('btnPlay').addEventListener('click', ()=>{
   speechSynthesis.cancel();
   utter = makeUtter();
@@ -1107,8 +1120,154 @@ document.getElementById('btnPause').addEventListener('click', ()=>{
 document.getElementById('btnResume').addEventListener('click', ()=>{
   if(speechSynthesis.paused) speechSynthesis.resume();
 });
-document.getElementById('btnStop').addEventListener('click', ()=>{
-  speechSynthesis.cancel();
+document.getElementById('btnStop').addEventListener('click', ()=> speechSynthesis.cancel());
+
+/* ===== MAPA INTERATIVO (ALFINETES) ===== */
+const WPP = "https://wa.me/5573991396879?text=";
+
+const cities = [
+  { name:"Eunápolis",          lat:-16.3778, lng:-39.5800, desc:"Base de atendimento na região." },
+  { name:"Porto Seguro",       lat:-16.4500, lng:-39.0650, desc:"Projetos, laudos e Bombeiros." },
+  { name:"Trancoso",           lat:-16.5833, lng:-39.0833, desc:"Atendimento e adequações sob demanda." },
+  { name:"Itabela",            lat:-16.5750, lng:-39.5528, desc:"Documentação e regularização." },
+  { name:"Teixeira de Freitas",lat:-17.5459, lng:-39.7239, desc:"Serviços técnicos e suporte." },
+  { name:"Arraial d'Ajuda",    lat:-16.4903, lng:-39.0750, desc:"NR, laudos e prevenção." },
+  { name:"Itamaraju",          lat:-17.0561, lng:-39.5472, desc:"Projetos e relatórios técnicos." },
+  { name:"Itapebi",            lat:-15.9526, lng:-39.5338, desc:"Adequações e inspeções." },
+  { name:"Itagimirim",         lat:-16.0868, lng:-39.6195, desc:"Atendimento regional." },
+];
+
+const map = L.map('map', { scrollWheelZoom:false, zoomControl:true }).setView([-16.65, -39.35], 8);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 18,
+  attribution: '&copy; OpenStreetMap'
+}).addTo(map);
+
+// ícone custom do alfinete (com HTML)
+const pinHtml = `
+  <div class="pinWrap">
+    <div class="pinIcon"><i class="fas fa-thumbtack"></i></div>
+    <div class="pinAnchor"></div>
+  </div>
+`;
+const pinIcon = L.divIcon({
+  className: "",
+  html: pinHtml,
+  iconSize: [36, 48],
+  iconAnchor: [18, 44],
+  popupAnchor: [0, -44]
+});
+
+const markers = [];
+const bounds = L.latLngBounds();
+
+function popupContent(city){
+  const msg = encodeURIComponent(`Olá! Quero atendimento em ${city.name}. Pode me orientar os próximos passos?`);
+  const wppUrl = WPP + msg;
+  const gmapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${city.lat},${city.lng}`;
+
+  return `
+    <div class="popTitle"><i class="fas fa-map-pin" style="color:#22d3c5"></i> ${city.name}</div>
+    <div style="color:#9ca3af;font-size:13px;line-height:1.6">${city.desc}</div>
+    <div class="popBtns">
+      <a class="popBtn wpp" target="_blank" rel="noopener" href="${wppUrl}">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+      <a class="popBtn" target="_blank" rel="noopener" href="${gmapsUrl}">
+        <i class="fas fa-route"></i> Abrir rota
+      </a>
+    </div>
+  `;
+}
+
+cities.forEach((c, idx) => {
+  const m = L.marker([c.lat, c.lng], { icon: pinIcon }).addTo(map).bindPopup(popupContent(c));
+  markers.push(m);
+  bounds.extend([c.lat, c.lng]);
+});
+
+function fitAll(){
+  map.fitBounds(bounds.pad(0.18));
+}
+
+fitAll();
+
+const listEl = document.getElementById('cityList');
+const filterEl = document.getElementById('cityFilter');
+
+function renderList(filter=""){
+  listEl.innerHTML = "";
+  const f = filter.toLowerCase().trim();
+
+  cities.forEach((c, idx)=>{
+    if(f && !c.name.toLowerCase().includes(f)) return;
+
+    const btn = document.createElement('button');
+    btn.className = "cityBtn";
+    btn.innerHTML = `
+      <div class="l">
+        <div class="pinPill"><i class="fas fa-thumbtack"></i></div>
+        <div>
+          <div style="font-weight:900">${c.name}</div>
+          <small>${c.desc}</small>
+        </div>
+      </div>
+      <i class="fas fa-chevron-right"></i>
+    `;
+
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.cityBtn').forEach(x=>x.classList.remove('active'));
+      btn.classList.add('active');
+
+      map.flyTo([c.lat, c.lng], 12, { duration: 0.8 });
+      markers[idx].openPopup();
+    });
+
+    listEl.appendChild(btn);
+  });
+
+  if(!listEl.children.length){
+    const div = document.createElement('div');
+    div.style.color = "#9ca3af";
+    div.style.fontWeight = "800";
+    div.style.padding = "10px";
+    div.innerHTML = "Nenhuma cidade encontrada.";
+    listEl.appendChild(div);
+  }
+}
+
+renderList();
+
+filterEl.addEventListener('input', ()=> renderList(filterEl.value));
+
+document.getElementById('btnAll').addEventListener('click', ()=>{
+  renderList(filterEl.value);
+  fitAll();
+});
+
+let myMarker = null;
+document.getElementById('btnMy').addEventListener('click', ()=>{
+  if(!navigator.geolocation){
+    alert("Seu navegador não suporta geolocalização.");
+    return;
+  }
+  navigator.geolocation.getCurrentPosition((pos)=>{
+    const lat = pos.coords.latitude;
+    const lng = pos.coords.longitude;
+
+    if(myMarker) map.removeLayer(myMarker);
+
+    myMarker = L.marker([lat,lng]).addTo(map).bindPopup(`
+      <div class="popTitle"><i class="fas fa-location-dot" style="color:#22d3c5"></i> Sua posição</div>
+      <div style="color:#9ca3af;font-size:13px;line-height:1.6">Agora você pode abrir rota até qualquer cidade.</div>
+    `);
+
+    map.flyTo([lat,lng], 12, {duration:0.9});
+    myMarker.openPopup();
+  }, ()=>{
+    alert("Não consegui pegar sua localização. Ative a permissão e tente de novo.");
+  }, { enableHighAccuracy:true, timeout:8000 });
 });
 </script>
 
