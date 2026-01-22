@@ -19,557 +19,551 @@
 
 <style>
 :root{
-  /* ===== NOVA PALETA (mais premium) ===== */
-  --bg:#020617;
-  --bg2:#0b1228;
-  --card:rgba(255,255,255,0.045);
-  --linha:rgba(255,255,255,.10);
+  /* ===== TEMA PREMIUM (compacto) ===== */
+  --bg:#050814;
+  --bg2:#070c1d;
+  --card:rgba(255,255,255,.04);
+  --line:rgba(255,255,255,.10);
 
-  --verde:#38bdf8;            /* (mantive nome pra não quebrar o CSS, mas agora é azul) */
-  --verde-claro:#93c5fd;      /* azul claro */
-  --texto:#e5e7eb;
-  --cinza:#a3a3a3;
-  --branco:#fff;
+  --text:#e8ebf3;
+  --muted:#a7afc3;
 
-  --dourado:#f59e0b;          /* novo destaque */
-  --gradiente: linear-gradient(135deg, #38bdf8 0%, #f59e0b 100%);
-  --sombra: 0 20px 40px rgba(0,0,0,0.35);
-  --radius: 20px;
+  --a:#59a7ff;     /* azul */
+  --b:#f6b54a;     /* dourado */
+  --grad:linear-gradient(135deg,var(--a) 0%, var(--b) 100%);
+
+  --shadow: 0 18px 50px rgba(0,0,0,.42);
+  --r:18px;
+
+  --padY:72px;
+  --padYsm:50px;
+  --gapTitle:26px;
+  --container:1200px;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{background:var(--bg);color:var(--texto);line-height:1.85;overflow-x:hidden}
-a{color:inherit}
-.container{max-width:1400px;margin:0 auto;padding:0 5%}
-section{padding:120px 0}
-.section-header{text-align:center;margin-bottom:70px}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.container{max-width:var(--container);margin:0 auto;padding:0 5%}
+section{padding:var(--padY) 0}
+.bg2{background:var(--bg2)}
+h1,h2,h3,h4{letter-spacing:.2px}
+
+/* ===== TÍTULOS (menos espaço) ===== */
+.section-header{text-align:center;margin-bottom:var(--gapTitle)}
 .section-title{
-  font-size:clamp(32px,4vw,56px);
+  font-size:clamp(28px,3.7vw,50px);
   font-weight:900;
-  background: linear-gradient(to right, var(--verde), var(--dourado));
+  background:linear-gradient(90deg,var(--a),var(--b));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  margin-bottom:14px;
+  margin-bottom:8px;
 }
-.section-subtitle{color:var(--cinza);font-size:19px;max-width:980px;margin:0 auto}
+.section-subtitle{color:var(--muted);font-size:16.5px;max-width:900px;margin:0 auto}
 
-/* HEADER */
+/* ===== HEADER ===== */
 header{
   position:fixed;top:0;left:0;width:100%;z-index:999;
-  background:rgba(2,6,23,.97);
-  border-bottom:1px solid var(--linha);
-  backdrop-filter: blur(16px);
-  padding:14px 0;
-  transition:.2s;
+  background:rgba(5,8,20,.92);
+  border-bottom:1px solid var(--line);
+  backdrop-filter: blur(14px);
 }
-.header-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{
-  display:flex;align-items:center;gap:14px;text-decoration:none;
-  min-width:fit-content; /* evita “vazio” por quebra estranha */
+.header-row{
+  padding:12px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
 }
+.brand{display:flex;align-items:center;gap:12px}
 .brand img{
-  width:58px;height:58px;border-radius:14px;object-fit:cover;
-  border:3px solid rgba(245,158,11,.85); /* dourado */
-  padding:2px;box-shadow:var(--sombra);
+  width:52px;height:52px;border-radius:14px;object-fit:cover;
+  border:2px solid rgba(246,181,74,.85);
+  box-shadow:0 12px 28px rgba(0,0,0,.35);
 }
-.brand .t1{font-size:26px;font-weight:900;letter-spacing:.5px}
-.brand .t2{font-size:11px;color:rgba(245,158,11,.95);letter-spacing:3px;font-weight:900}
+.brand .t1{font-size:22px;font-weight:900;line-height:1.1}
+.brand .t2{font-size:11px;color:rgba(246,181,74,.95);font-weight:900;letter-spacing:2.4px;margin-top:4px}
 
-nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+/* NAV */
+nav{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:flex-end}
 nav a{
-  text-decoration:none;color:var(--cinza);font-weight:900;font-size:12.5px;letter-spacing:1px;
-  padding:8px 0;position:relative;display:flex;align-items:center;gap:8px;
+  color:var(--muted);
+  font-weight:900;
+  font-size:12px;
+  letter-spacing:1px;
+  padding:8px 0;
+  position:relative;
+  display:flex;align-items:center;gap:8px;
 }
-nav a:hover{color:var(--branco)}
-nav a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--gradiente);transition:.2s}
+nav a:hover{color:#fff}
+nav a::after{
+  content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
+  background:var(--grad);transition:.18s;
+}
 nav a:hover::after{width:100%}
 
 .menuBtn{
-  display:none;border:none;background:transparent;color:rgba(245,158,11,.95);
-  font-size:28px;width:44px;height:44px;border-radius:12px;cursor:pointer;
+  display:none;border:none;background:transparent;
+  color:rgba(246,181,74,.95);
+  font-size:26px;width:44px;height:44px;border-radius:14px;cursor:pointer;
 }
-.menuBtn:hover{background:rgba(245,158,11,.12)}
+.menuBtn:hover{background:rgba(246,181,74,.12)}
 
-/* HERO */
+/* ===== HERO (compacto e bonito) ===== */
 .hero{
-  min-height:100vh;display:flex;align-items:center;
-  padding-top:140px;padding-bottom:60px;
-  background: linear-gradient(135deg, rgba(2,6,23,0.98) 0%, rgba(11,18,40,0.94) 100%);
+  min-height:calc(100vh - 10px);
+  padding-top:104px;
+  padding-bottom:26px;
   position:relative;
-}
-.hero::before{
-  content:"";position:absolute;inset:0;
   background:
-    radial-gradient(circle at 25% 25%, rgba(56,189,248,0.16) 0%, transparent 48%),
-    radial-gradient(circle at 80% 20%, rgba(245,158,11,0.10) 0%, transparent 46%),
-    radial-gradient(circle at 70% 85%, rgba(56,189,248,0.08) 0%, transparent 44%);
-  pointer-events:none;
+    radial-gradient(circle at 20% 20%, rgba(89,167,255,.14), transparent 52%),
+    radial-gradient(circle at 80% 20%, rgba(246,181,74,.10), transparent 50%),
+    linear-gradient(180deg, rgba(7,12,29,.15), rgba(5,8,20,0));
 }
 .hero-grid{
-  position:relative;
-  display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:28px;
+  align-items:center;
 }
 .badge{
   display:inline-flex;align-items:center;gap:10px;
-  padding:10px 16px;border-radius:999px;
-  background:rgba(245,158,11,.12);
-  border:1px solid rgba(245,158,11,.28);
-  color:rgba(245,158,11,.95);
-  font-size:13px;font-weight:900;letter-spacing:2px;
-  margin-bottom:22px;
+  padding:9px 14px;border-radius:999px;
+  background:rgba(246,181,74,.12);
+  border:1px solid rgba(246,181,74,.28);
+  color:rgba(246,181,74,.96);
+  font-size:12px;font-weight:900;letter-spacing:1.8px;
+  margin-bottom:14px;
 }
-.badge i{color:rgba(245,158,11,.95)}
-.hero h1{font-size:clamp(42px,5.4vw,74px);font-weight:900;line-height:1.08;margin-bottom:16px}
-.hero h1 span{display:block;margin-top:12px;font-size:clamp(18px,2.2vw,28px);font-weight:700;color:var(--cinza);line-height:1.5}
-.hero p{color:var(--cinza);font-size:17px;max-width:680px;margin-bottom:22px}
+.badge i{color:rgba(246,181,74,.95)}
+.hero h1{
+  font-size:clamp(34px,4.7vw,62px);
+  font-weight:900;
+  line-height:1.05;
+  margin-bottom:10px;
+}
+.hero h1 span{
+  display:block;
+  margin-top:10px;
+  font-size:clamp(16px,1.8vw,22px);
+  color:var(--muted);
+  font-weight:700;
+  line-height:1.45;
+}
+.hero p{color:var(--muted);font-size:16px;max-width:680px;margin-bottom:14px}
 
-.pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
 .pill{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:10px 14px;border-radius:999px;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 12px;border-radius:999px;
   border:1px solid rgba(255,255,255,.10);
   background:rgba(255,255,255,.03);
-  color:var(--cinza);font-weight:900;font-size:13px;
+  color:var(--muted);
+  font-weight:900;
+  font-size:12px;
 }
-.pill i{color:var(--dourado)}
+.pill i{color:var(--b)}
 
-.actions{display:flex;gap:14px;flex-wrap:wrap}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:16px 28px;border-radius:999px;text-decoration:none;
-  font-weight:900;font-size:14px;letter-spacing:.5px;
-  transition:.15s;cursor:pointer;border:none;
+  padding:14px 20px;border-radius:999px;
+  font-weight:900;font-size:13px;letter-spacing:.4px;
+  transition:.16s;cursor:pointer;border:none;
 }
-.btn.primary{background:var(--gradiente);color:var(--bg);box-shadow:0 16px 36px rgba(245,158,11,.16)}
+.btn.primary{background:var(--grad);color:var(--bg);box-shadow:0 14px 34px rgba(246,181,74,.14)}
 .btn.primary:hover{transform:translateY(-2px)}
-.btn.outline{background:transparent;color:rgba(245,158,11,.95);border:2px solid rgba(245,158,11,.55)}
-.btn.outline:hover{background:rgba(245,158,11,.12);transform:translateY(-2px);border-color:rgba(245,158,11,1)}
+.btn.outline{background:transparent;color:rgba(246,181,74,.95);border:2px solid rgba(246,181,74,.50)}
+.btn.outline:hover{background:rgba(246,181,74,.10);transform:translateY(-2px);border-color:rgba(246,181,74,.95)}
 
+/* HERO CARD */
 .heroCard{
   background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
-  border-radius:24px;
-  box-shadow:var(--sombra);
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow);
   overflow:hidden;
 }
-
-/* “logo do lado” dentro do card (preenche o visual e tira sensação de vazio) */
 .heroCardBrand{
-  display:flex;align-items:center;gap:14px;
-  padding:18px;
-  border-bottom:1px solid var(--linha);
-  background:linear-gradient(180deg, rgba(245,158,11,.08), transparent);
+  display:flex;align-items:center;gap:12px;
+  padding:14px 16px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg, rgba(246,181,74,.08), transparent);
 }
 .heroCardBrand img{
-  width:54px;height:54px;border-radius:14px;object-fit:cover;
-  border:2px solid rgba(56,189,248,.6);
+  width:46px;height:46px;border-radius:14px;object-fit:cover;
+  border:2px solid rgba(89,167,255,.55);
 }
-.heroCardBrand .b1{font-weight:900;font-size:16px;color:#fff;line-height:1.2}
-.heroCardBrand .b2{font-weight:900;font-size:12px;letter-spacing:2px;color:rgba(245,158,11,.95);margin-top:3px}
+.heroCardBrand .b1{font-weight:900;color:#fff;line-height:1.1}
+.heroCardBrand .b2{font-weight:900;font-size:11px;letter-spacing:2px;color:rgba(246,181,74,.95);margin-top:4px}
 
-.heroCard .cap{padding:14px 18px;border-top:1px solid var(--linha);color:var(--cinza);font-size:14px}
-.heroVisual{padding:18px;display:grid;gap:12px}
+.heroVisual{padding:14px 16px;display:grid;gap:10px}
 .visualBox{
   border:1px solid rgba(255,255,255,.10);
   background:rgba(255,255,255,.03);
-  border-radius:18px;
-  padding:16px;
+  border-radius:16px;
+  padding:12px 14px;
 }
-.visualBox .t{font-weight:900;color:#fff;margin-bottom:6px}
-.visualBox .t i{color:var(--dourado)}
-.visualBox .d{color:var(--cinza);font-size:14px;line-height:1.7}
+.visualBox .t{font-weight:900;color:#fff;margin-bottom:6px;display:flex;gap:10px;align-items:center}
+.visualBox .t i{color:var(--b)}
+.visualBox .d{color:var(--muted);font-size:13px;line-height:1.6}
+.heroCard .cap{padding:12px 16px;border-top:1px solid rgba(255,255,255,.08);color:var(--muted);font-size:13px}
+
+/* ===== GRIDS (menos espaço) ===== */
+.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
 
 /* CARDS */
-.bg2{background:var(--bg2)}
-.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
 .card{
   background:var(--card);
-  border:1px solid var(--linha);
-  border-radius:var(--radius);
-  padding:32px 28px;
-  transition:.18s;
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  padding:20px;
+  transition:.16s;
   position:relative;
   overflow:hidden;
 }
-.card:hover{transform:translateY(-6px);border-color:rgba(245,158,11,.55);box-shadow:var(--sombra)}
-.card::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--gradiente);opacity:.9}
+.card::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:var(--grad);opacity:.9}
+.card:hover{transform:translateY(-4px);border-color:rgba(246,181,74,.45);box-shadow:0 18px 40px rgba(0,0,0,.35)}
 .iconBox{
-  width:70px;height:70px;border-radius:18px;
+  width:58px;height:58px;border-radius:16px;
   display:flex;align-items:center;justify-content:center;
-  background:rgba(245,158,11,.12);
-  color:rgba(245,158,11,.95);
-  font-size:30px;margin-bottom:18px
+  background:rgba(246,181,74,.12);
+  color:rgba(246,181,74,.95);
+  font-size:26px;margin-bottom:12px
 }
-.card h3{font-size:20px;font-weight:900;margin-bottom:10px;color:#fff}
-.card p{color:var(--cinza);font-size:15.5px;line-height:1.85;margin-bottom:14px}
+.card h3{font-size:18px;font-weight:900;margin-bottom:8px;color:#fff}
+.card p{color:var(--muted);font-size:14.5px;line-height:1.75;margin-bottom:10px}
 .list{list-style:none}
-.list li{display:flex;gap:10px;align-items:flex-start;color:var(--cinza);font-size:15.5px;margin-bottom:10px;line-height:1.55}
-.list i{color:var(--dourado);margin-top:3px;width:18px;text-align:center}
+.list li{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:14.5px;margin-bottom:8px;line-height:1.45}
+.list i{color:var(--b);margin-top:3px;width:18px;text-align:center}
 
-/* MINI */
-.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
 .mini{
   background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
-  border-radius:18px;
-  padding:22px;
-  transition:.18s;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:18px;
+  transition:.16s;
 }
-.mini:hover{transform:translateY(-5px);border-color:rgba(245,158,11,.55);box-shadow:var(--sombra)}
-.mini i{font-size:28px;color:var(--dourado);margin-bottom:10px}
-.mini h4{font-size:16px;font-weight:900;color:#fff;margin-bottom:8px}
-.mini p{color:var(--cinza);font-size:15.5px;line-height:1.8;margin:0}
+.mini:hover{transform:translateY(-4px);border-color:rgba(246,181,74,.45);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.mini i{font-size:26px;color:var(--b);margin-bottom:10px}
+.mini h4{font-size:15px;font-weight:900;color:#fff;margin-bottom:6px}
+.mini p{color:var(--muted);font-size:14.5px;line-height:1.7;margin:0}
 
 .steps .num{
-  width:44px;height:44px;border-radius:14px;
-  background:rgba(56,189,248,.10);
-  border:1px solid rgba(56,189,248,.22);
+  width:42px;height:42px;border-radius:14px;
+  background:rgba(89,167,255,.10);
+  border:1px solid rgba(89,167,255,.20);
   display:flex;align-items:center;justify-content:center;
-  color:rgba(56,189,248,.95);font-weight:900;margin-bottom:12px
+  color:rgba(89,167,255,.98);font-weight:900;margin-bottom:10px
 }
 
-.quote{font-size:15.5px;color:var(--cinza);line-height:1.85;margin-top:10px}
-.stars{color:#fbbf24;font-size:14px;letter-spacing:2px}
-
-/* ===== TRABALHOS REAIS ===== */
+/* ===== TRABALHOS REAIS (compacto) ===== */
 .workWrap{
   background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
-  border-radius:24px;
-  box-shadow:var(--sombra);
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow);
   overflow:hidden;
 }
 .workTop{
-  padding:18px 18px 14px;
-  display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;
-  border-bottom:1px solid var(--linha);
-  background:linear-gradient(180deg, rgba(245,158,11,.08), transparent);
+  padding:14px 16px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg, rgba(246,181,74,.08), transparent);
 }
 .workTop .left h3{
-  font-size:20px;font-weight:900;color:#fff;margin-bottom:6px;
+  font-size:18px;font-weight:900;color:#fff;margin-bottom:6px;
   display:flex;gap:10px;align-items:center;
 }
-.workTop .left h3 i{color:var(--dourado)}
-.workTop .left p{color:var(--cinza);font-size:14px;max-width:820px;line-height:1.7}
-.workFilters{display:flex;gap:10px;flex-wrap:wrap}
+.workTop .left h3 i{color:var(--b)}
+.workTop .left p{color:var(--muted);font-size:13.5px;max-width:860px;line-height:1.6}
+.workFilters{display:flex;gap:8px;flex-wrap:wrap}
 .fBtn{
-  border:none;border-radius:999px;padding:10px 14px;
+  border:none;border-radius:999px;padding:9px 12px;
   font-weight:900;cursor:pointer;
-  background:rgba(255,255,255,.06);
+  background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.10);
-  color:var(--texto);
+  color:var(--text);
   transition:.15s;
+  font-size:12px;
 }
-.fBtn:hover{transform:translateY(-1px);border-color:rgba(245,158,11,.5)}
-.fBtn.active{background:var(--gradiente);color:var(--bg);border:none}
+.fBtn:hover{transform:translateY(-1px);border-color:rgba(246,181,74,.45)}
+.fBtn.active{background:var(--grad);color:var(--bg);border:none}
 
 .workGrid{
-  padding:18px;
+  padding:14px 16px 16px;
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:14px;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:12px;
 }
 .workItem{
   background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
-  border-radius:18px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:16px;
   overflow:hidden;
-  transition:.18s;
+  transition:.16s;
 }
-.workItem:hover{transform:translateY(-5px);border-color:rgba(245,158,11,.55);box-shadow:0 18px 40px rgba(0,0,0,.35)}
-.workMedia{
-  background:#0b1228;
-  aspect-ratio: 16/10;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-.workMedia img, .workMedia video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-.workBody{padding:14px}
-.workBody b{display:block;color:#fff;font-weight:900}
-.workBody small{display:block;color:var(--cinza);margin-top:6px;line-height:1.5}
+.workItem:hover{transform:translateY(-4px);border-color:rgba(246,181,74,.45);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.workMedia{background:#0c1230;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.workMedia img,.workMedia video{width:100%;height:100%;object-fit:cover;display:block}
+.workBody{padding:12px 12px 14px}
+.workBody b{display:block;color:#fff;font-weight:900;font-size:14.5px}
+.workBody small{display:block;color:var(--muted);margin-top:6px;line-height:1.45;font-size:12.8px}
 .workTag{
   display:inline-flex;align-items:center;gap:8px;
   margin-top:10px;
-  padding:7px 10px;border-radius:999px;
-  background:rgba(56,189,248,.10);
-  border:1px solid rgba(56,189,248,.22);
-  color:rgba(56,189,248,.95);
-  font-weight:900;font-size:12px;
+  padding:6px 10px;border-radius:999px;
+  background:rgba(89,167,255,.10);
+  border:1px solid rgba(89,167,255,.20);
+  color:rgba(89,167,255,.98);
+  font-weight:900;font-size:11.5px;
 }
-.workTag i{color:var(--dourado)}
+.workTag i{color:var(--b)}
 
-/* FAQ */
-.faq{max-width:1000px;margin:0 auto;display:grid;gap:12px}
-.faqItem{background:rgba(255,255,255,.03);border:1px solid var(--linha);border-radius:18px;padding:18px}
-.faqQ{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:900;color:#fff}
-.faqA{margin-top:10px;color:var(--cinza);font-size:15.5px;line-height:1.85;display:none}
+/* ===== FAQ ===== */
+.faq{max-width:1000px;margin:0 auto;display:grid;gap:10px}
+.faqItem{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:16px;padding:14px}
+.faqQ{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:900;color:#fff;gap:10px}
+.faqA{margin-top:8px;color:var(--muted);font-size:14.5px;line-height:1.7;display:none}
 .faqItem.open .faqA{display:block}
-.faqQ i{color:var(--dourado)}
+.faqQ i{color:var(--b)}
 
-/* FORM */
-.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+/* ===== FORM ===== */
+.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .input{
-  width:100%;padding:14px;border-radius:14px;
+  width:100%;padding:13px;border-radius:14px;
   background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.10);
-  color:var(--texto);
+  color:var(--text);
   outline:none;
 }
-textarea.input{min-height:120px;resize:vertical}
-.formActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.smallNote{color:var(--cinza);font-size:12px;margin-top:8px;line-height:1.6}
+textarea.input{min-height:110px;resize:vertical}
+.formActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.smallNote{color:var(--muted);font-size:12px;margin-top:8px;line-height:1.6}
 
-/* MAPA INTERATIVO */
+/* ===== MAPA (menos alto) ===== */
 .mapWrap{
   background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
-  border-radius:24px;
-  box-shadow:var(--sombra);
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow);
   overflow:hidden;
 }
 .mapTop{
-  padding:18px 18px 14px;
-  display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;
-  border-bottom:1px solid var(--linha);
-  background:linear-gradient(180deg, rgba(56,189,248,.08), transparent);
+  padding:14px 16px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg, rgba(89,167,255,.10), transparent);
 }
 .mapTop .left h3{
-  font-size:20px;font-weight:900;color:#fff;margin-bottom:6px;
+  font-size:18px;font-weight:900;color:#fff;margin-bottom:6px;
   display:flex;gap:10px;align-items:center;
 }
-.mapTop .left h3 i{color:var(--dourado)}
-.mapTop .left p{color:var(--cinza);font-size:14px;max-width:780px;line-height:1.7}
-.mapActions{display:flex;gap:10px;flex-wrap:wrap}
+.mapTop .left h3 i{color:var(--b)}
+.mapTop .left p{color:var(--muted);font-size:13.5px;max-width:820px;line-height:1.6}
+.mapActions{display:flex;gap:8px;flex-wrap:wrap}
 .mapBtn{
-  border:none;border-radius:999px;padding:10px 14px;
+  border:none;border-radius:999px;padding:9px 12px;
   font-weight:900;cursor:pointer;
-  background:rgba(255,255,255,.06);
+  background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.10);
-  color:var(--texto);
+  color:var(--text);
   transition:.15s;
+  font-size:12px;
 }
-.mapBtn:hover{transform:translateY(-1px);border-color:rgba(245,158,11,.5)}
-.mapBtn.primary{background:var(--gradiente);color:var(--bg);border:none}
+.mapBtn:hover{transform:translateY(-1px);border-color:rgba(246,181,74,.45)}
+.mapBtn.primary{background:var(--grad);color:var(--bg);border:none}
 
-.mapGrid{
-  display:grid;
-  grid-template-columns:420px 1fr;
-  min-height:620px;
-}
+.mapGrid{display:grid;grid-template-columns:380px 1fr;min-height:520px}
 .mapSide{
-  padding:18px;
-  border-right:1px solid var(--linha);
-  background:rgba(2,6,23,.55);
+  padding:14px;
+  border-right:1px solid rgba(255,255,255,.08);
+  background:rgba(5,8,20,.55);
 }
 .searchRow{display:flex;gap:10px}
 .searchRow input{
   flex:1;
-  padding:12px 12px;border-radius:14px;
+  padding:12px;border-radius:14px;
   background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.10);
-  color:var(--texto);
+  color:var(--text);
   outline:none;
 }
 .searchRow button{
-  width:52px;border-radius:14px;
-  background:rgba(245,158,11,.12);
-  border:1px solid rgba(245,158,11,.28);
-  color:rgba(245,158,11,.95);
+  width:50px;border-radius:14px;
+  background:rgba(246,181,74,.12);
+  border:1px solid rgba(246,181,74,.28);
+  color:rgba(246,181,74,.95);
   cursor:pointer;
 }
-.searchRow button:hover{border-color:rgba(245,158,11,.6)}
 .cityList{
-  margin-top:14px;
+  margin-top:12px;
   display:grid;gap:10px;
-  max-height:520px;
+  max-height:410px;
   overflow:auto;
   padding-right:6px;
 }
 .cityBtn{
   text-align:left;
-  padding:14px 14px;border-radius:16px;
+  padding:12px;border-radius:16px;
   background:rgba(255,255,255,.03);
   border:1px solid rgba(255,255,255,.10);
   cursor:pointer;
   transition:.15s;
-  color:var(--texto);
+  color:var(--text);
 }
-.cityBtn:hover{transform:translateY(-2px);border-color:rgba(245,158,11,.55);box-shadow:0 16px 30px rgba(0,0,0,.22)}
+.cityBtn:hover{transform:translateY(-2px);border-color:rgba(246,181,74,.45);box-shadow:0 16px 30px rgba(0,0,0,.22)}
 .cityBtn b{display:block;color:#fff;font-weight:900}
-.cityBtn small{display:block;color:var(--cinza);margin-top:4px;line-height:1.5}
+.cityBtn small{display:block;color:var(--muted);margin-top:4px;line-height:1.45}
 .cityBtn .tag{
   display:inline-flex;align-items:center;gap:8px;
   margin-top:10px;
-  padding:7px 10px;border-radius:999px;
-  background:rgba(56,189,248,.10);
-  border:1px solid rgba(56,189,248,.22);
-  color:rgba(56,189,248,.95);
-  font-weight:900;font-size:12px;
+  padding:6px 10px;border-radius:999px;
+  background:rgba(89,167,255,.10);
+  border:1px solid rgba(89,167,255,.20);
+  color:rgba(89,167,255,.98);
+  font-weight:900;font-size:11.5px;
 }
-.cityBtn .tag i{color:var(--dourado)}
-#map{
-  width:100%;
-  height:620px;
-  min-height:620px;
-  background:#0b1228;
-}
+.cityBtn .tag i{color:var(--b)}
+#map{width:100%;height:520px;min-height:520px;background:#0c1230}
 
 /* Leaflet popup */
 .leaflet-popup-content-wrapper{
-  background:rgba(2,6,23,.96);
-  color:var(--texto);
+  background:rgba(5,8,20,.97);
+  color:var(--text);
   border:1px solid rgba(255,255,255,.10);
-  border-radius:16px;
+  border-radius:14px;
   box-shadow:0 18px 40px rgba(0,0,0,.45);
 }
-.leaflet-popup-tip{background:rgba(2,6,23,.96)}
-.popupTitle{
-  font-weight:900;
-  color:#fff;
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:6px;
-}
-.popupTitle i{color:#ff4d4d} /* símbolo bombeiro */
-.popupText{color:var(--cinza);font-size:13px;line-height:1.55}
+.leaflet-popup-tip{background:rgba(5,8,20,.97)}
+.popupTitle{font-weight:900;color:#fff;display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.popupTitle i{color:#ff4d4d}
+.popupText{color:var(--muted);font-size:12.8px;line-height:1.5}
 
 /* REDES */
-.social{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.social{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
 .social a{
-  width:122px;height:118px;border-radius:18px;
+  width:122px;height:112px;border-radius:16px;
   background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
+  border:1px solid var(--line);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-decoration:none;transition:.18s;color:rgba(56,189,248,.95);
+  transition:.16s;color:rgba(89,167,255,.98);
 }
-.social a:hover{transform:translateY(-6px);border-color:rgba(245,158,11,.55);box-shadow:var(--sombra);background:rgba(245,158,11,.07)}
-.social i{font-size:30px;color:var(--dourado);margin-bottom:8px}
-.social span{font-weight:900;font-size:13px}
+.social a:hover{transform:translateY(-4px);border-color:rgba(246,181,74,.45);box-shadow:0 18px 40px rgba(0,0,0,.35);background:rgba(246,181,74,.06)}
+.social i{font-size:28px;color:var(--b);margin-bottom:8px}
+.social span{font-weight:900;font-size:12.5px}
 
 /* FOOTER */
-footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
-.footerGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px}
-.footerGrid h4{color:rgba(245,158,11,.95);font-weight:900;margin-bottom:12px}
-.footerGrid p, .footerGrid a{color:var(--cinza);font-size:14px;line-height:1.75;text-decoration:none}
+footer{background:#030613;border-top:1px solid var(--line);padding:46px 0 34px}
+.footerGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.footerGrid h4{color:rgba(246,181,74,.95);font-weight:900;margin-bottom:10px}
+.footerGrid p, .footerGrid a{color:var(--muted);font-size:13.5px;line-height:1.7}
 .footerGrid a:hover{color:#fff}
-.copy{border-top:1px solid var(--linha);margin-top:30px;padding-top:18px;color:var(--cinza);text-align:center;font-size:13px}
+.copy{border-top:1px solid rgba(255,255,255,.08);margin-top:18px;padding-top:14px;color:var(--muted);text-align:center;font-size:12.5px}
 
 /* WhatsApp + topo */
 .whats{
-  position:fixed;right:18px;bottom:18px;z-index:2000;
-  background:rgba(245,158,11,.14);
-  border:1px solid rgba(245,158,11,.30);
-  color:rgba(245,158,11,.95);
-  padding:12px 14px;border-radius:999px;text-decoration:none;font-weight:900;
-  display:flex;align-items:center;gap:10px;box-shadow:var(--sombra);
+  position:fixed;right:16px;bottom:16px;z-index:2000;
+  background:rgba(246,181,74,.14);
+  border:1px solid rgba(246,181,74,.30);
+  color:rgba(246,181,74,.95);
+  padding:11px 12px;border-radius:999px;text-decoration:none;font-weight:900;
+  display:flex;align-items:center;gap:10px;box-shadow:var(--shadow);
 }
-.whats i{color:rgba(245,158,11,.95)}
+.whats i{color:rgba(246,181,74,.95)}
 .whats:hover{transform:translateY(-2px);transition:.15s}
 
-/* menu de contatos do whatsapp */
 .wppPanel{
-  position:fixed;right:18px;bottom:76px;z-index:2001;
-  width:min(320px,calc(100% - 36px));
-  background:rgba(2,6,23,.97);
+  position:fixed;right:16px;bottom:72px;z-index:2001;
+  width:min(320px,calc(100% - 32px));
+  background:rgba(5,8,20,.97);
   border:1px solid rgba(255,255,255,.10);
-  border-radius:18px;
+  border-radius:16px;
   box-shadow:0 18px 40px rgba(0,0,0,.45);
   overflow:hidden;
   display:none;
 }
 .wppPanel.open{display:block}
 .wppHead{
-  padding:14px 14px 10px;
+  padding:12px 12px 10px;
   border-bottom:1px solid rgba(255,255,255,.10);
-  background:linear-gradient(180deg, rgba(245,158,11,.10), transparent);
+  background:linear-gradient(180deg, rgba(246,181,74,.10), transparent);
 }
 .wppHead b{display:flex;align-items:center;gap:10px;color:#fff}
-.wppHead b i{color:var(--dourado)}
+.wppHead b i{color:var(--b)}
 .wppList{padding:12px;display:grid;gap:10px}
 .wppItem{
   display:flex;align-items:flex-start;gap:12px;
-  padding:12px;border-radius:14px;
+  padding:11px;border-radius:14px;
   background:rgba(255,255,255,.03);
   border:1px solid rgba(255,255,255,.10);
-  text-decoration:none;
   transition:.15s;
 }
-.wppItem:hover{transform:translateY(-2px);border-color:rgba(245,158,11,.55)}
-.wppItem i{font-size:18px;color:var(--dourado);margin-top:2px}
-.wppItem .tt{font-weight:900;color:#fff;line-height:1.2}
-.wppItem .ss{color:var(--cinza);font-size:13px;margin-top:4px;line-height:1.45}
+.wppItem:hover{transform:translateY(-2px);border-color:rgba(246,181,74,.45)}
+.wppItem i{font-size:18px;color:var(--b);margin-top:2px}
+.wppItem .tt{font-weight:900;color:#fff;line-height:1.2;font-size:13.5px}
+.wppItem .ss{color:var(--muted);font-size:12.5px;margin-top:4px;line-height:1.45}
 
 .toTop{
-  position:fixed;left:18px;bottom:18px;z-index:2000;
+  position:fixed;left:16px;bottom:16px;z-index:2000;
   width:44px;height:44px;border-radius:14px;
   border:1px solid rgba(255,255,255,.10);
   background:rgba(255,255,255,.03);
-  color:rgba(56,189,248,.95);
+  color:rgba(89,167,255,.98);
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;opacity:0;pointer-events:none;transition:.2s;
 }
-.toTop.show{opacity:1;pointer-events:auto;transform:translateY(-2px);border-color:rgba(245,158,11,.55)}
-.toTop i{color:var(--dourado)}
+.toTop.show{opacity:1;pointer-events:auto;transform:translateY(-2px);border-color:rgba(246,181,74,.45)}
+.toTop i{color:var(--b)}
 
 /* Mobile bar */
 .mobileBar{
   display:none;
   position:fixed;left:0;right:0;bottom:0;z-index:1999;
-  background:rgba(2,6,23,.98);
-  border-top:1px solid var(--linha);
+  background:rgba(5,8,20,.98);
+  border-top:1px solid rgba(255,255,255,.08);
   padding:10px 12px;
 }
 .mobileBar a{
   display:flex;align-items:center;justify-content:center;gap:10px;
   width:100%;padding:14px 16px;border-radius:16px;
-  text-decoration:none;font-weight:900;
-  background:var(--gradiente);color:var(--bg);
+  font-weight:900;
+  background:var(--grad);color:var(--bg);
 }
 
-/* ===== VLibras (evita bater com WhatsApp) ===== */
-.vw-access-button{
-  right:18px !important;
-  bottom:86px !important; /* sobe um pouco pra não ficar em cima do WhatsApp */
-}
+/* VLibras (evitar sobrepor o Whats) */
+.vw-access-button{ right:16px !important; bottom:86px !important; }
 
-/* RESPONSIVO */
+/* ===== RESPONSIVO ===== */
 @media (max-width:1024px){
-  .hero-grid{grid-template-columns:1fr;gap:32px;text-align:center}
+  .hero-grid{grid-template-columns:1fr;gap:18px;text-align:center}
   .hero p{margin-left:auto;margin-right:auto}
   .pills{justify-content:center}
   .actions{justify-content:center}
   .mapGrid{grid-template-columns:1fr;min-height:auto}
-  .mapSide{border-right:none;border-bottom:1px solid var(--linha)}
-  #map{height:520px;min-height:520px}
-  .cityList{max-height:260px}
+  .mapSide{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
+  #map{height:420px;min-height:420px}
+  .cityList{max-height:240px}
 }
 @media (max-width:768px){
+  section{padding:var(--padYsm) 0}
   nav{
-    position:fixed;top:88px;left:0;right:0;
-    background:rgba(2,6,23,.98);
-    border-bottom:1px solid var(--linha);
+    position:fixed;top:78px;left:0;right:0;
+    background:rgba(5,8,20,.98);
+    border-bottom:1px solid rgba(255,255,255,.08);
     flex-direction:column;gap:0;
     transform:translateY(-120%);
     opacity:0;visibility:hidden;
-    transition:.25s;
-    padding:14px 5%;
+    transition:.22s;
+    padding:12px 5%;
   }
   nav.active{transform:translateY(0);opacity:1;visibility:visible}
-  nav a{padding:14px 0;border-bottom:1px solid var(--linha);width:100%;justify-content:center}
+  nav a{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);width:100%;justify-content:center}
   nav a:last-child{border-bottom:none}
   .menuBtn{display:block}
   .formGrid{grid-template-columns:1fr}
   .whats span{display:none}
   .mobileBar{display:block}
-  section{padding:95px 0}
-  #map{height:420px;min-height:420px}
+  #map{height:360px;min-height:360px}
 }
 </style>
 </head>
@@ -648,11 +642,11 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
       <div class="heroVisual">
         <div class="visualBox">
           <div class="t"><i class="fas fa-clipboard-check"></i> Resultado</div>
-          <div class="d">Sua empresa regularizada, com documentação técnica e segurança jurídica.</div>
+          <div class="d">Empresa regularizada, com documentação técnica e segurança jurídica.</div>
         </div>
         <div class="visualBox">
           <div class="t"><i class="fas fa-fire-flame-curved"></i> Bombeiros</div>
-          <div class="d">Projetos e adequações para prevenção e combate a incêndio conforme exigências.</div>
+          <div class="d">Projetos e adequações conforme exigências do Corpo de Bombeiros.</div>
         </div>
         <div class="visualBox">
           <div class="t"><i class="fas fa-helmet-safety"></i> NR</div>
@@ -672,8 +666,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
     <div class="section-header">
       <h2 class="section-title">SERVIÇOS</h2>
       <p class="section-subtitle">
-        Serviços completos com <strong>explicação clara</strong>, foco em <strong>normas</strong> e <strong>documentação</strong>.
-        Ideal para empresas que precisam operar regularizadas.
+        Serviços completos com explicação clara e documentação organizada — do diagnóstico até a entrega.
       </p>
     </div>
 
@@ -717,7 +710,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
       <div class="card">
         <div class="iconBox"><i class="fas fa-hospital"></i></div>
         <h3>Engenharia Clínica</h3>
-        <p>Gestão e manutenção técnica de equipamentos, com rotinas e documentação para hospitais e clínicas.</p>
+        <p>Gestão e manutenção técnica de equipamentos com rotinas e documentação para clínicas e hospitais.</p>
         <ul class="list">
           <li><i class="fas fa-stethoscope"></i> Rotinas e checklists</li>
           <li><i class="fas fa-screwdriver-wrench"></i> Planos de manutenção</li>
@@ -729,7 +722,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
       <div class="card">
         <div class="iconBox"><i class="fas fa-cogs"></i></div>
         <h3>Engenharia Mecânica</h3>
-        <p>Inspeções e análises para equipamentos e sistemas mecânicos, com foco em segurança e adequações.</p>
+        <p>Inspeções e análises para sistemas mecânicos com foco em segurança e adequações.</p>
         <ul class="list">
           <li><i class="fas fa-gears"></i> Projetos e melhorias</li>
           <li><i class="fas fa-toolbox"></i> Inspeções técnicas</li>
@@ -753,24 +746,22 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
   </div>
 </section>
 
-<!-- TRABALHOS REAIS (pra alimentar bastante com fotos/vídeos reais) -->
+<!-- TRABALHOS REAIS -->
 <section id="trabalhos">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">TRABALHOS REAIS</h2>
       <p class="section-subtitle">
-        Aqui é onde o cliente <strong>vê vocês fazendo o serviço</strong>. Coloque <strong>fotos e vídeos reais</strong>:
-        escritório, equipamentos, vistorias, laudos, instalações, sinalização, SPDA, etc.
+        Aqui o cliente vê você fazendo o serviço (fotos e vídeos reais). Troque os arquivos “exemplo” pelos seus.
       </p>
     </div>
 
     <div class="workWrap">
       <div class="workTop">
         <div class="left">
-          <h3><i class="fas fa-camera"></i> Galeria real (fotos e vídeos)</h3>
+          <h3><i class="fas fa-camera"></i> Galeria real</h3>
           <p>
-            Dica: crie uma pasta <strong>/midia</strong> e jogue arquivos lá (ex: <strong>midia/spda1.jpg</strong>,
-            <strong>midia/vistoria1.mp4</strong>). Aqui embaixo é só trocar os arquivos pelos reais.
+            Coloque seus arquivos em <strong>/midia</strong> (ex.: <strong>midia/spda1.jpg</strong> e <strong>midia/vistoria1.mp4</strong>).
           </p>
         </div>
 
@@ -785,105 +776,53 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
       </div>
 
       <div class="workGrid" id="workGrid">
-        <!-- FOTO (troque os src pelos reais) -->
         <div class="workItem" data-tags="foto eletrica">
-          <div class="workMedia">
-            <img src="midia/exemplo1.jpg" alt="Trabalho real - exemplo">
-          </div>
+          <div class="workMedia"><img src="midia/exemplo1.jpg" alt="Trabalho real - SPDA / Aterramento"></div>
           <div class="workBody">
             <b>SPDA / Aterramento</b>
-            <small>Foto real de execução/inspeção (troque por uma sua).</small>
+            <small>Foto real de execução ou inspeção (substitua pelo seu arquivo).</small>
             <span class="workTag"><i class="fas fa-thumbtack"></i> Elétrica</span>
           </div>
         </div>
 
         <div class="workItem" data-tags="foto bombeiros">
-          <div class="workMedia">
-            <img src="midia/exemplo2.jpg" alt="Trabalho real - exemplo">
-          </div>
+          <div class="workMedia"><img src="midia/exemplo2.jpg" alt="Trabalho real - Bombeiros"></div>
           <div class="workBody">
             <b>Sinalização / Rotas de fuga</b>
-            <small>Antes/Depois ajuda MUITO a fechar contrato.</small>
+            <small>Antes/Depois fecha contrato rápido.</small>
             <span class="workTag"><i class="fas fa-fire-flame-curved"></i> Bombeiros</span>
           </div>
         </div>
 
-        <!-- VÍDEO (troque o arquivo) -->
         <div class="workItem" data-tags="video nr">
-          <div class="workMedia">
-            <video src="midia/exemplo1.mp4" controls preload="metadata"></video>
-          </div>
+          <div class="workMedia"><video src="midia/exemplo1.mp4" controls preload="metadata"></video></div>
           <div class="workBody">
             <b>Vistoria / Coleta técnica</b>
-            <small>Vídeo real (30–60s já basta). Mostra escritório e equipamento.</small>
+            <small>Vídeo real curto (30–60s) mostrando trabalho e equipamento.</small>
             <span class="workTag"><i class="fas fa-helmet-safety"></i> NR</span>
           </div>
         </div>
 
         <div class="workItem" data-tags="video bombeiros">
-          <div class="workMedia">
-            <video src="midia/exemplo2.mp4" controls preload="metadata"></video>
-          </div>
+          <div class="workMedia"><video src="midia/exemplo2.mp4" controls preload="metadata"></video></div>
           <div class="workBody">
-            <b>Projeto Bombeiros (na prática)</b>
-            <small>Mostre medição, check-list, planta, sinalização, extintores, etc.</small>
+            <b>Execução / Adequações</b>
+            <small>Mostre medição, checklist, sinalização, extintores etc.</small>
             <span class="workTag"><i class="fas fa-fire-flame-curved"></i> Bombeiros</span>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MAPA -->
-<section id="mapa" class="bg2">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">MAPA DE ATUAÇÃO</h2>
-      <p class="section-subtitle">
-        Clique em uma cidade para <strong>dar zoom</strong> no mapa e ver o <strong>alfinete</strong> com símbolo do <strong>bombeiro</strong>.
-      </p>
-    </div>
-
-    <div class="mapWrap">
-      <div class="mapTop">
-        <div class="left">
-          <h3><i class="fas fa-map-location-dot"></i> Regiões atendidas</h3>
-          <p>Lista interativa + mapa. Se abrir “offline”, o mapa pode não carregar (normal). Com internet, funciona perfeito.</p>
-        </div>
-        <div class="mapActions">
-          <button class="mapBtn primary" id="btnAll"><i class="fas fa-layer-group"></i> Ver tudo</button>
-          <button class="mapBtn" id="btnLocate"><i class="fas fa-location-crosshairs"></i> Minha localização</button>
-        </div>
-      </div>
-
-      <div class="mapGrid">
-        <aside class="mapSide">
-          <div class="searchRow">
-            <input id="citySearch" placeholder="Buscar cidade (ex: Porto Seguro)" />
-            <button id="btnSearch" aria-label="Buscar"><i class="fas fa-magnifying-glass"></i></button>
-          </div>
-
-          <div class="cityList" id="cityList"></div>
-
-          <div class="smallNote">
-            Dica: clique em qualquer cidade para abrir o popup com o símbolo do bombeiro 🔥.
-          </div>
-        </aside>
-
-        <div id="map" aria-label="Mapa interativo"></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- AUTORIDADE -->
-<section id="autoridade">
+<section id="autoridade" class="bg2">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">AUTORIDADE E CONFORMIDADE</h2>
+      <h2 class="section-title">AUTORIDADE</h2>
       <p class="section-subtitle">
-        O cliente paga mais quando entende que você entrega <strong>conformidade</strong>, <strong>documentação</strong> e <strong>segurança jurídica</strong>.
+        Conformidade, documentação e segurança jurídica — isso é o que aumenta valor e confiança.
       </p>
     </div>
 
@@ -891,7 +830,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
       <div class="mini">
         <i class="fas fa-id-card"></i>
         <h4>CREA / Registros</h4>
-        <p>Profissionais habilitados, garantindo respaldo técnico e credibilidade.</p>
+        <p>Profissionais habilitados, com respaldo técnico e credibilidade.</p>
       </div>
       <div class="mini">
         <i class="fas fa-file-signature"></i>
@@ -906,14 +845,14 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
       <div class="mini">
         <i class="fas fa-helmet-safety"></i>
         <h4>Normas NR</h4>
-        <p>Adequações e documentos para reduzir multas e passivos trabalhistas.</p>
+        <p>Documentos e adequações para reduzir multas e riscos.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PROCESSO -->
-<section id="processo" class="bg2">
+<section id="processo">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">COMO TRABALHAMOS</h2>
@@ -934,12 +873,52 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
       <div class="mini">
         <div class="num">3</div>
         <h4>Projeto / Laudo</h4>
-        <p>Documentação conforme normas, exigências legais e critérios de segurança.</p>
+        <p>Documentação conforme normas e exigências legais.</p>
       </div>
       <div class="mini">
         <div class="num">4</div>
         <h4>Entrega e Suporte</h4>
         <p>Entrega organizada + suporte em auditorias e fiscalizações.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAPA -->
+<section id="mapa" class="bg2">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">MAPA DE ATUAÇÃO</h2>
+      <p class="section-subtitle">Clique em uma cidade para dar zoom e ver o alfinete com símbolo do bombeiro.</p>
+    </div>
+
+    <div class="mapWrap">
+      <div class="mapTop">
+        <div class="left">
+          <h3><i class="fas fa-map-location-dot"></i> Regiões atendidas</h3>
+          <p>Com internet, o mapa carrega normalmente. Offline pode não carregar os “tiles”.</p>
+        </div>
+        <div class="mapActions">
+          <button class="mapBtn primary" id="btnAll"><i class="fas fa-layer-group"></i> Ver tudo</button>
+          <button class="mapBtn" id="btnLocate"><i class="fas fa-location-crosshairs"></i> Minha localização</button>
+        </div>
+      </div>
+
+      <div class="mapGrid">
+        <aside class="mapSide">
+          <div class="searchRow">
+            <input id="citySearch" placeholder="Buscar cidade (ex: Porto Seguro)" />
+            <button id="btnSearch" aria-label="Buscar"><i class="fas fa-magnifying-glass"></i></button>
+          </div>
+
+          <div class="cityList" id="cityList"></div>
+
+          <div class="smallNote">
+            Dica: clique na cidade para abrir o popup 🔥.
+          </div>
+        </aside>
+
+        <div id="map" aria-label="Mapa interativo"></div>
       </div>
     </div>
   </div>
@@ -955,28 +934,28 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
 
     <div class="grid4">
       <div class="mini">
-        <div class="stars">★★★★★</div>
+        <div style="color:#fbbf24;font-weight:900;letter-spacing:2px">★★★★★</div>
         <h4>Empresa Regularizada</h4>
-        <p class="quote">“Organização, documentação e orientação muito claras. Serviço de alto nível.”</p>
-        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Comercial</p>
+        <p>“Organização e orientação muito claras. Serviço de alto nível.”</p>
+        <p style="margin-top:8px;color:var(--muted);font-weight:800">— Cliente Comercial</p>
       </div>
       <div class="mini">
-        <div class="stars">★★★★★</div>
+        <div style="color:#fbbf24;font-weight:900;letter-spacing:2px">★★★★★</div>
         <h4>Suporte em Fiscalização</h4>
-        <p class="quote">“Ajudou na fiscalização e deixou tudo em conformidade. Recomendo.”</p>
-        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Industrial</p>
+        <p>“Ajudou na fiscalização e deixou tudo em conformidade.”</p>
+        <p style="margin-top:8px;color:var(--muted);font-weight:800">— Cliente Industrial</p>
       </div>
       <div class="mini">
-        <div class="stars">★★★★★</div>
+        <div style="color:#fbbf24;font-weight:900;letter-spacing:2px">★★★★★</div>
         <h4>Bombeiros</h4>
-        <p class="quote">“Projeto e adequações muito bem feitos, com suporte no processo.”</p>
-        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Empresa</p>
+        <p>“Projeto e adequações muito bem feitos, com suporte no processo.”</p>
+        <p style="margin-top:8px;color:var(--muted);font-weight:800">— Cliente Empresa</p>
       </div>
       <div class="mini">
-        <div class="stars">★★★★★</div>
+        <div style="color:#fbbf24;font-weight:900;letter-spacing:2px">★★★★★</div>
         <h4>Profissionalismo</h4>
-        <p class="quote">“Atendimento sério e técnico. Entregou tudo organizado e rápido.”</p>
-        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Clínica</p>
+        <p>“Atendimento sério e técnico. Tudo organizado e rápido.”</p>
+        <p style="margin-top:8px;color:var(--muted);font-weight:800">— Cliente Clínica</p>
       </div>
     </div>
   </div>
@@ -986,7 +965,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
 <section id="faq" class="bg2">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">DÚVIDAS FREQUENTES</h2>
+      <h2 class="section-title">DÚVIDAS</h2>
       <p class="section-subtitle">Respostas rápidas para o cliente decidir sem medo.</p>
     </div>
 
@@ -997,18 +976,15 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
       </div>
       <div class="faqItem">
         <div class="faqQ"><span>Atendem Corpo de Bombeiros?</span><i class="fas fa-plus"></i></div>
-        <div class="faqA">Sim. Elaboramos projetos e orientamos adequações de prevenção e combate a incêndio conforme exigências.</div>
+        <div class="faqA">Sim. Elaboramos projetos e orientamos adequações conforme exigências.</div>
       </div>
       <div class="faqItem">
         <div class="faqQ"><span>Quanto tempo demora?</span><i class="fas fa-plus"></i></div>
-        <div class="faqA">Depende do serviço e do tamanho do local. No orçamento, informamos prazo estimado e etapas.</div>
+        <div class="faqA">Depende do serviço e do tamanho do local. No orçamento informamos prazo e etapas.</div>
       </div>
       <div class="faqItem">
         <div class="faqQ"><span>O mapa não abre às vezes. Por quê?</span><i class="fas fa-plus"></i></div>
-        <div class="faqA">
-          Se abrir sem internet (offline) ou dentro de um app sem acesso à web, o mapa não carrega os “blocos”.
-          Com internet normal, ele abre e mostra todos os alfinetes.
-        </div>
+        <div class="faqA">Sem internet (offline) o mapa pode não carregar. Com internet normal, funciona e mostra os alfinetes.</div>
       </div>
     </div>
   </div>
@@ -1038,7 +1014,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
       </div>
 
       <div class="smallNote">
-        Ao clicar em “Enviar no WhatsApp”, será aberta uma mensagem pronta. Você pode revisar e enviar.
+        Ao clicar em “Enviar no WhatsApp”, abre uma mensagem pronta. Você pode revisar e enviar.
       </div>
     </div>
   </div>
@@ -1049,7 +1025,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">CONTATO</h2>
-      <p class="section-subtitle">Fale agora e receba atendimento direto.</p>
+      <p class="section-subtitle">Atendimento direto — escolha o contato.</p>
     </div>
 
     <div class="grid4">
@@ -1096,7 +1072,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
 <section id="redes">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">REDES SOCIAIS</h2>
+      <h2 class="section-title">REDES</h2>
       <p class="section-subtitle">Acompanhe novidades e trabalhos.</p>
     </div>
 
@@ -1123,7 +1099,7 @@ footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
       <div>
         <h4>SEC ENGENHARIA</h4>
         <p>Soluções técnicas com foco em qualidade, conformidade e documentação profissional.</p>
-        <p style="margin-top:10px;color:rgba(245,158,11,.95);font-weight:900">Desenvolver para Evoluir</p>
+        <p style="margin-top:8px;color:rgba(246,181,74,.95);font-weight:900">Desenvolver para Evoluir</p>
       </div>
       <div>
         <h4>Serviços</h4>
@@ -1225,12 +1201,6 @@ document.querySelectorAll('nav a').forEach(a=>{
   });
 });
 
-/* ===== HEADER SCROLL ===== */
-const header = document.querySelector('header');
-window.addEventListener('scroll', ()=>{
-  header.style.padding = window.scrollY > 40 ? '10px 0' : '14px 0';
-});
-
 /* ===== VOLTAR AO TOPO ===== */
 const toTop = document.getElementById('toTop');
 window.addEventListener('scroll', ()=>{
@@ -1248,15 +1218,13 @@ document.querySelectorAll('.faqItem').forEach(item=>{
   });
 });
 
-/* ===== WhatsApp painel (3 contatos) ===== */
+/* ===== WhatsApp painel ===== */
 const wppPanel = document.getElementById('wppPanel');
 const whatsBtn = document.getElementById('whatsBtn');
 const openWpp = document.getElementById('openWpp');
 const mobileWpp = document.getElementById('mobileWpp');
 
-function toggleWpp(){
-  wppPanel.classList.toggle('open');
-}
+function toggleWpp(){ wppPanel.classList.toggle('open'); }
 whatsBtn.addEventListener('click', toggleWpp);
 openWpp.addEventListener('click', toggleWpp);
 mobileWpp.addEventListener('click', toggleWpp);
@@ -1266,7 +1234,7 @@ document.addEventListener('click', (e)=>{
   if(!inside) wppPanel.classList.remove('open');
 });
 
-/* ===== FORMULÁRIO -> WHATSAPP (principal) ===== */
+/* ===== FORM -> WhatsApp (principal) ===== */
 document.getElementById('enviarWpp').addEventListener('click', ()=>{
   const nome = document.getElementById('nome').value.trim();
   const empresa = document.getElementById('empresa').value.trim();
@@ -1289,7 +1257,7 @@ Pode me orientar os próximos passos?`;
   window.open(url, "_blank");
 });
 
-/* ===== TRABALHOS REAIS: filtros ===== */
+/* ===== TRABALHOS: filtros ===== */
 const filterBtns = document.querySelectorAll('.fBtn');
 const workItems = document.querySelectorAll('.workItem');
 
@@ -1307,7 +1275,7 @@ filterBtns.forEach(btn=>{
   });
 });
 
-/* ===== MAPA (ALFINETES) ===== */
+/* ===== MAPA ===== */
 const cities = [
   { name:"Eunápolis",          hint:"Base / região de atendimento",         lat:-16.3765, lng:-39.5804 },
   { name:"Porto Seguro",       hint:"Projetos e regularizações",            lat:-16.4440, lng:-39.0649 },
@@ -1332,7 +1300,7 @@ const firePin = L.divIcon({
   html: `
     <div style="
       width:42px;height:42px;border-radius:18px;
-      background:rgba(2,6,23,.96);
+      background:rgba(5,8,20,.97);
       border:1px solid rgba(255,255,255,.18);
       box-shadow:0 18px 40px rgba(0,0,0,.35);
       display:flex;align-items:center;justify-content:center;
@@ -1340,8 +1308,8 @@ const firePin = L.divIcon({
     ">
       <i class="fas fa-fire-flame-curved" style="color:#ff4d4d;font-size:20px"></i>
       <div style="
-        position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
-        width:14px;height:14px;background:rgba(2,6,23,.96);
+        position:absolute;bottom:-10px;left:50%;
+        width:14px;height:14px;background:rgba(5,8,20,.97);
         border-left:1px solid rgba(255,255,255,.18);
         border-bottom:1px solid rgba(255,255,255,.18);
         transform:translateX(-50%) rotate(45deg);
@@ -1359,7 +1327,7 @@ function popupHTML(city){
     <div class="popupTitle"><i class="fas fa-fire-flame-curved"></i> ${city.name}</div>
     <div class="popupText">${city.hint}</div>
     <div class="popupText" style="margin-top:8px">
-      <i class="fas fa-location-dot" style="color:rgba(245,158,11,.95)"></i>
+      <i class="fas fa-location-dot" style="color:rgba(246,181,74,.95)"></i>
       Atendimento técnico e documentação.
     </div>
   `;
@@ -1419,12 +1387,12 @@ document.getElementById("btnLocate").addEventListener("click", ()=>{
 
     const you = L.circleMarker([latitude, longitude], {
       radius:10, weight:2,
-      color:"#38bdf8",
-      fillColor:"#38bdf8",
+      color:"#59a7ff",
+      fillColor:"#59a7ff",
       fillOpacity:0.25
     }).addTo(map);
 
-    you.bindPopup(`<div class="popupTitle"><i class="fas fa-location-crosshairs" style="color:rgba(245,158,11,.95)"></i> Sua localização</div>
+    you.bindPopup(`<div class="popupTitle"><i class="fas fa-location-crosshairs" style="color:rgba(246,181,74,.95)"></i> Sua localização</div>
       <div class="popupText">Usado apenas para te mostrar no mapa.</div>`).openPopup();
 
     fixMap();
@@ -1433,9 +1401,7 @@ document.getElementById("btnLocate").addEventListener("click", ()=>{
   });
 });
 
-function fixMap(){
-  setTimeout(()=> map.invalidateSize(), 250);
-}
+function fixMap(){ setTimeout(()=> map.invalidateSize(), 250); }
 window.addEventListener("load", fixMap);
 window.addEventListener("resize", fixMap);
 document.querySelectorAll('a[href="#mapa"]').forEach(a=> a.addEventListener("click", fixMap));
