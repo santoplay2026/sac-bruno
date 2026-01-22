@@ -19,7 +19,7 @@
 
 <style>
 :root{
-  /* ===== TEMA PREMIUM (compacto) ===== */
+  /* ===== TEMA PREMIUM ===== */
   --bg:#050814;
   --bg2:#070c1d;
   --card:rgba(255,255,255,.04);
@@ -32,13 +32,14 @@
   --b:#f6b54a;     /* dourado */
   --grad:linear-gradient(135deg,var(--a) 0%, var(--b) 100%);
 
-  --shadow: 0 18px 50px rgba(0,0,0,.42);
+  --shadow: 0 18px 55px rgba(0,0,0,.45);
   --r:18px;
 
-  --padY:72px;
-  --padYsm:50px;
+  /* Espaços (compacto e alinhado) */
+  --padY:68px;
+  --padYsm:48px;
   --gapTitle:26px;
-  --container:1200px;
+  --container:1180px;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
@@ -48,9 +49,12 @@ a{color:inherit;text-decoration:none}
 .container{max-width:var(--container);margin:0 auto;padding:0 5%}
 section{padding:var(--padY) 0}
 .bg2{background:var(--bg2)}
-h1,h2,h3,h4{letter-spacing:.2px}
 
-/* ===== TÍTULOS (menos espaço) ===== */
+/* ===== UTIL ===== */
+.hide{display:none!important}
+hr.sep{border:none;border-top:1px solid rgba(255,255,255,.08);margin:14px 0}
+
+/* ===== TÍTULOS ===== */
 .section-header{text-align:center;margin-bottom:var(--gapTitle)}
 .section-title{
   font-size:clamp(28px,3.7vw,50px);
@@ -60,7 +64,7 @@ h1,h2,h3,h4{letter-spacing:.2px}
   -webkit-text-fill-color:transparent;
   margin-bottom:8px;
 }
-.section-subtitle{color:var(--muted);font-size:16.5px;max-width:900px;margin:0 auto}
+.section-subtitle{color:var(--muted);font-size:16.5px;max-width:920px;margin:0 auto}
 
 /* ===== HEADER ===== */
 header{
@@ -73,17 +77,18 @@ header{
   padding:12px 0;
   display:flex;align-items:center;justify-content:space-between;gap:12px;
 }
-.brand{display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
 .brand img{
   width:52px;height:52px;border-radius:14px;object-fit:cover;
   border:2px solid rgba(246,181,74,.85);
   box-shadow:0 12px 28px rgba(0,0,0,.35);
+  flex:0 0 auto;
 }
-.brand .t1{font-size:22px;font-weight:900;line-height:1.1}
-.brand .t2{font-size:11px;color:rgba(246,181,74,.95);font-weight:900;letter-spacing:2.4px;margin-top:4px}
+.brandText{min-width:0}
+.brand .t1{font-size:22px;font-weight:900;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand .t2{font-size:11px;color:rgba(246,181,74,.95);font-weight:900;letter-spacing:2.2px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-/* NAV */
-nav{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:flex-end}
+nav{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:flex-end}
 nav a{
   color:var(--muted);
   font-weight:900;
@@ -94,11 +99,12 @@ nav a{
   display:flex;align-items:center;gap:8px;
 }
 nav a:hover{color:#fff}
+nav a.active{color:#fff}
 nav a::after{
   content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
   background:var(--grad);transition:.18s;
 }
-nav a:hover::after{width:100%}
+nav a:hover::after, nav a.active::after{width:100%}
 
 .menuBtn{
   display:none;border:none;background:transparent;
@@ -107,7 +113,7 @@ nav a:hover::after{width:100%}
 }
 .menuBtn:hover{background:rgba(246,181,74,.12)}
 
-/* ===== HERO (compacto e bonito) ===== */
+/* ===== HERO ===== */
 .hero{
   min-height:calc(100vh - 10px);
   padding-top:104px;
@@ -121,7 +127,7 @@ nav a:hover::after{width:100%}
 .hero-grid{
   display:grid;
   grid-template-columns:1.05fr .95fr;
-  gap:28px;
+  gap:26px;
   align-items:center;
 }
 .badge{
@@ -130,7 +136,7 @@ nav a:hover::after{width:100%}
   background:rgba(246,181,74,.12);
   border:1px solid rgba(246,181,74,.28);
   color:rgba(246,181,74,.96);
-  font-size:12px;font-weight:900;letter-spacing:1.8px;
+  font-size:12px;font-weight:900;letter-spacing:1.6px;
   margin-bottom:14px;
 }
 .badge i{color:rgba(246,181,74,.95)}
@@ -168,13 +174,13 @@ nav a:hover::after{width:100%}
   padding:14px 20px;border-radius:999px;
   font-weight:900;font-size:13px;letter-spacing:.4px;
   transition:.16s;cursor:pointer;border:none;
+  user-select:none;
 }
 .btn.primary{background:var(--grad);color:var(--bg);box-shadow:0 14px 34px rgba(246,181,74,.14)}
 .btn.primary:hover{transform:translateY(-2px)}
 .btn.outline{background:transparent;color:rgba(246,181,74,.95);border:2px solid rgba(246,181,74,.50)}
 .btn.outline:hover{background:rgba(246,181,74,.10);transform:translateY(-2px);border-color:rgba(246,181,74,.95)}
 
-/* HERO CARD */
 .heroCard{
   background:rgba(255,255,255,.03);
   border:1px solid var(--line);
@@ -207,7 +213,7 @@ nav a:hover::after{width:100%}
 .visualBox .d{color:var(--muted);font-size:13px;line-height:1.6}
 .heroCard .cap{padding:12px 16px;border-top:1px solid rgba(255,255,255,.08);color:var(--muted);font-size:13px}
 
-/* ===== GRIDS (menos espaço) ===== */
+/* ===== GRIDS ===== */
 .grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
 .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
 
@@ -256,7 +262,7 @@ nav a:hover::after{width:100%}
   color:rgba(89,167,255,.98);font-weight:900;margin-bottom:10px
 }
 
-/* ===== TRABALHOS REAIS (compacto) ===== */
+/* ===== TRABALHOS (somente FOTOS) ===== */
 .workWrap{
   background:rgba(255,255,255,.03);
   border:1px solid var(--line);
@@ -292,7 +298,7 @@ nav a:hover::after{width:100%}
 .workGrid{
   padding:14px 16px 16px;
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
   gap:12px;
 }
 .workItem{
@@ -301,10 +307,11 @@ nav a:hover::after{width:100%}
   border-radius:16px;
   overflow:hidden;
   transition:.16s;
+  cursor:pointer;
 }
 .workItem:hover{transform:translateY(-4px);border-color:rgba(246,181,74,.45);box-shadow:0 18px 40px rgba(0,0,0,.35)}
-.workMedia{background:#0c1230;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.workMedia img,.workMedia video{width:100%;height:100%;object-fit:cover;display:block}
+.workMedia{background:#0c1230;aspect-ratio:16/10;overflow:hidden}
+.workMedia img{width:100%;height:100%;object-fit:cover;display:block}
 .workBody{padding:12px 12px 14px}
 .workBody b{display:block;color:#fff;font-weight:900;font-size:14.5px}
 .workBody small{display:block;color:var(--muted);margin-top:6px;line-height:1.45;font-size:12.8px}
@@ -318,6 +325,42 @@ nav a:hover::after{width:100%}
   font-weight:900;font-size:11.5px;
 }
 .workTag i{color:var(--b)}
+
+/* Modal de imagem (bem funcional) */
+.modal{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,.72);
+  display:none;
+  align-items:center;justify-content:center;
+  padding:18px;
+}
+.modal.open{display:flex}
+.modalCard{
+  width:min(980px,100%);
+  background:rgba(5,8,20,.98);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  box-shadow:0 22px 70px rgba(0,0,0,.55);
+  overflow:hidden;
+}
+.modalTop{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:12px 14px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+  background:linear-gradient(180deg, rgba(89,167,255,.10), transparent);
+}
+.modalTop b{display:flex;align-items:center;gap:10px;color:#fff}
+.modalTop b i{color:var(--b)}
+.modalTop button{
+  border:none;background:rgba(255,255,255,.06);
+  color:#fff;cursor:pointer;
+  width:40px;height:40px;border-radius:12px;
+  border:1px solid rgba(255,255,255,.10);
+}
+.modalTop button:hover{border-color:rgba(246,181,74,.45)}
+.modalImgWrap{background:#0c1230}
+.modalImgWrap img{width:100%;height:auto;display:block}
+.modalCap{padding:12px 14px;color:var(--muted);font-size:13.5px;line-height:1.6}
 
 /* ===== FAQ ===== */
 .faq{max-width:1000px;margin:0 auto;display:grid;gap:10px}
@@ -340,7 +383,7 @@ textarea.input{min-height:110px;resize:vertical}
 .formActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
 .smallNote{color:var(--muted);font-size:12px;margin-top:8px;line-height:1.6}
 
-/* ===== MAPA (menos alto) ===== */
+/* ===== MAPA ===== */
 .mapWrap{
   background:rgba(255,255,255,.03);
   border:1px solid var(--line);
@@ -466,7 +509,7 @@ footer{background:#030613;border-top:1px solid var(--line);padding:46px 0 34px}
   background:rgba(246,181,74,.14);
   border:1px solid rgba(246,181,74,.30);
   color:rgba(246,181,74,.95);
-  padding:11px 12px;border-radius:999px;text-decoration:none;font-weight:900;
+  padding:11px 12px;border-radius:999px;font-weight:900;
   display:flex;align-items:center;gap:10px;box-shadow:var(--shadow);
 }
 .whats i{color:rgba(246,181,74,.95)}
@@ -474,7 +517,7 @@ footer{background:#030613;border-top:1px solid var(--line);padding:46px 0 34px}
 
 .wppPanel{
   position:fixed;right:16px;bottom:72px;z-index:2001;
-  width:min(320px,calc(100% - 32px));
+  width:min(330px,calc(100% - 32px));
   background:rgba(5,8,20,.97);
   border:1px solid rgba(255,255,255,.10);
   border-radius:16px;
@@ -530,12 +573,12 @@ footer{background:#030613;border-top:1px solid var(--line);padding:46px 0 34px}
   background:var(--grad);color:var(--bg);
 }
 
-/* VLibras (evitar sobrepor o Whats) */
+/* VLibras não encostar no Whats */
 .vw-access-button{ right:16px !important; bottom:86px !important; }
 
-/* ===== RESPONSIVO ===== */
+/* ===== RESPONSIVO (alinhado) ===== */
 @media (max-width:1024px){
-  .hero-grid{grid-template-columns:1fr;gap:18px;text-align:center}
+  .hero-grid{grid-template-columns:1fr;gap:16px;text-align:center}
   .hero p{margin-left:auto;margin-right:auto}
   .pills{justify-content:center}
   .actions{justify-content:center}
@@ -574,7 +617,7 @@ footer{background:#030613;border-top:1px solid var(--line);padding:46px 0 34px}
   <div class="container header-row">
     <a href="#inicio" class="brand" aria-label="SEC Engenharia - Desenvolver para Evoluir">
       <img src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg" alt="SEC Engenharia">
-      <div>
+      <div class="brandText">
         <div class="t1">SEC ENGENHARIA</div>
         <div class="t2">DESENVOLVER PARA EVOLUIR</div>
       </div>
@@ -601,7 +644,6 @@ footer{background:#030613;border-top:1px solid var(--line);padding:46px 0 34px}
 <!-- HERO -->
 <section class="hero" id="inicio">
   <div class="container hero-grid">
-
     <div>
       <div class="badge"><i class="fas fa-shield-halved"></i> EMPRESA REGISTRADA • RESPONSABILIDADE TÉCNICA</div>
 
@@ -656,7 +698,6 @@ footer{background:#030613;border-top:1px solid var(--line);padding:46px 0 34px}
 
       <div class="cap"><strong>Atendimento na região sul da Bahia</strong> com foco em normas, segurança e responsabilidade.</div>
     </div>
-
   </div>
 </section>
 
@@ -746,69 +787,67 @@ footer{background:#030613;border-top:1px solid var(--line);padding:46px 0 34px}
   </div>
 </section>
 
-<!-- TRABALHOS REAIS -->
+<!-- TRABALHOS REAIS (sem vídeo) -->
 <section id="trabalhos">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">TRABALHOS REAIS</h2>
       <p class="section-subtitle">
-        Aqui o cliente vê você fazendo o serviço (fotos e vídeos reais). Troque os arquivos “exemplo” pelos seus.
+        Só fotos reais. Clique em qualquer imagem para abrir em tela grande. Troque os arquivos em <strong>/midia</strong>.
       </p>
     </div>
 
     <div class="workWrap">
       <div class="workTop">
         <div class="left">
-          <h3><i class="fas fa-camera"></i> Galeria real</h3>
-          <p>
-            Coloque seus arquivos em <strong>/midia</strong> (ex.: <strong>midia/spda1.jpg</strong> e <strong>midia/vistoria1.mp4</strong>).
-          </p>
+          <h3><i class="fas fa-camera"></i> Galeria</h3>
+          <p>Exemplo: <strong>midia/spda1.jpg</strong>, <strong>midia/bombeiros1.jpg</strong>, <strong>midia/nr1.jpg</strong></p>
         </div>
 
-        <div class="workFilters">
-          <button class="fBtn active" data-filter="all">Tudo</button>
-          <button class="fBtn" data-filter="foto"><i class="fas fa-image"></i> Fotos</button>
-          <button class="fBtn" data-filter="video"><i class="fas fa-video"></i> Vídeos</button>
-          <button class="fBtn" data-filter="bombeiros"><i class="fas fa-fire-flame-curved"></i> Bombeiros</button>
-          <button class="fBtn" data-filter="nr"><i class="fas fa-helmet-safety"></i> NR</button>
-          <button class="fBtn" data-filter="eletrica"><i class="fas fa-bolt"></i> Elétrica</button>
+        <div class="workFilters" role="tablist" aria-label="Filtros de trabalhos">
+          <button class="fBtn active" data-filter="all" role="tab">Tudo</button>
+          <button class="fBtn" data-filter="bombeiros" role="tab"><i class="fas fa-fire-flame-curved"></i> Bombeiros</button>
+          <button class="fBtn" data-filter="nr" role="tab"><i class="fas fa-helmet-safety"></i> NR</button>
+          <button class="fBtn" data-filter="eletrica" role="tab"><i class="fas fa-bolt"></i> Elétrica</button>
+          <button class="fBtn" data-filter="clinica" role="tab"><i class="fas fa-hospital"></i> Clínica</button>
         </div>
       </div>
 
       <div class="workGrid" id="workGrid">
-        <div class="workItem" data-tags="foto eletrica">
-          <div class="workMedia"><img src="midia/exemplo1.jpg" alt="Trabalho real - SPDA / Aterramento"></div>
+        <!-- FOTOS (substitua) -->
+        <div class="workItem" data-tags="eletrica" data-full="midia/exemplo1.jpg" data-title="SPDA / Aterramento" data-desc="Foto real de execução/inspeção.">
+          <div class="workMedia"><img loading="lazy" src="midia/exemplo1.jpg" alt="SPDA / Aterramento"></div>
           <div class="workBody">
             <b>SPDA / Aterramento</b>
-            <small>Foto real de execução ou inspeção (substitua pelo seu arquivo).</small>
-            <span class="workTag"><i class="fas fa-thumbtack"></i> Elétrica</span>
+            <small>Execução e inspeção conforme normas.</small>
+            <span class="workTag"><i class="fas fa-bolt"></i> Elétrica</span>
           </div>
         </div>
 
-        <div class="workItem" data-tags="foto bombeiros">
-          <div class="workMedia"><img src="midia/exemplo2.jpg" alt="Trabalho real - Bombeiros"></div>
+        <div class="workItem" data-tags="bombeiros" data-full="midia/exemplo2.jpg" data-title="Rotas de fuga / Sinalização" data-desc="Antes/Depois é perfeito pra fechar contrato.">
+          <div class="workMedia"><img loading="lazy" src="midia/exemplo2.jpg" alt="Rotas de fuga / Sinalização"></div>
           <div class="workBody">
-            <b>Sinalização / Rotas de fuga</b>
-            <small>Antes/Depois fecha contrato rápido.</small>
+            <b>Rotas de fuga / Sinalização</b>
+            <small>Conformidade com exigências.</small>
             <span class="workTag"><i class="fas fa-fire-flame-curved"></i> Bombeiros</span>
           </div>
         </div>
 
-        <div class="workItem" data-tags="video nr">
-          <div class="workMedia"><video src="midia/exemplo1.mp4" controls preload="metadata"></video></div>
+        <div class="workItem" data-tags="nr" data-full="midia/exemplo3.jpg" data-title="Vistoria / Checklist" data-desc="Foto real do processo e equipamentos.">
+          <div class="workMedia"><img loading="lazy" src="midia/exemplo3.jpg" alt="Vistoria / Checklist"></div>
           <div class="workBody">
-            <b>Vistoria / Coleta técnica</b>
-            <small>Vídeo real curto (30–60s) mostrando trabalho e equipamento.</small>
+            <b>Vistoria / Checklist</b>
+            <small>Organização e evidência técnica.</small>
             <span class="workTag"><i class="fas fa-helmet-safety"></i> NR</span>
           </div>
         </div>
 
-        <div class="workItem" data-tags="video bombeiros">
-          <div class="workMedia"><video src="midia/exemplo2.mp4" controls preload="metadata"></video></div>
+        <div class="workItem" data-tags="clinica" data-full="midia/exemplo4.jpg" data-title="Engenharia Clínica" data-desc="Rotinas e manutenção em equipamentos.">
+          <div class="workMedia"><img loading="lazy" src="midia/exemplo4.jpg" alt="Engenharia Clínica"></div>
           <div class="workBody">
-            <b>Execução / Adequações</b>
-            <small>Mostre medição, checklist, sinalização, extintores etc.</small>
-            <span class="workTag"><i class="fas fa-fire-flame-curved"></i> Bombeiros</span>
+            <b>Engenharia Clínica</b>
+            <small>Relatórios e controle.</small>
+            <span class="workTag"><i class="fas fa-hospital"></i> Clínica</span>
           </div>
         </div>
       </div>
@@ -822,7 +861,7 @@ footer{background:#030613;border-top:1px solid var(--line);padding:46px 0 34px}
     <div class="section-header">
       <h2 class="section-title">AUTORIDADE</h2>
       <p class="section-subtitle">
-        Conformidade, documentação e segurança jurídica — isso é o que aumenta valor e confiança.
+        Conformidade, documentação e segurança jurídica — isso aumenta valor e confiança.
       </p>
     </div>
 
@@ -884,48 +923,8 @@ footer{background:#030613;border-top:1px solid var(--line);padding:46px 0 34px}
   </div>
 </section>
 
-<!-- MAPA -->
-<section id="mapa" class="bg2">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">MAPA DE ATUAÇÃO</h2>
-      <p class="section-subtitle">Clique em uma cidade para dar zoom e ver o alfinete com símbolo do bombeiro.</p>
-    </div>
-
-    <div class="mapWrap">
-      <div class="mapTop">
-        <div class="left">
-          <h3><i class="fas fa-map-location-dot"></i> Regiões atendidas</h3>
-          <p>Com internet, o mapa carrega normalmente. Offline pode não carregar os “tiles”.</p>
-        </div>
-        <div class="mapActions">
-          <button class="mapBtn primary" id="btnAll"><i class="fas fa-layer-group"></i> Ver tudo</button>
-          <button class="mapBtn" id="btnLocate"><i class="fas fa-location-crosshairs"></i> Minha localização</button>
-        </div>
-      </div>
-
-      <div class="mapGrid">
-        <aside class="mapSide">
-          <div class="searchRow">
-            <input id="citySearch" placeholder="Buscar cidade (ex: Porto Seguro)" />
-            <button id="btnSearch" aria-label="Buscar"><i class="fas fa-magnifying-glass"></i></button>
-          </div>
-
-          <div class="cityList" id="cityList"></div>
-
-          <div class="smallNote">
-            Dica: clique na cidade para abrir o popup 🔥.
-          </div>
-        </aside>
-
-        <div id="map" aria-label="Mapa interativo"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DEPOIMENTOS -->
-<section id="depoimentos">
+<!-- AVALIAÇÕES -->
+<section id="depoimentos" class="bg2">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">AVALIAÇÕES</h2>
@@ -962,7 +961,7 @@ footer{background:#030613;border-top:1px solid var(--line);padding:46px 0 34px}
 </section>
 
 <!-- FAQ -->
-<section id="faq" class="bg2">
+<section id="faq">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">DÚVIDAS</h2>
@@ -991,7 +990,7 @@ footer{background:#030613;border-top:1px solid var(--line);padding:46px 0 34px}
 </section>
 
 <!-- ORÇAMENTO -->
-<section id="orcamento">
+<section id="orcamento" class="bg2">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">PEDIR ORÇAMENTO</h2>
@@ -1009,12 +1008,50 @@ footer{background:#030613;border-top:1px solid var(--line);padding:46px 0 34px}
 
       <div class="formActions">
         <button class="btn primary" id="enviarWpp"><i class="fab fa-whatsapp"></i> Enviar no WhatsApp</button>
-        <a class="btn outline" href="#servicos"><i class="fas fa-cogs"></i> Ver serviços</a>
         <a class="btn outline" href="#trabalhos"><i class="fas fa-camera"></i> Ver trabalhos</a>
+        <a class="btn outline" href="#mapa"><i class="fas fa-map-location-dot"></i> Ver mapa</a>
       </div>
 
       <div class="smallNote">
         Ao clicar em “Enviar no WhatsApp”, abre uma mensagem pronta. Você pode revisar e enviar.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAPA -->
+<section id="mapa">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">MAPA DE ATUAÇÃO</h2>
+      <p class="section-subtitle">Clique em uma cidade para dar zoom e ver o alfinete com símbolo do bombeiro.</p>
+    </div>
+
+    <div class="mapWrap">
+      <div class="mapTop">
+        <div class="left">
+          <h3><i class="fas fa-map-location-dot"></i> Regiões atendidas</h3>
+          <p>Com internet, o mapa carrega normalmente. Offline pode não carregar os tiles.</p>
+        </div>
+        <div class="mapActions">
+          <button class="mapBtn primary" id="btnAll"><i class="fas fa-layer-group"></i> Ver tudo</button>
+          <button class="mapBtn" id="btnLocate"><i class="fas fa-location-crosshairs"></i> Minha localização</button>
+        </div>
+      </div>
+
+      <div class="mapGrid">
+        <aside class="mapSide">
+          <div class="searchRow">
+            <input id="citySearch" placeholder="Buscar cidade (ex: Porto Seguro)" />
+            <button id="btnSearch" aria-label="Buscar"><i class="fas fa-magnifying-glass"></i></button>
+          </div>
+
+          <div class="cityList" id="cityList"></div>
+
+          <div class="smallNote">Dica: clique na cidade para abrir o popup 🔥.</div>
+        </aside>
+
+        <div id="map" aria-label="Mapa interativo"></div>
       </div>
     </div>
   </div>
@@ -1120,6 +1157,20 @@ footer{background:#030613;border-top:1px solid var(--line);padding:46px 0 34px}
   </div>
 </footer>
 
+<!-- Modal de imagem -->
+<div class="modal" id="imgModal" aria-hidden="true">
+  <div class="modalCard" role="dialog" aria-modal="true" aria-label="Visualizar imagem">
+    <div class="modalTop">
+      <b><i class="fas fa-image"></i> <span id="mTitle">Imagem</span></b>
+      <button id="mClose" aria-label="Fechar"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modalImgWrap">
+      <img id="mImg" alt="Imagem ampliada" />
+    </div>
+    <div class="modalCap" id="mDesc"></div>
+  </div>
+</div>
+
 <!-- Painel WhatsApp (3 contatos) -->
 <div class="wppPanel" id="wppPanel" aria-label="Contatos WhatsApp">
   <div class="wppHead">
@@ -1201,6 +1252,24 @@ document.querySelectorAll('nav a').forEach(a=>{
   });
 });
 
+/* ===== NAV ATIVO (mais funcional) ===== */
+const sections = [...document.querySelectorAll('section[id]')];
+const navLinks = [...document.querySelectorAll('nav a')];
+
+function setActiveNav(){
+  const y = window.scrollY + 110;
+  let current = sections[0]?.id;
+  for (const s of sections){
+    if (s.offsetTop <= y) current = s.id;
+  }
+  navLinks.forEach(l=>{
+    const href = l.getAttribute('href') || "";
+    l.classList.toggle('active', href === `#${current}`);
+  });
+}
+window.addEventListener('scroll', setActiveNav);
+window.addEventListener('load', setActiveNav);
+
 /* ===== VOLTAR AO TOPO ===== */
 const toTop = document.getElementById('toTop');
 window.addEventListener('scroll', ()=>{
@@ -1257,7 +1326,7 @@ Pode me orientar os próximos passos?`;
   window.open(url, "_blank");
 });
 
-/* ===== TRABALHOS: filtros ===== */
+/* ===== TRABALHOS: filtros (sem vídeo) ===== */
 const filterBtns = document.querySelectorAll('.fBtn');
 const workItems = document.querySelectorAll('.workItem');
 
@@ -1275,17 +1344,55 @@ filterBtns.forEach(btn=>{
   });
 });
 
+/* ===== MODAL de imagem (click na foto) ===== */
+const imgModal = document.getElementById('imgModal');
+const mImg = document.getElementById('mImg');
+const mTitle = document.getElementById('mTitle');
+const mDesc = document.getElementById('mDesc');
+const mClose = document.getElementById('mClose');
+
+function openModal(src, title, desc){
+  mImg.src = src;
+  mTitle.textContent = title || "Imagem";
+  mDesc.textContent = desc || "";
+  imgModal.classList.add('open');
+  imgModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = "hidden";
+}
+function closeModal(){
+  imgModal.classList.remove('open');
+  imgModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = "";
+  mImg.src = "";
+}
+workItems.forEach(item=>{
+  item.addEventListener('click', ()=>{
+    openModal(
+      item.getAttribute('data-full') || "",
+      item.getAttribute('data-title') || "",
+      item.getAttribute('data-desc') || ""
+    );
+  });
+});
+mClose.addEventListener('click', closeModal);
+imgModal.addEventListener('click', (e)=>{
+  if(e.target === imgModal) closeModal();
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key === "Escape") closeModal();
+});
+
 /* ===== MAPA ===== */
 const cities = [
-  { name:"Eunápolis",          hint:"Base / região de atendimento",         lat:-16.3765, lng:-39.5804 },
-  { name:"Porto Seguro",       hint:"Projetos e regularizações",            lat:-16.4440, lng:-39.0649 },
-  { name:"Trancoso",           hint:"Adequações e laudos",                  lat:-16.5918, lng:-39.0979 },
-  { name:"Itabela",            hint:"Atendimento técnico",                  lat:-16.5748, lng:-39.5597 },
-  { name:"Teixeira de Freitas",hint:"Documentação NR / laudos",             lat:-17.5426, lng:-39.7423 },
-  { name:"Arraial d'Ajuda",    hint:"Bombeiros / projetos preventivos",     lat:-16.4632, lng:-39.1477 },
-  { name:"Itamaraju",          hint:"Vistorias e suporte",                  lat:-17.0396, lng:-39.5314 },
-  { name:"Itapebi",            hint:"Regularização e consultoria",          lat:-15.9550, lng:-39.5320 },
-  { name:"Itagimirim",         hint:"Projetos e laudos",                    lat:-16.0830, lng:-39.6140 },
+  { name:"Eunápolis",           hint:"Base / região de atendimento",         lat:-16.3765, lng:-39.5804 },
+  { name:"Porto Seguro",        hint:"Projetos e regularizações",            lat:-16.4440, lng:-39.0649 },
+  { name:"Trancoso",            hint:"Adequações e laudos",                  lat:-16.5918, lng:-39.0979 },
+  { name:"Itabela",             hint:"Atendimento técnico",                  lat:-16.5748, lng:-39.5597 },
+  { name:"Teixeira de Freitas", hint:"Documentação NR / laudos",             lat:-17.5426, lng:-39.7423 },
+  { name:"Arraial d'Ajuda",     hint:"Bombeiros / projetos preventivos",     lat:-16.4632, lng:-39.1477 },
+  { name:"Itamaraju",           hint:"Vistorias e suporte",                  lat:-17.0396, lng:-39.5314 },
+  { name:"Itapebi",             hint:"Regularização e consultoria",          lat:-15.9550, lng:-39.5320 },
+  { name:"Itagimirim",          hint:"Projetos e laudos",                    lat:-16.0830, lng:-39.6140 },
 ];
 
 const map = L.map('map', { zoomControl:true, scrollWheelZoom:true }).setView([-16.55, -39.35], 8);
@@ -1401,6 +1508,7 @@ document.getElementById("btnLocate").addEventListener("click", ()=>{
   });
 });
 
+/* FIX mapa redimensionar ao abrir */
 function fixMap(){ setTimeout(()=> map.invalidateSize(), 250); }
 window.addEventListener("load", fixMap);
 window.addEventListener("resize", fixMap);
