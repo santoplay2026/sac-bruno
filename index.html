@@ -1,1402 +1,993 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+
+<html lang="tr" class="scroll-smooth">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SEC Engenharia | Projetos, Laudos, NR e Bombeiros</title>
 
-<meta name="description" content="SEC Engenharia: Projetos, laudos e adequações em Engenharia Elétrica, Segurança do Trabalho, Engenharia Clínica e Combate a Incêndio. Conformidade com normas, NR, Corpo de Bombeiros e ART/CREA." />
-<meta property="og:title" content="SEC Engenharia | Soluções Técnicas Profissionais" />
-<meta property="og:description" content="Projetos, laudos e consultoria com foco em conformidade, segurança e excelência técnica." />
-<meta property="og:type" content="website" />
+    <meta charset="UTF-8">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- MAPA (LEAFLET) -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <title>BETA Enerji Sistemleri | GES ve Mühendislik Çözümleri</title>
 
-<style>
-:root{
-  --bg:#020617;
-  --bg2:#0f172a;
-  --card:rgba(255,255,255,0.04);
-  --linha:rgba(255,255,255,.10);
-  --verde:#22d3c5;
-  --verde-claro:#5eead4;
-  --texto:#e5e7eb;
-  --cinza:#9ca3af;
-  --branco:#fff;
-  --gradiente: linear-gradient(135deg, #22d3c5 0%, #0ea5e9 100%);
-  --sombra: 0 20px 40px rgba(0,0,0,0.35);
-  --radius: 20px;
-}
+    <meta name="description" content="BETA Enerji Sistemleri Mühendislik, Güneş Enerji Santralleri (GES), Solar Tracker sistemleri, çatı ve saha GES kurulumları konusunda uzman mühendislik firmasıdır.">
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{background:var(--bg);color:var(--texto);line-height:1.85;overflow-x:hidden}
-a{color:inherit}
-.container{max-width:1400px;margin:0 auto;padding:0 5%}
-section{padding:120px 0}
-.section-header{text-align:center;margin-bottom:70px}
-.section-title{
-  font-size:clamp(32px,4vw,56px);
-  font-weight:900;
-  background: linear-gradient(to right, var(--verde), var(--verde-claro));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  margin-bottom:14px;
-}
-.section-subtitle{color:var(--cinza);font-size:19px;max-width:980px;margin:0 auto}
+    
 
-/* HEADER */
-header{
-  position:fixed;top:0;left:0;width:100%;z-index:999;
-  background:rgba(2,6,23,.97);
-  border-bottom:1px solid var(--linha);
-  backdrop-filter: blur(16px);
-  padding:14px 0;
-  transition:.2s;
-}
-.header-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{display:flex;align-items:center;gap:14px;text-decoration:none}
-.brand img{
-  width:58px;height:58px;border-radius:14px;object-fit:cover;
-  border:3px solid var(--verde);padding:2px;box-shadow:var(--sombra);
-}
-.brand .t1{font-size:26px;font-weight:900;letter-spacing:.5px}
-.brand .t2{font-size:11px;color:var(--verde);letter-spacing:3px;font-weight:800}
+    <!-- Tailwind CSS -->
 
-nav{display:flex;gap:22px;align-items:center}
-nav a{
-  text-decoration:none;color:var(--cinza);font-weight:800;font-size:13px;letter-spacing:1px;
-  padding:8px 0;position:relative;display:flex;align-items:center;gap:8px;
-}
-nav a:hover{color:var(--verde)}
-nav a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--gradiente);transition:.2s}
-nav a:hover::after{width:100%}
+    <script src="https://cdn.tailwindcss.com"></script>
 
-.menuBtn{
-  display:none;border:none;background:transparent;color:var(--verde);
-  font-size:28px;width:44px;height:44px;border-radius:12px;cursor:pointer;
-}
-.menuBtn:hover{background:rgba(34,211,197,.12)}
+    
 
-/* HERO */
-.hero{
-  min-height:100vh;display:flex;align-items:center;
-  padding-top:140px;padding-bottom:60px;
-  background: linear-gradient(135deg, rgba(2,6,23,0.98) 0%, rgba(15,23,42,0.92) 100%);
-  position:relative;
-}
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(34, 211, 197, 0.14) 0%, transparent 45%),
-    radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.10) 0%, transparent 40%);
-  pointer-events:none;
-}
-.hero-grid{
-  position:relative;
-  display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center
-}
-.badge{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:10px 16px;border-radius:999px;
-  background:rgba(34,211,197,.14);
-  border:1px solid rgba(94,234,212,.35);
-  color:var(--verde-claro);
-  font-size:13px;font-weight:900;letter-spacing:2px;
-  margin-bottom:22px;
-}
-.badge i{color:var(--verde)}
-.hero h1{font-size:clamp(42px,5.4vw,74px);font-weight:900;line-height:1.08;margin-bottom:16px}
-.hero h1 span{display:block;margin-top:12px;font-size:clamp(18px,2.2vw,28px);font-weight:700;color:var(--cinza);line-height:1.5}
-.hero p{color:var(--cinza);font-size:17px;max-width:680px;margin-bottom:22px}
+    <!-- Font Awesome -->
 
-.pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
-.pill{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:10px 14px;border-radius:999px;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.03);
-  color:var(--cinza);font-weight:900;font-size:13px;
-}
-.pill i{color:var(--verde)}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-.actions{display:flex;gap:14px;flex-wrap:wrap}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:16px 28px;border-radius:999px;text-decoration:none;
-  font-weight:900;font-size:14px;letter-spacing:.5px;
-  transition:.15s;cursor:pointer;border:none;
-}
-.btn.primary{background:var(--gradiente);color:var(--bg);box-shadow:0 16px 36px rgba(34,211,197,.22)}
-.btn.primary:hover{transform:translateY(-2px)}
-.btn.outline{background:transparent;color:var(--verde);border:2px solid rgba(34,211,197,.65)}
-.btn.outline:hover{background:rgba(34,211,197,.12);transform:translateY(-2px);border-color:rgba(34,211,197,1)}
+    
 
-.heroCard{
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
-  border-radius:24px;
-  box-shadow:var(--sombra);
-  overflow:hidden;
-}
-.heroCard .cap{padding:14px 18px;border-top:1px solid var(--linha);color:var(--cinza);font-size:14px}
-.heroVisual{padding:18px;display:grid;gap:12px}
-.visualBox{
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.03);
-  border-radius:18px;
-  padding:16px;
-}
-.visualBox .t{font-weight:900;color:var(--verde-claro);margin-bottom:6px}
-.visualBox .d{color:var(--cinza);font-size:14px;line-height:1.7}
+    <!-- Google Fonts -->
 
-/* CARDS */
-.bg2{background:var(--bg2)}
-.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
-.card{
-  background:var(--card);
-  border:1px solid var(--linha);
-  border-radius:var(--radius);
-  padding:32px 28px;
-  transition:.18s;
-  position:relative;
-  overflow:hidden;
-}
-.card:hover{transform:translateY(-6px);border-color:rgba(34,211,197,.55);box-shadow:var(--sombra)}
-.card::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--gradiente);opacity:.9}
-.iconBox{
-  width:70px;height:70px;border-radius:18px;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(34,211,197,.12);
-  color:var(--verde);font-size:30px;margin-bottom:18px
-}
-.card h3{font-size:20px;font-weight:900;margin-bottom:10px;color:#fff}
-.card p{color:var(--cinza);font-size:15.5px;line-height:1.85;margin-bottom:14px}
-.list{list-style:none}
-.list li{display:flex;gap:10px;align-items:flex-start;color:var(--cinza);font-size:15.5px;margin-bottom:10px;line-height:1.55}
-.list i{color:var(--verde);margin-top:3px;width:18px;text-align:center}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
 
-/* MINI */
-.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-.mini{
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
-  border-radius:18px;
-  padding:22px;
-  transition:.18s;
-}
-.mini:hover{transform:translateY(-5px);border-color:rgba(34,211,197,.55);box-shadow:var(--sombra)}
-.mini i{font-size:28px;color:var(--verde);margin-bottom:10px}
-.mini h4{font-size:16px;font-weight:900;color:#fff;margin-bottom:8px}
-.mini p{color:var(--cinza);font-size:15.5px;line-height:1.8;margin:0}
+    <script>
 
-.steps .num{
-  width:44px;height:44px;border-radius:14px;
-  background:rgba(34,211,197,.12);
-  border:1px solid rgba(94,234,212,.28);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--verde-claro);font-weight:900;margin-bottom:12px
-}
+        tailwind.config = {
 
-.quote{font-size:15.5px;color:var(--cinza);line-height:1.85;margin-top:10px}
-.stars{color:#fbbf24;font-size:14px;letter-spacing:2px}
+            theme: {
 
-/* FAQ */
-.faq{max-width:1000px;margin:0 auto;display:grid;gap:12px}
-.faqItem{background:rgba(255,255,255,.03);border:1px solid var(--linha);border-radius:18px;padding:18px}
-.faqQ{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:900;color:#fff}
-.faqA{margin-top:10px;color:var(--cinza);font-size:15.5px;line-height:1.85;display:none}
-.faqItem.open .faqA{display:block}
-.faqQ i{color:var(--verde)}
+                extend: {
 
-/* FORM */
-.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.input{
-  width:100%;padding:14px;border-radius:14px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.10);
-  color:var(--texto);
-  outline:none;
-}
-textarea.input{min-height:120px;resize:vertical}
-.formActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.smallNote{color:var(--cinza);font-size:12px;margin-top:8px;line-height:1.6}
+                    colors: {
 
-/* MAPA INTERATIVO */
-.mapWrap{
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
-  border-radius:24px;
-  box-shadow:var(--sombra);
-  overflow:hidden;
-}
-.mapTop{
-  padding:18px 18px 14px;
-  display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;
-  border-bottom:1px solid var(--linha);
-  background:linear-gradient(180deg, rgba(34,211,197,.08), transparent);
-}
-.mapTop .left h3{
-  font-size:20px;font-weight:900;color:#fff;margin-bottom:6px;
-  display:flex;gap:10px;align-items:center;
-}
-.mapTop .left h3 i{color:var(--verde)}
-.mapTop .left p{color:var(--cinza);font-size:14px;max-width:780px;line-height:1.7}
-.mapActions{display:flex;gap:10px;flex-wrap:wrap}
-.mapBtn{
-  border:none;border-radius:999px;padding:10px 14px;
-  font-weight:900;cursor:pointer;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.10);
-  color:var(--texto);
-  transition:.15s;
-}
-.mapBtn:hover{transform:translateY(-1px);border-color:rgba(34,211,197,.5)}
-.mapBtn.primary{background:var(--gradiente);color:var(--bg);border:none}
+                        brand: {
 
-.mapGrid{
-  display:grid;
-  grid-template-columns:420px 1fr;
-  min-height:620px;
-}
-.mapSide{
-  padding:18px;
-  border-right:1px solid var(--linha);
-  background:rgba(2,6,23,.55);
-}
-.searchRow{display:flex;gap:10px}
-.searchRow input{
-  flex:1;
-  padding:12px 12px;border-radius:14px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.10);
-  color:var(--texto);
-  outline:none;
-}
-.searchRow button{
-  width:52px;border-radius:14px;
-  background:rgba(34,211,197,.14);
-  border:1px solid rgba(94,234,212,.25);
-  color:var(--verde-claro);
-  cursor:pointer;
-}
-.searchRow button:hover{border-color:rgba(34,211,197,.6)}
-.cityList{
-  margin-top:14px;
-  display:grid;gap:10px;
-  max-height:520px;
-  overflow:auto;
-  padding-right:6px;
-}
-.cityBtn{
-  text-align:left;
-  padding:14px 14px;border-radius:16px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.10);
-  cursor:pointer;
-  transition:.15s;
-  color:var(--texto);
-}
-.cityBtn:hover{transform:translateY(-2px);border-color:rgba(34,211,197,.55);box-shadow:0 16px 30px rgba(0,0,0,.22)}
-.cityBtn b{display:block;color:#fff;font-weight:900}
-.cityBtn small{display:block;color:var(--cinza);margin-top:4px;line-height:1.5}
-.cityBtn .tag{
-  display:inline-flex;align-items:center;gap:8px;
-  margin-top:10px;
-  padding:7px 10px;border-radius:999px;
-  background:rgba(34,211,197,.12);
-  border:1px solid rgba(94,234,212,.25);
-  color:var(--verde-claro);
-  font-weight:900;font-size:12px;
-}
-.cityBtn .tag i{color:var(--verde)}
-#map{
-  width:100%;
-  height:620px;
-  min-height:620px;
-  background:#0b1228;
-}
+                            blue: '#0e4c92',    // Solar panel mavisi
 
-/* Leaflet popup */
-.leaflet-popup-content-wrapper{
-  background:rgba(2,6,23,.96);
-  color:var(--texto);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:16px;
-  box-shadow:0 18px 40px rgba(0,0,0,.45);
-}
-.leaflet-popup-tip{background:rgba(2,6,23,.96)}
-.popupTitle{
-  font-weight:900;
-  color:#fff;
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:6px;
-}
-.popupTitle i{color:#ff4d4d}
-.popupText{color:var(--cinza);font-size:13px;line-height:1.55}
+                            green: '#4caf50',   // Doğa yeşili
 
-/* REDES */
-.social{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
-.social a{
-  width:122px;height:118px;border-radius:18px;
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--linha);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-decoration:none;transition:.18s;color:var(--verde-claro);
-}
-.social a:hover{transform:translateY(-6px);border-color:rgba(34,211,197,.55);box-shadow:var(--sombra);background:rgba(34,211,197,.08)}
-.social i{font-size:30px;color:var(--verde);margin-bottom:8px}
-.social span{font-weight:900;font-size:13px}
+                            dark: '#1a1a1a',
 
-/* FOOTER */
-footer{background:#010a1a;border-top:1px solid var(--linha);padding:60px 0 40px}
-.footerGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px}
-.footerGrid h4{color:var(--verde-claro);font-weight:900;margin-bottom:12px}
-.footerGrid p, .footerGrid a{color:var(--cinza);font-size:14px;line-height:1.75;text-decoration:none}
-.footerGrid a:hover{color:var(--verde)}
-.copy{border-top:1px solid var(--linha);margin-top:30px;padding-top:18px;color:var(--cinza);text-align:center;font-size:13px}
+                            light: '#f4f6f9'
 
-/* WhatsApp + topo */
-.whats{
-  position:fixed;right:18px;bottom:18px;z-index:2000;
-  background:rgba(34,211,197,.14);
-  border:1px solid rgba(94,234,212,.35);
-  color:var(--verde-claro);
-  padding:12px 14px;border-radius:999px;text-decoration:none;font-weight:900;
-  display:flex;align-items:center;gap:10px;box-shadow:var(--sombra);
-}
-.whats i{color:var(--verde)}
-.whats:hover{transform:translateY(-2px);transition:.15s}
+                        }
 
-.toTop{
-  position:fixed;left:18px;bottom:18px;z-index:2000;
-  width:44px;height:44px;border-radius:14px;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.03);
-  color:var(--verde-claro);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;opacity:0;pointer-events:none;transition:.2s;
-}
-.toTop.show{opacity:1;pointer-events:auto;transform:translateY(-2px);border-color:rgba(34,211,197,.55)}
-.toTop i{color:var(--verde)}
+                    },
 
-/* Mobile bar */
-.mobileBar{
-  display:none;
-  position:fixed;left:0;right:0;bottom:0;z-index:1999;
-  background:rgba(2,6,23,.98);
-  border-top:1px solid var(--linha);
-  padding:10px 12px;
-}
-.mobileBar a{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  width:100%;padding:14px 16px;border-radius:16px;
-  text-decoration:none;font-weight:900;
-  background:var(--gradiente);color:var(--bg);
-}
+                    fontFamily: {
 
-/* RESPONSIVO */
-@media (max-width:1024px){
-  .hero-grid{grid-template-columns:1fr;gap:32px;text-align:center}
-  .hero p{margin-left:auto;margin-right:auto}
-  .pills{justify-content:center}
-  .actions{justify-content:center}
-  .mapGrid{grid-template-columns:1fr;min-height:auto}
-  .mapSide{border-right:none;border-bottom:1px solid var(--linha)}
-  #map{height:520px;min-height:520px}
-  .cityList{max-height:260px}
-}
-@media (max-width:768px){
-  nav{
-    position:fixed;top:88px;left:0;right:0;
-    background:rgba(2,6,23,.98);
-    border-bottom:1px solid var(--linha);
-    flex-direction:column;gap:0;
-    transform:translateY(-120%);
-    opacity:0;visibility:hidden;
-    transition:.25s;
-    padding:14px 5%;
-  }
-  nav.active{transform:translateY(0);opacity:1;visibility:visible}
-  nav a{padding:14px 0;border-bottom:1px solid var(--linha);width:100%;justify-content:center}
-  nav a:last-child{border-bottom:none}
-  .menuBtn{display:block}
-  .formGrid{grid-template-columns:1fr}
-  .whats span{display:none}
-  .mobileBar{display:block}
-  section{padding:95px 0}
-  #map{height:420px;min-height:420px}
-}
+                        sans: ['Inter', 'sans-serif'],
 
-/* ====== ADIÇÕES (SEM MUDAR SEU DESIGN, SÓ AJUSTE DE ESPAÇOS) ====== */
-section{ padding:95px 0; }
-.section-header{ margin-bottom:48px; }
-.hero{ padding-top:130px; }
-.hero-grid{ gap:52px; }
-.grid3{ gap:18px; }
-.grid4{ gap:14px; }
-.card{ padding:28px 24px; }
-#map{ height:560px; min-height:560px; }
-.mapGrid{ min-height:560px; }
+                        heading: ['Oswald', 'sans-serif']
 
-/* modal (foto grande) */
-#imgModal{
-  position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.72);padding:16px;
-}
+                    }
 
-/* VLibras: sobe o botão pra não brigar com WhatsApp */
-.vw-access-button{ right:18px !important; bottom:86px !important; }
-</style>
+                }
+
+            }
+
+        }
+
+    </script>
+
+    <style>
+
+        /* Özel Stil Tanımlamaları */
+
+        .hero-bg {
+
+            background-image: linear-gradient(rgba(14, 76, 146, 0.7), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+
+        }
+
+        .section-title::after {
+
+            content: '';
+
+            display: block;
+
+            width: 60px;
+
+            height: 4px;
+
+            background-color: #4caf50;
+
+            margin-top: 10px;
+
+        }
+
+        
+
+        .card-hover {
+
+            transition: all 0.3s ease;
+
+        }
+
+        
+
+        .card-hover:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+
+        }
+
+        /* Mobile Menu Animation */
+
+        #mobile-menu {
+
+            transition: max-height 0.3s ease-in-out;
+
+            max-height: 0;
+
+            overflow: hidden;
+
+        }
+
+        #mobile-menu.active {
+
+            max-height: 400px;
+
+        }
+
+    </style>
+
 </head>
 
-<body>
+<body class="font-sans text-gray-700 bg-gray-50">
 
-<header>
-  <div class="container header-row">
-    <a href="#inicio" class="brand">
-      <img src="logo/226bc111-cd1a-4fb2-87a0-c82bf1a83274.jpg" alt="SEC Engenharia">
-      <div>
-        <div class="t1">SEC ENGENHARIA</div>
-        <div class="t2">DESENVOLVER PARA EVOLUIR</div>
-      </div>
-    </a>
+    <!-- Top Bar -->
 
-    <button class="menuBtn" id="menuBtn" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+    <div class="bg-brand-dark text-white py-2 text-sm hidden md:block">
 
-    <nav id="nav">
-      <a href="#inicio"><i class="fas fa-home"></i> INÍCIO</a>
-      <a href="#servicos"><i class="fas fa-cogs"></i> SERVIÇOS</a>
+        <div class="container mx-auto px-4 flex justify-between items-center">
 
-      <!-- ADICIONADO: TRABALHOS REAIS -->
-      <a href="#trabalhos"><i class="fas fa-camera"></i> TRABALHOS</a>
+            <div class="flex space-x-6">
 
-      <a href="#autoridade"><i class="fas fa-shield-halved"></i> AUTORIDADE</a>
-      <a href="#processo"><i class="fas fa-diagram-project"></i> PROCESSO</a>
-      <a href="#depoimentos"><i class="fas fa-star"></i> AVALIAÇÕES</a>
-      <a href="#faq"><i class="fas fa-circle-question"></i> DÚVIDAS</a>
-      <a href="#orcamento"><i class="fas fa-file-signature"></i> ORÇAMENTO</a>
-      <a href="#mapa"><i class="fas fa-map-location-dot"></i> MAPA</a>
-      <a href="#contato"><i class="fas fa-phone"></i> CONTATO</a>
-      <a href="#redes"><i class="fas fa-share-alt"></i> REDES</a>
+                <a href="mailto:info@betaenerji.com" class="hover:text-brand-green transition"><i class="fas fa-envelope mr-2"></i>info@betaenerji.com</a>
+
+                <span class="text-gray-500">|</span>
+
+                <a href="tel:+908502223344" class="hover:text-brand-green transition"><i class="fas fa-phone mr-2"></i>Merkez: 0 (850) 222 33 44</a>
+
+            </div>
+
+            <div class="flex space-x-4">
+
+                <a href="#" class="hover:text-brand-blue transition"><i class="fab fa-linkedin-in"></i></a>
+
+                <a href="#" class="hover:text-brand-blue transition"><i class="fab fa-instagram"></i></a>
+
+                <a href="#" class="hover:text-brand-blue transition"><i class="fab fa-facebook-f"></i></a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Navbar -->
+
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+
+        <div class="container mx-auto px-4">
+
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo Area -->
+
+                <a href="#" class="flex items-center space-x-3 group">
+
+                    <!-- LOGO IMAGE: Buraya yüklediğiniz dosya gelecek -->
+
+                    <!-- Eğer resim yüklenemezse (dosya yoksa) placeholder görünür -->
+
+                    <div class="relative flex items-center justify-center">
+
+                        <img src="1000003221.png" alt="BETA Enerji Logo" class="h-14 w-auto object-contain mr-2" onerror="this.onerror=null; this.src='https://via.placeholder.com/60x60/0e4c92/ffffff?text=BETA';">
+
+                    </div>
+
+                    
+
+                    <div class="flex flex-col justify-center">
+
+                        <span class="text-2xl font-heading font-bold text-brand-dark leading-none tracking-tight">BETA ENERJİ</span>
+
+                        <span class="text-[0.65rem] text-brand-blue font-bold tracking-widest group-hover:text-brand-green transition duration-300 uppercase">SİSTEMLERİ MÜHENDİSLİK</span>
+
+                    </div>
+
+                </a>
+
+                <!-- Desktop Menu -->
+
+                <div class="hidden md:flex space-x-8 font-medium">
+
+                    <a href="#anasayfa" class="text-gray-800 hover:text-brand-blue transition">Anasayfa</a>
+
+                    <a href="#hakkimizda" class="text-gray-800 hover:text-brand-blue transition">Hakkımızda</a>
+
+                    <a href="#hizmetler" class="text-gray-800 hover:text-brand-blue transition">Hizmetlerimiz</a>
+
+                    <a href="#projeler" class="text-gray-800 hover:text-brand-blue transition">Projeler</a>
+
+                    <a href="#iletisim" class="text-gray-800 hover:text-brand-blue transition">İletişim</a>
+
+                </div>
+
+                <!-- CTA Button -->
+
+                <div class="hidden md:block">
+
+                    <a href="#iletisim" class="bg-brand-blue hover:bg-brand-dark text-white px-6 py-2 rounded-full transition duration-300 font-semibold shadow-lg shadow-blue-500/30">
+
+                        Teklif Al
+
+                    </a>
+
+                </div>
+
+                <!-- Mobile Button -->
+
+                <div class="md:hidden">
+
+                    <button id="menu-btn" class="text-gray-800 focus:outline-none">
+
+                        <i class="fas fa-bars text-2xl"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Mobile Menu -->
+
+            <div id="mobile-menu" class="md:hidden bg-white border-t">
+
+                <div class="flex flex-col space-y-4 py-4 px-2">
+
+                    <a href="#anasayfa" class="mobile-link text-gray-800 hover:text-brand-blue pl-4 border-l-4 border-transparent hover:border-brand-blue">Anasayfa</a>
+
+                    <a href="#hakkimizda" class="mobile-link text-gray-800 hover:text-brand-blue pl-4 border-l-4 border-transparent hover:border-brand-blue">Hakkımızda</a>
+
+                    <a href="#hizmetler" class="mobile-link text-gray-800 hover:text-brand-blue pl-4 border-l-4 border-transparent hover:border-brand-blue">Hizmetlerimiz</a>
+
+                    <a href="#projeler" class="mobile-link text-gray-800 hover:text-brand-blue pl-4 border-l-4 border-transparent hover:border-brand-blue">Projeler</a>
+
+                    <a href="#iletisim" class="mobile-link text-gray-800 hover:text-brand-blue pl-4 border-l-4 border-transparent hover:border-brand-blue">İletişim</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </nav>
-  </div>
-</header>
 
-<!-- HERO -->
-<section class="hero" id="inicio">
-  <div class="container hero-grid">
+    <!-- Hero Section -->
 
-    <div>
-      <div class="badge"><i class="fas fa-shield-halved"></i> EMPRESA REGISTRADA • RESPONSABILIDADE TÉCNICA</div>
+    <section id="anasayfa" class="hero-bg h-[600px] flex items-center relative">
 
-      <h1>
-        SEC Engenharia
-        <span>Projetos, laudos e adequações exigidas por lei para empresas, indústrias, clínicas e comércios</span>
-      </h1>
+        <div class="container mx-auto px-4 text-white">
 
-      <p>
-        Atuamos com <strong>Engenharia Elétrica</strong>, <strong>Segurança do Trabalho</strong>, <strong>Engenharia Clínica</strong>
-        e <strong>Combate a Incêndio</strong>, garantindo conformidade com <strong>Normas</strong>, <strong>NR</strong> e
-        exigências do <strong>Corpo de Bombeiros</strong>, com documentação clara e suporte em fiscalizações.
-      </p>
+            <div class="max-w-3xl animate-fade-in-up">
 
-      <div class="pills">
-        <div class="pill"><i class="fas fa-id-card"></i> CREA / Registros</div>
-        <div class="pill"><i class="fas fa-file-signature"></i> ART</div>
-        <div class="pill"><i class="fas fa-fire-flame-curved"></i> Bombeiros</div>
-        <div class="pill"><i class="fas fa-helmet-safety"></i> Normas NR</div>
-      </div>
+                <span class="bg-brand-green text-white px-3 py-1 text-sm font-bold uppercase rounded mb-4 inline-block tracking-wider">Geleceğin Enerjisi</span>
 
-      <div class="actions">
-        <a class="btn primary" target="_blank" rel="noopener"
-           href="https://wa.me/5573991396879?text=Olá!%20Quero%20um%20orçamento%20para%20serviço%20de%20engenharia.">
-          <i class="fab fa-whatsapp"></i> SOLICITAR ORÇAMENTO
-        </a>
-        <a class="btn outline" href="#servicos"><i class="fas fa-cogs"></i> VER SERVIÇOS</a>
-        <a class="btn outline" href="#trabalhos"><i class="fas fa-camera"></i> VER TRABALHOS</a>
-      </div>
-    </div>
+                <h1 class="text-4xl md:text-6xl font-heading font-bold mb-6 leading-tight">
 
-    <div class="heroCard">
-      <div class="heroVisual">
-        <div class="visualBox">
-          <div class="t"><i class="fas fa-clipboard-check"></i> Resultado</div>
-          <div class="d">Sua empresa regularizada, com documentação técnica e segurança jurídica.</div>
-        </div>
-        <div class="visualBox">
-          <div class="t"><i class="fas fa-fire-flame-curved"></i> Bombeiros</div>
-          <div class="d">Projetos e adequações para prevenção e combate a incêndio conforme exigências.</div>
-        </div>
-        <div class="visualBox">
-          <div class="t"><i class="fas fa-helmet-safety"></i> NR</div>
-          <div class="d">Documentação e adequações para reduzir riscos e evitar multas.</div>
-        </div>
-      </div>
-      <div class="cap"><strong>Atendimento na região sul da Bahia</strong> com foco em normas, segurança e responsabilidade.</div>
-    </div>
+                    BETA Enerji ile <br>
 
-  </div>
-</section>
+                    <span class="text-brand-green">Sürdürülebilir Çözümler</span>
 
-<!-- SERVIÇOS -->
-<section id="servicos" class="bg2">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">SERVIÇOS</h2>
-      <p class="section-subtitle">
-        Aqui você encontra serviços completos com <strong>explicação clara</strong>, foco em <strong>normas</strong> e <strong>documentação</strong>.
-        Ideal para empresas que precisam operar regularizadas.
-      </p>
-    </div>
+                </h1>
 
-    <div class="grid3">
-      <div class="card">
-        <div class="iconBox"><i class="fas fa-bolt"></i></div>
-        <h3>Engenharia Elétrica</h3>
-        <p>Projetos e laudos elétricos para garantir segurança, desempenho e conformidade com normas.</p>
-        <ul class="list">
-          <li><i class="fas fa-bolt"></i> SPDA (para-raios) e aterramento</li>
-          <li><i class="fas fa-plug"></i> Adequações e instalações elétricas</li>
-          <li><i class="fas fa-clipboard-check"></i> Laudos, inspeções e relatórios</li>
-          <li><i class="fas fa-file-signature"></i> ART quando aplicável</li>
-        </ul>
-      </div>
+                <p class="text-lg md:text-xl mb-8 text-gray-200">
 
-      <div class="card">
-        <div class="iconBox"><i class="fas fa-helmet-safety"></i></div>
-        <h3>Segurança do Trabalho (NR)</h3>
-        <p>Adequação às NRs para reduzir riscos, evitar multas e melhorar a segurança dos colaboradores.</p>
-        <ul class="list">
-          <li><i class="fas fa-file-medical"></i> PGR / PCMSO / LTCAT</li>
-          <li><i class="fas fa-scale-balanced"></i> Apoio em fiscalizações</li>
-          <li><i class="fas fa-chalkboard-user"></i> Treinamentos NR (conforme demanda)</li>
-          <li><i class="fas fa-shield-check"></i> Gestão de riscos</li>
-        </ul>
-      </div>
+                    BETA Enerji Sistemleri Mühendislik olarak, yenilikçi GES projeleri ve mühendislik hizmetleriyle enerji bağımsızlığınızı artırıyoruz.
 
-      <div class="card">
-        <div class="iconBox"><i class="fas fa-fire-flame-curved"></i></div>
-        <h3>Combate a Incêndio (Bombeiros)</h3>
-        <p>Projetos e regularização com foco em exigências do Corpo de Bombeiros e prevenção.</p>
-        <ul class="list">
-          <li><i class="fas fa-fire-flame-curved"></i> Projeto técnico de prevenção</li>
-          <li><i class="fas fa-route"></i> Rotas de fuga e sinalização</li>
-          <li><i class="fas fa-water"></i> Hidrantes / sprinklers (quando aplicável)</li>
-          <li><i class="fas fa-file-signature"></i> Responsabilidade técnica / ART</li>
-        </ul>
-      </div>
+                </p>
 
-      <div class="card">
-        <div class="iconBox"><i class="fas fa-hospital"></i></div>
-        <h3>Engenharia Clínica</h3>
-        <p>Gestão e manutenção técnica de equipamentos, com rotinas e documentação para hospitais e clínicas.</p>
-        <ul class="list">
-          <li><i class="fas fa-stethoscope"></i> Rotinas e checklists</li>
-          <li><i class="fas fa-screwdriver-wrench"></i> Planos de manutenção</li>
-          <li><i class="fas fa-file-alt"></i> Relatórios e controle</li>
-          <li><i class="fas fa-circle-check"></i> Boas práticas</li>
-        </ul>
-      </div>
+                <div class="flex flex-col sm:flex-row gap-4">
 
-      <div class="card">
-        <div class="iconBox"><i class="fas fa-cogs"></i></div>
-        <h3>Engenharia Mecânica</h3>
-        <p>Inspeções e análises para equipamentos e sistemas mecânicos, com foco em segurança e adequações.</p>
-        <ul class="list">
-          <li><i class="fas fa-gears"></i> Projetos e melhorias</li>
-          <li><i class="fas fa-toolbox"></i> Inspeções técnicas</li>
-          <li><i class="fas fa-triangle-exclamation"></i> Prevenção de falhas</li>
-          <li><i class="fas fa-file-signature"></i> Laudos e pareceres</li>
-        </ul>
-      </div>
+                    <a href="#hizmetler" class="bg-brand-green hover:bg-green-600 text-white px-8 py-3 rounded text-center transition duration-300 font-bold shadow-lg">
 
-      <div class="card">
-        <div class="iconBox"><i class="fas fa-file-contract"></i></div>
-        <h3>Laudos e Perícias</h3>
-        <p>Relatórios técnicos objetivos, prontos para auditorias, processos e validações.</p>
-        <ul class="list">
-          <li><i class="fas fa-magnifying-glass"></i> Vistorias e análises</li>
-          <li><i class="fas fa-scale-balanced"></i> Pareceres técnicos</li>
-          <li><i class="fas fa-clipboard-check"></i> Documentação completa</li>
-          <li><i class="fas fa-shield-halved"></i> Segurança jurídica</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+                        Hizmetlerimiz
 
-<!-- ADICIONADO: TRABALHOS REAIS (VOCÊ SÓ TROCA AS IMAGENS) -->
-<section id="trabalhos">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">TRABALHOS REAIS</h2>
-      <p class="section-subtitle">
-        Aqui você vai alimentar bastante com <strong>fotos reais</strong> do serviço sendo feito.
-        Clique na foto para abrir grande.
-      </p>
-    </div>
+                    </a>
 
-    <div class="mapWrap">
-      <div class="mapTop">
-        <div class="left">
-          <h3><i class="fas fa-camera"></i> Galeria (fotos reais)</h3>
-          <p>
-            Crie uma pasta <strong>midia/</strong> e troque as imagens abaixo.
-            Exemplo: <strong>midia/obra1.jpg</strong>, <strong>midia/obra2.jpg</strong>...
-          </p>
-        </div>
+                    <a href="#iletisim" class="bg-transparent border-2 border-white hover:bg-white hover:text-brand-dark text-white px-8 py-3 rounded text-center transition duration-300 font-bold">
 
-        <div class="mapActions">
-          <button class="mapBtn primary workFilter" data-filter="all"><i class="fas fa-layer-group"></i> Tudo</button>
-          <button class="mapBtn workFilter" data-filter="eletrica"><i class="fas fa-bolt"></i> Elétrica</button>
-          <button class="mapBtn workFilter" data-filter="nr"><i class="fas fa-helmet-safety"></i> NR</button>
-          <button class="mapBtn workFilter" data-filter="bombeiros"><i class="fas fa-fire-flame-curved"></i> Bombeiros</button>
-          <button class="mapBtn workFilter" data-filter="clinica"><i class="fas fa-hospital"></i> Clínica</button>
-        </div>
-      </div>
+                        Bize Ulaşın
 
-      <div style="padding:18px">
-        <div class="grid3" id="workGrid">
+                    </a>
 
-          <!-- CARD 1 -->
-          <div class="card workItem" data-tags="eletrica"
-               data-full="midia/obra1.jpg"
-               data-title="SPDA / Aterramento"
-               data-desc="Troque a imagem e escreva o que foi feito."
-               style="padding:0;overflow:hidden;cursor:pointer">
-            <div style="height:220px;background:#0b1228">
-              <img src="midia/obra1.jpg" alt="SPDA / Aterramento" style="width:100%;height:100%;object-fit:cover;display:block">
+                </div>
+
             </div>
-            <div style="padding:16px 16px 18px">
-              <h3 style="margin:0 0 6px">SPDA / Aterramento</h3>
-              <p style="margin:0;color:var(--cinza)">Execução, inspeção e documentação.</p>
-            </div>
-          </div>
-
-          <!-- CARD 2 -->
-          <div class="card workItem" data-tags="bombeiros"
-               data-full="midia/obra2.jpg"
-               data-title="Rotas de Fuga / Sinalização"
-               data-desc="Antes/depois ajuda muito a fechar contrato."
-               style="padding:0;overflow:hidden;cursor:pointer">
-            <div style="height:220px;background:#0b1228">
-              <img src="midia/obra2.jpg" alt="Rotas de Fuga / Sinalização" style="width:100%;height:100%;object-fit:cover;display:block">
-            </div>
-            <div style="padding:16px 16px 18px">
-              <h3 style="margin:0 0 6px">Rotas de Fuga / Sinalização</h3>
-              <p style="margin:0;color:var(--cinza)">Conforme exigências do Corpo de Bombeiros.</p>
-            </div>
-          </div>
-
-          <!-- CARD 3 -->
-          <div class="card workItem" data-tags="nr"
-               data-full="midia/obra3.jpg"
-               data-title="Vistoria / Checklist NR"
-               data-desc="Foto real do processo e equipamentos."
-               style="padding:0;overflow:hidden;cursor:pointer">
-            <div style="height:220px;background:#0b1228">
-              <img src="midia/obra3.jpg" alt="Vistoria / Checklist NR" style="width:100%;height:100%;object-fit:cover;display:block">
-            </div>
-            <div style="padding:16px 16px 18px">
-              <h3 style="margin:0 0 6px">Vistoria / Checklist NR</h3>
-              <p style="margin:0;color:var(--cinza)">Organização e evidência técnica.</p>
-            </div>
-          </div>
-
-          <!-- CARD 4 -->
-          <div class="card workItem" data-tags="clinica"
-               data-full="midia/obra4.jpg"
-               data-title="Engenharia Clínica"
-               data-desc="Manutenção, rotina e relatório."
-               style="padding:0;overflow:hidden;cursor:pointer">
-            <div style="height:220px;background:#0b1228">
-              <img src="midia/obra4.jpg" alt="Engenharia Clínica" style="width:100%;height:100%;object-fit:cover;display:block">
-            </div>
-            <div style="padding:16px 16px 18px">
-              <h3 style="margin:0 0 6px">Engenharia Clínica</h3>
-              <p style="margin:0;color:var(--cinza)">Rotinas e controle de equipamentos.</p>
-            </div>
-          </div>
-
-          <!-- CARD 5 -->
-          <div class="card workItem" data-tags="eletrica"
-               data-full="midia/obra5.jpg"
-               data-title="Adequação Elétrica"
-               data-desc="Troque pelo seu serviço real."
-               style="padding:0;overflow:hidden;cursor:pointer">
-            <div style="height:220px;background:#0b1228">
-              <img src="midia/obra5.jpg" alt="Adequação Elétrica" style="width:100%;height:100%;object-fit:cover;display:block">
-            </div>
-            <div style="padding:16px 16px 18px">
-              <h3 style="margin:0 0 6px">Adequação Elétrica</h3>
-              <p style="margin:0;color:var(--cinza)">Segurança e conformidade.</p>
-            </div>
-          </div>
-
-          <!-- CARD 6 -->
-          <div class="card workItem" data-tags="bombeiros"
-               data-full="midia/obra6.jpg"
-               data-title="Projeto Bombeiros"
-               data-desc="Registros reais do trabalho."
-               style="padding:0;overflow:hidden;cursor:pointer">
-            <div style="height:220px;background:#0b1228">
-              <img src="midia/obra6.jpg" alt="Projeto Bombeiros" style="width:100%;height:100%;object-fit:cover;display:block">
-            </div>
-            <div style="padding:16px 16px 18px">
-              <h3 style="margin:0 0 6px">Projeto Bombeiros</h3>
-              <p style="margin:0;color:var(--cinza)">Documentação + adequações.</p>
-            </div>
-          </div>
 
         </div>
 
-        <div class="smallNote" style="margin-top:12px">
-          Para adicionar mais fotos: copie um “CARD” acima, troque <strong>midia/obraX.jpg</strong> e o texto.
+        
+
+        <!-- Scroll Down Indicator -->
+
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+
+            <a href="#hakkimizda" class="text-white opacity-70 hover:opacity-100">
+
+                <i class="fas fa-chevron-down text-2xl"></i>
+
+            </a>
+
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- MAPA INTERATIVO (ALFINETES) -->
-<section id="mapa">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">MAPA DE ATUAÇÃO</h2>
-      <p class="section-subtitle">
-        Clique em uma cidade para <strong>dar zoom</strong> no mapa e ver o <strong>alfinete</strong> com símbolo do <strong>bombeiro</strong>.
-      </p>
-    </div>
+    </section>
 
-    <div class="mapWrap">
-      <div class="mapTop">
-        <div class="left">
-          <h3><i class="fas fa-map-location-dot"></i> Regiões atendidas</h3>
-          <p>
-            Lista interativa + mapa. Se abrir “offline”, o mapa pode não carregar (normal). Com internet, funciona perfeito.
-          </p>
+    <!-- Stats Section -->
+
+    <section class="py-10 bg-brand-blue text-white -mt-2 relative z-10">
+
+        <div class="container mx-auto px-4">
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+
+                <div>
+
+                    <div class="text-4xl font-heading font-bold mb-1">150+</div>
+
+                    <div class="text-sm text-blue-200">Tamamlanan Proje</div>
+
+                </div>
+
+                <div>
+
+                    <div class="text-4xl font-heading font-bold mb-1">750MW</div>
+
+                    <div class="text-sm text-blue-200">Kurulu Güç</div>
+
+                </div>
+
+                <div>
+
+                    <div class="text-4xl font-heading font-bold mb-1">20+</div>
+
+                    <div class="text-sm text-blue-200">Yıllık Tecrübe</div>
+
+                </div>
+
+                <div>
+
+                    <div class="text-4xl font-heading font-bold mb-1">%100</div>
+
+                    <div class="text-sm text-blue-200">Müşteri Memnuniyeti</div>
+
+                </div>
+
+            </div>
+
         </div>
-        <div class="mapActions">
-          <button class="mapBtn primary" id="btnAll"><i class="fas fa-layer-group"></i> Ver tudo</button>
-          <button class="mapBtn" id="btnLocate"><i class="fas fa-location-crosshairs"></i> Minha localização</button>
+
+    </section>
+
+    <!-- About Section -->
+
+    <section id="hakkimizda" class="py-20 bg-white">
+
+        <div class="container mx-auto px-4">
+
+            <div class="flex flex-col md:flex-row items-center gap-12">
+
+                <div class="md:w-1/2">
+
+                    <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="BETA Enerji Ofis ve Saha" class="rounded-lg shadow-xl object-cover h-[400px] w-full">
+
+                </div>
+
+                <div class="md:w-1/2">
+
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-brand-dark mb-4 section-title">Hakkımızda</h2>
+
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+
+                        **BETA Enerji Sistemleri Mühendislik**, sektördeki köklü tecrübesi ve yenilikçi yaklaşımıyla Türkiye'nin enerji dönüşümüne öncülük etmektedir.
+
+                    </p>
+
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+
+                        Güneş enerjisi santrallerinden endüstriyel elektrik çözümlerine kadar geniş bir yelpazede hizmet sunuyoruz. Müşterilerimize en verimli, ekonomik ve sürdürülebilir enerji sistemlerini kurmayı taahhüt ediyoruz.
+
+                    </p>
+
+                    <ul class="space-y-3 mb-8">
+
+                        <li class="flex items-center text-gray-700">
+
+                            <i class="fas fa-check-circle text-brand-green mr-3"></i> Yenilikçi Mühendislik Yaklaşımı
+
+                        </li>
+
+                        <li class="flex items-center text-gray-700">
+
+                            <i class="fas fa-check-circle text-brand-green mr-3"></i> Yüksek Verimli Sistem Tasarımları
+
+                        </li>
+
+                        <li class="flex items-center text-gray-700">
+
+                            <i class="fas fa-check-circle text-brand-green mr-3"></i> 7/24 Teknik Destek ve İzleme
+
+                        </li>
+
+                    </ul>
+
+                    <a href="#iletisim" class="text-brand-blue font-bold hover:text-brand-dark border-b-2 border-brand-blue pb-1 transition">Daha Fazla Bilgi <i class="fas fa-arrow-right ml-2"></i></a>
+
+                </div>
+
+            </div>
+
         </div>
-      </div>
 
-      <div class="mapGrid">
-        <aside class="mapSide">
-          <div class="searchRow">
-            <input id="citySearch" placeholder="Buscar cidade (ex: Porto Seguro)" />
-            <button id="btnSearch" aria-label="Buscar"><i class="fas fa-magnifying-glass"></i></button>
-          </div>
+    </section>
 
-          <div class="cityList" id="cityList">
-            <!-- lista criada via JS -->
-          </div>
+    <!-- Services Section -->
 
-          <div class="smallNote">
-            Dica: clique em qualquer cidade para abrir o popup com o símbolo do bombeiro 🔥.
-          </div>
-        </aside>
+    <section id="hizmetler" class="py-20 bg-gray-100">
 
-        <div id="map" aria-label="Mapa interativo"></div>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="container mx-auto px-4">
 
-<!-- AUTORIDADE -->
-<section id="autoridade" class="bg2">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">AUTORIDADE E CONFORMIDADE</h2>
-      <p class="section-subtitle">
-        O cliente paga mais quando entende que você entrega <strong>conformidade</strong>, <strong>documentação</strong> e <strong>segurança jurídica</strong>.
-      </p>
-    </div>
+            <div class="text-center max-w-2xl mx-auto mb-16">
 
-    <div class="grid4">
-      <div class="mini">
-        <i class="fas fa-id-card"></i>
-        <h4>CREA / Registros</h4>
-        <p>Profissionais habilitados, garantindo respaldo técnico e credibilidade.</p>
-      </div>
-      <div class="mini">
-        <i class="fas fa-file-signature"></i>
-        <h4>ART</h4>
-        <p>Emissão quando aplicável, comprovando responsabilidade técnica.</p>
-      </div>
-      <div class="mini">
-        <i class="fas fa-fire-flame-curved"></i>
-        <h4>Corpo de Bombeiros</h4>
-        <p>Projetos e adequações para prevenção e combate a incêndio.</p>
-      </div>
-      <div class="mini">
-        <i class="fas fa-helmet-safety"></i>
-        <h4>Normas NR</h4>
-        <p>Adequações e documentos para reduzir multas e passivos trabalhistas.</p>
-      </div>
-    </div>
-  </div>
-</section>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-brand-dark mb-4">Hizmetlerimiz</h2>
 
-<!-- PROCESSO -->
-<section id="processo">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">COMO TRABALHAMOS</h2>
-      <p class="section-subtitle">Processo profissional, simples e organizado do início ao fim.</p>
-    </div>
+                <div class="h-1 w-20 bg-brand-green mx-auto mb-6"></div>
 
-    <div class="grid4 steps">
-      <div class="mini">
-        <div class="num">1</div>
-        <h4>Diagnóstico</h4>
-        <p>Você informa a necessidade: regularização, laudo, projeto ou adequação.</p>
-      </div>
-      <div class="mini">
-        <div class="num">2</div>
-        <h4>Vistoria / Coleta</h4>
-        <p>Levantamento técnico (quando necessário) para execução correta.</p>
-      </div>
-      <div class="mini">
-        <div class="num">3</div>
-        <h4>Projeto / Laudo</h4>
-        <p>Documentação conforme normas, exigências legais e critérios de segurança.</p>
-      </div>
-      <div class="mini">
-        <div class="num">4</div>
-        <h4>Entrega e Suporte</h4>
-        <p>Entrega organizada + suporte em auditorias e fiscalizações.</p>
-      </div>
-    </div>
-  </div>
-</section>
+                <p class="text-gray-600">BETA Enerji olarak, projelendirmeden anahtar teslim kuruluma kadar tüm süreçlerde yanınızdayız.</p>
 
-<!-- DEPOIMENTOS -->
-<section id="depoimentos" class="bg2">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">AVALIAÇÕES</h2>
-      <p class="section-subtitle">Prova social aumenta confiança e fecha contrato mais rápido.</p>
-    </div>
+            </div>
 
-    <div class="grid4">
-      <div class="mini">
-        <div class="stars">★★★★★</div>
-        <h4>Empresa Regularizada</h4>
-        <p class="quote">“Organização, documentação e orientação muito claras. Serviço de alto nível.”</p>
-        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Comercial</p>
-      </div>
-      <div class="mini">
-        <div class="stars">★★★★★</div>
-        <h4>Suporte em Fiscalização</h4>
-        <p class="quote">“Ajudou na fiscalização e deixou tudo em conformidade. Recomendo.”</p>
-        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Industrial</p>
-      </div>
-      <div class="mini">
-        <div class="stars">★★★★★</div>
-        <h4>Bombeiros</h4>
-        <p class="quote">“Projeto e adequações muito bem feitos, com suporte no processo.”</p>
-        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Empresa</p>
-      </div>
-      <div class="mini">
-        <div class="stars">★★★★★</div>
-        <h4>Profissionalismo</h4>
-        <p class="quote">“Atendimento sério e técnico. Entregou tudo organizado e rápido.”</p>
-        <p style="margin-top:10px;color:var(--cinza);font-weight:800">— Cliente Clínica</p>
-      </div>
-    </div>
-  </div>
-</section>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">DÚVIDAS FREQUENTES</h2>
-      <p class="section-subtitle">Respostas rápidas para o cliente decidir sem medo.</p>
-    </div>
+                <!-- Service 1 -->
 
-    <div class="faq">
-      <div class="faqItem">
-        <div class="faqQ"><span>Vocês emitem ART?</span><i class="fas fa-plus"></i></div>
-        <div class="faqA">Sim. Quando o serviço exigir, emitimos ART conforme responsabilidade técnica aplicável.</div>
-      </div>
-      <div class="faqItem">
-        <div class="faqQ"><span>Atendem Corpo de Bombeiros?</span><i class="fas fa-plus"></i></div>
-        <div class="faqA">Sim. Elaboramos projetos e orientamos adequações de prevenção e combate a incêndio conforme exigências.</div>
-      </div>
-      <div class="faqItem">
-        <div class="faqQ"><span>Quanto tempo demora?</span><i class="fas fa-plus"></i></div>
-        <div class="faqA">Depende do serviço e do tamanho do local. No orçamento, informamos prazo estimado e etapas.</div>
-      </div>
-      <div class="faqItem">
-        <div class="faqQ"><span>O mapa não abre às vezes. Por quê?</span><i class="fas fa-plus"></i></div>
-        <div class="faqA">
-          Se abrir sem internet (offline) ou dentro de um app sem acesso à web, o mapa não carrega os “blocos”.
-          Com internet normal, ele abre e mostra todos os alfinetes.
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-xl card-hover border-t-4 border-brand-blue">
+
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center text-brand-blue text-2xl mb-6">
+
+                        <i class="fas fa-solar-panel"></i>
+
+                    </div>
+
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Çatı GES Projeleri</h3>
+
+                    <p class="text-gray-600 mb-4">Fabrika, depo ve ticari binalarınızın çatısını enerji üretim tesisine dönüştürüyoruz.</p>
+
+                    <a href="#" class="text-sm font-bold text-brand-blue hover:text-brand-green">Detaylar <i class="fas fa-chevron-right text-xs ml-1"></i></a>
+
+                </div>
+
+                <!-- Service 2 -->
+
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-xl card-hover border-t-4 border-brand-green">
+
+                    <div class="w-14 h-14 bg-green-50 rounded-full flex items-center justify-center text-brand-green text-2xl mb-6">
+
+                        <i class="fas fa-seedling"></i>
+
+                    </div>
+
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Arazi GES Kurulumu</h3>
+
+                    <p class="text-gray-600 mb-4">Büyük ölçekli arazi yatırımlarınız için maksimum verimlilik sağlayan santraller kuruyoruz.</p>
+
+                    <a href="#" class="text-sm font-bold text-brand-blue hover:text-brand-green">Detaylar <i class="fas fa-chevron-right text-xs ml-1"></i></a>
+
+                </div>
+
+                <!-- Service 3 -->
+
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-xl card-hover border-t-4 border-brand-blue">
+
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center text-brand-blue text-2xl mb-6">
+
+                        <i class="fas fa-sun"></i>
+
+                    </div>
+
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Güneş Takip Sistemleri</h3>
+
+                    <p class="text-gray-600 mb-4">Üretimi artıran ileri teknoloji tracker sistemleri ile yatırım geri dönüş süresini kısaltın.</p>
+
+                    <a href="#" class="text-sm font-bold text-brand-blue hover:text-brand-green">Detaylar <i class="fas fa-chevron-right text-xs ml-1"></i></a>
+
+                </div>
+
+                <!-- Service 4 -->
+
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-xl card-hover border-t-4 border-brand-blue">
+
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center text-brand-blue text-2xl mb-6">
+
+                        <i class="fas fa-drafting-compass"></i>
+
+                    </div>
+
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Projelendirme & Onay</h3>
+
+                    <p class="text-gray-600 mb-4">Resmi kurum süreçleri, TEDAŞ onayı ve detaylı elektrik/statik proje çizimleri.</p>
+
+                    <a href="#" class="text-sm font-bold text-brand-blue hover:text-brand-green">Detaylar <i class="fas fa-chevron-right text-xs ml-1"></i></a>
+
+                </div>
+
+                <!-- Service 5 -->
+
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-xl card-hover border-t-4 border-brand-blue">
+
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center text-brand-blue text-2xl mb-6">
+
+                        <i class="fas fa-handshake"></i>
+
+                    </div>
+
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Enerji Danışmanlığı</h3>
+
+                    <p class="text-gray-600 mb-4">Yatırım fizibilitesi, mevzuat takibi ve teşvik süreçlerinde uzman danışmanlık.</p>
+
+                    <a href="#" class="text-sm font-bold text-brand-blue hover:text-brand-green">Detaylar <i class="fas fa-chevron-right text-xs ml-1"></i></a>
+
+                </div>
+
+                <!-- Service 6 -->
+
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-xl card-hover border-t-4 border-brand-blue">
+
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center text-brand-blue text-2xl mb-6">
+
+                        <i class="fas fa-tools"></i>
+
+                    </div>
+
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">O&M (İşletme & Bakım)</h3>
+
+                    <p class="text-gray-600 mb-4">Santralinizin ömrünü uzatan ve verimini koruyan profesyonel bakım hizmetleri.</p>
+
+                    <a href="#" class="text-sm font-bold text-brand-blue hover:text-brand-green">Detaylar <i class="fas fa-chevron-right text-xs ml-1"></i></a>
+
+                </div>
+
+            </div>
+
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ORÇAMENTO -->
-<section id="orcamento" class="bg2">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">PEDIR ORÇAMENTO</h2>
-      <p class="section-subtitle">Preencha rápido e envie direto para o WhatsApp (sem servidor).</p>
-    </div>
+    </section>
 
-    <div class="card">
-      <div class="formGrid">
-        <input class="input" id="nome" placeholder="Seu nome" />
-        <input class="input" id="empresa" placeholder="Empresa (opcional)" />
-        <input class="input" id="cidade" placeholder="Cidade" />
-        <input class="input" id="servico" placeholder="Serviço (ex: NR, Bombeiros, Laudo...)" />
-      </div>
-      <textarea class="input" id="msg" placeholder="Explique o que você precisa (quanto mais detalhes, melhor)."></textarea>
+    <!-- Projects / References Strip -->
 
-      <div class="formActions">
-        <button class="btn primary" id="enviarWpp"><i class="fab fa-whatsapp"></i> Enviar no WhatsApp</button>
-        <a class="btn outline" href="#servicos"><i class="fas fa-cogs"></i> Ver serviços</a>
-        <a class="btn outline" href="#trabalhos"><i class="fas fa-camera"></i> Ver trabalhos</a>
-      </div>
+    <section id="projeler" class="py-16 bg-brand-dark text-white">
 
-      <div class="smallNote">
-        Ao clicar em “Enviar no WhatsApp”, será aberta uma mensagem pronta. Você pode revisar e enviar.
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="container mx-auto px-4">
 
-<!-- CONTATO -->
-<section id="contato">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">CONTATO</h2>
-      <p class="section-subtitle">Fale agora e receba atendimento direto.</p>
-    </div>
+            <h2 class="text-3xl font-heading font-bold mb-10 text-center">Referans Projelerimiz</h2>
 
-    <div class="grid4">
-      <div class="mini">
-        <i class="fas fa-phone"></i>
-        <h4>Telefone</h4>
-        <p><a href="tel:+5573991396879">(73) 99139-6879</a></p>
-      </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-      <div class="mini">
-        <i class="fab fa-whatsapp"></i>
-        <h4>WhatsApp</h4>
-        <p><a target="_blank" rel="noopener" href="https://wa.me/5573991396879">Clique para conversar</a></p>
-      </div>
+                <div class="relative group overflow-hidden rounded-lg">
 
-      <!-- ADICIONADO: LOHANNA -->
-      <div class="mini">
-        <i class="fab fa-whatsapp"></i>
-        <h4>Lohanna</h4>
-        <p><a target="_blank" rel="noopener" href="https://wa.me/557391261651">+55 73 9126-1651</a></p>
-      </div>
+                    <img src="https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Proje 1" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
 
-      <!-- ADICIONADO: EDSON -->
-      <div class="mini">
-        <i class="fab fa-whatsapp"></i>
-        <h4>Edson</h4>
-        <p><a target="_blank" rel="noopener" href="https://wa.me/557381174388">+55 73 8117-4388</a></p>
-      </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
 
-      <div class="mini">
-        <i class="fas fa-envelope"></i>
-        <h4>E-mail</h4>
-        <p><a href="mailto:sec_eng@hotmail.com">sec_eng@hotmail.com</a></p>
-      </div>
+                        <span class="text-xl font-bold border-2 border-white px-4 py-2">Konya 5MW Saha</span>
 
-      <div class="mini">
-        <i class="fas fa-location-dot"></i>
-        <h4>Região</h4>
-        <p>Região Sul da Bahia</p>
-      </div>
-    </div>
-  </div>
-</section>
+                    </div>
 
-<!-- REDES -->
-<section id="redes" class="bg2">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">REDES SOCIAIS</h2>
-      <p class="section-subtitle">Acompanhe novidades e trabalhos.</p>
-    </div>
+                </div>
 
-    <div class="social">
-      <a target="_blank" rel="noopener" href="https://www.facebook.com/share/19Wskn7vRH/">
-        <i class="fab fa-facebook-f"></i><span>Facebook</span>
-      </a>
-      <a target="_blank" rel="noopener" href="https://www.instagram.com/eng.brunaomota">
-        <i class="fab fa-instagram"></i><span>Instagram</span>
-      </a>
-      <a target="_blank" rel="noopener" href="https://wa.me/5573991396879">
-        <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
-      </a>
-      <a href="mailto:sec_eng@hotmail.com">
-        <i class="fas fa-envelope"></i><span>E-mail</span>
-      </a>
-    </div>
-  </div>
-</section>
+                <div class="relative group overflow-hidden rounded-lg">
 
-<footer>
-  <div class="container">
-    <div class="footerGrid">
-      <div>
-        <h4>SEC ENGENHARIA</h4>
-        <p>Soluções técnicas com foco em qualidade, conformidade e documentação profissional.</p>
-        <p style="margin-top:10px;color:var(--verde-claro);font-weight:900">Desenvolver para Evoluir</p>
-      </div>
-      <div>
-        <h4>Serviços</h4>
-        <p><a href="#servicos">Elétrica • NR • Bombeiros • Clínica • Mecânica • Laudos</a></p>
-      </div>
-      <div>
-        <h4>Contato</h4>
-        <p><a href="tel:+5573991396879">(73) 99139-6879</a></p>
-        <p><a target="_blank" rel="noopener" href="https://wa.me/557391261651">Lohanna: +55 73 9126-1651</a></p>
-        <p><a target="_blank" rel="noopener" href="https://wa.me/557381174388">Edson: +55 73 8117-4388</a></p>
-        <p><a href="mailto:sec_eng@hotmail.com">sec_eng@hotmail.com</a></p>
-      </div>
-    </div>
+                    <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Proje 2" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
 
-    <div class="copy">
-      © 2026 SEC Engenharia • Todos os direitos reservados • CREA 3000078851 | CREA 79591D
-    </div>
-  </div>
-</footer>
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
 
-<!-- WhatsApp flutuante -->
-<a class="whats" target="_blank" rel="noopener"
-   href="https://wa.me/5573991396879?text=Olá!%20Quero%20um%20orçamento%20para%20serviço%20de%20engenharia.">
-  <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
-</a>
+                        <span class="text-xl font-bold border-2 border-white px-4 py-2">İstanbul 1.2MW Çatı</span>
 
-<!-- Voltar topo -->
-<button class="toTop" id="toTop" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+                    </div>
 
-<!-- Barra fixa mobile -->
-<div class="mobileBar">
-  <a target="_blank" rel="noopener"
-     href="https://wa.me/5573991396879?text=Olá!%20Quero%20um%20orçamento%20para%20serviço%20de%20engenharia.">
-    <i class="fab fa-whatsapp"></i> Orçamento no WhatsApp
-  </a>
-</div>
+                </div>
 
-<!-- MODAL (ABRIR FOTO GRANDE) -->
-<div id="imgModal" aria-hidden="true">
-  <div style="
-    width:min(980px,100%);
-    background:rgba(2,6,23,.98);
-    border:1px solid rgba(255,255,255,.10);
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 22px 70px rgba(0,0,0,.55)
-  ">
-    <div style="
-      display:flex;align-items:center;justify-content:space-between;gap:10px;
-      padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.10)
-    ">
-      <b style="color:#fff;display:flex;align-items:center;gap:10px">
-        <i class="fas fa-image" style="color:var(--verde)"></i>
-        <span id="mTitle">Imagem</span>
-      </b>
-      <button id="mClose" style="
-        border:none;background:rgba(255,255,255,.06);color:#fff;cursor:pointer;
-        width:40px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.10)
-      " aria-label="Fechar"><i class="fas fa-times"></i></button>
-    </div>
+                <div class="relative group overflow-hidden rounded-lg">
 
-    <div style="background:#0b1228">
-      <img id="mImg" alt="Imagem ampliada" style="width:100%;height:auto;display:block" />
-    </div>
-    <div id="mDesc" style="padding:12px 14px;color:var(--cinza);font-size:14px;line-height:1.6"></div>
-  </div>
-</div>
+                    <img src="https://images.unsplash.com/photo-1545208942-e0c45d62b322?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Proje 3" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
 
-<!-- VLibras (Intérprete de Libras) -->
-<div vw class="enabled">
-  <div vw-access-button class="active"></div>
-  <div vw-plugin-wrapper>
-    <div class="vw-plugin-top-wrapper"></div>
-  </div>
-</div>
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-<script>
-  new window.VLibras.Widget('https://vlibras.gov.br/app');
-</script>
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
 
-<script>
-/* ===== MENU MOBILE ===== */
-const menuBtn = document.getElementById('menuBtn');
-const nav = document.getElementById('nav');
+                        <span class="text-xl font-bold border-2 border-white px-4 py-2">Antalya Tracker GES</span>
 
-menuBtn.addEventListener('click', () => {
-  nav.classList.toggle('active');
-  menuBtn.innerHTML = nav.classList.contains('active')
-    ? '<i class="fas fa-times"></i>'
-    : '<i class="fas fa-bars"></i>';
-});
+                    </div>
 
-document.querySelectorAll('nav a').forEach(a=>{
-  a.addEventListener('click', ()=>{
-    nav.classList.remove('active');
-    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-  });
-});
+                </div>
 
-/* ===== HEADER SCROLL ===== */
-const header = document.querySelector('header');
-window.addEventListener('scroll', ()=>{
-  header.style.padding = window.scrollY > 40 ? '10px 0' : '14px 0';
-});
+            </div>
 
-/* ===== VOLTAR AO TOPO ===== */
-const toTop = document.getElementById('toTop');
-window.addEventListener('scroll', ()=>{
-  if(window.scrollY > 600) toTop.classList.add('show');
-  else toTop.classList.remove('show');
-});
-toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+        </div>
 
-/* ===== FAQ ABRIR/FECHAR ===== */
-document.querySelectorAll('.faqItem').forEach(item=>{
-  item.querySelector('.faqQ').addEventListener('click', ()=>{
-    item.classList.toggle('open');
-    const icon = item.querySelector('.faqQ i');
-    icon.className = item.classList.contains('open') ? 'fas fa-minus' : 'fas fa-plus';
-  });
-});
+    </section>
 
-/* ===== FORMULÁRIO -> WHATSAPP ===== */
-document.getElementById('enviarWpp').addEventListener('click', ()=>{
-  const nome = document.getElementById('nome').value.trim();
-  const empresa = document.getElementById('empresa').value.trim();
-  const cidade = document.getElementById('cidade').value.trim();
-  const servico = document.getElementById('servico').value.trim();
-  const msg = document.getElementById('msg').value.trim();
+    <!-- Contact Section -->
 
-  const texto =
-`Olá! Quero um orçamento.
+    <section id="iletisim" class="py-20 bg-white">
 
-Nome: ${nome || "-"}
-Empresa: ${empresa || "-"}
-Cidade: ${cidade || "-"}
-Serviço: ${servico || "-"}
-Detalhes: ${msg || "-"}
+        <div class="container mx-auto px-4">
 
-Pode me orientar os próximos passos?`;
+            <div class="flex flex-col md:flex-row gap-12">
 
-  const url = "https://wa.me/5573991396879?text=" + encodeURIComponent(texto);
-  window.open(url, "_blank");
-});
+                <!-- Form -->
 
-/* ===== MAPA INTERATIVO (ALFINETES) ===== */
-const cities = [
-  { name:"Eunápolis",          hint:"Base / região de atendimento",         lat:-16.3765, lng:-39.5804 },
-  { name:"Porto Seguro",       hint:"Projetos e regularizações",            lat:-16.4440, lng:-39.0649 },
-  { name:"Trancoso",           hint:"Adequações e laudos",                  lat:-16.5918, lng:-39.0979 },
-  { name:"Itabela",            hint:"Atendimento técnico",                  lat:-16.5748, lng:-39.5597 },
-  { name:"Teixeira de Freitas",hint:"Documentação NR / laudos",             lat:-17.5426, lng:-39.7423 },
-  { name:"Arraial d'Ajuda",    hint:"Bombeiros / projetos preventivos",     lat:-16.4632, lng:-39.1477 },
-  { name:"Itamaraju",          hint:"Vistorias e suporte",                  lat:-17.0396, lng:-39.5314 },
-  { name:"Itapebi",            hint:"Regularização e consultoria",          lat:-15.9550, lng:-39.5320 },
-  { name:"Itagimirim",         hint:"Projetos e laudos",                    lat:-16.0830, lng:-39.6140 },
-];
+                <div class="md:w-1/2">
 
-const map = L.map('map', { zoomControl:true, scrollWheelZoom:true }).setView([-16.55, -39.35], 8);
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-brand-dark mb-4 section-title">İletişime Geçin</h2>
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution: '&copy; OpenStreetMap'
-}).addTo(map);
+                    <p class="text-gray-600 mb-8">Projeleriniz için ücretsiz keşif ve teklif almak için formu doldurabilirsiniz.</p>
 
-const firePin = L.divIcon({
-  className: "",
-  html: `
-    <div style="
-      width:42px;height:42px;border-radius:18px;
-      background:rgba(2,6,23,.96);
-      border:1px solid rgba(255,255,255,.18);
-      box-shadow:0 18px 40px rgba(0,0,0,.35);
-      display:flex;align-items:center;justify-content:center;
-      position:relative;
-    ">
-      <i class="fas fa-fire-flame-curved" style="color:#ff4d4d;font-size:20px"></i>
-      <div style="
-        position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
-        width:14px;height:14px;background:rgba(2,6,23,.96);
-        border-left:1px solid rgba(255,255,255,.18);
-        border-bottom:1px solid rgba(255,255,255,.18);
-        transform:translateX(-50%) rotate(45deg);
-      "></div>
-    </div>
-  `,
-  iconSize: [42, 52],
-  iconAnchor: [21, 50],
-  popupAnchor: [0, -48]
-});
+                    
 
-const markers = [];
-function popupHTML(city){
-  return `
-    <div class="popupTitle"><i class="fas fa-fire-flame-curved"></i> ${city.name}</div>
-    <div class="popupText">${city.hint}</div>
-    <div class="popupText" style="margin-top:8px">
-      <i class="fas fa-location-dot" style="color:var(--verde)"></i>
-      Atendimento técnico e documentação.
-    </div>
-  `;
-}
+                    <form id="contactForm" class="space-y-6">
 
-cities.forEach(c=>{
-  const m = L.marker([c.lat, c.lng], { icon: firePin }).addTo(map);
-  m.bindPopup(popupHTML(c));
-  markers.push({ ...c, marker:m });
-});
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-const list = document.getElementById('cityList');
+                            <div>
 
-function renderList(items){
-  list.innerHTML = "";
-  items.forEach(c=>{
-    const btn = document.createElement("button");
-    btn.className = "cityBtn";
-    btn.innerHTML = `
-      <b>${c.name}</b>
-      <small>${c.hint}</small>
-      <span class="tag"><i class="fas fa-thumbtack"></i> Ver no mapa</span>
-    `;
-    btn.addEventListener("click", ()=>{
-      map.setView([c.lat, c.lng], 12, { animate:true });
-      setTimeout(()=> c.marker.openPopup(), 250);
-      fixMap();
-    });
-    list.appendChild(btn);
-  });
-}
-renderList(markers);
+                                <label class="block text-gray-700 font-semibold mb-2" for="name">Ad Soyad</label>
 
-function doSearch(){
-  const q = document.getElementById("citySearch").value.trim().toLowerCase();
-  if(!q){ renderList(markers); return; }
-  const filtered = markers.filter(c=> c.name.toLowerCase().includes(q));
-  renderList(filtered.length ? filtered : markers);
-}
-document.getElementById("btnSearch").addEventListener("click", doSearch);
-document.getElementById("citySearch").addEventListener("input", doSearch);
+                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-brand-blue" required>
 
-document.getElementById("btnAll").addEventListener("click", ()=>{
-  const group = L.featureGroup(markers.map(c=>c.marker));
-  map.fitBounds(group.getBounds().pad(0.25));
-  fixMap();
-});
+                            </div>
 
-document.getElementById("btnLocate").addEventListener("click", ()=>{
-  if(!navigator.geolocation){
-    alert("Seu navegador não suporta localização.");
-    return;
-  }
-  navigator.geolocation.getCurrentPosition((pos)=>{
-    const { latitude, longitude } = pos.coords;
-    map.setView([latitude, longitude], 13, { animate:true });
+                            <div>
 
-    const you = L.circleMarker([latitude, longitude], {
-      radius:10, weight:2,
-      color:"#22d3c5",
-      fillColor:"#22d3c5",
-      fillOpacity:0.25
-    }).addTo(map);
+                                <label class="block text-gray-700 font-semibold mb-2" for="phone">Telefon</label>
 
-    you.bindPopup(`<div class="popupTitle"><i class="fas fa-location-crosshairs" style="color:var(--verde)"></i> Sua localização</div>
-      <div class="popupText">Usado apenas para te mostrar no mapa.</div>`).openPopup();
+                                <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-brand-blue">
 
-    fixMap();
-  }, ()=>{
-    alert("Não foi possível pegar sua localização. Verifique as permissões do navegador.");
-  });
-});
+                            </div>
 
-function fixMap(){
-  setTimeout(()=> map.invalidateSize(), 250);
-}
-window.addEventListener("load", fixMap);
-window.addEventListener("resize", fixMap);
-document.querySelectorAll('a[href="#mapa"]').forEach(a=> a.addEventListener("click", fixMap));
+                        </div>
 
-/* ===== TRABALHOS REAIS: filtro + modal ===== */
-(function(){
-  const filterBtns = document.querySelectorAll('.workFilter');
-  const workItems = document.querySelectorAll('.workItem');
+                        <div>
 
-  function applyFilter(f){
-    workItems.forEach(item=>{
-      const tags = (item.getAttribute('data-tags') || "").split(" ");
-      const show = (f === "all") || tags.includes(f);
-      item.style.display = show ? "block" : "none";
-    });
-  }
+                            <label class="block text-gray-700 font-semibold mb-2" for="email">E-posta</label>
 
-  filterBtns.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      filterBtns.forEach(b=>b.classList.remove('primary'));
-      btn.classList.add('primary');
-      applyFilter(btn.dataset.filter || "all");
-    });
-  });
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-brand-blue" required>
 
-  const modal = document.getElementById('imgModal');
-  const mImg = document.getElementById('mImg');
-  const mTitle = document.getElementById('mTitle');
-  const mDesc = document.getElementById('mDesc');
-  const mClose = document.getElementById('mClose');
+                        </div>
 
-  function openModal(src, title, desc){
-    if(!modal) return;
-    mImg.src = src;
-    mTitle.textContent = title || "Imagem";
-    mDesc.textContent = desc || "";
-    modal.style.display = "flex";
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = "hidden";
-  }
-  function closeModal(){
-    if(!modal) return;
-    modal.style.display = "none";
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = "";
-    mImg.src = "";
-  }
+                        <div>
 
-  workItems.forEach(item=>{
-    item.addEventListener('click', ()=>{
-      openModal(
-        item.getAttribute('data-full') || "",
-        item.getAttribute('data-title') || "",
-        item.getAttribute('data-desc') || ""
-      );
-    });
-  });
+                            <label class="block text-gray-700 font-semibold mb-2" for="message">Mesajınız</label>
 
-  if(mClose) mClose.addEventListener('click', closeModal);
-  if(modal) modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
-  document.addEventListener('keydown', (e)=>{ if(e.key === "Escape") closeModal(); });
-})();
-</script>
+                            <input id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-brand-blue" required/>
+
+                        </div>
+
+                        <button type="submit" class="bg-brand-blue hover:bg-brand-dark text-white font-bold py-3 px-8 rounded transition duration-300 w-full md:w-auto">
+
+                            Gönder
+
+                        </button>
+
+                    </form>
+
+                    
+
+                    <!-- Form Feedback Message (Hidden by default) -->
+
+                    <div id="formSuccess" class="hidden mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+
+                        <strong class="font-bold">Başarılı!</strong>
+
+                        <span class="block sm:inline">Mesajınız tarafımıza ulaşmıştır. En kısa sürede dönüş yapılacaktır.</span>
+
+                    </div>
+
+                </div>
+
+                <!-- Info -->
+
+                <div class="md:w-1/2 bg-gray-50 p-8 rounded-lg border border-gray-200">
+
+                    <h3 class="text-2xl font-bold text-brand-dark mb-6">Merkez Ofis</h3>
+
+                    
+
+                    <div class="space-y-6">
+
+                        <div class="flex items-start">
+
+                            <div class="bg-white p-3 rounded shadow text-brand-blue mr-4">
+
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-bold text-gray-900">Adres</h4>
+
+                                <p class="text-gray-600">Mevlana Bulvarı, No: 123<br>Beta Plaza, Kat: 5, Daire: 12<br>Çankaya / ANKARA</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="flex items-start">
+
+                            <div class="bg-white p-3 rounded shadow text-brand-blue mr-4">
+
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-bold text-gray-900">İstanbul Şube</h4>
+
+                                <p class="text-gray-600">Büyükdere Caddesi, No: 45<br>Beta Tower, Kat: 8<br>Şişli / İSTANBUL</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="flex items-start">
+
+                            <div class="bg-white p-3 rounded shadow text-brand-blue mr-4">
+
+                                <i class="fas fa-phone-alt text-xl"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-bold text-gray-900">Telefon</h4>
+
+                                <p class="text-gray-600"><a href="tel:08502223344" class="hover:text-brand-blue">0 (850) 222 33 44</a></p>
+
+                                <p class="text-gray-600"><a href="tel:02123334455" class="hover:text-brand-blue">0 (212) 333 44 55</a></p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="flex items-start">
+
+                            <div class="bg-white p-3 rounded shadow text-brand-blue mr-4">
+
+                                <i class="fas fa-envelope text-xl"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-bold text-gray-900">E-Posta</h4>
+
+                                <p class="text-gray-600"><a href="mailto:info@betaenerji.com" class="hover:text-brand-blue">info@betaenerji.com</a></p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer class="bg-brand-dark text-gray-400 py-12 border-t border-gray-800">
+
+        <div class="container mx-auto px-4">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+
+                <div>
+
+                    <div class="flex items-center space-x-2 mb-4">
+
+                         <div class="bg-white p-1 rounded">
+
+                            <!-- Footer LOGO: Aynı görsel burada da kullanıldı -->
+
+                            <img src="1000003221.png" alt="BETA Enerji" class="h-8 w-auto" onerror="this.onerror=null; this.src='https://via.placeholder.com/32x32/0e4c92/ffffff?text=B';">
+
+                        </div>
+
+                        <span class="text-xl font-heading font-bold text-white">BETA ENERJİ</span>
+
+                    </div>
+
+                    <p class="text-sm">BETA Enerji Sistemleri, yenilenebilir enerji sektöründe güvenilir çözüm ortağınızdır.</p>
+
+                </div>
+
+                <div>
+
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Hızlı Linkler</h4>
+
+                    <ul class="space-y-2 text-sm">
+
+                        <li><a href="#anasayfa" class="hover:text-brand-green transition">Anasayfa</a></li>
+
+                        <li><a href="#hakkimizda" class="hover:text-brand-green transition">Hakkımızda</a></li>
+
+                        <li><a href="#hizmetler" class="hover:text-brand-green transition">Hizmetlerimiz</a></li>
+
+                        <li><a href="#projeler" class="hover:text-brand-green transition">Projeler</a></li>
+
+                        <li><a href="#iletisim" class="hover:text-brand-green transition">İletişim</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div>
+
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Hizmetler</h4>
+
+                    <ul class="space-y-2 text-sm">
+
+                        <li><a href="#" class="hover:text-brand-green transition">Çatı GES</a></li>
+
+                        <li><a href="#" class="hover:text-brand-green transition">Saha GES</a></li>
+
+                        <li><a href="#" class="hover:text-brand-green transition">Solar Tracker</a></li>
+
+                        <li><a href="#" class="hover:text-brand-green transition">Mühendislik & Danışmanlık</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div>
+
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Bizi Takip Edin</h4>
+
+                    <div class="flex space-x-4">
+
+                        <a href="#" class="bg-gray-800 hover:bg-brand-blue text-white w-10 h-10 rounded-full flex items-center justify-center transition"><i class="fab fa-facebook-f"></i></a>
+
+                        <a href="#" class="bg-gray-800 hover:bg-brand-blue text-white w-10 h-10 rounded-full flex items-center justify-center transition"><i class="fab fa-instagram"></i></a>
+
+                        <a href="#" class="bg-gray-800 hover:bg-brand-blue text-white w-10 h-10 rounded-full flex items-center justify-center transition"><i class="fab fa-linkedin-in"></i></a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+
+                <p>© 2024 BETA Enerji Sistemleri Mühendislik. Tüm hakları saklıdır.</p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- JavaScript functionality -->
+
+    <script>
+
+        // Mobile Menu Toggle
+
+        const btn = document.getElementById('menu-btn');
+
+        const menu = document.getElementById('mobile-menu');
+
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+
+            menu.classList.toggle('active');
+
+        });
+
+        // Close mobile menu when a link is clicked
+
+        mobileLinks.forEach(link => {
+
+            link.addEventListener('click', () => {
+
+                menu.classList.remove('active');
+
+            });
+
+        });
+
+        // Contact Form Handling
+
+        const contactForm = document.getElementById('contactForm');
+
+        const successMsg = document.getElementById('formSuccess');
+
+        contactForm.addEventListener('submit', (e) => {
+
+            e.preventDefault();
+
+            
+
+            // Simulating form submission (Normally this would go to a backend)
+
+            const btn = contactForm.querySelector('button');
+
+            const originalText = btn.innerText;
+
+            
+
+            btn.innerText = 'Gönderiliyor...';
+
+            btn.disabled = true;
+
+            btn.classList.add('opacity-75');
+
+            setTimeout(() => {
+
+                btn.innerText = 'Gönderildi';
+
+                btn.classList.remove('bg-brand-blue', 'hover:bg-brand-dark');
+
+                btn.classList.add('bg-green-600', 'hover:bg-green-700');
+
+                
+
+                successMsg.classList.remove('hidden');
+
+                contactForm.reset();
+
+                
+
+                // Reset button after 3 seconds
+
+                setTimeout(() => {
+
+                    btn.innerText = originalText;
+
+                    btn.disabled = false;
+
+                    btn.classList.remove('opacity-75', 'bg-green-600', 'hover:bg-green-700');
+
+                    btn.classList.add('bg-brand-blue', 'hover:bg-brand-dark');
+
+                    successMsg.classList.add('hidden');
+
+                }, 3000);
+
+            }, 1500);
+
+        });
+
+    </script>
 
 </body>
+
 </html>
-    
+
+            
