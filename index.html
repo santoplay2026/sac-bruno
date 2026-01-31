@@ -1,1447 +1,555 @@
 <!DOCTYPE html>
-
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>S Y S T E M S | Gold Edition</title>
-
-    <meta name="description" content="Elite software engineering studio. Black and Gold aesthetic.">
-
-    <style>
-
-        /* * CORE VARIABLES & RESET
-
-         * Concept: Deep Black Luxury & Metallic Engineering Gold
-
-         */
-
-        :root {
-
-            --bg-color: #050505;
-
-            --surface-color: #0f0f0f;
-
-            --surface-hover: #141414;
-
-            
-
-            /* Typography */
-
-            --text-primary: #f0f0f0;
-
-            --text-secondary: #999999;
-
-            --text-muted: #555555;
-
-            
-
-            /* THE GOLD STANDARD */
-
-            --accent-color: #D4AF37; /* Metallic Gold */
-
-            --accent-glow: rgba(212, 175, 55, 0.3);
-
-            --accent-dim: #8a7020;
-
-            
-
-            --border-color: #222222;
-
-            --border-light: #333333;
-
-            
-
-            --font-main: system-ui, -apple-system, sans-serif;
-
-            --font-mono: "SF Mono", "Fira Code", Consolas, monospace;
-
-            
-
-            --container-width: 1200px;
-
-            --transition-speed: 0.4s;
-
-            --nav-height: 80px;
-
-        }
-
-        *, *::before, *::after {
-
-            box-sizing: border-box;
-
-            margin: 0;
-
-            padding: 0;
-
-        }
-
-        html {
-
-            scroll-behavior: smooth;
-
-        }
-
-        body {
-
-            background-color: var(--bg-color);
-
-            color: var(--text-primary);
-
-            font-family: var(--font-main);
-
-            line-height: 1.6;
-
-            overflow-x: hidden;
-
-        }
-
-        a {
-
-            text-decoration: none;
-
-            color: inherit;
-
-            transition: color var(--transition-speed) ease;
-
-        }
-
-        img {
-
-            max-width: 100%;
-
-            display: block;
-
-        }
-
-        /* * TYPOGRAPHY & UTILS */
-
-        h1, h2, h3, h4 {
-
-            font-weight: 400;
-
-            letter-spacing: -0.03em;
-
-            line-height: 1.1;
-
-        }
-
-        h1 {
-
-            font-size: clamp(3rem, 6vw, 5.5rem);
-
-            background: linear-gradient(to right, #ffffff, #aaaaaa);
-
-            -webkit-background-clip: text;
-
-            -webkit-text-fill-color: transparent;
-
-        }
-
-        h2 {
-
-            font-size: clamp(2rem, 4vw, 3rem);
-
-            margin-bottom: 1rem;
-
-        }
-
-        h3 {
-
-            font-size: 1.5rem;
-
-            color: var(--text-primary);
-
-        }
-
-        .mono {
-
-            font-family: var(--font-mono);
-
-            font-size: 0.75rem;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.1em;
-
-            color: var(--accent-color);
-
-            display: block;
-
-            margin-bottom: 1rem;
-
-        }
-
-        .container {
-
-            max-width: var(--container-width);
-
-            margin: 0 auto;
-
-            padding: 0 2rem;
-
-        }
-
-        section {
-
-            padding: 8rem 0;
-
-            border-bottom: 1px solid var(--border-color);
-
-            position: relative;
-
-        }
-
-        /* * NAVIGATION (Updated) */
-
-        .navbar {
-
-            position: fixed;
-
-            top: 0;
-
-            left: 0;
-
-            width: 100%;
-
-            height: var(--nav-height);
-
-            background-color: rgba(5, 5, 5, 0.9);
-
-            backdrop-filter: blur(15px);
-
-            z-index: 1000;
-
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1); /* Subtle gold border */
-
-            display: flex;
-
-            align-items: center;
-
-        }
-
-        .nav-container {
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            width: 100%;
-
-        }
-
-        .logo {
-
-            font-family: var(--font-mono);
-
-            font-weight: 700;
-
-            font-size: 1.1rem;
-
-            letter-spacing: 0.1em;
-
-            color: var(--text-primary);
-
-        }
-
-        .logo span {
-
-            color: var(--accent-color);
-
-        }
-
-        .nav-menu {
-
-            display: flex;
-
-            gap: 3rem;
-
-            align-items: center;
-
-        }
-
-        .nav-link {
-
-            font-size: 0.9rem;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.05em;
-
-            color: var(--text-secondary);
-
-            font-weight: 500;
-
-            position: relative;
-
-        }
-
-        .nav-link::after {
-
-            content: '';
-
-            position: absolute;
-
-            width: 0;
-
-            height: 1px;
-
-            bottom: -5px;
-
-            left: 0;
-
-            background-color: var(--accent-color);
-
-            transition: width 0.3s;
-
-        }
-
-        .nav-link:hover {
-
-            color: var(--text-primary);
-
-        }
-
-        .nav-link:hover::after {
-
-            width: 100%;
-
-        }
-
-        .btn-gold {
-
-            background: transparent;
-
-            color: var(--accent-color);
-
-            border: 1px solid var(--accent-color);
-
-            padding: 0.8rem 1.8rem;
-
-            font-size: 0.85rem;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.1em;
-
-            transition: all 0.3s ease;
-
-            cursor: pointer;
-
-            position: relative;
-
-            overflow: hidden;
-
-        }
-
-        .btn-gold:hover {
-
-            background: var(--accent-color);
-
-            color: var(--bg-color);
-
-            box-shadow: 0 0 20px var(--accent-glow);
-
-        }
-
-        /* * MOBILE MENU (HAMBURGER) */
-
-        .hamburger {
-
-            display: none;
-
-            cursor: pointer;
-
-            z-index: 1100;
-
-        }
-
-        .hamburger rect {
-
-            fill: var(--text-primary);
-
-            transition: 0.3s;
-
-        }
-
-        
-
-        .hamburger:hover rect {
-
-            fill: var(--accent-color);
-
-        }
-
-        /* * HERO SECTION WITH IMAGE */
-
-        #hero {
-
-            height: 100vh;
-
-            display: flex;
-
-            align-items: center;
-
-            position: relative;
-
-            overflow: hidden;
-
-            border-bottom: none;
-
-        }
-
-        /* Background Image with Gold Tint Overlay */
-
-        .hero-bg {
-
-            position: absolute;
-
-            top: 0;
-
-            left: 0;
-
-            width: 100%;
-
-            height: 100%;
-
-            background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop'); 
-
-            background-size: cover;
-
-            background-position: center;
-
-            opacity: 0.4;
-
-            filter: grayscale(100%) contrast(120%);
-
-            z-index: 0;
-
-            transition: transform 10s ease;
-
-        }
-
-        #hero:hover .hero-bg {
-
-            transform: scale(1.05);
-
-        }
-
-        .hero-overlay {
-
-            position: absolute;
-
-            top: 0;
-
-            left: 0;
-
-            width: 100%;
-
-            height: 100%;
-
-            background: linear-gradient(180deg, rgba(5,5,5,0.7) 0%, rgba(5,5,5,0.9) 80%, rgba(5,5,5,1) 100%);
-
-            z-index: 1;
-
-        }
-
-        .hero-content {
-
-            position: relative;
-
-            z-index: 2;
-
-            max-width: 900px;
-
-        }
-
-        .hero-buttons {
-
-            margin-top: 3rem;
-
-            display: flex;
-
-            gap: 1.5rem;
-
-        }
-
-        /* * SYSTEMS (PROJECTS) WITH IMAGES */
-
-        .systems-grid {
-
-            display: grid;
-
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-
-            gap: 2rem;
-
-            margin-top: 3rem;
-
-        }
-
-        .system-card {
-
-            background-color: var(--surface-color);
-
-            position: relative;
-
-            height: 500px;
-
-            overflow: hidden;
-
-            group: cursor;
-
-            border: 1px solid var(--border-color);
-
-        }
-
-        .system-img {
-
-            width: 100%;
-
-            height: 100%;
-
-            object-fit: cover;
-
-            opacity: 0.6;
-
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.6s;
-
-            filter: grayscale(100%);
-
-        }
-
-        .system-card:hover .system-img {
-
-            transform: scale(1.1);
-
-            opacity: 0.2; /* Fade out image to show details */
-
-            filter: grayscale(0%);
-
-        }
-
-        .system-info {
-
-            position: absolute;
-
-            bottom: 0;
-
-            left: 0;
-
-            width: 100%;
-
-            padding: 2.5rem;
-
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-
-            transform: translateY(20px);
-
-            transition: transform 0.4s ease;
-
-        }
-
-        .system-card:hover .system-info {
-
-            transform: translateY(0);
-
-        }
-
-        .system-title {
-
-            font-size: 1.8rem;
-
-            color: var(--text-primary);
-
-            margin-bottom: 0.5rem;
-
-            position: relative;
-
-            display: inline-block;
-
-        }
-
-        .system-desc {
-
-            color: var(--text-secondary);
-
-            margin-bottom: 1.5rem;
-
-            opacity: 0;
-
-            transform: translateY(10px);
-
-            transition: opacity 0.4s 0.1s, transform 0.4s 0.1s;
-
-        }
-
-        .system-card:hover .system-desc {
-
-            opacity: 1;
-
-            transform: translateY(0);
-
-        }
-
-        .system-arrow {
-
-            color: var(--accent-color);
-
-            font-family: var(--font-mono);
-
-            font-size: 0.9rem;
-
-            opacity: 0;
-
-            transition: opacity 0.4s 0.2s;
-
-        }
-
-        .system-card:hover .system-arrow {
-
-            opacity: 1;
-
-        }
-
-        /* * STATISTICS (GOLD ACCENT) */
-
-        .stats-container {
-
-            display: grid;
-
-            grid-template-columns: repeat(4, 1fr);
-
-            gap: 2rem;
-
-            margin-top: 4rem;
-
-            border-top: 1px solid var(--border-color);
-
-            padding-top: 3rem;
-
-        }
-
-        .stat-item h3 {
-
-            font-size: 3.5rem;
-
-            color: var(--accent-color);
-
-            line-height: 1;
-
-            margin-bottom: 0.5rem;
-
-        }
-
-        .stat-item p {
-
-            font-family: var(--font-mono);
-
-            color: var(--text-secondary);
-
-            font-size: 0.85rem;
-
-        }
-
-        /* * SERVICES - MINIMAL */
-
-        .services-list {
-
-            display: grid;
-
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
-            gap: 1px;
-
-            background: var(--border-color); /* Grid border effect */
-
-            border: 1px solid var(--border-color);
-
-        }
-
-        .service-item {
-
-            background: var(--bg-color);
-
-            padding: 3rem;
-
-            transition: background 0.3s;
-
-        }
-
-        .service-item:hover {
-
-            background: var(--surface-color);
-
-        }
-
-        .service-icon {
-
-            color: var(--accent-color);
-
-            margin-bottom: 1.5rem;
-
-            width: 40px;
-
-            height: 40px;
-
-        }
-
-        /* * CONTACT FORM */
-
-        .contact-wrapper {
-
-            display: grid;
-
-            grid-template-columns: 1fr 1.5fr;
-
-            gap: 5rem;
-
-        }
-
-        .form-group {
-
-            margin-bottom: 2rem;
-
-            position: relative;
-
-        }
-
-        .form-control {
-
-            width: 100%;
-
-            background: transparent;
-
-            border: none;
-
-            border-bottom: 1px solid var(--border-color);
-
-            padding: 1rem 0;
-
-            color: var(--text-primary);
-
-            font-family: var(--font-main);
-
-            font-size: 1.1rem;
-
-            transition: border-color 0.3s;
-
-            border-radius: 0;
-
-        }
-
-        .form-control:focus {
-
-            outline: none;
-
-            border-color: var(--accent-color);
-
-        }
-
-        .form-label {
-
-            position: absolute;
-
-            top: 1rem;
-
-            left: 0;
-
-            color: var(--text-muted);
-
-            pointer-events: none;
-
-            transition: 0.3s;
-
-        }
-
-        .form-control:focus + .form-label,
-
-        .form-control:not(:placeholder-shown) + .form-label {
-
-            top: -10px;
-
-            font-size: 0.8rem;
-
-            color: var(--accent-color);
-
-        }
-
-        /* * FOOTER */
-
-        footer {
-
-            border-top: 1px solid var(--border-color);
-
-            padding: 4rem 0;
-
-            text-align: center;
-
-            background: var(--surface-color);
-
-        }
-
-        .footer-logo {
-
-            font-family: var(--font-mono);
-
-            color: var(--accent-color);
-
-            margin-bottom: 2rem;
-
-            display: inline-block;
-
-            font-size: 1.5rem;
-
-        }
-
-        /* * RESPONSIVE & MOBILE MENU */
-
-        @media (max-width: 900px) {
-
-            h1 { font-size: 3.5rem; }
-
-            .contact-wrapper { grid-template-columns: 1fr; }
-
-            .stats-container { grid-template-columns: 1fr 1fr; }
-
-        }
-
-        @media (max-width: 768px) {
-
-            .navbar { padding: 0 1.5rem; }
-
-            .nav-menu {
-
-                position: fixed;
-
-                top: 0;
-
-                right: -100%;
-
-                width: 85%;
-
-                height: 100vh;
-
-                background-color: #000000;
-
-                flex-direction: column;
-
-                justify-content: center;
-
-                align-items: flex-start;
-
-                padding: 4rem;
-
-                transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-
-                border-left: 1px solid var(--accent-dim);
-
-                z-index: 1050;
-
-                box-shadow: -10px 0 30px rgba(0,0,0,0.8);
-
-            }
-
-            .nav-menu.active {
-
-                right: 0;
-
-            }
-
-            .nav-link {
-
-                font-size: 1.5rem;
-
-                margin-bottom: 2rem;
-
-                color: var(--text-primary);
-
-            }
-
-            .nav-link:hover {
-
-                color: var(--accent-color);
-
-            }
-
-            .hamburger { display: block; }
-
-            .close-menu {
-
-                position: absolute;
-
-                top: 2rem;
-
-                right: 2rem;
-
-                color: var(--text-secondary);
-
-                font-size: 2rem;
-
-                cursor: pointer;
-
-                display: block; /* Visible inside mobile menu */
-
-            }
-
-            .hero-buttons { flex-direction: column; }
-
-            .btn-gold { width: 100%; text-align: center; }
-
-        }
-
-        /* Animations */
-
-        .fade-in-up {
-
-            opacity: 0;
-
-            transform: translateY(30px);
-
-            transition: opacity 0.8s, transform 0.8s;
-
-        }
-
-        
-
-        .fade-in-up.visible {
-
-            opacity: 1;
-
-            transform: translateY(0);
-
-        }
-
-    </style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEC Engenharia | Excelência em Conformidade</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root{
+      --primary:#0a0a0a;
+      --secondary-bg:#0f0f0f; /* corrigido: existia no layout, mas não estava definido */
+      --accent:#c5a059;
+      --text:#ffffff;
+      --glass:rgba(255,255,255,0.05);
+      --border:rgba(255,255,255,0.1);
+      --transition:all 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+    body{font-family:'Montserrat',sans-serif;background-color:var(--primary);color:var(--text);overflow-x:hidden;}
+
+    /* --- Global --- */
+    .container{width:90%;max-width:1400px;margin:0 auto;}
+    .section-padding{padding:120px 0;}
+    .title-main{font-family:'Oswald',sans-serif;font-size:3.5rem;text-transform:uppercase;margin-bottom:2rem;}
+    .subtitle{color:var(--accent);letter-spacing:4px;font-weight:700;margin-bottom:10px;display:block;}
+
+    /* --- Reveal --- */
+    .reveal{opacity:0;transform:translateY(30px);transition:var(--transition);}
+    .reveal.active{opacity:1;transform:translateY(0);}
+
+    /* --- Navbar --- */
+    nav{
+      position:fixed;top:0;width:100%;
+      padding:25px 5%;
+      display:flex;justify-content:space-between;align-items:center;
+      z-index:1000;transition:var(--transition);
+    }
+    nav.scrolled{
+      background:rgba(10,10,10,0.95);
+      padding:15px 5%;
+      backdrop-filter:blur(15px);
+      border-bottom:1px solid var(--border);
+    }
+    .logo{font-size:2rem;font-weight:900;letter-spacing:5px;color:var(--accent);}
+
+    .nav-links{display:flex;gap:30px;list-style:none;}
+    .nav-links a{color:#fff;text-decoration:none;font-size:0.8rem;font-weight:700;text-transform:uppercase;transition:0.3s;}
+    .nav-links a:hover{color:var(--accent);}
+
+    /* Hamburguer */
+    .nav-toggle{
+      display:none;
+      width:44px;height:44px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,0.03);
+      border-radius:10px;
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+    }
+    .nav-toggle span{
+      display:block;
+      width:18px;height:2px;
+      background:#fff;
+      transition:0.25s;
+    }
+
+    /* Scroll offset por causa do nav fixo */
+    section{ scroll-margin-top: 90px; }
+
+    /* --- Hero --- */
+    .hero{
+      height:100vh;display:flex;align-items:center;
+      background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920');
+      background-size:cover;background-position:center;background-attachment:fixed;
+    }
+
+    /* --- Cards/Grid --- */
+    .brand-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+      gap:25px;
+    }
+    .car-card{
+      background:var(--glass);
+      border:1px solid var(--border);
+      border-radius:15px;
+      overflow:hidden;
+      transition:var(--transition);
+      position:relative;
+    }
+    .car-card:hover{transform:scale(1.03);border-color:var(--accent);}
+    .car-img{width:100%;height:200px;object-fit:cover;}
+    .car-info{padding:25px;}
+    .car-price{font-size:1.05rem;color:var(--accent);font-weight:700;margin-top:10px;display:block;}
+
+    /* --- Voting --- */
+    .voting-box{
+      background:var(--secondary-bg);
+      padding:50px;border-radius:30px;
+      text-align:center;border:2px solid var(--accent);
+    }
+    .vote-options{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));
+      gap:20px;margin-top:30px;
+    }
+    .vote-btn{
+      background:transparent;
+      border:1px solid var(--border);
+      padding:20px;border-radius:10px;
+      color:#fff;cursor:pointer;transition:0.3s;
+    }
+    .vote-btn:hover{background:var(--accent);color:#000;border-color:var(--accent);}
+    .vote-count{display:block;font-size:0.7rem;margin-top:10px;opacity:0.6;}
+
+    /* --- Blog --- */
+    .blog-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(350px, 1fr));gap:40px;}
+    .blog-post{cursor:pointer;}
+    .blog-thumb{width:100%;height:250px;object-fit:cover;border-radius:10px;margin-bottom:20px;transition:0.5s;}
+    .blog-post:hover .blog-thumb{filter:brightness(1.2);}
+
+    /* --- Services --- */
+    .service-list{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
+    .service-item{flex:1;min-width:250px;background:#111;padding:40px;border-radius:15px;text-align:center;}
+    .service-item i{font-size:3rem;color:var(--accent);margin-bottom:20px;}
+
+    /* --- Contact --- */
+    .contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:100px;}
+    .contact-form input, .contact-form textarea{
+      width:100%;
+      background:#1a1a1a;border:1px solid var(--border);
+      padding:15px;color:#fff;margin-bottom:20px;border-radius:5px;
+      font-family:inherit;
+    }
+    .contact-form textarea{min-height:140px;resize:vertical;}
+
+    footer{background:#050505;padding:100px 5% 50px;border-top:1px solid var(--border);}
+
+    /* --- Responsive --- */
+    @media (max-width: 968px){
+      nav{ padding:14px 5%; }
+      nav.scrolled{ padding:12px 5%; }
+      .nav-toggle{ display:flex; }
+
+      .nav-links{
+        position:absolute;
+        top:72px;
+        left:5%;
+        right:5%;
+        display:none;
+        flex-direction:column;
+        gap:14px;
+        padding:18px;
+        border-radius:16px;
+        background:rgba(10,10,10,0.97);
+        border:1px solid var(--border);
+        backdrop-filter:blur(12px);
+      }
+      .nav-links.open{ display:flex; }
+
+      .hero{
+        height:auto;min-height:100vh;
+        padding:120px 0 70px;
+        background-attachment:scroll;
+      }
+
+      .title-main{font-size:2.5rem;}
+      .contact-layout{grid-template-columns:1fr;gap:50px;}
+      .brand-grid{grid-template-columns:1fr;}
+      .blog-grid{grid-template-columns:1fr;}
+    }
+
+    @media (max-width: 420px){
+      .logo{font-size:1.4rem;letter-spacing:3px;}
+      .vote-btn{width:100%;text-align:center;}
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="logo">SEC Engenharia</div>
 
-    <nav class="navbar">
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
 
-        <div class="container nav-container">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Início</a></li>
+      <li><a href="#about">Sobre</a></li>
+      <li><a href="#models">Serviços</a></li>
+      <li><a href="#services">Soluções</a></li>
+      <li><a href="#blog">Conteúdo</a></li>
+      <li><a href="#contact">Contato</a></li>
+    </ul>
+  </nav>
 
-            <a href="#" class="logo">SYSTEMS<span>_ENG</span></a>
+  <!-- Hero -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <span class="subtitle reveal">Conformidade • Segurança • Qualidade</span>
+      <h1 class="title-main reveal" style="font-size: 5rem;">Engenharia com padrão.</h1>
+      <p class="reveal" style="max-width: 650px; margin-bottom: 30px;">
+        Projetos, laudos, adequações e documentação técnica com foco em normas, segurança e desempenho.
+        A SEC Engenharia atende com clareza, agilidade e compromisso.
+      </p>
+      <a href="#models" class="vote-btn" style="text-decoration:none; display:inline-block;">Ver serviços</a>
+    </div>
+  </section>
 
-            
+  <!-- About -->
+  <section id="about" class="section-padding" style="background:#0f0f0f;">
+    <div class="container contact-layout">
+      <div class="reveal">
+        <span class="subtitle">Nossa história</span>
+        <h2 class="title-main">Técnica, norma e confiança</h2>
+        <p>
+          A SEC Engenharia atua com soluções em Engenharia Elétrica, Segurança do Trabalho, Engenharia Clínica e Combate a Incêndio,
+          entregando documentação completa e suporte técnico do início ao fim.
+        </p>
+        <br>
+        <p>
+          Cada entrega é feita com foco em prevenção, regularização e segurança operacional.
+        </p>
+      </div>
 
-            <div class="hamburger" id="hamburgerBtn">
+      <div class="reveal">
+        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=800"
+             alt="Detalhe técnico"
+             style="width:100%; border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.5);">
+      </div>
+    </div>
+  </section>
 
-                <svg width="30" height="20" viewBox="0 0 30 20">
+  <!-- Models/Services -->
+  <section id="models" class="section-padding">
+    <div class="container">
+      <div class="reveal">
+        <span class="subtitle">Atuação</span>
+        <h2 class="title-main">Serviços em destaque</h2>
+      </div>
 
-                    <rect width="30" height="2" y="0"></rect>
-
-                    <rect width="30" height="2" y="9"></rect>
-
-                    <rect width="30" height="2" y="18"></rect>
-
-                </svg>
-
-            </div>
-
-            <div class="nav-menu" id="navMenu">
-
-                <div class="close-menu" id="closeMenuBtn" style="display:none;">×</div>
-
-                <a href="#hero" class="nav-link">Studio</a>
-
-                <a href="#projects" class="nav-link">Systems</a>
-
-                <a href="#services" class="nav-link">Capabilities</a>
-
-                <a href="#journal" class="nav-link">Journal</a>
-
-                <a href="#contact" class="btn-gold">Initiate Project</a>
-
-            </div>
-
+      <div class="brand-grid">
+        <div class="car-card reveal">
+          <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=600" class="car-img" alt="Engenharia Elétrica">
+          <div class="car-info">
+            <h3>Engenharia Elétrica</h3>
+            <p>Projetos, laudos e adequações conforme norma.</p>
+            <span class="car-price">Atendimento sob demanda</span>
+          </div>
         </div>
 
-    </nav>
-
-    <!-- HERO SECTION -->
-
-    <section id="hero">
-
-        <div class="hero-bg"></div>
-
-        <div class="hero-overlay"></div>
-
-        <div class="container hero-content fade-in-up">
-
-            <span class="mono">Since 2014 — Architectural Precision</span>
-
-            <h1>Engineering<br>The Future Infrastructure</h1>
-
-            <p style="color: var(--text-secondary); max-width: 600px; margin-top: 1.5rem; font-size: 1.1rem;">
-
-                We build high-performance, scalable software systems for the world's most demanding industries. 
-
-                Where reliability meets golden standards.
-
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#projects" class="btn-gold">View Deployments</a>
-
-                <a href="#contact" style="padding: 0.8rem 1.8rem; color: #fff; border: 1px solid #333; text-transform:uppercase; font-size:0.85rem; letter-spacing:0.1em;">Our Philosophy</a>
-
-            </div>
-
+        <div class="car-card reveal">
+          <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&q=80&w=600" class="car-img" alt="Segurança do Trabalho">
+          <div class="car-info">
+            <h3>Segurança do Trabalho</h3>
+            <p>NRs, inspeções e relatórios para reduzir riscos.</p>
+            <span class="car-price">Conformidade e prevenção</span>
+          </div>
         </div>
 
-    </section>
-
-    <!-- PROJECTS (SYSTEMS) -->
-
-    <section id="projects">
-
-        <div class="container">
-
-            <span class="mono">// Selected Works</span>
-
-            <h2>Deployed Architectures</h2>
-
-            
-
-            <div class="systems-grid">
-
-                <!-- System 1 -->
-
-                <div class="system-card fade-in-up">
-
-                    <img src="https://images.unsplash.com/photo-1558494949-ef526b0042a0?auto=format&fit=crop&w=800&q=80" alt="Server Architecture" class="system-img">
-
-                    <div class="system-info">
-
-                        <span class="mono" style="margin-bottom:0.5rem; color:var(--accent-color);">Fintech Core</span>
-
-                        <h3 class="system-title">Ledger Node V4</h3>
-
-                        <p class="system-desc">High-frequency trading engine optimized for microsecond latency using Rust.</p>
-
-                        <span class="system-arrow">Explore Case Study →</span>
-
-                    </div>
-
-                </div>
-
-                <!-- System 2 -->
-
-                <div class="system-card fade-in-up" style="transition-delay: 0.1s">
-
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Data Visualization" class="system-img">
-
-                    <div class="system-info">
-
-                        <span class="mono" style="margin-bottom:0.5rem; color:var(--accent-color);">Big Data</span>
-
-                        <h3 class="system-title">Neural Analytics</h3>
-
-                        <p class="system-desc">Real-time processing pipeline visualizing 40TB of daily telemetry data.</p>
-
-                        <span class="system-arrow">Explore Case Study →</span>
-
-                    </div>
-
-                </div>
-
-                <!-- System 3 -->
-
-                <div class="system-card fade-in-up" style="transition-delay: 0.2s">
-
-                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="Team Engineering" class="system-img">
-
-                    <div class="system-info">
-
-                        <span class="mono" style="margin-bottom:0.5rem; color:var(--accent-color);">Infrastructure</span>
-
-                        <h3 class="system-title">Grid Control</h3>
-
-                        <p class="system-desc">Distributed IoT management system for renewable energy storage arrays.</p>
-
-                        <span class="system-arrow">Explore Case Study →</span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+        <div class="car-card reveal">
+          <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&q=80&w=600" class="car-img" alt="Engenharia Clínica">
+          <div class="car-info">
+            <h3>Engenharia Clínica</h3>
+            <p>Gestão e avaliação de equipamentos e rotinas.</p>
+            <span class="car-price">Ambientes de saúde</span>
+          </div>
         </div>
 
-    </section>
+        <div class="car-card reveal">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=600" class="car-img" alt="Incêndio / Bombeiros">
+          <div class="car-info">
+            <h3>Combate a Incêndio</h3>
+            <p>PPCI, adequações e exigências do Corpo de Bombeiros.</p>
+            <span class="car-price">Regularização</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- STATS & PHILOSOPHY -->
+  <!-- Voting -->
+  <section class="section-padding" style="background:#000;">
+    <div class="container">
+      <div class="voting-box reveal">
+        <span class="subtitle">Enquete</span>
+        <h2 class="title-main">Qual serviço você mais precisa?</h2>
 
-    <section id="philosophy" style="background: #080808;">
+        <div class="vote-options">
+          <button class="vote-btn" onclick="vote('Eletrica')">
+            <i class="fas fa-bolt"></i><br>Elétrica
+            <span id="eletrica-votes" class="vote-count">0 votos</span>
+          </button>
 
-        <div class="container fade-in-up">
+          <button class="vote-btn" onclick="vote('SST')">
+            <i class="fas fa-helmet-safety"></i><br>SST / NRs
+            <span id="sst-votes" class="vote-count">0 votos</span>
+          </button>
 
-            <span class="mono">// The Metric</span>
+          <button class="vote-btn" onclick="vote('Clinica')">
+            <i class="fas fa-stethoscope"></i><br>Clínica
+            <span id="clinica-votes" class="vote-count">0 votos</span>
+          </button>
 
-            <h2>Performance by Design</h2>
+          <button class="vote-btn" onclick="vote('Incendio')">
+            <i class="fas fa-fire-extinguisher"></i><br>Incêndio
+            <span id="incendio-votes" class="vote-count">0 votos</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <p style="max-width: 700px; color: var(--text-secondary); margin-top: 1rem;">
+  <!-- Services -->
+  <section id="services" class="section-padding">
+    <div class="container">
+      <div class="reveal">
+        <span class="subtitle">Suporte</span>
+        <h2 class="title-main">Soluções</h2>
+      </div>
 
-                We don't chase trends. We adhere to computer science fundamentals to create software that withstands the test of time and scale.
-
-            </p>
-
-            <div class="stats-container">
-
-                <div class="stat-item">
-
-                    <h3>99.99%</h3>
-
-                    <p>SYSTEM UPTIME</p>
-
-                </div>
-
-                <div class="stat-item">
-
-                    <h3>500+</h3>
-
-                    <p>APIS DEPLOYED</p>
-
-                </div>
-
-                <div class="stat-item">
-
-                    <h3>$4B</h3>
-
-                    <p>TRANSACTIONS PROCESSED</p>
-
-                </div>
-
-                <div class="stat-item">
-
-                    <h3>Zero</h3>
-
-                    <p>TECHNICAL DEBT</p>
-
-                </div>
-
-            </div>
-
+      <div class="service-list">
+        <div class="service-item reveal">
+          <i class="fas fa-clipboard-check"></i>
+          <h3>Vistorias e Laudos</h3>
+          <p>Diagnóstico técnico com relatórios claros e objetivos.</p>
         </div>
 
-    </section>
-
-    <!-- SERVICES -->
-
-    <section id="services">
-
-        <div class="container">
-
-            <span class="mono">// Engineering Capabilities</span>
-
-            <h2 style="margin-bottom: 3rem;">Technical Expertise</h2>
-
-            
-
-            <div class="services-list fade-in-up">
-
-                <div class="service-item">
-
-                    <svg class="service-icon" fill="currentColor" viewBox="0 0 24 24">
-
-                        <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
-
-                    </svg>
-
-                    <h3>Backend Systems</h3>
-
-                    <p style="color:var(--text-secondary); margin-top:1rem;">Microservices, monolithic architecture, and API design focused on scalability.</p>
-
-                </div>
-
-                <div class="service-item">
-
-                    <svg class="service-icon" fill="currentColor" viewBox="0 0 24 24">
-
-                        <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3z"/>
-
-                    </svg>
-
-                    <h3>Cloud Infrastructure</h3>
-
-                    <p style="color:var(--text-secondary); margin-top:1rem;">AWS/Azure architecture, Kubernetes orchestration, and automated CI/CD pipelines.</p>
-
-                </div>
-
-                <div class="service-item">
-
-                    <svg class="service-icon" fill="currentColor" viewBox="0 0 24 24">
-
-                        <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"/>
-
-                    </svg>
-
-                    <h3>System Security</h3>
-
-                    <p style="color:var(--text-secondary); margin-top:1rem;">Penetration testing, encrypted data flow, and zero-trust architecture implementation.</p>
-
-                </div>
-
-            </div>
-
+        <div class="service-item reveal">
+          <i class="fas fa-file-signature"></i>
+          <h3>Documentação e ART</h3>
+          <p>Organização e suporte para regularizações técnicas.</p>
         </div>
 
-    </section>
+        <div class="service-item reveal">
+          <i class="fas fa-screwdriver-wrench"></i>
+          <h3>Adequações</h3>
+          <p>Plano de ação e acompanhamento para corrigir não conformidades.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- CONTACT -->
+  <!-- Blog -->
+  <section id="blog" class="section-padding" style="background:#0a0a0a;">
+    <div class="container">
+      <div class="reveal">
+        <span class="subtitle">Conteúdo</span>
+        <h2 class="title-main">SEC Blog</h2>
+      </div>
 
-    <section id="contact">
-
-        <div class="container">
-
-            <div class="contact-wrapper fade-in-up">
-
-                <div class="contact-text">
-
-                    <span class="mono">// Start Transmission</span>
-
-                    <h2>Ready to Scale?</h2>
-
-                    <p style="color:var(--text-secondary); margin: 1.5rem 0;">
-
-                        We partner with ambitious companies to solve hard engineering problems. 
-
-                        Describe your system requirements below.
-
-                    </p>
-
-                    
-
-                    <div style="margin-top: 3rem;">
-
-                        <h4 style="color:var(--accent-color); margin-bottom:0.5rem;">Secure Office</h4>
-
-                        <p style="color:var(--text-secondary); font-size:0.9rem;">1010 Silicon Ave, Suite 400<br>San Francisco, CA 94000</p>
-
-                    </div>
-
-                </div>
-
-                <form class="contact-form" id="contactForm">
-
-                    <div class="form-group">
-
-                        <input type="text" class="form-control" placeholder=" " required>
-
-                        <label class="form-label">Full Name</label>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <input type="email" class="form-control" placeholder=" " required>
-
-                        <label class="form-label">Corporate Email</label>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <input type="text" class="form-control" placeholder=" " required>
-
-                        <label class="form-label">Project Type</label>
-
-                    </div>
-
-                    <button type="submit" class="btn-gold" style="width: 100%; margin-top: 1rem;">Initialize Request</button>
-
-                </form>
-
-            </div>
-
+      <div class="blog-grid">
+        <div class="blog-post reveal">
+          <img src="https://images.unsplash.com/photo-1542362567-b055002b91f4?auto=format&fit=crop&q=80&w=600" class="blog-thumb" alt="Checklist">
+          <h3>Checklist de Conformidade</h3>
+          <p>Por onde começar para reduzir riscos e organizar prioridades.</p>
         </div>
 
-    </section>
+        <div class="blog-post reveal">
+          <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=600" class="blog-thumb" alt="Incêndio">
+          <h3>PPCI e Bombeiros</h3>
+          <p>O que costuma reprovar na vistoria e como evitar atrasos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- FOOTER -->
+  <!-- Contact -->
+  <section id="contact" class="section-padding" style="background:#0f0f0f;">
+    <div class="container">
+      <div class="contact-layout">
+        <div class="reveal">
+          <span class="subtitle">Fale com a SEC</span>
+          <h2 class="title-main">Contato</h2>
 
-    <footer>
+       
+          <p>
+            <i class="fas fa-phone"></i>
+            <a href="https://wa.me/7391396839" target="_blank" rel="noopener">
+              +55 7391396839
+            </a>
+          </p>
+          <p><i class="fas fa-map-marker-alt"></i> Eunápolis - BA</p>
 
-        <div class="container">
-
-            <a href="#" class="footer-logo">SYSTEMS</a>
-
-            <p style="color: var(--text-muted); font-size: 0.9rem;">© 2024 Systems Engineering. Designed with Precision.</p>
-
-            <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 2rem;">
-
-                <a href="#" style="color: var(--text-secondary); font-size: 0.8rem;">LINKEDIN</a>
-
-                <a href="#" style="color: var(--text-secondary); font-size: 0.8rem;">GITHUB</a>
-
-                <a href="#" style="color: var(--text-secondary); font-size: 0.8rem;">TWITTER</a>
-
-            </div>
-
+          <div style="margin-top:18px;">
+            <a class="vote-btn" href="https://wa.me/7391396839?text=Olá%2C%20quero%20um%20orçamento%20na%20SEC%20Engenharia."
+               target="_blank" rel="noopener"
+               style="text-decoration:none; display:inline-block;">
+              Enviar WhatsApp
+            </a>
+          </div>
         </div>
 
-    </footer>
-
-    <script>
-
-        // * INTERACTION LOGIC
-
-        
-
-        document.addEventListener('DOMContentLoaded', () => {
-
-            
-
-            // Intersection Observer for Fade In
-
-            const observer = new IntersectionObserver((entries) => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add('visible');
-
-                    }
-
-                });
-
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-
-            // Mobile Menu Logic
-
-            const hamburger = document.getElementById('hamburgerBtn');
-
-            const navMenu = document.getElementById('navMenu');
-
-            const closeBtn = document.getElementById('closeMenuBtn');
-
-            const navLinks = document.querySelectorAll('.nav-link, .btn-gold');
-
-            function toggleMenu() {
-
-                navMenu.classList.toggle('active');
-
-                if (window.innerWidth <= 768) {
-
-                    closeBtn.style.display = navMenu.classList.contains('active') ? 'block' : 'none';
-
-                }
-
-            }
-
-            hamburger.addEventListener('click', toggleMenu);
-
-            closeBtn.addEventListener('click', toggleMenu);
-
-            // Close menu when clicking a link
-
-            navLinks.forEach(link => {
-
-                link.addEventListener('click', () => {
-
-                    if (navMenu.classList.contains('active')) {
-
-                        toggleMenu();
-
-                    }
-
-                });
-
-            });
-
-            // Smooth Scroll for anchor links
-
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-                anchor.addEventListener('click', function (e) {
-
-                    e.preventDefault();
-
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-
-                        behavior: 'smooth'
-
-                    });
-
-                });
-
-            });
-
-            
-
-            // Form Submission Effect
-
-            const form = document.getElementById('contactForm');
-
-            form.addEventListener('submit', (e) => {
-
-                e.preventDefault();
-
-                const btn = form.querySelector('button');
-
-                const originalText = btn.textContent;
-
-                
-
-                btn.textContent = "Processing...";
-
-                btn.style.opacity = "0.7";
-
-                
-
-                setTimeout(() => {
-
-                    btn.textContent = "Request Sent Successfully";
-
-                    btn.style.backgroundColor = "#4ade80"; // Success Green
-
-                    btn.style.color = "#000";
-
-                    btn.style.borderColor = "#4ade80";
-
-                    form.reset();
-
-                    
-
-                    setTimeout(() => {
-
-                        btn.textContent = originalText;
-
-                        btn.style.backgroundColor = "transparent";
-
-                        btn.style.color = "var(--accent-color)";
-
-                        btn.style.borderColor = "var(--accent-color)";
-
-                        btn.style.opacity = "1";
-
-                    }, 3000);
-
-                }, 1500);
-
-            });
-
-        });
-
-    </script>
+        <form class="contact-form reveal" id="contactForm">
+          <input type="text" id="nome" placeholder="Seu nome" required>
+          <input type="text" id="telefone" placeholder="Seu WhatsApp (opcional)">
+          <textarea id="mensagem" placeholder="Sua mensagem" required></textarea>
+
+          <button type="submit" class="vote-btn" style="width:100%;">Enviar no WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:40px;">
+        <div>
+          <div class="logo">SEC</div>
+          <p style="opacity:0.5; margin-top:15px;">Engenharia e conformidade para sua segurança.</p>
+        </div>
+
+        <div class="nav-links" style="flex-wrap:wrap;">
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Termos</a>
+          <a href="#">Orçamento</a>
+        </div>
+
+        <div style="font-size:1.5rem; display:flex; gap:20px;">
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-whatsapp"></i>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:80px; opacity:0.3; font-size:0.8rem;">
+        © 2026 SEC Engenharia. Todos os direitos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Navbar scroll =====
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+
+    // ===== Menu mobile =====
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // ===== Reveal =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ===== Voting (serviços) =====
+    let votes = {
+      'Eletrica': Math.floor(Math.random() * 500) + 200,
+      'SST': Math.floor(Math.random() * 500) + 180,
+      'Clinica': Math.floor(Math.random() * 500) + 150,
+      'Incendio': Math.floor(Math.random() * 500) + 250
+    };
+
+    const mapId = {
+      Eletrica: 'eletrica-votes',
+      SST: 'sst-votes',
+      Clinica: 'clinica-votes',
+      Incendio: 'incendio-votes'
+    };
+
+    Object.keys(votes).forEach(key => {
+      const el = document.getElementById(mapId[key]);
+      if (el) el.innerText = votes[key] + ' votos';
+    });
+
+    function vote(service) {
+      votes[service]++;
+      const el = document.getElementById(mapId[service]);
+      el.innerText = votes[service] + ' votos';
+
+      el.parentElement.style.transform = 'scale(1.1)';
+      setTimeout(() => el.parentElement.style.transform = 'scale(1)', 200);
+
+      const msg = document.createElement('div');
+      msg.style = "position:fixed; bottom:20px; right:20px; background:var(--accent); color:#000; padding:15px 30px; border-radius:8px; z-index:1001; font-weight:bold; max-width:90vw;";
+      msg.innerText = "Seu voto foi registrado!";
+      document.body.appendChild(msg);
+      setTimeout(() => msg.remove(), 2500);
+    }
+
+    // ===== Enviar WhatsApp pelo formulário =====
+    // TROQUE AQUI PELO NÚMERO REAL (55 + DDD + número, sem +, sem espaços)
+    const WHATSAPP_NUMBER = "7391396879";
+
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value.trim();
+      const tel  = document.getElementById('telefone').value.trim();
+      const msg  = document.getElementById('mensagem').value.trim();
+
+      const texto =
+        `Olá, quero um orçamento na SEC Engenharia.%0A%0A` +
+        `Nome: ${encodeURIComponent(nome)}%0A` +
+        `Telefone: ${encodeURIComponent(tel)}%0A%0A` +
+        `Mensagem: ${encodeURIComponent(msg)}`;
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${texto}`;
+      window.open(url, '_blank', 'noopener');
+
+      // feedback visual
+      const btn = e.target.querySelector('button');
+      const old = btn.innerText;
+      btn.innerText = "Abrindo WhatsApp...";
+      btn.style.opacity = "0.7";
+
+      setTimeout(() => {
+        btn.innerText = old;
+        btn.style.opacity = "1";
+        e.target.reset();
+      }, 1200);
+    });
+  </script>
 
 </body>
-
 </html>
-
-            
