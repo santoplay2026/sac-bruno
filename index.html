@@ -342,7 +342,7 @@
         border:1px solid var(--border);
         border-radius:14px;
         font-size:0.95rem;
-        white-space:normal; /* permite quebrar linha */
+        white-space:normal;
       }
 
       .nav-actions.mobile-only{
@@ -441,9 +441,10 @@
       </div>
 
       <div class="reveal">
+        <!-- ✅ ÚNICA MUDANÇA: diminui essa imagem -->
         <img src="img/cedad107-466b-4b66-baeb-34287573bcd5.jpg"
           alt="Inspeção em segurança do trabalho, na parte de incêndio"
-          style="width:100%; border-radius:18px; box-shadow:0 20px 40px rgba(0,0,0,0.45);">
+          style="width:100%; max-width:520px; max-height:360px; object-fit:cover; display:block; margin-left:auto; border-radius:18px; box-shadow:0 20px 40px rgba(0,0,0,0.45);">
       </div>
     </div>
   </section>
@@ -636,14 +637,12 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    // ===== helpers: evita erros se faltar elemento =====
     function $(id){ return document.getElementById(id); }
     function on(id, evt, fn){
       const el = $(id);
       if (el) el.addEventListener(evt, fn);
     }
 
-    // ===== Toast =====
     const toastEl = $("toast");
     let toastTimer = null;
     function toast(msg){
@@ -654,7 +653,6 @@
       toastTimer = setTimeout(()=> toastEl.classList.remove("show"), 2200);
     }
 
-    // ===== Menu mobile =====
     const navToggle = $("navToggle");
     const navLinks  = $("navLinks");
 
@@ -679,7 +677,6 @@
       });
     }
 
-    // ===== Navbar scroll (só classe) =====
     window.addEventListener('scroll', () => {
       const nav = $("navbar");
       if (!nav) return;
@@ -687,7 +684,6 @@
       else nav.classList.remove('scrolled');
     });
 
-    // ===== Reveal =====
     if ("IntersectionObserver" in window){
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -696,11 +692,9 @@
       }, { threshold: 0.12 });
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     } else {
-      // fallback: se o navegador for muito velho
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
     }
 
-    // ===== Botão topo =====
     const toTopBtn = $("toTop");
     if (toTopBtn){
       window.addEventListener("scroll", ()=>{
@@ -710,7 +704,6 @@
       toTopBtn.addEventListener("click", ()=> window.scrollTo({top:0, behavior:"smooth"}));
     }
 
-    // ===== Tema + logo =====
     const logoImg = $("logoImg");
     const logoFooter = $("logoFooter");
     const LOGO_DARK = "img/logo.jpg";
@@ -736,7 +729,6 @@
     on("themeBtn","click",toggleTheme);
     on("mThemeBtn","click",toggleTheme);
 
-    // ===== Multi-idioma =====
     const dict = {
       pt: {
         menu_home:"Início", menu_about:"Sobre", menu_services:"Serviços", menu_solutions:"Soluções", menu_content:"Conteúdo", menu_contact:"Contato",
@@ -850,7 +842,6 @@
 
       setActiveLangButtons(lang);
       refreshVotes();
-
       localStorage.setItem("sec_lang", lang);
     }
 
@@ -861,7 +852,6 @@
     on("mLangEN","click", ()=> applyLang("en"));
     on("mLangES","click", ()=> applyLang("es"));
 
-    // ===== Votos =====
     let votes = {
       Eletrica: Math.floor(Math.random() * 500) + 200,
       SST: Math.floor(Math.random() * 500) + 180,
@@ -885,7 +875,6 @@
     }
     window.vote = vote;
 
-    // ===== WhatsApp form =====
     const WHATSAPP_NUMBER = "557391396839";
     on("contactForm","submit",(e)=>{
       e.preventDefault();
@@ -917,7 +906,6 @@
       setTimeout(() => e.target.reset(), 600);
     });
 
-    // ===== copiar telefone =====
     on("copyPhone","click", async ()=>{
       const phone = "+55 73 9139-6839";
       try{
@@ -934,7 +922,6 @@
       toast(dict[currentLang].copied);
     });
 
-    // ===== init =====
     const savedLang = localStorage.getItem("sec_lang");
     applyLang(savedLang && dict[savedLang] ? savedLang : "pt");
 
@@ -943,5 +930,42 @@
     refreshVotes();
   </script>
 
-</body>
+<!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script></body>
 </html>
