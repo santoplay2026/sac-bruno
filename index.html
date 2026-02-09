@@ -295,7 +295,7 @@
     .toast.show{opacity:1;transform:translateY(0);}
 
     /* =======================================================
-       ✅ MOBILE
+       ✅ MOBILE: arruma menu, textos, tamanhos
        ======================================================= */
     @media (max-width: 968px){
       nav{ padding:12px 5%; gap:10px; }
@@ -314,7 +314,7 @@
       .car-img{ height:260px; }
       .contact-layout{ grid-template-columns:1fr; gap:34px; }
 
-      /* menu vira painel */
+      /* menu vira painel (sem sair da tela) */
       .nav-links{
         position:fixed;
         top:70px;
@@ -342,7 +342,14 @@
         border:1px solid var(--border);
         border-radius:14px;
         font-size:0.95rem;
-        white-space:normal;
+        white-space:normal; /* permite quebrar linha */
+      }
+
+      .nav-actions.mobile-only{
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+        padding:8px 0 0;
       }
 
       footer .container > div{
@@ -352,6 +359,7 @@
     }
 
     @media (min-width: 969px){
+      .nav-actions.mobile-only{ display:none; }
       .nav-actions.desktop-only{ display:flex; }
     }
 
@@ -360,6 +368,102 @@
       .icon-btn{ width:40px;height:40px; }
       .vote-btn{ width:100%; }
       #hero .title-main{ font-size:2.25rem !important; }
+    }
+
+    /* =======================================================
+       ✅ ADIÇÃO: PDFs INTEGRADOS (cards + modal por cima)
+       ======================================================= */
+    .pdf-card-btn{
+      width:100%;
+      margin-top:14px;
+      background:transparent;
+      border:1px solid var(--border);
+      padding:12px 14px;
+      border-radius:12px;
+      color:var(--text);
+      cursor:pointer;
+      transition:0.25s;
+      font-weight:900;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+    }
+    .pdf-card-btn:hover{background:var(--accent);color:#000;border-color:var(--accent);}
+    body.theme-light .pdf-card-btn:hover{ color:#fff; }
+
+    .pdf-modal{
+      position:fixed;
+      inset:0;
+      z-index:2000;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background:rgba(0,0,0,0.66);
+      backdrop-filter: blur(8px);
+    }
+    .pdf-modal.show{ display:flex; }
+
+    .pdf-modal-box{
+      width:min(1100px, 96vw);
+      height:min(720px, 86vh);
+      background:var(--secondary-bg);
+      border:1px solid var(--border);
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 24px 60px rgba(0,0,0,0.55);
+      display:flex;
+      flex-direction:column;
+    }
+    .pdf-modal-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 14px;
+      border-bottom:1px solid var(--border);
+    }
+    .pdf-modal-title{
+      font-weight:900;
+      font-size:0.95rem;
+      line-height:1.2;
+    }
+    .pdf-modal-actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex:0 0 auto;
+    }
+    .pdf-mini-btn{
+      width:auto;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,0.03);
+      color:var(--text);
+      cursor:pointer;
+      font-weight:900;
+      transition:0.2s;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+    body.theme-light .pdf-mini-btn{ background:rgba(0,0,0,0.03); }
+    .pdf-mini-btn:hover{ border-color:var(--accent); transform:translateY(-1px); }
+
+    .pdf-frame{
+      width:100%;
+      height:100%;
+      border:0;
+      background:#000;
+    }
+
+    @media (max-width: 560px){
+      .pdf-modal-box{ height:92vh; }
+      .pdf-modal-title{ font-size:0.9rem; }
     }
   </style>
 </head>
@@ -375,31 +479,44 @@
       <span></span><span></span><span></span>
     </button>
 
-    <!-- ações (somente tema) -->
+    <!-- ações desktop -->
     <div class="nav-actions desktop-only" aria-label="Ações">
+      <button class="icon-btn" id="langPT" type="button" title="Português">🇧🇷</button>
+      <button class="icon-btn" id="langEN" type="button" title="English">🇺🇸</button>
+      <button class="icon-btn" id="langES" type="button" title="Español">🇪🇸</button>
       <button class="icon-btn" id="themeBtn" type="button" title="Tema">🌙</button>
     </div>
 
     <ul class="nav-links" id="navLinks">
-      <li><a href="#hero">Início</a></li>
-      <li><a href="#about">Sobre</a></li>
-      <li><a href="#models">Serviços</a></li>
-      <li><a href="#services">Soluções</a></li>
-      <li><a href="#blog">Conteúdo</a></li>
-      <li><a href="#contact">Contato</a></li>
+      <li><a href="#hero" data-i18n="menu_home">Início</a></li>
+      <li><a href="#about" data-i18n="menu_about">Sobre</a></li>
+      <li><a href="#models" data-i18n="menu_services">Serviços</a></li>
+      <li><a href="#services" data-i18n="menu_solutions">Soluções</a></li>
+      <li><a href="#blog" data-i18n="menu_content">Conteúdo</a></li>
+      <li><a href="#contact" data-i18n="menu_contact">Contato</a></li>
+
+      <!-- ações mobile -->
+      <li>
+        <div class="nav-actions mobile-only" style="margin-top:6px;">
+          <button class="icon-btn" id="mLangPT" type="button" title="Português">🇧🇷</button>
+          <button class="icon-btn" id="mLangEN" type="button" title="English">🇺🇸</button>
+          <button class="icon-btn" id="mLangES" type="button" title="Español">🇪🇸</button>
+          <button class="icon-btn" id="mThemeBtn" type="button" title="Tema">🌙</button>
+        </div>
+      </li>
     </ul>
   </nav>
 
   <!-- Hero -->
   <section id="hero" class="hero">
     <div class="container">
-      <span class="subtitle reveal">Conformidade • Segurança • Qualidade</span>
-      <h1 class="title-main reveal" style="font-size:5rem;">sec engenharia.</h1>
-      <p class="reveal" style="max-width:650px;margin-bottom:26px;">
+      <span class="subtitle reveal" data-i18n="hero_sub">Conformidade • Segurança • Qualidade</span>
+      <h1 class="title-main reveal" style="font-size:5rem;" data-i18n="hero_title">sec engenharia.</h1>
+      <p class="reveal" style="max-width:650px;margin-bottom:26px;" data-i18n="hero_desc">
         Projetos, laudos, adequações e documentação técnica com foco em normas, segurança e desempenho.
         A SEC Engenharia atende com clareza, agilidade e compromisso.
       </p>
-      <a href="#models" class="vote-btn reveal" style="text-decoration:none;">Ver serviços</a>
+      <a href="#models" class="vote-btn reveal" style="text-decoration:none;" data-i18n="hero_cta">Ver serviços</a>
     </div>
   </section>
 
@@ -407,44 +524,22 @@
   <section id="about" class="section-padding" style="background:var(--secondary-bg);">
     <div class="container contact-layout">
       <div class="reveal">
-        <span class="subtitle">Nossa história</span>
-        <h2 class="title-main">sec engenharia</h2>
-        <p>
+        <span class="subtitle" data-i18n="about_sub">Nossa história</span>
+        <h2 class="title-main" data-i18n="about_title">sec engenharia</h2>
+        <p data-i18n="about_p1">
           A SEC Engenharia atua com soluções em Engenharia Elétrica, Segurança do Trabalho, Engenharia Clínica e Combate a Incêndio,
           entregando documentação completa e suporte técnico do início ao fim.
         </p>
         <br>
-        <p>
+        <p data-i18n="about_p2">
           Cada entrega é feita com foco em prevenção, regularização e segurança operacional.
         </p>
-
-        <!-- ✅ CONTATOS (WhatsApp) -->
-        <div class="reveal" style="margin-top:18px;">
-          <span class="subtitle" style="margin-bottom:10px;">Falar com a equipe</span>
-
-          <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <a class="vote-btn"
-               href="https://wa.me/557391261658?text=Olá%2C%20gostaria%20de%20falar%20com%20a%20Lohanna%20(SEC%20Engenharia)."
-               target="_blank" rel="noopener"
-               style="text-decoration:none;">
-              <i class="fa-brands fa-whatsapp"></i> Lohanna (WhatsApp)
-            </a>
-
-            <a class="vote-btn"
-               href="https://wa.me/5573981174388?text=Olá%2C%20gostaria%20de%20falar%20com%20o%20Edson%20(SEC%20Engenharia)."
-               target="_blank" rel="noopener"
-               style="text-decoration:none;">
-              <i class="fa-brands fa-whatsapp"></i> Edson (WhatsApp)
-            </a>
-          </div>
-        </div>
       </div>
 
       <div class="reveal">
-        <!-- ✅ aqui você troca APENAS a imagem e diminui o tamanho via CSS abaixo se quiser -->
-        <img src="img/edison.jpg"
-          alt="Edson trabalhando"
-          style="width:100%; max-height:520px; object-fit:cover; border-radius:18px; box-shadow:0 20px 40px rgba(0,0,0,0.45);">
+        <img src="img/cedad107-466b-4b66-baeb-34287573bcd5.jpg"
+          alt="Inspeção em segurança do trabalho, na parte de incêndio"
+          style="width:100%; border-radius:18px; box-shadow:0 20px 40px rgba(0,0,0,0.45);">
       </div>
     </div>
   </section>
@@ -453,39 +548,91 @@
   <section id="models" class="section-padding">
     <div class="container">
       <div class="reveal">
-        <span class="subtitle">Atuação</span>
-        <h2 class="title-main">Serviços em destaque</h2>
+        <span class="subtitle" data-i18n="models_sub">Atuação</span>
+        <h2 class="title-main" data-i18n="models_title">Serviços em destaque</h2>
       </div>
 
       <div class="brand-grid">
         <div class="car-card reveal">
           <img src="img/Eng. Mecânica NR 12 ADEQUAÇÃO DE EQUIPAMENTOS - NR 13 VASO DE PRESSÃO - NR 35 LINHA DE VIDA.jpg" class="car-img" alt="Engenharia Mecânica NR">
           <div class="car-info">
-            <h3>Eng. Mecânica NR 12 ADEQUAÇÃO DE EQUIPAMENTOS - NR 13 VASO DE PRESSÃO - NR 35 LINHA DE VIDA</h3>
+            <h3 data-i18n="card_1">Eng. Mecânica NR 12 ADEQUAÇÃO DE EQUIPAMENTOS - NR 13 VASO DE PRESSÃO - NR 35 LINHA DE VIDA</h3>
           </div>
         </div>
 
         <div class="car-card reveal">
           <img src="img/perito.jpg" class="car-img" alt="Segurança do Trabalho">
           <div class="car-info">
-            <h3>PERITO NA ÁREA DE SEGURANÇA DO TRABALHO</h3>
+            <h3 data-i18n="card_2">PERITO NA ÁREA DE SEGURANÇA DO TRABALHO</h3>
           </div>
         </div>
 
         <div class="car-card reveal">
           <img src="img/PALESTRA SOBRE SEGURANÇA NO TRABALHO.jpg" class="car-img" alt="Palestra sobre segurança do trabalho">
           <div class="car-info">
-            <h3>PALESTRA SOBRE SEGURANÇA NO TRABALHO</h3>
+            <h3 data-i18n="card_3">PALESTRA SOBRE SEGURANÇA NO TRABALHO</h3>
           </div>
         </div>
 
         <div class="car-card reveal">
           <img src="img/analise de SPDA e instalações eletricas - eng. eletrica.jpg" class="car-img" alt="Engenharia Elétrica">
           <div class="car-info">
-            <h3>Eng. Elétrica - Análise de SPDA e conformidade nas Instalações Elétricas.</h3>
+            <h3 data-i18n="card_4">Eng. Elétrica - Análise de SPDA e conformidade nas Instalações Elétricas.</h3>
           </div>
         </div>
       </div>
+
+      <!-- ✅ ADIÇÃO INTEGRADA: PDFs (não sai do site) -->
+      <div class="reveal" style="margin-top:44px; text-align:center;">
+        <span class="subtitle">Catálogos (PDF)</span>
+        <h2 class="title-main" style="font-size:2.4rem;">Abrir sem sair do site</h2>
+        <p style="opacity:.85; max-width:820px; margin:0 auto; line-height:1.6;">
+          Clique em <b>Abrir PDF</b> e o documento aparece por cima, com o site rodando ao fundo.
+        </p>
+      </div>
+
+      <div class="brand-grid" style="margin-top:22px;">
+        <div class="car-card reveal">
+          <div class="car-info">
+            <h3>Equipamento agricola 3 (1)</h3>
+            <button class="pdf-card-btn" type="button"
+              onclick="openPdf('Equipamento agricola 3 (1)','img/Equipamento%20agricola%203%20(1).pdf')">
+              <i class="fa-solid fa-file-pdf"></i> Abrir PDF
+            </button>
+          </div>
+        </div>
+
+        <div class="car-card reveal">
+          <div class="car-info">
+            <h3>Equipamento agricolaa</h3>
+            <button class="pdf-card-btn" type="button"
+              onclick="openPdf('Equipamento agricolaa','img/Equipamento%20agricolaa.pdf')">
+              <i class="fa-solid fa-file-pdf"></i> Abrir PDF
+            </button>
+          </div>
+        </div>
+
+        <div class="car-card reveal">
+          <div class="car-info">
+            <h3>Equipamento agricolaa3</h3>
+            <button class="pdf-card-btn" type="button"
+              onclick="openPdf('Equipamento agricolaa3','img/Equipamento%20agricolaa3.pdf')">
+              <i class="fa-solid fa-file-pdf"></i> Abrir PDF
+            </button>
+          </div>
+        </div>
+
+        <div class="car-card reveal">
+          <div class="car-info">
+            <h3>Máquinas Agricolas-Ângulos (3)</h3>
+            <button class="pdf-card-btn" type="button"
+              onclick="openPdf('Máquinas Agricolas-Ângulos (3)','img/Máquinas%20Agricolas-Ângulos%20(3).pdf')">
+              <i class="fa-solid fa-file-pdf"></i> Abrir PDF
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- ✅ FIM PDFs -->
     </div>
   </section>
 
@@ -493,22 +640,22 @@
   <section class="section-padding" style="background:#000;">
     <div class="container">
       <div class="voting-box reveal">
-        <span class="subtitle">Enquete</span>
-        <h2 class="title-main">Qual serviço você mais precisa?</h2>
+        <span class="subtitle" data-i18n="poll_sub">Enquete</span>
+        <h2 class="title-main" data-i18n="poll_title">Qual serviço você mais precisa?</h2>
 
         <div class="vote-options">
           <button class="vote-btn" type="button" onclick="vote('Eletrica')">
-            <i class="fas fa-bolt"></i> Elétrica
+            <i class="fas fa-bolt"></i> <span data-i18n="poll_elec">Elétrica</span>
             <span id="eletrica-votes" class="vote-count">0 votos</span>
           </button>
 
           <button class="vote-btn" type="button" onclick="vote('SST')">
-            <i class="fas fa-helmet-safety"></i> SST / NRs
+            <i class="fas fa-helmet-safety"></i> <span data-i18n="poll_sst">SST / NRs</span>
             <span id="sst-votes" class="vote-count">0 votos</span>
           </button>
 
           <button class="vote-btn" type="button" onclick="vote('Incendio')">
-            <i class="fas fa-fire-extinguisher"></i> Incêndio
+            <i class="fas fa-fire-extinguisher"></i> <span data-i18n="poll_fire">Incêndio</span>
             <span id="incendio-votes" class="vote-count">0 votos</span>
           </button>
         </div>
@@ -520,27 +667,27 @@
   <section id="services" class="section-padding">
     <div class="container">
       <div class="reveal">
-        <span class="subtitle">Suporte</span>
-        <h2 class="title-main">Soluções</h2>
+        <span class="subtitle" data-i18n="sol_sub">Suporte</span>
+        <h2 class="title-main" data-i18n="sol_title">Soluções</h2>
       </div>
 
       <div class="service-list">
         <div class="service-item reveal">
           <i class="fas fa-clipboard-check"></i>
-          <h3>Vistorias e Laudos</h3>
-          <p>Diagnóstico técnico com relatórios claros e objetivos.</p>
+          <h3 data-i18n="sol_1t">Vistorias e Laudos</h3>
+          <p data-i18n="sol_1d">Diagnóstico técnico com relatórios claros e objetivos.</p>
         </div>
 
         <div class="service-item reveal">
           <i class="fas fa-file-signature"></i>
-          <h3>Documentação e ART</h3>
-          <p>Organização e suporte para regularizações técnicas.</p>
+          <h3 data-i18n="sol_2t">Documentação e ART</h3>
+          <p data-i18n="sol_2d">Organização e suporte para regularizações técnicas.</p>
         </div>
 
         <div class="service-item reveal">
           <i class="fas fa-screwdriver-wrench"></i>
-          <h3>Adequações</h3>
-          <p>Plano de ação e acompanhamento para corrigir não conformidades.</p>
+          <h3 data-i18n="sol_3t">Adequações</h3>
+          <p data-i18n="sol_3d">Plano de ação e acompanhamento para corrigir não conformidades.</p>
         </div>
       </div>
     </div>
@@ -550,9 +697,9 @@
   <section id="blog" class="section-padding" style="background:var(--secondary-bg);">
     <div class="container">
       <div class="reveal">
-        <span class="subtitle">Conteúdo</span>
-        <h2 class="title-main">Em breve</h2>
-        <p style="opacity:.85; max-width:720px; line-height:1.6;">
+        <span class="subtitle" data-i18n="blog_sub">Conteúdo</span>
+        <h2 class="title-main" data-i18n="blog_title">Em breve</h2>
+        <p style="opacity:.85; max-width:720px; line-height:1.6;" data-i18n="blog_desc">
           Aqui você pode adicionar posts, dicas de conformidade, NR, elétrica e segurança do trabalho.
         </p>
       </div>
@@ -564,8 +711,8 @@
     <div class="container">
       <div class="contact-layout">
         <div class="reveal">
-          <span class="subtitle">Fale com a SEC</span>
-          <h2 class="title-main">Contato</h2>
+          <span class="subtitle" data-i18n="ct_sub">Fale com a SEC</span>
+          <h2 class="title-main" data-i18n="ct_title">Contato</h2>
 
           <p style="margin-top:10px; line-height:1.7;">
             <i class="fas fa-phone"></i>
@@ -575,24 +722,25 @@
             <button class="icon-btn" id="copyPhone" type="button" title="Copiar telefone" style="margin-left:10px;">📋</button>
           </p>
 
-          <p style="margin-top:10px;"><i class="fas fa-map-marker-alt"></i> Eunápolis - BA</p>
+          <p style="margin-top:10px;"><i class="fas fa-map-marker-alt"></i> <span data-i18n="ct_city">Eunápolis - BA</span></p>
 
           <div style="margin-top:18px;">
             <a class="vote-btn"
               id="whatsBtn"
               href="https://wa.me/557391396839?text=Olá%2C%20quero%20um%20orçamento%20na%20SEC%20Engenharia."
               target="_blank" rel="noopener"
-              style="text-decoration:none;">
+              style="text-decoration:none;"
+              data-i18n="ct_whats">
               Enviar WhatsApp
             </a>
           </div>
         </div>
 
         <form class="contact-form reveal" id="contactForm">
-          <input type="text" id="nome" placeholder="Seu nome" required>
-          <input type="text" id="telefone" placeholder="Seu WhatsApp (opcional)">
-          <textarea id="mensagem" placeholder="Sua mensagem" required></textarea>
-          <button type="submit" class="vote-btn" style="width:100%;">Enviar no WhatsApp</button>
+          <input type="text" id="nome" placeholder="Seu nome" required data-i18n-ph="ph_name">
+          <input type="text" id="telefone" placeholder="Seu WhatsApp (opcional)" data-i18n-ph="ph_phone">
+          <textarea id="mensagem" placeholder="Sua mensagem" required data-i18n-ph="ph_msg"></textarea>
+          <button type="submit" class="vote-btn" style="width:100%;" data-i18n="ct_send">Enviar no WhatsApp</button>
         </form>
       </div>
     </div>
@@ -606,13 +754,13 @@
           <div class="logo">
             <img id="logoFooter" src="img/logo.jpg" alt="SEC Engenharia">
           </div>
-          <p style="opacity:0.8; margin-top:12px; line-height:1.6;">Engenharia e conformidade para sua segurança.</p>
+          <p style="opacity:0.8; margin-top:12px; line-height:1.6;" data-i18n="ft_desc">Engenharia e conformidade para sua segurança.</p>
         </div>
 
         <div class="nav-links" style="flex-wrap:wrap; gap:14px;">
-          <a href="#">Política de Privacidade</a>
-          <a href="#">Termos</a>
-          <a href="#contact">Orçamento</a>
+          <a href="#" data-i18n="ft_priv">Política de Privacidade</a>
+          <a href="#" data-i18n="ft_terms">Termos</a>
+          <a href="#contact" data-i18n="ft_quote">Orçamento</a>
         </div>
 
         <div style="font-size:1.5rem; display:flex; gap:18px;">
@@ -622,7 +770,7 @@
         </div>
       </div>
 
-      <div style="text-align:center; margin-top:60px; opacity:0.75; font-size:0.85rem;">
+      <div style="text-align:center; margin-top:60px; opacity:0.75; font-size:0.85rem;" data-i18n="ft_copy">
         © 2026 SEC Engenharia. Todos os direitos reservados.
       </div>
     </div>
@@ -634,6 +782,25 @@
 
   <button class="to-top" id="toTop" title="Topo">⬆️</button>
   <div class="toast" id="toast"></div>
+
+  <!-- ✅ ADIÇÃO: MODAL PDF (por cima, sem sair do site) -->
+  <div class="pdf-modal" id="pdfModal" aria-hidden="true">
+    <div class="pdf-modal-box" role="dialog" aria-modal="true" aria-label="Visualizador de PDF">
+      <div class="pdf-modal-top">
+        <div class="pdf-modal-title" id="pdfTitle">PDF</div>
+        <div class="pdf-modal-actions">
+          <a class="pdf-mini-btn" id="pdfOpenNew" target="_blank" rel="noopener">
+            <i class="fa-solid fa-up-right-from-square"></i> Nova aba
+          </a>
+          <button class="pdf-mini-btn" type="button" onclick="closePdf()">
+            <i class="fa-solid fa-xmark"></i> Fechar
+          </button>
+        </div>
+      </div>
+      <iframe class="pdf-frame" id="pdfFrame" src=""></iframe>
+    </div>
+  </div>
+  <!-- ✅ FIM MODAL -->
 
   <script>
     // ===== helpers: evita erros se faltar elemento =====
@@ -696,6 +863,7 @@
       }, { threshold: 0.12 });
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     } else {
+      // fallback: se o navegador for muito velho
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
     }
 
@@ -724,6 +892,7 @@
 
       const icon = isLight ? "☀️" : "🌙";
       if ($("themeBtn")) $("themeBtn").textContent = icon;
+      if ($("mThemeBtn")) $("mThemeBtn").textContent = icon;
 
       localStorage.setItem("sec_theme", isLight ? "light" : "dark");
     }
@@ -732,6 +901,132 @@
       toast(document.body.classList.contains("theme-light") ? "Modo branco" : "Modo escuro");
     }
     on("themeBtn","click",toggleTheme);
+    on("mThemeBtn","click",toggleTheme);
+
+    // ===== Multi-idioma =====
+    const dict = {
+      pt: {
+        menu_home:"Início", menu_about:"Sobre", menu_services:"Serviços", menu_solutions:"Soluções", menu_content:"Conteúdo", menu_contact:"Contato",
+        hero_sub:"Conformidade • Segurança • Qualidade",
+        hero_title:"sec engenharia.",
+        hero_desc:"Projetos, laudos, adequações e documentação técnica com foco em normas, segurança e desempenho. A SEC Engenharia atende com clareza, agilidade e compromisso.",
+        hero_cta:"Ver serviços",
+        about_sub:"Nossa história", about_title:"sec engenharia",
+        about_p1:"A SEC Engenharia atua com soluções em Engenharia Elétrica, Segurança do Trabalho, Engenharia Clínica e Combate a Incêndio, entregando documentação completa e suporte técnico do início ao fim.",
+        about_p2:"Cada entrega é feita com foco em prevenção, regularização e segurança operacional.",
+        models_sub:"Atuação", models_title:"Serviços em destaque",
+        card_1:"Eng. Mecânica NR 12 ADEQUAÇÃO DE EQUIPAMENTOS - NR 13 VASO DE PRESSÃO - NR 35 LINHA DE VIDA",
+        card_2:"PERITO NA ÁREA DE SEGURANÇA DO TRABALHO",
+        card_3:"PALESTRA SOBRE SEGURANÇA NO TRABALHO",
+        card_4:"Eng. Elétrica - Análise de SPDA e conformidade nas Instalações Elétricas.",
+        poll_sub:"Enquete", poll_title:"Qual serviço você mais precisa?", poll_elec:"Elétrica", poll_sst:"SST / NRs", poll_fire:"Incêndio",
+        sol_sub:"Suporte", sol_title:"Soluções",
+        sol_1t:"Vistorias e Laudos", sol_1d:"Diagnóstico técnico com relatórios claros e objetivos.",
+        sol_2t:"Documentação e ART", sol_2d:"Organização e suporte para regularizações técnicas.",
+        sol_3t:"Adequações", sol_3d:"Plano de ação e acompanhamento para corrigir não conformidades.",
+        blog_sub:"Conteúdo", blog_title:"Em breve", blog_desc:"Aqui você pode adicionar posts, dicas de conformidade, NR, elétrica e segurança do trabalho.",
+        ct_sub:"Fale com a SEC", ct_title:"Contato", ct_city:"Eunápolis - BA", ct_whats:"Enviar WhatsApp", ct_send:"Enviar no WhatsApp",
+        ph_name:"Seu nome", ph_phone:"Seu WhatsApp (opcional)", ph_msg:"Sua mensagem",
+        ft_desc:"Engenharia e conformidade para sua segurança.",
+        ft_priv:"Política de Privacidade", ft_terms:"Termos", ft_quote:"Orçamento",
+        ft_copy:"© 2026 SEC Engenharia. Todos os direitos reservados.",
+        vote_ok:"Seu voto foi registrado!",
+        copied:"Telefone copiado!",
+        open_wa:"Abrindo WhatsApp..."
+      },
+      en: {
+        menu_home:"Home", menu_about:"About", menu_services:"Services", menu_solutions:"Solutions", menu_content:"Content", menu_contact:"Contact",
+        hero_sub:"Compliance • Safety • Quality",
+        hero_title:"sec engenharia.",
+        hero_desc:"Projects, reports, adjustments and technical documentation focused on standards, safety and performance. SEC Engenharia delivers with clarity, agility and commitment.",
+        hero_cta:"View services",
+        about_sub:"Our story", about_title:"sec engenharia",
+        about_p1:"SEC Engenharia provides solutions in Electrical Engineering, Workplace Safety, Clinical Engineering and Fire Protection, delivering complete documentation and technical support from start to finish.",
+        about_p2:"Each delivery focuses on prevention, compliance and operational safety.",
+        models_sub:"Expertise", models_title:"Featured services",
+        poll_sub:"Poll", poll_title:"Which service do you need most?", poll_elec:"Electrical", poll_sst:"Safety / Standards", poll_fire:"Fire",
+        sol_sub:"Support", sol_title:"Solutions",
+        sol_1t:"Inspections & Reports", sol_1d:"Clear, objective technical diagnosis and documentation.",
+        sol_2t:"Documentation", sol_2d:"Organization and support for technical compliance.",
+        sol_3t:"Adjustments", sol_3d:"Action plan and follow-up to fix non-compliance.",
+        blog_sub:"Content", blog_title:"Coming soon", blog_desc:"Here you can add posts and tips about compliance and safety.",
+        ct_sub:"Talk to SEC", ct_title:"Contact", ct_city:"Eunápolis - BA", ct_whats:"Send WhatsApp", ct_send:"Send on WhatsApp",
+        ph_name:"Your name", ph_phone:"Your WhatsApp (optional)", ph_msg:"Your message",
+        ft_desc:"Engineering and compliance for your safety.",
+        ft_priv:"Privacy Policy", ft_terms:"Terms", ft_quote:"Quote",
+        ft_copy:"© 2026 SEC Engenharia. All rights reserved.",
+        vote_ok:"Vote registered!",
+        copied:"Phone copied!",
+        open_wa:"Opening WhatsApp..."
+      },
+      es: {
+        menu_home:"Inicio", menu_about:"Sobre", menu_services:"Servicios", menu_solutions:"Soluciones", menu_content:"Contenido", menu_contact:"Contacto",
+        hero_sub:"Conformidad • Seguridad • Calidad",
+        hero_title:"sec engenharia.",
+        hero_desc:"Proyectos, informes, adecuaciones y documentación técnica con enfoque en normas, seguridad y desempeño. SEC Engenharia atiende con claridad, agilidad y compromiso.",
+        hero_cta:"Ver servicios",
+        about_sub:"Nuestra historia", about_title:"sec engenharia",
+        about_p1:"SEC Engenharia actúa con soluciones en Ingeniería Eléctrica, Seguridad Laboral, Ingeniería Clínica y Protección contra Incendios, entregando documentación completa y soporte técnico de principio a fin.",
+        about_p2:"Cada entrega se realiza con enfoque en prevención, regularización y seguridad operacional.",
+        models_sub:"Actuación", models_title:"Servicios destacados",
+        poll_sub:"Encuesta", poll_title:"¿Qué servicio necesitas más?", poll_elec:"Eléctrica", poll_sst:"SST / Normas", poll_fire:"Incendio",
+        sol_sub:"Soporte", sol_title:"Soluciones",
+        sol_1t:"Inspecciones e Informes", sol_1d:"Diagnóstico técnico con informes claros y objetivos.",
+        sol_2t:"Documentación", sol_2d:"Organización y soporte para regularización técnica.",
+        sol_3t:"Adecuaciones", sol_3d:"Plan de acción y acompañamiento para corregir no conformidades.",
+        blog_sub:"Contenido", blog_title:"Próximamente", blog_desc:"Aquí puedes agregar publicaciones y consejos sobre conformidad y seguridad.",
+        ct_sub:"Habla con SEC", ct_title:"Contacto", ct_city:"Eunápolis - BA", ct_whats:"Enviar WhatsApp", ct_send:"Enviar por WhatsApp",
+        ph_name:"Tu nombre", ph_phone:"Tu WhatsApp (opcional)", ph_msg:"Tu mensaje",
+        ft_desc:"Ingeniería y conformidad para tu seguridad.",
+        ft_priv:"Política de Privacidad", ft_terms:"Términos", ft_quote:"Presupuesto",
+        ft_copy:"© 2026 SEC Engenharia. Todos los derechos reservados.",
+        vote_ok:"¡Voto registrado!",
+        copied:"¡Teléfono copiado!",
+        open_wa:"Abriendo WhatsApp..."
+      }
+    };
+
+    let currentLang = "pt";
+
+    function setActiveLangButtons(lang){
+      ["langPT","langEN","langES","mLangPT","mLangEN","mLangES"].forEach(id=>{
+        const el = $(id);
+        if (el) el.classList.remove("active");
+      });
+      const map = { pt:["langPT","mLangPT"], en:["langEN","mLangEN"], es:["langES","mLangES"] };
+      (map[lang]||[]).forEach(id=>{
+        const el = $(id);
+        if (el) el.classList.add("active");
+      });
+    }
+
+    function applyLang(lang){
+      if (!dict[lang]) lang = "pt";
+      currentLang = lang;
+      document.documentElement.lang = (lang==="pt" ? "pt-BR" : lang);
+
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const k = el.getAttribute("data-i18n");
+        if (dict[lang][k]) el.textContent = dict[lang][k];
+      });
+
+      document.querySelectorAll("[data-i18n-ph]").forEach(el=>{
+        const k = el.getAttribute("data-i18n-ph");
+        if (dict[lang][k]) el.setAttribute("placeholder", dict[lang][k]);
+      });
+
+      setActiveLangButtons(lang);
+      refreshVotes();
+
+      localStorage.setItem("sec_lang", lang);
+    }
+
+    on("langPT","click", ()=> applyLang("pt"));
+    on("langEN","click", ()=> applyLang("en"));
+    on("langES","click", ()=> applyLang("es"));
+    on("mLangPT","click", ()=> applyLang("pt"));
+    on("mLangEN","click", ()=> applyLang("en"));
+    on("mLangES","click", ()=> applyLang("es"));
 
     // ===== Votos =====
     let votes = {
@@ -742,9 +1037,10 @@
     const mapId = { Eletrica:'eletrica-votes', SST:'sst-votes', Incendio:'incendio-votes' };
 
     function refreshVotes(){
+      const word = (currentLang==="en") ? "votes" : "votos";
       Object.keys(votes).forEach(k=>{
         const el = $(mapId[k]);
-        if (el) el.textContent = votes[k] + " votos";
+        if (el) el.textContent = votes[k] + " " + word;
       });
     }
 
@@ -752,11 +1048,9 @@
       if (!votes[service] && votes[service] !== 0) return;
       votes[service]++;
       refreshVotes();
-      toast("Seu voto foi registrado!");
+      toast(dict[currentLang].vote_ok);
     }
     window.vote = vote;
-
-    refreshVotes();
 
     // ===== WhatsApp form =====
     const WHATSAPP_NUMBER = "557391396839";
@@ -772,7 +1066,11 @@
       const tel  = telEl.value.trim();
       const msg  = msgEl.value.trim();
 
-      const intro = "Olá, quero um orçamento na SEC Engenharia.";
+      const intro = (currentLang==='en')
+        ? "Hello, I'd like a quote from SEC Engenharia."
+        : (currentLang==='es')
+          ? "Hola, quiero un presupuesto con SEC Engenharia."
+          : "Olá, quero um orçamento na SEC Engenharia.";
 
       const texto =
         `${encodeURIComponent(intro)}%0A%0A` +
@@ -781,7 +1079,7 @@
         `Mensagem: ${encodeURIComponent(msg)}`;
 
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${texto}`, '_blank', 'noopener');
-      toast("Abrindo WhatsApp...");
+      toast(dict[currentLang].open_wa);
 
       setTimeout(() => e.target.reset(), 600);
     });
@@ -800,12 +1098,57 @@
         ta.value=phone; document.body.appendChild(ta);
         ta.select(); document.execCommand("copy"); ta.remove();
       }
-      toast("Telefone copiado!");
+      toast(dict[currentLang].copied);
     });
 
-    // ===== init tema =====
+    // ✅ ADIÇÃO: abrir PDF no modal (sem sair do site)
+    function openPdf(title, url){
+      const modal = document.getElementById("pdfModal");
+      const frame = document.getElementById("pdfFrame");
+      const t = document.getElementById("pdfTitle");
+      const openNew = document.getElementById("pdfOpenNew");
+
+      if (!modal || !frame || !t || !openNew) return;
+
+      t.textContent = title;
+      frame.src = url;
+      openNew.href = url;
+
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closePdf(){
+      const modal = document.getElementById("pdfModal");
+      const frame = document.getElementById("pdfFrame");
+      if (!modal || !frame) return;
+
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden","true");
+      frame.src = "";
+      document.body.style.overflow = "";
+    }
+    window.openPdf = openPdf;
+    window.closePdf = closePdf;
+
+    document.addEventListener("click", (e)=>{
+      const modal = document.getElementById("pdfModal");
+      if (!modal || !modal.classList.contains("show")) return;
+      if (e.target === modal) closePdf();
+    });
+
+    document.addEventListener("keydown", (e)=>{
+      if (e.key === "Escape") closePdf();
+    });
+
+    // ===== init =====
+    const savedLang = localStorage.getItem("sec_lang");
+    applyLang(savedLang && dict[savedLang] ? savedLang : "pt");
+
     const savedTheme = localStorage.getItem("sec_theme");
     setTheme(savedTheme === "light");
+    refreshVotes();
   </script>
 
 </body>
