@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -88,6 +89,7 @@
       font-size:16px;
       line-height:1;
       flex:0 0 auto;
+      text-decoration:none;
     }
     body.theme-light .icon-btn{ background:rgba(0,0,0,0.03); }
     .icon-btn:hover{ border-color:var(--accent); transform:translateY(-1px); }
@@ -295,7 +297,7 @@
     .toast.show{opacity:1;transform:translateY(0);}
 
     /* =======================================================
-       ✅ MOBILE: arruma menu, textos, tamanhos
+       ✅ MOBILE
        ======================================================= */
     @media (max-width: 968px){
       nav{ padding:12px 5%; gap:10px; }
@@ -314,7 +316,7 @@
       .car-img{ height:260px; }
       .contact-layout{ grid-template-columns:1fr; gap:34px; }
 
-      /* menu vira painel (sem sair da tela) */
+      /* menu vira painel */
       .nav-links{
         position:fixed;
         top:70px;
@@ -342,7 +344,7 @@
         border:1px solid var(--border);
         border-radius:14px;
         font-size:0.95rem;
-        white-space:normal; /* permite quebrar linha */
+        white-space:normal;
       }
 
       .nav-actions.mobile-only{
@@ -371,7 +373,7 @@
     }
 
     /* =======================================================
-       ✅ ADIÇÃO: PDFs INTEGRADOS (cards + modal por cima)
+       ✅ PDFs INTEGRADOS (cards + modal)
        ======================================================= */
     .pdf-card-btn{
       width:100%;
@@ -553,10 +555,41 @@
       </div>
 
       <div class="brand-grid">
+
+        <!-- ✅ Eng Mecânica (PDFs ficam AQUI) -->
         <div class="car-card reveal">
           <img src="img/Eng. Mecânica NR 12 ADEQUAÇÃO DE EQUIPAMENTOS - NR 13 VASO DE PRESSÃO - NR 35 LINHA DE VIDA.jpg" class="car-img" alt="Engenharia Mecânica NR">
           <div class="car-info">
             <h3 data-i18n="card_1">Eng. Mecânica NR 12 ADEQUAÇÃO DE EQUIPAMENTOS - NR 13 VASO DE PRESSÃO - NR 35 LINHA DE VIDA</h3>
+
+            <div style="margin-top:16px; opacity:.9; line-height:1.55;">
+              <span class="subtitle" style="letter-spacing:2px; margin-bottom:8px;">Catálogos (PDF)</span>
+              <p style="opacity:.85;">
+                Clique em <b>Abrir PDF</b> e o documento aparece por cima, com o site rodando ao fundo.
+              </p>
+
+              <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:12px;">
+                <button class="pdf-card-btn" type="button"
+                  onclick="openPdf('Equipamento agricola 3 (1)','img/Equipamento%20agricola%203%20(1).pdf')">
+                  <i class="fa-solid fa-file-pdf"></i> Equipamento agricola 3 (1)
+                </button>
+
+                <button class="pdf-card-btn" type="button"
+                  onclick="openPdf('Equipamento agricolaa','img/Equipamento%20agricolaa.pdf')">
+                  <i class="fa-solid fa-file-pdf"></i> Equipamento agricolaa
+                </button>
+
+                <button class="pdf-card-btn" type="button"
+                  onclick="openPdf('Equipamento agricolaa3','img/Equipamento%20agricolaa3.pdf')">
+                  <i class="fa-solid fa-file-pdf"></i> Equipamento agricolaa3
+                </button>
+
+                <button class="pdf-card-btn" type="button"
+                  onclick="openPdf('Máquinas Agricolas-Ângulos (3)','img/Máquinas%20Agricolas-Ângulos%20(3).pdf')">
+                  <i class="fa-solid fa-file-pdf"></i> Máquinas Agricolas-Ângulos (3)
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -580,59 +613,8 @@
             <h3 data-i18n="card_4">Eng. Elétrica - Análise de SPDA e conformidade nas Instalações Elétricas.</h3>
           </div>
         </div>
+
       </div>
-
-      <!-- ✅ ADIÇÃO INTEGRADA: PDFs (não sai do site) -->
-      <div class="reveal" style="margin-top:44px; text-align:center;">
-        <span class="subtitle">Catálogos (PDF)</span>
-        <h2 class="title-main" style="font-size:2.4rem;">Abrir sem sair do site</h2>
-        <p style="opacity:.85; max-width:820px; margin:0 auto; line-height:1.6;">
-          Clique em <b>Abrir PDF</b> e o documento aparece por cima, com o site rodando ao fundo.
-        </p>
-      </div>
-
-      <div class="brand-grid" style="margin-top:22px;">
-        <div class="car-card reveal">
-          <div class="car-info">
-            <h3>Equipamento agricola 3 (1)</h3>
-            <button class="pdf-card-btn" type="button"
-              onclick="openPdf('Equipamento agricola 3 (1)','img/Equipamento%20agricola%203%20(1).pdf')">
-              <i class="fa-solid fa-file-pdf"></i> Abrir PDF
-            </button>
-          </div>
-        </div>
-
-        <div class="car-card reveal">
-          <div class="car-info">
-            <h3>Equipamento agricolaa</h3>
-            <button class="pdf-card-btn" type="button"
-              onclick="openPdf('Equipamento agricolaa','img/Equipamento%20agricolaa.pdf')">
-              <i class="fa-solid fa-file-pdf"></i> Abrir PDF
-            </button>
-          </div>
-        </div>
-
-        <div class="car-card reveal">
-          <div class="car-info">
-            <h3>Equipamento agricolaa3</h3>
-            <button class="pdf-card-btn" type="button"
-              onclick="openPdf('Equipamento agricolaa3','img/Equipamento%20agricolaa3.pdf')">
-              <i class="fa-solid fa-file-pdf"></i> Abrir PDF
-            </button>
-          </div>
-        </div>
-
-        <div class="car-card reveal">
-          <div class="car-info">
-            <h3>Máquinas Agricolas-Ângulos (3)</h3>
-            <button class="pdf-card-btn" type="button"
-              onclick="openPdf('Máquinas Agricolas-Ângulos (3)','img/Máquinas%20Agricolas-Ângulos%20(3).pdf')">
-              <i class="fa-solid fa-file-pdf"></i> Abrir PDF
-            </button>
-          </div>
-        </div>
-      </div>
-      <!-- ✅ FIM PDFs -->
     </div>
   </section>
 
@@ -716,8 +698,8 @@
 
           <p style="margin-top:10px; line-height:1.7;">
             <i class="fas fa-phone"></i>
-            <a href="https://wa.me/557391396839" target="_blank" rel="noopener" style="color:var(--text); text-decoration:none;">
-              <span id="phoneText">+55 73 9139-6839</span>
+            <a href="https://wa.me/557391396879" target="_blank" rel="noopener" style="color:var(--text); text-decoration:none;">
+              <span id="phoneText">+55 73 9139-6879</span>
             </a>
             <button class="icon-btn" id="copyPhone" type="button" title="Copiar telefone" style="margin-left:10px;">📋</button>
           </p>
@@ -727,12 +709,19 @@
           <div style="margin-top:18px;">
             <a class="vote-btn"
               id="whatsBtn"
-              href="https://wa.me/557391396839?text=Olá%2C%20quero%20um%20orçamento%20na%20SEC%20Engenharia."
+              href="https://wa.me/557391396879?text=Olá%2C%20quero%20um%20orçamento%20na%20SEC%20Engenharia."
               target="_blank" rel="noopener"
               style="text-decoration:none;"
               data-i18n="ct_whats">
               Enviar WhatsApp
             </a>
+          </div>
+
+          <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+            <a class="icon-btn" href="https://instagram.com/sec.eng" target="_blank" rel="noopener" title="Instagram @sec.eng">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <span style="opacity:.9; font-weight:800;">@sec.eng</span>
           </div>
         </div>
 
@@ -763,10 +752,13 @@
           <a href="#contact" data-i18n="ft_quote">Orçamento</a>
         </div>
 
-        <div style="font-size:1.5rem; display:flex; gap:18px;">
-          <i class="fab fa-facebook"></i>
-          <i class="fab fa-instagram"></i>
-          <i class="fab fa-whatsapp"></i>
+        <div style="font-size:1.5rem; display:flex; gap:18px; align-items:center;">
+          <a href="https://instagram.com/sec.eng" target="_blank" rel="noopener" style="color:var(--text); text-decoration:none;" title="Instagram @sec.eng">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://wa.me/557391396879" target="_blank" rel="noopener" style="color:var(--text); text-decoration:none;" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
         </div>
       </div>
 
@@ -776,14 +768,14 @@
     </div>
   </footer>
 
-  <a class="wa-float" id="waFloat" href="https://wa.me/557391396839" target="_blank" rel="noopener" title="WhatsApp">
+  <a class="wa-float" id="waFloat" href="https://wa.me/557391396879" target="_blank" rel="noopener" title="WhatsApp">
     <i class="fa-brands fa-whatsapp" style="font-size:24px;"></i>
   </a>
 
   <button class="to-top" id="toTop" title="Topo">⬆️</button>
   <div class="toast" id="toast"></div>
 
-  <!-- ✅ ADIÇÃO: MODAL PDF (por cima, sem sair do site) -->
+  <!-- ✅ MODAL PDF -->
   <div class="pdf-modal" id="pdfModal" aria-hidden="true">
     <div class="pdf-modal-box" role="dialog" aria-modal="true" aria-label="Visualizador de PDF">
       <div class="pdf-modal-top">
@@ -800,10 +792,8 @@
       <iframe class="pdf-frame" id="pdfFrame" src=""></iframe>
     </div>
   </div>
-  <!-- ✅ FIM MODAL -->
 
   <script>
-    // ===== helpers: evita erros se faltar elemento =====
     function $(id){ return document.getElementById(id); }
     function on(id, evt, fn){
       const el = $(id);
@@ -846,7 +836,7 @@
       });
     }
 
-    // ===== Navbar scroll (só classe) =====
+    // ===== Navbar scroll =====
     window.addEventListener('scroll', () => {
       const nav = $("navbar");
       if (!nav) return;
@@ -863,7 +853,6 @@
       }, { threshold: 0.12 });
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     } else {
-      // fallback: se o navegador for muito velho
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
     }
 
@@ -1053,7 +1042,7 @@
     window.vote = vote;
 
     // ===== WhatsApp form =====
-    const WHATSAPP_NUMBER = "557391396839";
+    const WHATSAPP_NUMBER = "557391396879";
     on("contactForm","submit",(e)=>{
       e.preventDefault();
 
@@ -1086,7 +1075,7 @@
 
     // ===== copiar telefone =====
     on("copyPhone","click", async ()=>{
-      const phone = "+55 73 9139-6839";
+      const phone = "+55 73 9139-6879";
       try{
         if (navigator.clipboard && navigator.clipboard.writeText){
           await navigator.clipboard.writeText(phone);
@@ -1101,7 +1090,7 @@
       toast(dict[currentLang].copied);
     });
 
-    // ✅ ADIÇÃO: abrir PDF no modal (sem sair do site)
+    // ===== PDFs modal =====
     function openPdf(title, url){
       const modal = document.getElementById("pdfModal");
       const frame = document.getElementById("pdfFrame");
