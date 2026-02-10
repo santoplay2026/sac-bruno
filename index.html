@@ -1,5 +1,4 @@
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -43,7 +42,6 @@
       overflow-x:hidden;
     }
 
-    /* trava qualquer estouro horizontal */
     img, video, iframe { max-width:100%; height:auto; }
     h1,h2,h3,p,a,li,button,span { overflow-wrap:anywhere; word-break:break-word; }
     .container{width:90%;max-width:1400px;margin:0 auto;}
@@ -56,7 +54,7 @@
     .reveal{opacity:0;transform:translateY(30px);transition:var(--transition);}
     .reveal.active{opacity:1;transform:translateY(0);}
 
-    /* ===== NAVBAR fixa (SEM animação) ===== */
+    /* ===== NAVBAR fixa ===== */
     nav{
       position:fixed;top:0;width:100%;
       padding:14px 5%;
@@ -99,9 +97,7 @@
     .nav-links{
       display:flex;gap:22px;list-style:none;
       align-items:center;
-      margin:0;
-      padding:0;
-      min-width:0;
+      margin:0;padding:0;min-width:0;
     }
     .nav-links a{
       color:var(--text);
@@ -188,7 +184,16 @@
       min-width:0;
     }
     .car-card:hover{transform:scale(1.02);border-color:var(--accent);}
-    .car-img{width:100%;height:420px;object-fit:cover;display:block;}
+
+    /* ✅ DIMINUI IMAGENS NO PC */
+    .car-img{
+      width:100%;
+      height:260px;          /* antes 420px */
+      object-fit:cover;
+      object-position:center;
+      display:block;
+    }
+
     .car-info{padding:22px;min-width:0;}
     .car-info h3{line-height:1.25;font-size:1.05rem;}
 
@@ -313,10 +318,10 @@
       #hero .subtitle{ letter-spacing:2px; font-size:0.85rem; }
       #hero p{ font-size:1rem; }
 
-      .car-img{ height:260px; }
+      .car-img{ height:220px; }   /* menor no mobile também */
+
       .contact-layout{ grid-template-columns:1fr; gap:34px; }
 
-      /* menu vira painel */
       .nav-links{
         position:fixed;
         top:70px;
@@ -377,7 +382,7 @@
        ======================================================= */
     .pdf-card-btn{
       width:100%;
-      margin-top:14px;
+      margin-top:12px;
       background:transparent;
       border:1px solid var(--border);
       padding:12px 14px;
@@ -486,6 +491,11 @@
       <button class="icon-btn" id="langPT" type="button" title="Português">🇧🇷</button>
       <button class="icon-btn" id="langEN" type="button" title="English">🇺🇸</button>
       <button class="icon-btn" id="langES" type="button" title="Español">🇪🇸</button>
+
+      <a class="icon-btn" href="https://instagram.com/sec.eng" target="_blank" rel="noopener" title="Instagram @sec.eng">
+        <i class="fab fa-instagram"></i>
+      </a>
+
       <button class="icon-btn" id="themeBtn" type="button" title="Tema">🌙</button>
     </div>
 
@@ -503,6 +513,11 @@
           <button class="icon-btn" id="mLangPT" type="button" title="Português">🇧🇷</button>
           <button class="icon-btn" id="mLangEN" type="button" title="English">🇺🇸</button>
           <button class="icon-btn" id="mLangES" type="button" title="Español">🇪🇸</button>
+
+          <a class="icon-btn" href="https://instagram.com/sec.eng" target="_blank" rel="noopener" title="Instagram @sec.eng">
+            <i class="fab fa-instagram"></i>
+          </a>
+
           <button class="icon-btn" id="mThemeBtn" type="button" title="Tema">🌙</button>
         </div>
       </li>
@@ -541,7 +556,7 @@
       <div class="reveal">
         <img src="img/cedad107-466b-4b66-baeb-34287573bcd5.jpg"
           alt="Inspeção em segurança do trabalho, na parte de incêndio"
-          style="width:100%; border-radius:18px; box-shadow:0 20px 40px rgba(0,0,0,0.45);">
+          style="width:100%; max-height:380px; object-fit:cover; border-radius:18px; box-shadow:0 20px 40px rgba(0,0,0,0.45);">
       </div>
     </div>
   </section>
@@ -556,7 +571,7 @@
 
       <div class="brand-grid">
 
-        <!-- ✅ Eng Mecânica (PDFs ficam AQUI) -->
+        <!-- ✅ Eng Mecânica (PDFs aqui dentro) -->
         <div class="car-card reveal">
           <img src="img/Eng. Mecânica NR 12 ADEQUAÇÃO DE EQUIPAMENTOS - NR 13 VASO DE PRESSÃO - NR 35 LINHA DE VIDA.jpg" class="car-img" alt="Engenharia Mecânica NR">
           <div class="car-info">
@@ -721,7 +736,7 @@
             <a class="icon-btn" href="https://instagram.com/sec.eng" target="_blank" rel="noopener" title="Instagram @sec.eng">
               <i class="fab fa-instagram"></i>
             </a>
-            <span style="opacity:.9; font-weight:800;">@sec.eng</span>
+            <span style="opacity:.9; font-weight:900;">@sec.eng</span>
           </div>
         </div>
 
@@ -794,13 +809,15 @@
   </div>
 
   <script>
+    const WHATSAPP_NUMBER = "557391396879";
+    const WHATSAPP_PRETTY = "+55 73 9139-6879";
+
     function $(id){ return document.getElementById(id); }
     function on(id, evt, fn){
       const el = $(id);
       if (el) el.addEventListener(evt, fn);
     }
 
-    // ===== Toast =====
     const toastEl = $("toast");
     let toastTimer = null;
     function toast(msg){
@@ -811,7 +828,6 @@
       toastTimer = setTimeout(()=> toastEl.classList.remove("show"), 2200);
     }
 
-    // ===== Menu mobile =====
     const navToggle = $("navToggle");
     const navLinks  = $("navLinks");
 
@@ -836,7 +852,6 @@
       });
     }
 
-    // ===== Navbar scroll =====
     window.addEventListener('scroll', () => {
       const nav = $("navbar");
       if (!nav) return;
@@ -844,7 +859,6 @@
       else nav.classList.remove('scrolled');
     });
 
-    // ===== Reveal =====
     if ("IntersectionObserver" in window){
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -856,7 +870,6 @@
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
     }
 
-    // ===== Botão topo =====
     const toTopBtn = $("toTop");
     if (toTopBtn){
       window.addEventListener("scroll", ()=>{
@@ -866,7 +879,6 @@
       toTopBtn.addEventListener("click", ()=> window.scrollTo({top:0, behavior:"smooth"}));
     }
 
-    // ===== Tema + logo =====
     const logoImg = $("logoImg");
     const logoFooter = $("logoFooter");
     const LOGO_DARK = "img/logo.jpg";
@@ -892,7 +904,6 @@
     on("themeBtn","click",toggleTheme);
     on("mThemeBtn","click",toggleTheme);
 
-    // ===== Multi-idioma =====
     const dict = {
       pt: {
         menu_home:"Início", menu_about:"Sobre", menu_services:"Serviços", menu_solutions:"Soluções", menu_content:"Conteúdo", menu_contact:"Contato",
@@ -967,7 +978,7 @@
         ct_sub:"Habla con SEC", ct_title:"Contacto", ct_city:"Eunápolis - BA", ct_whats:"Enviar WhatsApp", ct_send:"Enviar por WhatsApp",
         ph_name:"Tu nombre", ph_phone:"Tu WhatsApp (opcional)", ph_msg:"Tu mensaje",
         ft_desc:"Ingeniería y conformidad para tu seguridad.",
-        ft_priv:"Política de Privacidad", ft_terms:"Términos", ft_quote:"Presupuesto",
+        ft_priv:"Política de Privacidade", ft_terms:"Términos", ft_quote:"Presupuesto",
         ft_copy:"© 2026 SEC Engenharia. Todos los derechos reservados.",
         vote_ok:"¡Voto registrado!",
         copied:"¡Teléfono copiado!",
@@ -1006,7 +1017,6 @@
 
       setActiveLangButtons(lang);
       refreshVotes();
-
       localStorage.setItem("sec_lang", lang);
     }
 
@@ -1017,7 +1027,6 @@
     on("mLangEN","click", ()=> applyLang("en"));
     on("mLangES","click", ()=> applyLang("es"));
 
-    // ===== Votos =====
     let votes = {
       Eletrica: Math.floor(Math.random() * 500) + 200,
       SST: Math.floor(Math.random() * 500) + 180,
@@ -1041,8 +1050,6 @@
     }
     window.vote = vote;
 
-    // ===== WhatsApp form =====
-    const WHATSAPP_NUMBER = "557391396879";
     on("contactForm","submit",(e)=>{
       e.preventDefault();
 
@@ -1073,24 +1080,21 @@
       setTimeout(() => e.target.reset(), 600);
     });
 
-    // ===== copiar telefone =====
     on("copyPhone","click", async ()=>{
-      const phone = "+55 73 9139-6879";
       try{
         if (navigator.clipboard && navigator.clipboard.writeText){
-          await navigator.clipboard.writeText(phone);
+          await navigator.clipboard.writeText(WHATSAPP_PRETTY);
         } else {
           throw new Error("clipboard indisponível");
         }
       }catch{
         const ta=document.createElement("textarea");
-        ta.value=phone; document.body.appendChild(ta);
+        ta.value=WHATSAPP_PRETTY; document.body.appendChild(ta);
         ta.select(); document.execCommand("copy"); ta.remove();
       }
       toast(dict[currentLang].copied);
     });
 
-    // ===== PDFs modal =====
     function openPdf(title, url){
       const modal = document.getElementById("pdfModal");
       const frame = document.getElementById("pdfFrame");
@@ -1131,7 +1135,6 @@
       if (e.key === "Escape") closePdf();
     });
 
-    // ===== init =====
     const savedLang = localStorage.getItem("sec_lang");
     applyLang(savedLang && dict[savedLang] ? savedLang : "pt");
 
