@@ -42,19 +42,21 @@
       overflow-x:hidden;
     }
 
+    /* trava qualquer estouro horizontal */
     img, video, iframe { max-width:100%; height:auto; }
     h1,h2,h3,p,a,li,button,span { overflow-wrap:anywhere; word-break:break-word; }
     .container{width:90%;max-width:1400px;margin:0 auto;}
 
-    .section-padding{padding:120px 0;}
-    .title-main{font-family:'Oswald',sans-serif;font-size:3.5rem;text-transform:uppercase;margin-bottom:2rem;line-height:1.05;}
+    /* ✅ Ajuste: menos espaço no PC */
+    .section-padding{padding:90px 0;}
+    .title-main{font-family:'Oswald',sans-serif;font-size:3.2rem;text-transform:uppercase;margin-bottom:1.6rem;line-height:1.05;}
     .subtitle{color:var(--accent);letter-spacing:4px;font-weight:800;margin-bottom:10px;display:block;}
 
     /* ===== Reveal ===== */
     .reveal{opacity:0;transform:translateY(30px);transition:var(--transition);}
     .reveal.active{opacity:1;transform:translateY(0);}
 
-    /* ===== NAVBAR fixa ===== */
+    /* ===== NAVBAR fixa (SEM animação) ===== */
     nav{
       position:fixed;top:0;width:100%;
       padding:14px 5%;
@@ -97,7 +99,9 @@
     .nav-links{
       display:flex;gap:22px;list-style:none;
       align-items:center;
-      margin:0;padding:0;min-width:0;
+      margin:0;
+      padding:0;
+      min-width:0;
     }
     .nav-links a{
       color:var(--text);
@@ -173,7 +177,7 @@
     .brand-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-      gap:22px;
+      gap:16px; /* ✅ menos espaço */
     }
     .car-card{
       background:var(--glass);
@@ -185,17 +189,13 @@
     }
     .car-card:hover{transform:scale(1.02);border-color:var(--accent);}
 
-    /* ✅ DIMINUI IMAGENS NO PC */
-    .car-img{
-      width:100%;
-      height:260px;          /* antes 420px */
-      object-fit:cover;
-      object-position:center;
-      display:block;
-    }
+    /* ✅ imagens menores no PC */
+    .car-img{width:100%;height:320px;object-fit:cover;display:block;}
+    .car-link{display:block; cursor:pointer;}
+    .car-link:focus{outline:2px solid var(--accent); outline-offset:2px;}
 
-    .car-info{padding:22px;min-width:0;}
-    .car-info h3{line-height:1.25;font-size:1.05rem;}
+    .car-info{padding:18px;min-width:0;}
+    .car-info h3{line-height:1.25;font-size:1.02rem;}
 
     /* ===== enquete ===== */
     .voting-box{
@@ -302,7 +302,7 @@
     .toast.show{opacity:1;transform:translateY(0);}
 
     /* =======================================================
-       ✅ MOBILE
+       ✅ MOBILE: arruma menu, textos, tamanhos
        ======================================================= */
     @media (max-width: 968px){
       nav{ padding:12px 5%; gap:10px; }
@@ -318,10 +318,10 @@
       #hero .subtitle{ letter-spacing:2px; font-size:0.85rem; }
       #hero p{ font-size:1rem; }
 
-      .car-img{ height:220px; }   /* menor no mobile também */
-
+      .car-img{ height:240px; } /* ✅ menor no mobile */
       .contact-layout{ grid-template-columns:1fr; gap:34px; }
 
+      /* menu vira painel (sem sair da tela) */
       .nav-links{
         position:fixed;
         top:70px;
@@ -376,102 +376,6 @@
       .vote-btn{ width:100%; }
       #hero .title-main{ font-size:2.25rem !important; }
     }
-
-    /* =======================================================
-       ✅ PDFs INTEGRADOS (cards + modal)
-       ======================================================= */
-    .pdf-card-btn{
-      width:100%;
-      margin-top:12px;
-      background:transparent;
-      border:1px solid var(--border);
-      padding:12px 14px;
-      border-radius:12px;
-      color:var(--text);
-      cursor:pointer;
-      transition:0.25s;
-      font-weight:900;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-    }
-    .pdf-card-btn:hover{background:var(--accent);color:#000;border-color:var(--accent);}
-    body.theme-light .pdf-card-btn:hover{ color:#fff; }
-
-    .pdf-modal{
-      position:fixed;
-      inset:0;
-      z-index:2000;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      background:rgba(0,0,0,0.66);
-      backdrop-filter: blur(8px);
-    }
-    .pdf-modal.show{ display:flex; }
-
-    .pdf-modal-box{
-      width:min(1100px, 96vw);
-      height:min(720px, 86vh);
-      background:var(--secondary-bg);
-      border:1px solid var(--border);
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:0 24px 60px rgba(0,0,0,0.55);
-      display:flex;
-      flex-direction:column;
-    }
-    .pdf-modal-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:12px 14px;
-      border-bottom:1px solid var(--border);
-    }
-    .pdf-modal-title{
-      font-weight:900;
-      font-size:0.95rem;
-      line-height:1.2;
-    }
-    .pdf-modal-actions{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex:0 0 auto;
-    }
-    .pdf-mini-btn{
-      width:auto;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,0.03);
-      color:var(--text);
-      cursor:pointer;
-      font-weight:900;
-      transition:0.2s;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-    }
-    body.theme-light .pdf-mini-btn{ background:rgba(0,0,0,0.03); }
-    .pdf-mini-btn:hover{ border-color:var(--accent); transform:translateY(-1px); }
-
-    .pdf-frame{
-      width:100%;
-      height:100%;
-      border:0;
-      background:#000;
-    }
-
-    @media (max-width: 560px){
-      .pdf-modal-box{ height:92vh; }
-      .pdf-modal-title{ font-size:0.9rem; }
-    }
   </style>
 </head>
 
@@ -491,11 +395,6 @@
       <button class="icon-btn" id="langPT" type="button" title="Português">🇧🇷</button>
       <button class="icon-btn" id="langEN" type="button" title="English">🇺🇸</button>
       <button class="icon-btn" id="langES" type="button" title="Español">🇪🇸</button>
-
-      <a class="icon-btn" href="https://instagram.com/sec.eng" target="_blank" rel="noopener" title="Instagram @sec.eng">
-        <i class="fab fa-instagram"></i>
-      </a>
-
       <button class="icon-btn" id="themeBtn" type="button" title="Tema">🌙</button>
     </div>
 
@@ -513,11 +412,6 @@
           <button class="icon-btn" id="mLangPT" type="button" title="Português">🇧🇷</button>
           <button class="icon-btn" id="mLangEN" type="button" title="English">🇺🇸</button>
           <button class="icon-btn" id="mLangES" type="button" title="Español">🇪🇸</button>
-
-          <a class="icon-btn" href="https://instagram.com/sec.eng" target="_blank" rel="noopener" title="Instagram @sec.eng">
-            <i class="fab fa-instagram"></i>
-          </a>
-
           <button class="icon-btn" id="mThemeBtn" type="button" title="Tema">🌙</button>
         </div>
       </li>
@@ -556,7 +450,7 @@
       <div class="reveal">
         <img src="img/cedad107-466b-4b66-baeb-34287573bcd5.jpg"
           alt="Inspeção em segurança do trabalho, na parte de incêndio"
-          style="width:100%; max-height:380px; object-fit:cover; border-radius:18px; box-shadow:0 20px 40px rgba(0,0,0,0.45);">
+          style="width:100%; border-radius:18px; box-shadow:0 20px 40px rgba(0,0,0,0.45);">
       </div>
     </div>
   </section>
@@ -569,67 +463,45 @@
         <h2 class="title-main" data-i18n="models_title">Serviços em destaque</h2>
       </div>
 
+      <!-- ✅ CLICA NA IMAGEM E ABRE O SITE EXTERNO -->
       <div class="brand-grid">
-
-        <!-- ✅ Eng Mecânica (PDFs aqui dentro) -->
         <div class="car-card reveal">
-          <img src="img/Eng. Mecânica NR 12 ADEQUAÇÃO DE EQUIPAMENTOS - NR 13 VASO DE PRESSÃO - NR 35 LINHA DE VIDA.jpg" class="car-img" alt="Engenharia Mecânica NR">
+          <a class="car-link" href="https://arquivo.gt.tc/" target="_blank" rel="noopener" aria-label="Abrir arquivo.gt.tc (Engenharia Mecânica)">
+            <img src="img/Eng. Mecânica NR 12 ADEQUAÇÃO DE EQUIPAMENTOS - NR 13 VASO DE PRESSÃO - NR 35 LINHA DE VIDA.jpg" class="car-img" alt="Engenharia Mecânica NR">
+          </a>
           <div class="car-info">
-            <h3 data-i18n="card_1">Eng. Mecânica NR 12 ADEQUAÇÃO DE EQUIPAMENTOS - NR 13 VASO DE PRESSÃO - NR 35 LINHA DE VIDA</h3>
-
-            <div style="margin-top:16px; opacity:.9; line-height:1.55;">
-              <span class="subtitle" style="letter-spacing:2px; margin-bottom:8px;">Catálogos (PDF)</span>
-              <p style="opacity:.85;">
-                Clique em <b>Abrir PDF</b> e o documento aparece por cima, com o site rodando ao fundo.
-              </p>
-
-              <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:12px;">
-                <button class="pdf-card-btn" type="button"
-                  onclick="openPdf('Equipamento agricola 3 (1)','img/Equipamento%20agricola%203%20(1).pdf')">
-                  <i class="fa-solid fa-file-pdf"></i> Equipamento agricola 3 (1)
-                </button>
-
-                <button class="pdf-card-btn" type="button"
-                  onclick="openPdf('Equipamento agricolaa','img/Equipamento%20agricolaa.pdf')">
-                  <i class="fa-solid fa-file-pdf"></i> Equipamento agricolaa
-                </button>
-
-                <button class="pdf-card-btn" type="button"
-                  onclick="openPdf('Equipamento agricolaa3','img/Equipamento%20agricolaa3.pdf')">
-                  <i class="fa-solid fa-file-pdf"></i> Equipamento agricolaa3
-                </button>
-
-                <button class="pdf-card-btn" type="button"
-                  onclick="openPdf('Máquinas Agricolas-Ângulos (3)','img/Máquinas%20Agricolas-Ângulos%20(3).pdf')">
-                  <i class="fa-solid fa-file-pdf"></i> Máquinas Agricolas-Ângulos (3)
-                </button>
-              </div>
-            </div>
+            <h3 data-i18n="card_1">Eng. Mecânica NR 12 • NR 13 • NR 35</h3>
           </div>
         </div>
 
         <div class="car-card reveal">
-          <img src="img/perito.jpg" class="car-img" alt="Segurança do Trabalho">
+          <a class="car-link" href="https://arquivo.gt.tc/" target="_blank" rel="noopener" aria-label="Abrir arquivo.gt.tc (Segurança do Trabalho)">
+            <img src="img/perito.jpg" class="car-img" alt="Segurança do Trabalho">
+          </a>
           <div class="car-info">
-            <h3 data-i18n="card_2">PERITO NA ÁREA DE SEGURANÇA DO TRABALHO</h3>
+            <h3 data-i18n="card_2">Perícia na Área de Segurança do Trabalho</h3>
           </div>
         </div>
 
         <div class="car-card reveal">
-          <img src="img/PALESTRA SOBRE SEGURANÇA NO TRABALHO.jpg" class="car-img" alt="Palestra sobre segurança do trabalho">
+          <a class="car-link" href="https://arquivo.gt.tc/" target="_blank" rel="noopener" aria-label="Abrir arquivo.gt.tc (Palestra)">
+            <img src="img/PALESTRA SOBRE SEGURANÇA NO TRABALHO.jpg" class="car-img" alt="Palestra sobre segurança do trabalho">
+          </a>
           <div class="car-info">
-            <h3 data-i18n="card_3">PALESTRA SOBRE SEGURANÇA NO TRABALHO</h3>
+            <h3 data-i18n="card_3">Palestra sobre Segurança no Trabalho</h3>
           </div>
         </div>
 
         <div class="car-card reveal">
-          <img src="img/analise de SPDA e instalações eletricas - eng. eletrica.jpg" class="car-img" alt="Engenharia Elétrica">
+          <a class="car-link" href="https://arquivo.gt.tc/" target="_blank" rel="noopener" aria-label="Abrir arquivo.gt.tc (Engenharia Elétrica)">
+            <img src="img/analise de SPDA e instalações eletricas - eng. eletrica.jpg" class="car-img" alt="Engenharia Elétrica">
+          </a>
           <div class="car-info">
-            <h3 data-i18n="card_4">Eng. Elétrica - Análise de SPDA e conformidade nas Instalações Elétricas.</h3>
+            <h3 data-i18n="card_4">Eng. Elétrica • SPDA e Conformidade</h3>
           </div>
         </div>
-
       </div>
+
     </div>
   </section>
 
@@ -719,24 +591,24 @@
             <button class="icon-btn" id="copyPhone" type="button" title="Copiar telefone" style="margin-left:10px;">📋</button>
           </p>
 
+          <p style="margin-top:10px; line-height:1.7;">
+            <i class="fa-brands fa-instagram"></i>
+            <a href="https://www.instagram.com/sec.eng/" target="_blank" rel="noopener" style="color:var(--text); text-decoration:none;">
+              @sec.eng
+            </a>
+          </p>
+
           <p style="margin-top:10px;"><i class="fas fa-map-marker-alt"></i> <span data-i18n="ct_city">Eunápolis - BA</span></p>
 
           <div style="margin-top:18px;">
             <a class="vote-btn"
               id="whatsBtn"
-              href="https://wa.me/557391396879?text=Olá%2C%20quero%20um%20orçamento%20na%20SEC%20Engenharia."
+              href="https://wa.me/557391396879?text=Ol%C3%A1%2C%20quero%20um%20or%C3%A7amento%20na%20SEC%20Engenharia."
               target="_blank" rel="noopener"
               style="text-decoration:none;"
               data-i18n="ct_whats">
               Enviar WhatsApp
             </a>
-          </div>
-
-          <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-            <a class="icon-btn" href="https://instagram.com/sec.eng" target="_blank" rel="noopener" title="Instagram @sec.eng">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <span style="opacity:.9; font-weight:900;">@sec.eng</span>
           </div>
         </div>
 
@@ -767,13 +639,10 @@
           <a href="#contact" data-i18n="ft_quote">Orçamento</a>
         </div>
 
-        <div style="font-size:1.5rem; display:flex; gap:18px; align-items:center;">
-          <a href="https://instagram.com/sec.eng" target="_blank" rel="noopener" style="color:var(--text); text-decoration:none;" title="Instagram @sec.eng">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://wa.me/557391396879" target="_blank" rel="noopener" style="color:var(--text); text-decoration:none;" title="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-          </a>
+        <div style="font-size:1.5rem; display:flex; gap:18px;">
+          <a class="icon-btn" href="https://www.instagram.com/sec.eng/" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a class="icon-btn" href="https://wa.me/557391396879" target="_blank" rel="noopener" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a class="icon-btn" href="https://arquivo.gt.tc/" target="_blank" rel="noopener" title="Arquivos"><i class="fa-solid fa-folder-open"></i></a>
         </div>
       </div>
 
@@ -790,34 +659,15 @@
   <button class="to-top" id="toTop" title="Topo">⬆️</button>
   <div class="toast" id="toast"></div>
 
-  <!-- ✅ MODAL PDF -->
-  <div class="pdf-modal" id="pdfModal" aria-hidden="true">
-    <div class="pdf-modal-box" role="dialog" aria-modal="true" aria-label="Visualizador de PDF">
-      <div class="pdf-modal-top">
-        <div class="pdf-modal-title" id="pdfTitle">PDF</div>
-        <div class="pdf-modal-actions">
-          <a class="pdf-mini-btn" id="pdfOpenNew" target="_blank" rel="noopener">
-            <i class="fa-solid fa-up-right-from-square"></i> Nova aba
-          </a>
-          <button class="pdf-mini-btn" type="button" onclick="closePdf()">
-            <i class="fa-solid fa-xmark"></i> Fechar
-          </button>
-        </div>
-      </div>
-      <iframe class="pdf-frame" id="pdfFrame" src=""></iframe>
-    </div>
-  </div>
-
   <script>
-    const WHATSAPP_NUMBER = "557391396879";
-    const WHATSAPP_PRETTY = "+55 73 9139-6879";
-
+    // ===== helpers =====
     function $(id){ return document.getElementById(id); }
     function on(id, evt, fn){
       const el = $(id);
       if (el) el.addEventListener(evt, fn);
     }
 
+    // ===== Toast =====
     const toastEl = $("toast");
     let toastTimer = null;
     function toast(msg){
@@ -828,6 +678,7 @@
       toastTimer = setTimeout(()=> toastEl.classList.remove("show"), 2200);
     }
 
+    // ===== Menu mobile =====
     const navToggle = $("navToggle");
     const navLinks  = $("navLinks");
 
@@ -852,6 +703,7 @@
       });
     }
 
+    // ===== Navbar scroll =====
     window.addEventListener('scroll', () => {
       const nav = $("navbar");
       if (!nav) return;
@@ -859,6 +711,7 @@
       else nav.classList.remove('scrolled');
     });
 
+    // ===== Reveal =====
     if ("IntersectionObserver" in window){
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -870,6 +723,7 @@
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
     }
 
+    // ===== Botão topo =====
     const toTopBtn = $("toTop");
     if (toTopBtn){
       window.addEventListener("scroll", ()=>{
@@ -879,6 +733,7 @@
       toTopBtn.addEventListener("click", ()=> window.scrollTo({top:0, behavior:"smooth"}));
     }
 
+    // ===== Tema + logo =====
     const logoImg = $("logoImg");
     const logoFooter = $("logoFooter");
     const LOGO_DARK = "img/logo.jpg";
@@ -904,6 +759,7 @@
     on("themeBtn","click",toggleTheme);
     on("mThemeBtn","click",toggleTheme);
 
+    // ===== Multi-idioma =====
     const dict = {
       pt: {
         menu_home:"Início", menu_about:"Sobre", menu_services:"Serviços", menu_solutions:"Soluções", menu_content:"Conteúdo", menu_contact:"Contato",
@@ -915,10 +771,10 @@
         about_p1:"A SEC Engenharia atua com soluções em Engenharia Elétrica, Segurança do Trabalho, Engenharia Clínica e Combate a Incêndio, entregando documentação completa e suporte técnico do início ao fim.",
         about_p2:"Cada entrega é feita com foco em prevenção, regularização e segurança operacional.",
         models_sub:"Atuação", models_title:"Serviços em destaque",
-        card_1:"Eng. Mecânica NR 12 ADEQUAÇÃO DE EQUIPAMENTOS - NR 13 VASO DE PRESSÃO - NR 35 LINHA DE VIDA",
-        card_2:"PERITO NA ÁREA DE SEGURANÇA DO TRABALHO",
-        card_3:"PALESTRA SOBRE SEGURANÇA NO TRABALHO",
-        card_4:"Eng. Elétrica - Análise de SPDA e conformidade nas Instalações Elétricas.",
+        card_1:"Eng. Mecânica NR 12 • NR 13 • NR 35",
+        card_2:"Perícia na Área de Segurança do Trabalho",
+        card_3:"Palestra sobre Segurança no Trabalho",
+        card_4:"Eng. Elétrica • SPDA e Conformidade",
         poll_sub:"Enquete", poll_title:"Qual serviço você mais precisa?", poll_elec:"Elétrica", poll_sst:"SST / NRs", poll_fire:"Incêndio",
         sol_sub:"Suporte", sol_title:"Soluções",
         sol_1t:"Vistorias e Laudos", sol_1d:"Diagnóstico técnico com relatórios claros e objetivos.",
@@ -944,6 +800,10 @@
         about_p1:"SEC Engenharia provides solutions in Electrical Engineering, Workplace Safety, Clinical Engineering and Fire Protection, delivering complete documentation and technical support from start to finish.",
         about_p2:"Each delivery focuses on prevention, compliance and operational safety.",
         models_sub:"Expertise", models_title:"Featured services",
+        card_1:"Mechanical Eng. NR 12 • NR 13 • NR 35",
+        card_2:"Workplace Safety Expert Witness",
+        card_3:"Workplace Safety Training",
+        card_4:"Electrical Eng. • Lightning Protection & Compliance",
         poll_sub:"Poll", poll_title:"Which service do you need most?", poll_elec:"Electrical", poll_sst:"Safety / Standards", poll_fire:"Fire",
         sol_sub:"Support", sol_title:"Solutions",
         sol_1t:"Inspections & Reports", sol_1d:"Clear, objective technical diagnosis and documentation.",
@@ -969,6 +829,10 @@
         about_p1:"SEC Engenharia actúa con soluciones en Ingeniería Eléctrica, Seguridad Laboral, Ingeniería Clínica y Protección contra Incendios, entregando documentación completa y soporte técnico de principio a fin.",
         about_p2:"Cada entrega se realiza con enfoque en prevención, regularización y seguridad operacional.",
         models_sub:"Actuación", models_title:"Servicios destacados",
+        card_1:"Ing. Mecánica NR 12 • NR 13 • NR 35",
+        card_2:"Peritaje en Seguridad Laboral",
+        card_3:"Charla de Seguridad en el Trabajo",
+        card_4:"Ing. Eléctrica • Pararrayos y Cumplimiento",
         poll_sub:"Encuesta", poll_title:"¿Qué servicio necesitas más?", poll_elec:"Eléctrica", poll_sst:"SST / Normas", poll_fire:"Incendio",
         sol_sub:"Soporte", sol_title:"Soluciones",
         sol_1t:"Inspecciones e Informes", sol_1d:"Diagnóstico técnico con informes claros y objetivos.",
@@ -978,7 +842,7 @@
         ct_sub:"Habla con SEC", ct_title:"Contacto", ct_city:"Eunápolis - BA", ct_whats:"Enviar WhatsApp", ct_send:"Enviar por WhatsApp",
         ph_name:"Tu nombre", ph_phone:"Tu WhatsApp (opcional)", ph_msg:"Tu mensaje",
         ft_desc:"Ingeniería y conformidad para tu seguridad.",
-        ft_priv:"Política de Privacidade", ft_terms:"Términos", ft_quote:"Presupuesto",
+        ft_priv:"Política de Privacidad", ft_terms:"Términos", ft_quote:"Presupuesto",
         ft_copy:"© 2026 SEC Engenharia. Todos los derechos reservados.",
         vote_ok:"¡Voto registrado!",
         copied:"¡Teléfono copiado!",
@@ -1017,6 +881,7 @@
 
       setActiveLangButtons(lang);
       refreshVotes();
+
       localStorage.setItem("sec_lang", lang);
     }
 
@@ -1027,6 +892,7 @@
     on("mLangEN","click", ()=> applyLang("en"));
     on("mLangES","click", ()=> applyLang("es"));
 
+    // ===== Votos =====
     let votes = {
       Eletrica: Math.floor(Math.random() * 500) + 200,
       SST: Math.floor(Math.random() * 500) + 180,
@@ -1050,6 +916,8 @@
     }
     window.vote = vote;
 
+    // ===== WhatsApp form =====
+    const WHATSAPP_NUMBER = "557391396879";
     on("contactForm","submit",(e)=>{
       e.preventDefault();
 
@@ -1080,61 +948,24 @@
       setTimeout(() => e.target.reset(), 600);
     });
 
+    // ===== copiar telefone =====
     on("copyPhone","click", async ()=>{
+      const phone = "+55 73 9139-6879";
       try{
         if (navigator.clipboard && navigator.clipboard.writeText){
-          await navigator.clipboard.writeText(WHATSAPP_PRETTY);
+          await navigator.clipboard.writeText(phone);
         } else {
           throw new Error("clipboard indisponível");
         }
       }catch{
         const ta=document.createElement("textarea");
-        ta.value=WHATSAPP_PRETTY; document.body.appendChild(ta);
+        ta.value=phone; document.body.appendChild(ta);
         ta.select(); document.execCommand("copy"); ta.remove();
       }
       toast(dict[currentLang].copied);
     });
 
-    function openPdf(title, url){
-      const modal = document.getElementById("pdfModal");
-      const frame = document.getElementById("pdfFrame");
-      const t = document.getElementById("pdfTitle");
-      const openNew = document.getElementById("pdfOpenNew");
-
-      if (!modal || !frame || !t || !openNew) return;
-
-      t.textContent = title;
-      frame.src = url;
-      openNew.href = url;
-
-      modal.classList.add("show");
-      modal.setAttribute("aria-hidden","false");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closePdf(){
-      const modal = document.getElementById("pdfModal");
-      const frame = document.getElementById("pdfFrame");
-      if (!modal || !frame) return;
-
-      modal.classList.remove("show");
-      modal.setAttribute("aria-hidden","true");
-      frame.src = "";
-      document.body.style.overflow = "";
-    }
-    window.openPdf = openPdf;
-    window.closePdf = closePdf;
-
-    document.addEventListener("click", (e)=>{
-      const modal = document.getElementById("pdfModal");
-      if (!modal || !modal.classList.contains("show")) return;
-      if (e.target === modal) closePdf();
-    });
-
-    document.addEventListener("keydown", (e)=>{
-      if (e.key === "Escape") closePdf();
-    });
-
+    // ===== init =====
     const savedLang = localStorage.getItem("sec_lang");
     applyLang(savedLang && dict[savedLang] ? savedLang : "pt");
 
