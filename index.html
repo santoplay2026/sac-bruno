@@ -8,7 +8,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Raleway:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <style>
+  <style
+
+.avcb-thumbs{
+  display:flex;
+  gap:8px;
+  padding:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.avcb-thumbs img{
+  width:65px;
+  height:65px;
+  object-fit:cover;
+  border-radius:10px;
+  cursor:pointer;
+  border:2px solid transparent;
+  transition:0.3s;
+}
+
+.avcb-thumbs img:hover{
+  border-color:var(--accent);
+  transform:scale(1.1);
+}
     :root{
       --primary:#0B1026;
       --secondary-bg:#12183A;
@@ -500,14 +523,27 @@
           </div>
         </div>
 
-        <div class="car-card reveal">
-          <a class="car-link" href="https://arquivo.gt.tc/" target="_blank" rel="noopener" aria-label="Abrir arquivo.gt.tc (Corpo de Bombeiros)">
-            <img src="img/PALESTRA SOBRE SEGURANÇA NO TRABALHO.jpg" class="car-img" alt="Corpo de Bombeiros e Combate a Incêndio">
-          </a>
-          <div class="car-info">
-            <h3 data-i18n="card_3">Corpo de Bombeiros • Combate a Incêndio</h3>
-          </div>
-        </div>
+<div class="car-card reveal">
+  
+  <div class="car-link">
+    <img id="avcbMain" src="imagem/cof1.jpg" class="car-img" alt="AVCB Bombeiros">
+  </div>
+
+  <div class="avcb-thumbs">
+    <img src="imagem/cof1.jpg" onclick="trocarImg(this.src)">
+    <img src="imagem/cof2.jpg" onclick="trocarImg(this.src)">
+    <img src="imagem/cof3.jpg" onclick="trocarImg(this.src)">
+    <img src="imagem/cof4.jpg" onclick="trocarImg(this.src)">
+    <img src="imagem/cof5.jpg" onclick="trocarImg(this.src)">
+    <img src="imagem/cof6.jpg" onclick="trocarImg(this.src)">
+    <img src="imagem/cof7.jpg" onclick="trocarImg(this.src)">
+  </div>
+
+  <div class="car-info">
+    <h3 data-i18n="card_3">Corpo de Bombeiros • Combate a Incêndio (AVCB)</h3>
+  </div>
+
+</div>
 
         <div class="car-card reveal">
           <a class="car-link" href="https://arquivo.gt.tc/" target="_blank" rel="noopener" aria-label="Abrir arquivo.gt.tc (Engenharia Elétrica)">
@@ -976,6 +1012,9 @@
     const savedTheme = localStorage.getItem("sec_theme");
     setTheme(savedTheme === "light");
     refreshVotes();
+function trocarImg(src){
+  document.getElementById("avcbMain").src = src;
+}
   </script>
 
 </body>
