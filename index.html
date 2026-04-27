@@ -327,175 +327,105 @@
       width: 54px; height: 54px;
       border-radius: 16px;
       border: 1px solid var(--border);
-      background: rgba(24, 208, 200, 0.18);
-      color: var(--text);
+      background: rgba(37, 211, 102, 0.9);
+      color: white;
       display: flex; align-items: center; justify-content: center;
       text-decoration: none;
-      z-index: 1100;
-      transition: 0.2s;
+      z-index: 1000;
+      transition: 0.3s;
     }
-    .wa-float:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .wa-float:hover { transform: scale(1.1); background: #25d366; }
 
     .toast {
-      position: fixed;
-      right: 16px;
-      bottom: 84px;
-      background: var(--accent);
-      color: #000;
-      padding: 12px 14px;
-      border-radius: 12px;
-      font-weight: 900;
-      max-width: min(92vw, 420px);
-      z-index: 1200;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: 0.22s;
+      position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+      background: var(--accent); color: #000;
+      padding: 12px 24px; border-radius: 12px; font-weight: 700;
+      opacity: 0; pointer-events: none; transition: 0.3s; z-index: 2000;
     }
-    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast.show { opacity: 1; bottom: 100px; }
 
-    @media (max-width: 968px) {
-      nav { padding: 12px 5%; gap: 10px; }
+    @media (max-width: 992px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+      .title-main { font-size: 2.5rem; }
+    }
 
-      .nav-toggle { display: flex; }
-      .nav-actions.desktop-only { display: none; }
-
-      .hero { background-attachment: scroll; }
-      .section-padding { padding: 80px 0; }
-
-      .title-main { font-size: 2.2rem; margin-bottom: 1.1rem; }
-      #hero .title-main { font-size: 2.55rem !important; }
-      #hero .subtitle { letter-spacing: 2px; font-size: 0.85rem; }
-      #hero p { font-size: 1rem; }
-
-      .car-img { height: 240px; }
-      .contact-layout { grid-template-columns: 1fr; gap: 34px; }
-
+    @media (max-width: 768px) {
       .nav-links {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        right: 0;
-        width: 100%;
-        display: none;
-        flex-direction: column;
-        gap: 10px;
-        padding: 14px 5% 18px;
-        background: rgba(11, 16, 38, 0.98);
+        position: fixed; top: 70px; left: 0; width: 100%;
+        background: var(--primary);
+        flex-direction: column; padding: 40px 0;
+        transform: translateY(-150%); transition: 0.4s;
         border-bottom: 1px solid var(--border);
-        max-height: calc(100vh - 70px);
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
       }
-      body.theme-light .nav-links { background: rgba(255, 255, 255, 0.98); }
-      .nav-links.open { display: flex; }
-
-      .nav-links li { width: 100%; }
-      .nav-links a {
-        display: block;
-        width: 100%;
-        padding: 14px 14px;
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        font-size: 0.95rem;
-        white-space: normal;
-      }
-
-      .nav-actions.mobile-only {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        padding: 8px 0 0;
-      }
-
-      footer .container > div {
-        flex-direction: column !important;
-        align-items: flex-start;
-      }
-    }
-
-    @media (min-width: 969px) {
-      .nav-actions.mobile-only { display: none; }
-      .nav-actions.desktop-only { display: flex; }
-    }
-
-    @media (max-width: 420px) {
-      .logo img { height: 38px; }
-      .icon-btn { width: 40px; height: 40px; }
-      .vote-btn { width: 100%; }
-      #hero .title-main { font-size: 2.25rem !important; }
+      .nav-links.open { transform: translateY(0); }
+      .nav-toggle { display: flex; }
+      .title-main { font-size: 2rem; }
     }
   </style>
 </head>
-
-<body>
+<body id="top">
 
   <nav id="navbar">
     <div class="logo">
       <img id="logoImg" src="img/logo.jpg" alt="SEC Engenharia">
     </div>
 
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-
-    <div class="nav-actions desktop-only" aria-label="Ações">
-      <button class="icon-btn" id="langPT" type="button" title="Português">🇧🇷</button>
-      <button class="icon-btn" id="langEN" type="button" title="English">🇺🇸</button>
-      <button class="icon-btn" id="langES" type="button" title="Español">🇪🇸</button>
-      <button class="icon-btn" id="themeBtn" type="button" title="Tema">🌙</button>
-    </div>
-
     <ul class="nav-links" id="navLinks">
-      <li><a href="#hero" data-i18n="menu_home">Início</a></li>
+      <li><a href="#top" data-i18n="menu_home">Início</a></li>
       <li><a href="#about" data-i18n="menu_about">Sobre</a></li>
       <li><a href="#models" data-i18n="menu_services">Serviços</a></li>
       <li><a href="#services" data-i18n="menu_solutions">Soluções</a></li>
       <li><a href="#blog" data-i18n="menu_content">Conteúdo</a></li>
       <li><a href="#contact" data-i18n="menu_contact">Contato</a></li>
-
-      <li>
-        <div class="nav-actions mobile-only" style="margin-top:6px;">
-          <button class="icon-btn" id="mLangPT" type="button" title="Português">🇧🇷</button>
-          <button class="icon-btn" id="mLangEN" type="button" title="English">🇺🇸</button>
-          <button class="icon-btn" id="mLangES" type="button" title="Español">🇪🇸</button>
-          <button class="icon-btn" id="mThemeBtn" type="button" title="Tema">🌙</button>
-        </div>
+      
+      <li class="nav-actions mobile-only" style="margin-top:20px; justify-content:center;">
+        <button class="icon-btn" id="mLangPT">PT</button>
+        <button class="icon-btn" id="mLangEN">EN</button>
+        <button class="icon-btn" id="mLangES">ES</button>
+        <button class="icon-btn" id="mThemeBtn">🌙</button>
       </li>
     </ul>
+
+    <div class="nav-actions">
+      <div class="desktop-only" style="display:flex; gap:8px;">
+        <button class="icon-btn" id="langPT">PT</button>
+        <button class="icon-btn" id="langEN">EN</button>
+        <button class="icon-btn" id="langES">ES</button>
+        <button class="icon-btn" id="themeBtn">🌙</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
-  <section id="hero" class="hero">
+  <section class="hero">
     <div class="container">
-      <span class="subtitle reveal" data-i18n="hero_sub">Conformidade • Segurança • Qualidade</span>
-      <h1 class="title-main reveal hero-brand" style="font-size:5rem;" data-i18n="hero_title">SEC Engenharia.</h1>
-      <div class="brand-slogan reveal" data-i18n="hero_slogan">Desenvolver para Evoluir</div>
-      <p class="reveal" style="max-width:650px;margin-bottom:26px;" data-i18n="hero_desc">
-        Projetos, laudos, adequações e documentação técnica com foco em normas, segurança e desempenho.
-        A SEC Engenharia atende com clareza, agilidade e compromisso.
-      </p>
-      <a href="#models" class="vote-btn reveal" style="text-decoration:none;" data-i18n="hero_cta">Ver serviços</a>
+      <div class="reveal">
+        <span class="subtitle" data-i18n="hero_sub">Conformidade • Segurança • Qualidade</span>
+        <h1 class="title-main" data-i18n="hero_title">SEC Engenharia.</h1>
+        <p class="brand-slogan" data-i18n="hero_slogan">Desenvolver para Evoluir</p>
+        <p style="max-width: 600px; margin-bottom: 30px; font-size: 1.1rem;" data-i18n="hero_desc">
+          Projetos, laudos, adequações e documentação técnica com foco em normas, segurança e desempenho. A SEC Engenharia atende com clareza, agilidade e compromisso.
+        </p>
+        <a href="#models" class="vote-btn" style="text-decoration:none;" data-i18n="hero_cta">Ver serviços</a>
+      </div>
     </div>
   </section>
 
   <section id="about" class="section-padding" style="background:var(--secondary-bg);">
-    <div class="container contact-layout">
+    <div class="container">
       <div class="reveal">
         <span class="subtitle" data-i18n="about_sub">Nossa história</span>
-        <h2 class="title-main" data-i18n="about_title">sec engenharia</h2>
-        <p data-i18n="about_p1">
-          A SEC Engenharia atua com soluções em Engenharia Elétrica, Segurança do Trabalho, Engenharia Clínica e Combate a Incêndio,
-          entregando documentação completa e suporte técnico do início ao fim.
-        </p>
-        <br>
-        <p data-i18n="about_p2">
-          Cada entrega é feita com foco em prevenção, regularização e segurança operacional.
-        </p>
-      </div>
-
-      <div class="reveal">
-        <img src="img/cedad107-466b-4b66-baeb-34287573bcd5.jpg"
-          alt="Inspeção em segurança do trabalho, na parte de incêndio"
-          style="width:100%; border-radius:18px; box-shadow:0 20px 40px rgba(0,0,0,0.45);">
+        <h2 class="title-main hero-brand" data-i18n="about_title">sec engenharia</h2>
+        <div style="max-width:800px; line-height:1.8; font-size:1.05rem;">
+          <p style="margin-bottom:20px;" data-i18n="about_p1">
+            A SEC Engenharia atua com soluções em Engenharia Elétrica, Segurança do Trabalho, Engenharia Clínica e Combate a Incêndio, entregando documentação completa e suporte técnico do início ao fim.
+          </p>
+          <p data-i18n="about_p2">
+            Cada entrega é feita com foco em prevenção, regularização e segurança operacional.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -528,17 +458,17 @@
 
         <div class="car-card reveal">
           <div class="car-link">
-            <img id="avcbMain" src="imagem/co1.jpg" class="car-img" alt="AVCB Bombeiros">
+            <img id="avcbMain" src="imagens/cof1.png" class="car-img" alt="AVCB Bombeiros">
           </div>
 
           <div class="avcb-thumbs">
-            <img src="imagem/co1.jpg" onclick="trocarImg(this.src)" alt="Miniatura">
-            <img src="imagem/co2.jpg" onclick="trocarImg(this.src)" alt="Miniatura">
-            <img src="imagem/co3.jpg" onclick="trocarImg(this.src)" alt="Miniatura">
-            <img src="imagem/co4.jpg" onclick="trocarImg(this.src)" alt="Miniatura">
-            <img src="imagem/co5.jpg" onclick="trocarImg(this.src)" alt="Miniatura">
-            <img src="imagem/co6.jpg" onclick="trocarImg(this.src)" alt="Miniatura">
-            <img src="imagem/co7.jpg" onclick="trocarImg(this.src)" alt="Miniatura">
+            <img src="imagens/cof1.png" onclick="trocarImg(this.src)" alt="Miniatura">
+            <img src="imagens/cof2.png" onclick="trocarImg(this.src)" alt="Miniatura">
+            <img src="imagens/cof3.png" onclick="trocarImg(this.src)" alt="Miniatura">
+            <img src="imagens/cof4.png" onclick="trocarImg(this.src)" alt="Miniatura">
+            <img src="imagens/cof5.png" onclick="trocarImg(this.src)" alt="Miniatura">
+            <img src="imagens/cof6.png" onclick="trocarImg(this.src)" alt="Miniatura">
+            <img src="imagens/cof7.png" onclick="trocarImg(this.src)" alt="Miniatura">
           </div>
 
           <div class="car-info">
@@ -805,7 +735,7 @@
 
     const dict = {
       pt: {
-        menu_home:"Início", menu_about:"Sobre", menu_services:"Serviços", menu_solutions:"Soluções", menu_content:"Conteúdo", menu_contact:"Contato",
+        menu_home:"Início", menu_about:"Sobre", menu_services:"Serviços", menu_solutions:"Soluções", menu_content:"Conteúdo", menu_contact:"Contato",
         hero_sub:"Conformidade • Segurança • Qualidade",
         hero_title:"SEC Engenharia.",
         hero_slogan:"Desenvolver para Evoluir",
@@ -883,13 +813,13 @@
         sol_sub:"Soporte", sol_title:"Soluciones",
         sol_1t:"Inspecciones e Informes", sol_1d:"Diagnóstico técnico con informes claros y objetivos.",
         sol_2t:"Documentación", sol_2d:"Organización y soporte para regularización técnica.",
-        sol_3t:"Adecuaciones", sol_3d:"Plan de acción y acompañamiento para corregir no conformidades.",
+        sol_3t:"Adequaciones", sol_3d:"Plan de acción y acompañamiento para corregir no conformidades.",
         blog_sub:"Contenido", blog_title:"Próximamente", blog_desc:"Aquí puedes agregar publicaciones y consejos sobre conformidad y seguridad.",
         ct_sub:"Habla con SEC", ct_title:"Contacto", ct_city:"Eunápolis - BA", ct_whats:"Enviar WhatsApp", ct_send:"Enviar por WhatsApp",
         ph_name:"Tu nombre", ph_phone:"Tu WhatsApp (opcional)", ph_msg:"Tu mensaje",
         ft_desc:"Ingeniería y conformidad para tu seguridad.",
         ft_priv:"Política de Privacidad", ft_terms:"Términos", ft_quote:"Presupuesto",
-        ft_copy:"© 2026 SEC Engenharia. Todos los derechos reservados.",
+        ft_copy:"© 2026 SEC Engenharia. Todos os direitos reservados.",
         vote_ok:"¡Voto registrado!",
         copied:"¡Teléfono copiado!",
         open_wa:"Abriendo WhatsApp..."
@@ -1022,4 +952,4 @@
   </script>
 
 </body>
-</html>
+</html
