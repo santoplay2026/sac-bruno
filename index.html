@@ -29,7 +29,7 @@
 
     .avcb-thumbs img:hover {
       border-color: var(--accent);
-      transform: scale(.1);
+      transform: scale(1.1);
     }
 
     :root {
@@ -448,9 +448,23 @@
         </div>
 
         <div class="car-card reveal">
-          <a class="car-link" href="https://arquivo.gt.tc/" target="_blank" rel="noopener" aria-label="Abrir arquivo.gt.tc (Perícia e Palestra em Segurança)">
-            <img src="img/perito.jpg" class="car-img" alt="Perícia e Palestra sobre Segurança do Trabalho">
-          </a>
+          <div class="car-link">
+            <img id="sstMain" src="img/perito.jpg" class="car-img" alt="Perícia e Palestra sobre Segurança do Trabalho">
+          </div>
+          <div class="avcb-thumbs">
+            <img src="img/perito.jpg" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
+            <img src="img/nr12/nr12_1.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
+            <img src="img/nr12/nr12_2.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
+            <img src="img/nr12/nr12_3.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
+            <img src="img/nr12/nr12_4.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
+            <img src="img/nr12/nr12_5.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
+            <img src="img/nr12/nr12_6.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
+            <img src="img/nr12/nr12_7.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
+            <img src="img/nr12/nr12_8.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
+            <img src="img/PALESTRA SOBRE SEGURANÇA NO TRABALHO.jpg" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
+            <img src="img/visita técnica sobre a ponte do rio jequitinhonha. segurança do trabalho.jpg" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
+            <img src="img/WhatsApp Image 2026-01-28 at 11.37.05.jpeg" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
+          </div>
           <div class="car-info">
             <h3 data-i18n="card_2">Perícia + Palestra • Segurança do Trabalho</h3>
           </div>
@@ -458,7 +472,7 @@
 
         <div class="car-card reveal">
           <div class="car-link">
-            <img id="avcbMain" src="imagens/cof1.png" class="car-img" alt="AVCB Bombeiros">
+            <img id="avcbMain" src="imagens/cof1.jpg" class="car-img" alt="AVCB Bombeiros">
           </div>
 
           <div class="avcb-thumbs">
@@ -946,10 +960,11 @@
     setTheme(savedTheme === "light");
     refreshVotes();
 
-    function trocarImg(src) {
-      document.getElementById("avcbMain").src = src;
+    function trocarImg(src, targetId = "avcbMain") {
+      const target = document.getElementById(targetId);
+      if (target) target.src = src;
     }
   </script>
 
 </body>
-</html
+</html>
