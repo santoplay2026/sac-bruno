@@ -32,6 +32,99 @@
       transform: scale(1.1);
     }
 
+    .gallery-thumb {
+      position: relative;
+      object-fit: contain !important;
+      background: rgba(0, 0, 0, 0.22);
+    }
+
+    .gallery-main {
+      cursor: zoom-in;
+      object-fit: contain !important;
+      background: rgba(0, 0, 0, 0.22);
+      padding: 8px;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(3, 7, 20, 0.92);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 180ms ease, visibility 180ms ease;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .lightbox-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: min(1100px, 100%);
+      height: min(86vh, 820px);
+    }
+
+    .lightbox img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 14px;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.55);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -18px;
+      right: -8px;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--secondary-bg);
+      color: var(--text);
+      font-size: 1.8rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .lightbox-close:hover,
+    .lightbox-close:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+      outline: none;
+    }
+
+    .lightbox-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -34px;
+      text-align: center;
+      color: #fff;
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 768px) {
+      .lightbox { padding: 18px; }
+      .lightbox-content { height: min(78vh, 650px); }
+      .lightbox-close { top: -14px; right: -4px; }
+    }
+
     :root {
       --primary: #0B1026;
       --secondary-bg: #12183A;
@@ -449,21 +542,21 @@
 
         <div class="car-card reveal">
           <div class="car-link">
-            <img id="sstMain" src="img/perito.jpg" class="car-img" alt="Perícia e Palestra sobre Segurança do Trabalho">
+            <img id="sstMain" src="img/perito.jpg" class="car-img gallery-main" alt="Perícia e Palestra sobre Segurança do Trabalho" tabindex="0" role="button" onclick="openLightbox(this.src, this.alt)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLightbox(this.src, this.alt); }">
           </div>
           <div class="avcb-thumbs">
-            <img src="img/perito.jpg" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
-            <img src="img/nr12/nr12_1.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
-            <img src="img/nr12/nr12_2.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
-            <img src="img/nr12/nr12_3.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
-            <img src="img/nr12/nr12_4.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
-            <img src="img/nr12/nr12_5.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
-            <img src="img/nr12/nr12_6.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
-            <img src="img/nr12/nr12_7.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
-            <img src="img/nr12/nr12_8.jfif" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
-            <img src="img/PALESTRA SOBRE SEGURANÇA NO TRABALHO.jpg" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
-            <img src="img/visita técnica sobre a ponte do rio jequitinhonha. segurança do trabalho.jpg" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
-            <img src="img/WhatsApp Image 2026-01-28 at 11.37.05.jpeg" onclick="trocarImg(this.src, 'sstMain')" alt="Miniatura">
+            <img class="gallery-thumb" src="img/perito.jpg" onclick="trocarImg(this.src, 'sstMain'); openLightbox(this.src, this.alt)" alt="Perito em segurança do trabalho" tabindex="0" role="button">
+            <img class="gallery-thumb" src="img/nr12/nr12_1.jfif" onclick="trocarImg(this.src, 'sstMain'); openLightbox(this.src, this.alt)" alt="Registro técnico NR 12" tabindex="0" role="button">
+            <img class="gallery-thumb" src="img/nr12/nr12_2.jfif" onclick="trocarImg(this.src, 'sstMain'); openLightbox(this.src, this.alt)" alt="Registro técnico NR 12" tabindex="0" role="button">
+            <img class="gallery-thumb" src="img/nr12/nr12_3.jfif" onclick="trocarImg(this.src, 'sstMain'); openLightbox(this.src, this.alt)" alt="Registro técnico NR 12" tabindex="0" role="button">
+            <img class="gallery-thumb" src="img/nr12/nr12_4.jfif" onclick="trocarImg(this.src, 'sstMain'); openLightbox(this.src, this.alt)" alt="Registro técnico NR 12" tabindex="0" role="button">
+            <img class="gallery-thumb" src="img/nr12/nr12_5.jfif" onclick="trocarImg(this.src, 'sstMain'); openLightbox(this.src, this.alt)" alt="Registro técnico NR 12" tabindex="0" role="button">
+            <img class="gallery-thumb" src="img/nr12/nr12_6.jfif" onclick="trocarImg(this.src, 'sstMain'); openLightbox(this.src, this.alt)" alt="Registro técnico NR 12" tabindex="0" role="button">
+            <img class="gallery-thumb" src="img/nr12/nr12_7.jfif" onclick="trocarImg(this.src, 'sstMain'); openLightbox(this.src, this.alt)" alt="Registro técnico NR 12" tabindex="0" role="button">
+            <img class="gallery-thumb" src="img/nr12/nr12_8.jfif" onclick="trocarImg(this.src, 'sstMain'); openLightbox(this.src, this.alt)" alt="Registro técnico NR 12" tabindex="0" role="button">
+            <img class="gallery-thumb" src="img/PALESTRA SOBRE SEGURANÇA NO TRABALHO.jpg" onclick="trocarImg(this.src, 'sstMain'); openLightbox(this.src, this.alt)" alt="Palestra sobre segurança no trabalho" tabindex="0" role="button">
+            <img class="gallery-thumb" src="img/visita técnica sobre a ponte do rio jequitinhonha. segurança do trabalho.jpg" onclick="trocarImg(this.src, 'sstMain'); openLightbox(this.src, this.alt)" alt="Visita técnica de segurança" tabindex="0" role="button">
+            <img class="gallery-thumb" src="img/WhatsApp Image 2026-01-28 at 11.37.05.jpeg" onclick="trocarImg(this.src, 'sstMain'); openLightbox(this.src, this.alt)" alt="Registro de atividade técnica" tabindex="0" role="button">
           </div>
           <div class="car-info">
             <h3 data-i18n="card_2">Perícia + Palestra • Segurança do Trabalho</h3>
@@ -472,17 +565,17 @@
 
         <div class="car-card reveal">
           <div class="car-link">
-            <img id="avcbMain" src="imagens/cof1.jpg" class="car-img" alt="AVCB Bombeiros">
+            <img id="avcbMain" src="imagens/cof1.jpg" class="car-img gallery-main" alt="AVCB Bombeiros" tabindex="0" role="button" onclick="openLightbox(this.src, this.alt)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLightbox(this.src, this.alt); }">
           </div>
 
           <div class="avcb-thumbs">
-            <img src="imagens/cof1.jpg" onclick="trocarImg(this.src)" alt="Miniatura">
-            <img src="imagens/cof2.jpg" onclick="trocarImg(this.src)" alt="Miniatura">
-            <img src="imagens/cof3.jpg" onclick="trocarImg(this.src)" alt="Miniatura">
-            <img src="imagens/cof4.jpg" onclick="trocarImg(this.src)" alt="Miniatura">
-            <img src="imagens/cof5.jpg" onclick="trocarImg(this.src)" alt="Miniatura">
-            <img src="imagens/cof6.jpg" onclick="trocarImg(this.src)" alt="Miniatura">
-            <img src="imagens/cof7.jpg" onclick="trocarImg(this.src)" alt="Miniatura">
+            <img class="gallery-thumb" src="imagens/cof1.jpg" onclick="trocarImg(this.src); openLightbox(this.src, this.alt)" alt="Combate a incêndio" tabindex="0" role="button">
+            <img class="gallery-thumb" src="imagens/cof2.jpg" onclick="trocarImg(this.src); openLightbox(this.src, this.alt)" alt="Combate a incêndio" tabindex="0" role="button">
+            <img class="gallery-thumb" src="imagens/cof3.jpg" onclick="trocarImg(this.src); openLightbox(this.src, this.alt)" alt="Combate a incêndio" tabindex="0" role="button">
+            <img class="gallery-thumb" src="imagens/cof4.jpg" onclick="trocarImg(this.src); openLightbox(this.src, this.alt)" alt="Combate a incêndio" tabindex="0" role="button">
+            <img class="gallery-thumb" src="imagens/cof5.jpg" onclick="trocarImg(this.src); openLightbox(this.src, this.alt)" alt="Combate a incêndio" tabindex="0" role="button">
+            <img class="gallery-thumb" src="imagens/cof6.jpg" onclick="trocarImg(this.src); openLightbox(this.src, this.alt)" alt="Combate a incêndio" tabindex="0" role="button">
+            <img class="gallery-thumb" src="imagens/cof7.jpg" onclick="trocarImg(this.src); openLightbox(this.src, this.alt)" alt="Combate a incêndio" tabindex="0" role="button">
           </div>
 
           <div class="car-info">
@@ -651,6 +744,14 @@
 
   <button class="to-top" id="toTop" title="Topo">⬆️</button>
   <div class="toast" id="toast"></div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização ampliada" aria-hidden="true">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Fechar visualização">&times;</button>
+      <img id="lightboxImage" src="" alt="">
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+  </div>
 
   <script>
     function $(id) { return document.getElementById(id); }
@@ -964,6 +1065,53 @@
       const target = document.getElementById(targetId);
       if (target) target.src = src;
     }
+
+    const lightbox = $("lightbox");
+    const lightboxImage = $("lightboxImage");
+    const lightboxCaption = $("lightboxCaption");
+    const lightboxClose = $("lightboxClose");
+    let lastLightboxTrigger = null;
+
+    function closeLightbox() {
+      if (!lightbox) return;
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      if (lastLightboxTrigger) lastLightboxTrigger.focus();
+    }
+
+    function openLightbox(src, alt = "") {
+      if (!lightbox || !lightboxImage) return;
+      lastLightboxTrigger = document.activeElement;
+      lightboxImage.src = src;
+      lightboxImage.alt = alt;
+      if (lightboxCaption) lightboxCaption.textContent = alt;
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      if (lightboxClose) lightboxClose.focus();
+    }
+
+    window.openLightbox = openLightbox;
+    window.closeLightbox = closeLightbox;
+    if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+    if (lightbox) {
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+    }
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && lightbox && lightbox.classList.contains("open")) closeLightbox();
+    });
+
+    document.querySelectorAll(".gallery-thumb").forEach((thumb) => {
+      thumb.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          thumb.click();
+        }
+      });
+    });
   </script>
 
 </body>
